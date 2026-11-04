@@ -5,7 +5,8 @@ import random
 import time
 import aiohttp
 from . import providers
-from .model import HARBORS, contains, epoch
+from .model import contains, epoch
+from .catalog import verified_harbors, stream_harbors, subscription
 
 log = logging.getLogger('port_of_call.collector')
 
@@ -13,15 +14,16 @@ log = logging.getLogger('port_of_call.collector')
 class Collector:
     def __init__(self, store, config):
         self.store, self.config = store, config
+        self.harbors = verified_harbors(config.provider)
         self.connected = False
         self.accepted = self.rejected = 0
 
     def ingest(self, loc=None, static=None):
-        if loc and not any(contains(h['bbox'], loc['position']) for h in HARBORS.values()
-                           if h['provider'] == self.config.provider):
-            return
+        if loc and not any(contains(h['bbox'], loc['position']) for h in self.harbors.values()):
+            return False
         self.store.put(loc, static)
         self.accepted += bool(loc)
+        return bool(loc)
 
     async def poll(self, session):
         headers = {'Digitraffic-User': 'PortOfCall/0.1 (shared TRMNL snapshot)', 'Accept-Encoding': 'gzip'}
@@ -56,20 +58,16 @@ class Collector:
     def log_metrics(self):
         now = time.time()
         vessels = self.store.vessels(now, self.config.ttl)
-        for h in HARBORS.values():
-            if h['provider'] != self.config.provider: continue
+        for h in self.harbors.values():
             reports = [v for v in vessels if contains(h['bbox'], v['position'])]
             age = min((int(now-epoch(v['reported_at'])) for v in reports), default=None)
             log.info('harbor=%s reports=%s latest_age_seconds=%s', h['id'], len(reports), age)
 
     async def stream(self, session):
-        boxes = [[[h['bbox'][1], h['bbox'][0]], [h['bbox'][3], h['bbox'][2]]]
-                 for h in HARBORS.values() if h['provider'] == 'aisstream']
+        harbors = stream_harbors()
         async with session.ws_connect('wss://stream.aisstream.io/v0/stream', heartbeat=30,
                                       compress=15, max_msg_size=256*1024) as ws:
-            await ws.send_json(dict(APIKey=self.config.key, BoundingBoxes=boxes,
-                FilterMessageTypes=['PositionReport','StandardClassBPositionReport',
-                                    'ExtendedClassBPositionReport','ShipStaticData','StaticDataReport']))
+            await asyncio.wait_for(ws.send_json(subscription(self.config.key, harbors)), timeout=2)
             self.connected = True
             log.info('feed_connected provider=aisstream')
             last_commit = last_metrics = 0
@@ -81,9 +79,9 @@ class Collector:
                     data = json.loads(msg.data)
                     if 'error' in data: raise ConnectionError('Provider rejected subscription')
                     loc, static = providers.aisstream(data, time.time(), self.config.ttl)
-                    self.ingest(loc, static)
+                    accepted = self.ingest(loc, static)
                     # Only real dynamic observations advance feed health.
-                    if loc: self.store.state('last_success', time.time())
+                    if accepted: self.store.state('last_success', time.time())
                 except (ValueError, KeyError, TypeError): self.rejected += 1
                 if time.time()-last_commit > 5:
                     self.store.prune(time.time(), self.config.ttl)

@@ -10,6 +10,7 @@ from dataclasses import dataclass
 from aiohttp import web
 from .collector import Collector
 from .model import HARBORS
+from .catalog import verified_harbors
 from .snapshot import snapshot
 from .store import Store
 
@@ -42,6 +43,9 @@ class Config:
 
 def create_app(config=None, *, store=None, collect=True, clock=time.time):
     config = config or Config.env()
+    active = verified_harbors(config.provider)
+    if not active:
+        raise ValueError("No verified harbors for this provider; run the coverage probe and review the catalog first")
     own_store = store is None
     store = store or Store(config.db_path)
     bound = store.state('provider')
@@ -80,14 +84,14 @@ def create_app(config=None, *, store=None, collect=True, clock=time.time):
             headers={'Cache-Control':'no-store'})
 
     async def harbors(request):
-        return web.json_response({'harbors':[h for h in HARBORS.values() if h['provider']==config.provider]},
+        return web.json_response({'harbors':list(active.values())},
                                  headers={'Cache-Control':'public, max-age=3600'})
 
     async def vessels(request):
         mid = request.match_info['port']
         port = HARBORS.get(mid)
         demo = request.path.startswith('/demo/')
-        if not port or (not demo and port['provider']!=config.provider): raise web.HTTPNotFound()
+        if not port or (not demo and mid not in active): raise web.HTTPNotFound()
         if demo and not config.demo: raise web.HTTPNotFound()
         scale = request.query.get('scale','standard')
         if scale not in ('closer','standard','wider'): raise web.HTTPBadRequest(reason='Unknown scale')
