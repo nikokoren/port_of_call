@@ -1,0 +1,34 @@
+{
+  "captured_at": "2026-11-04T17:07:02Z",
+  "accepted": 103,
+  "rejected": 262,
+  "harbors": [
+    {
+      "id": "helsinki",
+      "vessels": 55,
+      "names": 55,
+      "headings": 44,
+      "courses": 52,
+      "types": 53,
+      "fresh_30min": 55
+    },
+    {
+      "id": "turku",
+      "vessels": 30,
+      "names": 29,
+      "headings": 28,
+      "courses": 29,
+      "types": 29,
+      "fresh_30min": 30
+    },
+    {
+      "id": "rauma",
+      "vessels": 18,
+      "names": 17,
+      "headings": 17,
+      "courses": 15,
+      "types": 17,
+      "fresh_30min": 18
+    }
+  ]
+}

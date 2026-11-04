@@ -1,0 +1,650 @@
+{
+  "schema_version": 1,
+  "display_mode": "map",
+  "port": {
+    "id": "helsinki",
+    "name": "Helsinki",
+    "country": "Finland",
+    "timezone": "Europe/Helsinki",
+    "center": [
+      25.015,
+      60.15
+    ],
+    "bbox": [
+      24.78,
+      60.05,
+      25.25,
+      60.25
+    ],
+    "default_zoom": 10,
+    "provider": "digitraffic",
+    "verified": true
+  },
+  "viewport": [
+    24.78,
+    60.05,
+    25.25,
+    60.25
+  ],
+  "source": "Fintraffic / Digitraffic",
+  "attribution": {
+    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
+    "url": "https://www.digitraffic.fi/en/marine-traffic/",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "snapshot_at": "2026-11-04T17:07:02Z",
+  "fetched_at": "2026-11-04T17:07:02Z",
+  "latest_report_at": "2026-11-04T17:06:45Z",
+  "fetched_local": "19:07 EET",
+  "latest_report_local": "19:06 EET",
+  "latest_report_age_minutes": 0,
+  "status": "ok",
+  "message": "",
+  "demo": false,
+  "total": 55,
+  "shown": 40,
+  "omitted": 15,
+  "vessels": [
+    {
+      "mmsi": "230987940",
+      "position": [
+        24.8886,
+        60.15575
+      ],
+      "reported_at": "2026-11-04T17:06:39Z",
+      "heading_deg": 103.0,
+      "course_deg": 313.5,
+      "speed_knots": 0.0,
+      "name": "JOANNA SATURNA",
+      "type": "other",
+      "bearing_deg": 103.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230044260",
+      "position": [
+        24.91834,
+        60.1499
+      ],
+      "reported_at": "2026-11-04T17:06:42Z",
+      "heading_deg": null,
+      "course_deg": 29.1,
+      "speed_knots": 3.5,
+      "name": "KALLE",
+      "type": "other",
+      "bearing_deg": 29.1,
+      "stale": false
+    },
+    {
+      "mmsi": "230992650",
+      "position": [
+        24.92376,
+        60.1613
+      ],
+      "reported_at": "2026-11-04T17:06:43Z",
+      "heading_deg": 315.0,
+      "course_deg": 0.1,
+      "speed_knots": 0.0,
+      "name": "URSUS",
+      "type": "cargo",
+      "bearing_deg": 315.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230125910",
+      "position": [
+        24.97379,
+        60.10496
+      ],
+      "reported_at": "2026-11-04T17:06:44Z",
+      "heading_deg": 165.0,
+      "course_deg": 196.4,
+      "speed_knots": 0.0,
+      "name": "PILOT L-139",
+      "type": "other",
+      "bearing_deg": 165.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230994270",
+      "position": [
+        24.97795,
+        60.12123
+      ],
+      "reported_at": "2026-11-04T17:06:38Z",
+      "heading_deg": 215.0,
+      "course_deg": 214.1,
+      "speed_knots": 10.4,
+      "name": "RESCUE JENNY WIHURI",
+      "type": "other",
+      "bearing_deg": 215.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230994870",
+      "position": [
+        24.96097,
+        60.16985
+      ],
+      "reported_at": "2026-11-04T17:06:44Z",
+      "heading_deg": 16.0,
+      "course_deg": 58.0,
+      "speed_knots": 1.4,
+      "name": "KOKAR",
+      "type": "passenger",
+      "bearing_deg": 16.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230055040",
+      "position": [
+        25.03562,
+        60.14893
+      ],
+      "reported_at": "2026-11-04T17:04:12Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "name": "MIINA",
+      "type": "other",
+      "bearing_deg": null,
+      "stale": false
+    },
+    {
+      "mmsi": "230939100",
+      "position": [
+        25.0815,
+        60.15625
+      ],
+      "reported_at": "2026-11-04T17:06:41Z",
+      "heading_deg": 130.0,
+      "course_deg": 266.8,
+      "speed_knots": 0.0,
+      "name": "RESCUE RAUTAUOMA",
+      "type": "other",
+      "bearing_deg": 130.0,
+      "stale": false
+    },
+    {
+      "mmsi": "209276000",
+      "position": [
+        25.18863,
+        60.21457
+      ],
+      "reported_at": "2026-11-04T17:06:35Z",
+      "heading_deg": 140.0,
+      "course_deg": 140.0,
+      "speed_knots": 0.0,
+      "name": "ELBWAVE",
+      "type": "cargo",
+      "bearing_deg": 140.0,
+      "stale": false
+    },
+    {
+      "mmsi": "255806452",
+      "position": [
+        25.19482,
+        60.21378
+      ],
+      "reported_at": "2026-11-04T17:06:45Z",
+      "heading_deg": 137.0,
+      "course_deg": 313.2,
+      "speed_knots": 0.0,
+      "name": "NORDIC ISTRIA",
+      "type": "cargo",
+      "bearing_deg": 137.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230985150",
+      "position": [
+        25.1981,
+        60.22104
+      ],
+      "reported_at": "2026-11-04T17:05:00Z",
+      "heading_deg": 218.0,
+      "course_deg": 316.4,
+      "speed_knots": 0.0,
+      "name": "HECTOR",
+      "type": "other",
+      "bearing_deg": 218.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230941570",
+      "position": [
+        24.90853,
+        60.14862
+      ],
+      "reported_at": "2026-11-04T17:06:25Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "name": "MERIKUOKKA",
+      "type": null,
+      "bearing_deg": null,
+      "stale": false
+    },
+    {
+      "mmsi": "230991670",
+      "position": [
+        24.92041,
+        60.15097
+      ],
+      "reported_at": "2026-11-04T17:06:36Z",
+      "heading_deg": 42.0,
+      "course_deg": 34.7,
+      "speed_knots": 4.1,
+      "name": "AJO",
+      "type": "other",
+      "bearing_deg": 42.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230091080",
+      "position": [
+        24.97419,
+        60.10533
+      ],
+      "reported_at": "2026-11-04T17:06:42Z",
+      "heading_deg": 16.0,
+      "course_deg": 19.8,
+      "speed_knots": 0.0,
+      "name": "PILOT L153",
+      "type": "other",
+      "bearing_deg": 16.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230169030",
+      "position": [
+        24.98342,
+        60.14597
+      ],
+      "reported_at": "2026-11-04T17:06:32Z",
+      "heading_deg": 141.0,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "name": "RODNY",
+      "type": "other",
+      "bearing_deg": 141.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230151360",
+      "position": [
+        24.96967,
+        60.16915
+      ],
+      "reported_at": "2026-11-04T17:06:41Z",
+      "heading_deg": null,
+      "course_deg": 0.0,
+      "speed_knots": 0.0,
+      "name": "ARAMIS",
+      "type": "cargo",
+      "bearing_deg": null,
+      "stale": false
+    },
+    {
+      "mmsi": "246996000",
+      "position": [
+        25.18919,
+        60.21599
+      ],
+      "reported_at": "2026-11-04T17:06:12Z",
+      "heading_deg": 321.0,
+      "course_deg": 335.2,
+      "speed_knots": 0.0,
+      "name": "CATHY JO",
+      "type": "cargo",
+      "bearing_deg": 321.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230685000",
+      "position": [
+        25.19331,
+        60.20897
+      ],
+      "reported_at": "2026-11-04T17:05:59Z",
+      "heading_deg": 248.0,
+      "course_deg": 190.3,
+      "speed_knots": 0.0,
+      "name": "FINBO CARGO",
+      "type": "passenger",
+      "bearing_deg": 248.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230047000",
+      "position": [
+        25.1977,
+        60.22081
+      ],
+      "reported_at": "2026-11-04T17:04:00Z",
+      "heading_deg": 44.0,
+      "course_deg": 219.4,
+      "speed_knots": 0.0,
+      "name": "AJAX",
+      "type": "other",
+      "bearing_deg": 44.0,
+      "stale": false
+    },
+    {
+      "mmsi": "249712000",
+      "position": [
+        24.91959,
+        60.14763
+      ],
+      "reported_at": "2026-11-04T17:04:38Z",
+      "heading_deg": 321.0,
+      "course_deg": 288.4,
+      "speed_knots": 0.0,
+      "name": "MEIN SCHIFF FLOW",
+      "type": "passenger",
+      "bearing_deg": 321.0,
+      "stale": false
+    },
+    {
+      "mmsi": "276504000",
+      "position": [
+        24.92809,
+        60.16029
+      ],
+      "reported_at": "2026-11-04T17:06:27Z",
+      "heading_deg": 102.0,
+      "course_deg": 92.9,
+      "speed_knots": 0.0,
+      "name": "H.KANTER",
+      "type": "other",
+      "bearing_deg": 102.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230705000",
+      "position": [
+        24.98058,
+        60.1044
+      ],
+      "reported_at": "2026-11-04T17:06:41Z",
+      "heading_deg": 2.0,
+      "course_deg": 4.5,
+      "speed_knots": 15.9,
+      "name": "VIKING XPRS",
+      "type": "passenger",
+      "bearing_deg": 2.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230991880",
+      "position": [
+        24.98298,
+        60.14534
+      ],
+      "reported_at": "2026-11-04T17:05:16Z",
+      "heading_deg": 192.0,
+      "course_deg": 204.7,
+      "speed_knots": 0.0,
+      "name": "SVANHILD",
+      "type": "other",
+      "bearing_deg": 192.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230014910",
+      "position": [
+        24.96985,
+        60.16882
+      ],
+      "reported_at": "2026-11-04T17:06:40Z",
+      "heading_deg": null,
+      "course_deg": 321.6,
+      "speed_knots": 0.0,
+      "name": "MT1310",
+      "type": "other",
+      "bearing_deg": null,
+      "stale": false
+    },
+    {
+      "mmsi": "255916486",
+      "position": [
+        25.18636,
+        60.21583
+      ],
+      "reported_at": "2026-11-04T17:05:51Z",
+      "heading_deg": 140.0,
+      "course_deg": 181.9,
+      "speed_knots": 0.0,
+      "name": "ELBSPRING",
+      "type": "cargo",
+      "bearing_deg": 140.0,
+      "stale": false
+    },
+    {
+      "mmsi": "256708000",
+      "position": [
+        25.19313,
+        60.21199
+      ],
+      "reported_at": "2026-11-04T17:04:22Z",
+      "heading_deg": 140.0,
+      "course_deg": 19.5,
+      "speed_knots": 0.0,
+      "name": "CMA CGM MERMAID",
+      "type": "cargo",
+      "bearing_deg": 140.0,
+      "stale": false
+    },
+    {
+      "mmsi": "276859000",
+      "position": [
+        24.91476,
+        60.14799
+      ],
+      "reported_at": "2026-11-04T17:04:08Z",
+      "heading_deg": 208.0,
+      "course_deg": 120.0,
+      "speed_knots": 0.0,
+      "name": "MYSTAR",
+      "type": "passenger",
+      "bearing_deg": 208.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230941190",
+      "position": [
+        24.9291,
+        60.15908
+      ],
+      "reported_at": "2026-11-04T17:06:03Z",
+      "heading_deg": 140.0,
+      "course_deg": 308.4,
+      "speed_knots": 0.0,
+      "name": "S/S TURSO",
+      "type": "other",
+      "bearing_deg": 140.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230180500",
+      "position": [
+        24.9745,
+        60.10518
+      ],
+      "reported_at": "2026-11-04T17:06:40Z",
+      "heading_deg": 25.0,
+      "course_deg": 125.0,
+      "speed_knots": 0.1,
+      "name": "PILOT L250",
+      "type": "other",
+      "bearing_deg": 25.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230997470",
+      "position": [
+        24.98184,
+        60.14858
+      ],
+      "reported_at": "2026-11-04T17:04:18Z",
+      "heading_deg": 204.0,
+      "course_deg": 206.0,
+      "speed_knots": 0.0,
+      "name": "YAG VANO",
+      "type": "other",
+      "bearing_deg": 204.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230985490",
+      "position": [
+        24.97522,
+        60.16021
+      ],
+      "reported_at": "2026-11-04T17:06:39Z",
+      "heading_deg": 312.0,
+      "course_deg": 313.2,
+      "speed_knots": 8.1,
+      "name": "SUOMENLINNA II",
+      "type": "passenger",
+      "bearing_deg": 312.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230111190",
+      "position": [
+        25.18402,
+        60.20614
+      ],
+      "reported_at": "2026-11-04T17:01:41Z",
+      "heading_deg": null,
+      "course_deg": 264.2,
+      "speed_knots": 0.0,
+      "name": "MERIHOYLA",
+      "type": "other",
+      "bearing_deg": null,
+      "stale": false
+    },
+    {
+      "mmsi": "230941700",
+      "position": [
+        24.92564,
+        60.15814
+      ],
+      "reported_at": "2026-11-04T17:05:54Z",
+      "heading_deg": 323.0,
+      "course_deg": 352.5,
+      "speed_knots": 0.0,
+      "name": "MERI",
+      "type": "cargo",
+      "bearing_deg": 323.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230033880",
+      "position": [
+        24.97428,
+        60.10504
+      ],
+      "reported_at": "2026-11-04T17:06:34Z",
+      "heading_deg": 216.0,
+      "course_deg": 282.1,
+      "speed_knots": 0.0,
+      "name": "PILOT L238",
+      "type": "other",
+      "bearing_deg": 216.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230235000",
+      "position": [
+        24.98349,
+        60.14532
+      ],
+      "reported_at": "2026-11-04T17:04:17Z",
+      "heading_deg": null,
+      "course_deg": 285.4,
+      "speed_knots": 0.0,
+      "name": "VIVAN",
+      "type": "passenger",
+      "bearing_deg": null,
+      "stale": false
+    },
+    {
+      "mmsi": "230108610",
+      "position": [
+        24.95639,
+        60.16739
+      ],
+      "reported_at": "2026-11-04T17:06:38Z",
+      "heading_deg": 354.0,
+      "course_deg": 303.3,
+      "speed_knots": 0.0,
+      "name": "SUOKKI",
+      "type": "passenger",
+      "bearing_deg": 354.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230955000",
+      "position": [
+        24.92245,
+        60.16069
+      ],
+      "reported_at": "2026-11-04T17:05:27Z",
+      "heading_deg": 173.0,
+      "course_deg": 75.2,
+      "speed_knots": 0.0,
+      "name": "CARMEL",
+      "type": "cargo",
+      "bearing_deg": 173.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230025470",
+      "position": [
+        24.96974,
+        60.16906
+      ],
+      "reported_at": "2026-11-04T17:06:35Z",
+      "heading_deg": null,
+      "course_deg": 359.1,
+      "speed_knots": 0.0,
+      "name": "MT1322",
+      "type": "other",
+      "bearing_deg": null,
+      "stale": false
+    },
+    {
+      "mmsi": "230661000",
+      "position": [
+        24.97226,
+        60.16988
+      ],
+      "reported_at": "2026-11-04T17:06:32Z",
+      "heading_deg": 242.0,
+      "course_deg": 180.0,
+      "speed_knots": 0.0,
+      "name": "POLARIS",
+      "type": "other",
+      "bearing_deg": 242.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230108590",
+      "position": [
+        24.98033,
+        60.16737
+      ],
+      "reported_at": "2026-11-04T17:06:31Z",
+      "heading_deg": 57.0,
+      "course_deg": 0.1,
+      "speed_knots": 0.0,
+      "name": "EHRENSVAERD",
+      "type": "passenger",
+      "bearing_deg": 57.0,
+      "stale": false
+    }
+  ],
+  "fixture_note": "Genuine historical AIS capture; NOT current traffic. See snapshot_at."
+}

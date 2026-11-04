@@ -1,0 +1,649 @@
+{
+  "schema_version": 1,
+  "display_mode": "map",
+  "port": {
+    "id": "helsinki",
+    "name": "Helsinki",
+    "country": "Finland",
+    "timezone": "Europe/Helsinki",
+    "center": [
+      25.015,
+      60.15
+    ],
+    "bbox": [
+      24.78,
+      60.05,
+      25.25,
+      60.25
+    ],
+    "default_zoom": 10,
+    "provider": "digitraffic",
+    "verified": true
+  },
+  "viewport": [
+    24.78,
+    60.05,
+    25.25,
+    60.25
+  ],
+  "source": "Synthetic fixture \u2014 DEMO",
+  "attribution": {
+    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
+    "url": "https://www.digitraffic.fi/en/marine-traffic/",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "snapshot_at": "2026-11-04T17:07:02Z",
+  "fetched_at": "2026-11-04T17:07:02Z",
+  "latest_report_at": "2026-11-04T17:05:02Z",
+  "fetched_local": "19:07 EET",
+  "latest_report_local": "19:05 EET",
+  "latest_report_age_minutes": 2,
+  "status": "ok",
+  "message": "",
+  "demo": true,
+  "total": 120,
+  "shown": 40,
+  "omitted": 80,
+  "vessels": [
+    {
+      "mmsi": "900000011",
+      "position": [
+        24.82359,
+        60.06934
+      ],
+      "reported_at": "2026-11-04T17:04:52Z",
+      "heading_deg": 176.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 011",
+      "type": "cargo",
+      "bearing_deg": 176.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000014",
+      "position": [
+        24.81704,
+        60.10864
+      ],
+      "reported_at": "2026-11-04T17:04:49Z",
+      "heading_deg": 321.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 014",
+      "type": "cargo",
+      "bearing_deg": 321.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000041",
+      "position": [
+        24.83243,
+        60.13695
+      ],
+      "reported_at": "2026-11-04T17:04:22Z",
+      "heading_deg": 232.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 041",
+      "type": "cargo",
+      "bearing_deg": 232.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000022",
+      "position": [
+        24.81356,
+        60.177
+      ],
+      "reported_at": "2026-11-04T17:04:41Z",
+      "heading_deg": 273.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 022",
+      "type": "cargo",
+      "bearing_deg": 273.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000042",
+      "position": [
+        24.78153,
+        60.19442
+      ],
+      "reported_at": "2026-11-04T17:04:21Z",
+      "heading_deg": 134.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 042",
+      "type": "cargo",
+      "bearing_deg": 134.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000076",
+      "position": [
+        24.80378,
+        60.24986
+      ],
+      "reported_at": "2026-11-04T17:03:47Z",
+      "heading_deg": 7.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 076",
+      "type": "cargo",
+      "bearing_deg": 7.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000002",
+      "position": [
+        24.8951,
+        60.07791
+      ],
+      "reported_at": "2026-11-04T17:05:01Z",
+      "heading_deg": 52.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 002",
+      "type": "cargo",
+      "bearing_deg": 52.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000017",
+      "position": [
+        24.88711,
+        60.10788
+      ],
+      "reported_at": "2026-11-04T17:04:46Z",
+      "heading_deg": 40.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 017",
+      "type": "cargo",
+      "bearing_deg": 40.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000020",
+      "position": [
+        24.85645,
+        60.12105
+      ],
+      "reported_at": "2026-11-04T17:04:43Z",
+      "heading_deg": 343.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 020",
+      "type": "cargo",
+      "bearing_deg": 343.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000005",
+      "position": [
+        24.88276,
+        60.15107
+      ],
+      "reported_at": "2026-11-04T17:04:58Z",
+      "heading_deg": 13.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 005",
+      "type": "cargo",
+      "bearing_deg": 13.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000010",
+      "position": [
+        24.8812,
+        60.2027
+      ],
+      "reported_at": "2026-11-04T17:04:53Z",
+      "heading_deg": 52.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 010",
+      "type": "cargo",
+      "bearing_deg": 52.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000033",
+      "position": [
+        24.88308,
+        60.24951
+      ],
+      "reported_at": "2026-11-04T17:04:30Z",
+      "heading_deg": 260.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 033",
+      "type": "cargo",
+      "bearing_deg": 260.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000064",
+      "position": [
+        24.91088,
+        60.14708
+      ],
+      "reported_at": "2026-11-04T17:03:59Z",
+      "heading_deg": 276.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 064",
+      "type": "cargo",
+      "bearing_deg": 276.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000019",
+      "position": [
+        24.91065,
+        60.17714
+      ],
+      "reported_at": "2026-11-04T17:04:44Z",
+      "heading_deg": 186.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 019",
+      "type": "cargo",
+      "bearing_deg": 186.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000008",
+      "position": [
+        24.91075,
+        60.22386
+      ],
+      "reported_at": "2026-11-04T17:04:55Z",
+      "heading_deg": 81.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 008",
+      "type": "cargo",
+      "bearing_deg": 81.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000027",
+      "position": [
+        24.96855,
+        60.06324
+      ],
+      "reported_at": "2026-11-04T17:04:36Z",
+      "heading_deg": 290.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 027",
+      "type": "cargo",
+      "bearing_deg": 290.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000030",
+      "position": [
+        24.99566,
+        60.10298
+      ],
+      "reported_at": "2026-11-04T17:04:33Z",
+      "heading_deg": 126.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 030",
+      "type": "cargo",
+      "bearing_deg": 126.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000071",
+      "position": [
+        24.96923,
+        60.11786
+      ],
+      "reported_at": "2026-11-04T17:03:52Z",
+      "heading_deg": 55.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 071",
+      "type": "cargo",
+      "bearing_deg": 55.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000032",
+      "position": [
+        24.98136,
+        60.16671
+      ],
+      "reported_at": "2026-11-04T17:04:31Z",
+      "heading_deg": 185.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 032",
+      "type": "cargo",
+      "bearing_deg": 185.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000034",
+      "position": [
+        25.01195,
+        60.20116
+      ],
+      "reported_at": "2026-11-04T17:04:29Z",
+      "heading_deg": 56.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 034",
+      "type": "cargo",
+      "bearing_deg": 56.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000029",
+      "position": [
+        25.01464,
+        60.22694
+      ],
+      "reported_at": "2026-11-04T17:04:34Z",
+      "heading_deg": 329.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 029",
+      "type": "cargo",
+      "bearing_deg": 329.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000004",
+      "position": [
+        25.05753,
+        60.05636
+      ],
+      "reported_at": "2026-11-04T17:04:59Z",
+      "heading_deg": 47.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 004",
+      "type": "cargo",
+      "bearing_deg": 47.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000007",
+      "position": [
+        25.03612,
+        60.09409
+      ],
+      "reported_at": "2026-11-04T17:04:56Z",
+      "heading_deg": 301.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 007",
+      "type": "cargo",
+      "bearing_deg": 301.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000037",
+      "position": [
+        25.06007,
+        60.14361
+      ],
+      "reported_at": "2026-11-04T17:04:26Z",
+      "heading_deg": 128.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 037",
+      "type": "cargo",
+      "bearing_deg": 128.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000006",
+      "position": [
+        25.04379,
+        60.1932
+      ],
+      "reported_at": "2026-11-04T17:04:57Z",
+      "heading_deg": 359.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 006",
+      "type": "cargo",
+      "bearing_deg": 359.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000013",
+      "position": [
+        25.03203,
+        60.24462
+      ],
+      "reported_at": "2026-11-04T17:04:50Z",
+      "heading_deg": 193.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 013",
+      "type": "cargo",
+      "bearing_deg": 193.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000001",
+      "position": [
+        25.08053,
+        60.055
+      ],
+      "reported_at": "2026-11-04T17:05:02Z",
+      "heading_deg": 140.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 001",
+      "type": "cargo",
+      "bearing_deg": 140.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000094",
+      "position": [
+        25.09477,
+        60.11284
+      ],
+      "reported_at": "2026-11-04T17:03:29Z",
+      "heading_deg": 135.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 094",
+      "type": "cargo",
+      "bearing_deg": 135.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000009",
+      "position": [
+        25.10813,
+        60.11805
+      ],
+      "reported_at": "2026-11-04T17:04:54Z",
+      "heading_deg": 79.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 009",
+      "type": "cargo",
+      "bearing_deg": 79.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000031",
+      "position": [
+        25.13014,
+        60.1578
+      ],
+      "reported_at": "2026-11-04T17:04:32Z",
+      "heading_deg": 299.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 031",
+      "type": "cargo",
+      "bearing_deg": 299.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000110",
+      "position": [
+        25.07811,
+        60.21587
+      ],
+      "reported_at": "2026-11-04T17:03:13Z",
+      "heading_deg": 22.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 110",
+      "type": "cargo",
+      "bearing_deg": 22.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000003",
+      "position": [
+        25.09805,
+        60.22844
+      ],
+      "reported_at": "2026-11-04T17:05:00Z",
+      "heading_deg": 44.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 003",
+      "type": "cargo",
+      "bearing_deg": 44.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000053",
+      "position": [
+        25.13994,
+        60.07568
+      ],
+      "reported_at": "2026-11-04T17:04:10Z",
+      "heading_deg": 243.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 053",
+      "type": "cargo",
+      "bearing_deg": 243.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000067",
+      "position": [
+        25.15952,
+        60.08808
+      ],
+      "reported_at": "2026-11-04T17:03:56Z",
+      "heading_deg": 49.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 067",
+      "type": "cargo",
+      "bearing_deg": 49.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000055",
+      "position": [
+        25.19004,
+        60.13463
+      ],
+      "reported_at": "2026-11-04T17:04:08Z",
+      "heading_deg": 108.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 055",
+      "type": "cargo",
+      "bearing_deg": 108.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000045",
+      "position": [
+        25.17558,
+        60.15153
+      ],
+      "reported_at": "2026-11-04T17:04:18Z",
+      "heading_deg": 101.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 045",
+      "type": "cargo",
+      "bearing_deg": 101.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000040",
+      "position": [
+        25.13291,
+        60.20372
+      ],
+      "reported_at": "2026-11-04T17:04:23Z",
+      "heading_deg": 174.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 040",
+      "type": "cargo",
+      "bearing_deg": 174.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000018",
+      "position": [
+        25.182,
+        60.2233
+      ],
+      "reported_at": "2026-11-04T17:04:45Z",
+      "heading_deg": 194.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 018",
+      "type": "cargo",
+      "bearing_deg": 194.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000051",
+      "position": [
+        25.22507,
+        60.06713
+      ],
+      "reported_at": "2026-11-04T17:04:12Z",
+      "heading_deg": 248.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 051",
+      "type": "cargo",
+      "bearing_deg": 248.0,
+      "stale": false
+    },
+    {
+      "mmsi": "900000028",
+      "position": [
+        25.19189,
+        60.11294
+      ],
+      "reported_at": "2026-11-04T17:04:35Z",
+      "heading_deg": 335.0,
+      "course_deg": 90.0,
+      "speed_knots": 5.0,
+      "name": "DEMO 028",
+      "type": "cargo",
+      "bearing_deg": 335.0,
+      "stale": false
+    }
+  ]
+}

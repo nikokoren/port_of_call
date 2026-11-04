@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "display_mode": "map",
+  "port": {
+    "id": "helsinki",
+    "name": "Helsinki",
+    "country": "Finland",
+    "timezone": "Europe/Helsinki",
+    "center": [
+      25.015,
+      60.15
+    ],
+    "bbox": [
+      24.78,
+      60.05,
+      25.25,
+      60.25
+    ],
+    "default_zoom": 10,
+    "provider": "digitraffic",
+    "verified": true
+  },
+  "viewport": [
+    24.78,
+    60.05,
+    25.25,
+    60.25
+  ],
+  "source": "Fintraffic / Digitraffic",
+  "attribution": {
+    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
+    "url": "https://www.digitraffic.fi/en/marine-traffic/",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "snapshot_at": "2026-11-04T17:07:02Z",
+  "fetched_at": "2026-11-04T17:07:02Z",
+  "latest_report_at": null,
+  "fetched_local": "19:07 EET",
+  "latest_report_local": null,
+  "latest_report_age_minutes": 0,
+  "status": "warming",
+  "message": "Collecting vessel positions",
+  "demo": false,
+  "total": 0,
+  "shown": 0,
+  "omitted": 0,
+  "vessels": [],
+  "fixture_note": "STATE TEST only"
+}

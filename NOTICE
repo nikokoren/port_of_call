@@ -1,0 +1,22 @@
+Port of Call code: MIT License (see LICENSE).
+
+Vessel data: Source Fintraffic / digitraffic.fi.
+https://www.digitraffic.fi/en/marine-traffic/
+Licensed CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+https://www.digitraffic.fi/en/terms-of-service
+Changes: validated, normalized, filtered to reviewed geographic areas, rounded coordinates,
+merged metadata by MMSI and bounded deterministic selection. Historical captures retain
+original timestamps. Data may be incomplete, delayed or inaccurate; no accuracy or
+availability warranty is implied. Not for navigation.
+
+Map data: © OpenStreetMap contributors. Open Database License (ODbL).
+https://www.openstreetmap.org/copyright
+Visible native framework attribution must be preserved.
+
+TRMNL Framework 3.4.4: MIT; https://github.com/usetrmnl/trmnl-framework
+MapLibre GL JS 5.24.0: BSD-3-Clause; https://github.com/maplibre/maplibre-gl-js
+These assets are loaded from the host or fetched into ignored local preview caches;
+their original licenses remain applicable. No tile archive is redistributed.
+
+AISStream: optional adapter only, no licensed dataset bundled; public redistribution
+and caching rights remain unconfirmed. Synthetic demo data is not observed traffic.
