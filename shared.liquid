@@ -1,0 +1,130 @@
+<link onerror="window.__pocAssetsFailed=true" rel="stylesheet" href="https://trmnl.com/js/maplibre-gl/5.24.0/maplibre-gl.css">
+<script onerror="window.__pocAssetsFailed=true" src="https://trmnl.com/js/maplibre-gl/5.24.0/maplibre-gl.js"></script>
+<style>
+.poc { font-family:"Inter Variable",Arial,sans-serif; display:flex; flex-direction:column; width:100%; height:100%; min-height:0; overflow:hidden; color:var(--black,#000); background:var(--white,#fff); --poc-unit:var(--ui-scale,1); }
+.poc__header { display:flex; align-items:center; justify-content:space-between; padding:calc(8px * var(--poc-unit)) calc(12px * var(--poc-unit)); gap:8px; flex:none; border-bottom:2px solid currentColor; }
+.poc__eyebrow { font-size:calc(10px * var(--poc-unit)); letter-spacing:.18em; font-weight:600; }
+.poc h1 { font-family:inherit; font-size:calc(30px * var(--poc-unit)); font-weight:700; letter-spacing:.04em; line-height:1.15; margin:2px 0 0; text-transform:uppercase; }
+.poc__demo { letter-spacing:0; }
+.poc__count { display:flex; flex-direction:column; align-items:flex-end; font-size:calc(11px * var(--poc-unit)); }
+.poc__count strong { font-size:calc(30px * var(--poc-unit)); line-height:1.1; }
+.poc__chart { position:relative; flex:1; min-height:0; overflow:hidden; }
+.poc__map { position:absolute; inset:0; width:100%; height:100%; }
+.poc__notice { position:absolute; left:12px; top:12px; max-width:calc(100% - 24px); padding:6px 10px; background:var(--white,#fff); color:var(--black,#000); border:1px solid currentColor; font-size:calc(13px * var(--poc-unit)); z-index:3; }
+.poc__notice[hidden],.poc__limited[hidden] { display:none; }
+.poc__north { position:absolute; top:10px; right:12px; background:var(--white,#fff); font-weight:700; padding:2px 4px; font-size:calc(12px * var(--poc-unit)); }
+.poc__limited { position:absolute; left:8px; bottom:26px; padding:2px 5px; background:var(--white,#fff); font-size:calc(10px * var(--poc-unit)); }
+.poc__footer { flex:none; border-top:1px solid currentColor; padding:calc(6px * var(--poc-unit)) calc(12px * var(--poc-unit)); }
+.poc__times { display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px; font-size:calc(12px * var(--poc-unit)); font-weight:600; }
+.poc__credit { font-size:calc(10px * var(--poc-unit)); margin-top:3px; }
+.poc a { color:inherit; text-decoration:none; }
+.poc__ship { z-index:2; width:18px; height:22px; color:var(--black,#000); }
+.poc__ship svg { width:100%; height:100%; display:block; overflow:visible; }
+.poc__ship path { stroke:var(--white,#fff); stroke-width:2; paint-order:stroke; fill:currentColor; }
+.poc__ship--stale path { fill:var(--white,#fff); stroke:currentColor; stroke-width:1.8; }
+.poc__label { z-index:3; position:absolute; padding:1px 3px; background:var(--white,#fff); color:var(--black,#000); font-size:calc(11px * var(--poc-unit)); font-weight:600; white-space:nowrap; pointer-events:none; }
+.poc--half_horizontal h1,.poc--half_vertical h1 { font-size:calc(23px * var(--poc-unit)); }
+.poc--quadrant h1 { font-size:calc(20px * var(--poc-unit)); }
+.poc--quadrant .poc__header { padding:5px 8px; }
+.poc--quadrant .poc__eyebrow { font-size:calc(8px * var(--poc-unit)); }
+.poc--quadrant .poc__count strong { font-size:calc(22px * var(--poc-unit)); }
+.poc--quadrant .poc__footer { padding:4px 8px; }
+.poc--quadrant .poc__times { font-size:calc(10px * var(--poc-unit)); }
+.poc--quadrant .poc__credit { font-size:calc(8px * var(--poc-unit)); }
+.poc--quadrant .poc__times span:last-child,.poc--quadrant .poc__disclaimer { display:none; }
+.poc--half_vertical .poc__times { flex-direction:column; }
+.poc--half_horizontal .poc__eyebrow { display:none; }
+.screen--dark-mode .poc { --black:#fff; --white:#000; }
+</style>
+<script>
+(function () {
+  // Shared markup can be repeated in mashups. Each instance initializes once.
+  function boot() {
+    document.querySelectorAll('.poc:not([data-started])').forEach(function (root) {
+      root.dataset.started = 'true';
+      var el = root.querySelector('.poc__map'), notice = root.querySelector('.poc__notice');
+      var full = root.classList.contains('poc--full');
+      var done = false, map;
+      function failure(text) {
+        if (done) return;
+        notice.textContent = text; notice.hidden = false;
+        root.dataset.mapReady = 'error'; done = true;
+      }
+      var deadline = setTimeout(function () { failure('Map unavailable · check network access'); }, 18000);
+      function start() {
+        if(window.__pocAssetsFailed){failure('Map assets unavailable · check network access');return;}
+        if (!window.TRMNLMaps || !window.maplibregl) {
+          if (!done) setTimeout(start, 50);
+          return;
+        }
+        var bounds = el.dataset.bbox.split(',').map(Number);
+        var center = el.dataset.center.split(',').map(Number);
+        if (bounds.length !== 4 || !bounds.every(Number.isFinite) || bounds[0] >= bounds[2]) {
+          failure('Harbor data unavailable'); return;
+        }
+        try {
+          TRMNLMaps.watch(el, function () {
+            done = false; delete root.dataset.mapReady;
+            clearTimeout(deadline);deadline=setTimeout(function(){failure('Map unavailable · check network access');},18000);
+            var markers = [], labels = [];
+            map = new maplibregl.Map(TRMNLMaps.options({el:el, preset:full?'streets':'outline', center:center, zoom:10}));
+            // Frame the reviewed harbor extent, never the vessel distribution.
+            TRMNLMaps.fit(map, [[bounds[0],bounds[1]],[bounds[2],bounds[3]]], {padding:12,maxZoom:14});
+            map.on('error', function () { failure('Map tiles unavailable · check network access'); });
+            map.on('load', function () {
+              var occupied = [], labeled = [], hidden = 0;
+              var scale = Math.max(1, parseFloat(getComputedStyle(root.closest('.screen')).getPropertyValue('--ui-scale'))||1);
+              var size = 18*scale;
+              root.querySelectorAll('.poc__data li').forEach(function (v) {
+                var coord = [Number(v.dataset.lon),Number(v.dataset.lat)];
+                if (!coord.every(Number.isFinite)) return;
+                var p = map.project(coord);
+                if (occupied.some(function (a) {return Math.hypot(a.x-p.x,a.y-p.y)<size;})) { hidden++; return; }
+                occupied.push(p);
+                var glyph = document.createElement('div');
+                glyph.className = 'poc__ship' + (v.dataset.stale==='true'?' poc__ship--stale':'');
+                glyph.style.width = (18*scale)+'px'; glyph.style.height = (22*scale)+'px';
+                var bearing = v.dataset.bearing === '' ? null : Number(v.dataset.bearing);
+                // Hull points north at zero degrees. A diamond explicitly has no heading.
+                glyph.innerHTML = '<svg viewBox="0 0 18 22" aria-hidden="true"><path d="'+
+                  (bearing===null?'M9 4 L15 11 L9 18 L3 11 Z':'M9 1 L15 10 L13 20 L5 20 L3 10 Z')+'"/></svg>';
+                glyph.title = v.dataset.name || v.dataset.id;
+                markers.push(new maplibregl.Marker({element:glyph,rotation:bearing||0,rotationAlignment:'map',pitchAlignment:'map'})
+                  .setLngLat(coord).addTo(map));
+                if (full && root.dataset.labels==='on' && v.dataset.name && labels.length<6) {
+                  var label = document.createElement('div');
+                  label.className='poc__label'; label.textContent=v.dataset.name;
+                  el.appendChild(label);
+                  var x=p.x+size/2+3, y=p.y-8*scale, w=label.offsetWidth, h=label.offsetHeight;
+                  var box={x:x,y:y,w:w,h:h};
+                  var overlaps=labeled.some(function(b){return x<b.x+b.w+4 && x+w+4>b.x && y<b.y+b.h+4 && y+h+4>b.y;});
+                  var coversShip=occupied.some(function(a){return a.x>x-size/2 && a.x<x+w+size/2 && a.y>y-size/2 && a.y<y+h+size/2;});
+                  if(overlaps||coversShip||x+w>el.clientWidth-10||y<6||y+h>el.clientHeight-24) label.remove();
+                  else {label.style.left=x+'px';label.style.top=y+'px';labels.push(label);labeled.push(box);}
+                }
+              });
+              // Later ship markers must not be obscured by earlier labels.
+              labels.forEach(function(label){var r=label.getBoundingClientRect(),m=el.getBoundingClientRect();
+                if(occupied.some(function(p){return p.x>r.left-m.left-size/2 && p.x<r.right-m.left+size/2 && p.y>r.top-m.top-size/2 && p.y<r.bottom-m.top+size/2;}))label.remove();});
+              var limited=root.querySelector('.poc__limited');
+              var total=Number(root.querySelector('.poc__count strong').textContent)||0;
+              var drawn=markers.length;
+              limited.textContent=drawn+' of '+total+' shown · decluttered'; limited.hidden=drawn>=total;
+              TRMNLMaps.ready(map).then(function () {
+                if (done) return;
+                done=true;clearTimeout(deadline);root.dataset.mapReady='true';
+                if(window.terminalize)window.terminalize();
+              });
+            });
+            map.on('remove', function () {markers.forEach(function(m){m.remove();});labels.forEach(function(l){l.remove();});});
+            return map;
+          });
+        } catch (_) { failure('Map unavailable · renderer could not start'); }
+      }
+      start();
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else setTimeout(boot,0);
+})();
+</script>

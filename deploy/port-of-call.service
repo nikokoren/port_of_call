@@ -1,0 +1,23 @@
+[Unit]
+Description=Port of Call shared AIS snapshot service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=portofcall
+Group=portofcall
+WorkingDirectory=/opt/port-of-call
+EnvironmentFile=/etc/port-of-call.env
+Environment=DB_PATH=/var/lib/port-of-call/positions.sqlite3
+ExecStart=/opt/port-of-call/.venv/bin/port-of-call
+Restart=on-failure
+RestartSec=10
+StateDirectory=port-of-call
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/port-of-call
+
+[Install]
+WantedBy=multi-user.target

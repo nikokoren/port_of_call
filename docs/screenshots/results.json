@@ -1,0 +1,146 @@
+[
+  {
+    "name": "og-helsinki",
+    "ready": "true",
+    "markers": 9,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  },
+  {
+    "name": "og-turku",
+    "ready": "true",
+    "markers": 6,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  },
+  {
+    "name": "og-rauma",
+    "ready": "true",
+    "markers": 3,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  },
+  {
+    "name": "og-half-horizontal",
+    "ready": "true",
+    "markers": 4,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  },
+  {
+    "name": "og-half-vertical",
+    "ready": "true",
+    "markers": 9,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  },
+  {
+    "name": "og-quadrant",
+    "ready": "true",
+    "markers": 4,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  },
+  {
+    "name": "x-landscape",
+    "ready": "true",
+    "markers": 14,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  },
+  {
+    "name": "x-portrait",
+    "ready": "true",
+    "markers": 11,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  },
+  {
+    "name": "og-dark",
+    "ready": "true",
+    "markers": 9,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  },
+  {
+    "name": "og-one-bit",
+    "ready": "true",
+    "markers": 9,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  },
+  {
+    "name": "og-empty",
+    "ready": "true",
+    "markers": 0,
+    "attribution": true,
+    "overflow": false,
+    "text": "No recent vessel reports for this area",
+    "errors": []
+  },
+  {
+    "name": "og-stale",
+    "ready": "true",
+    "markers": 9,
+    "attribution": true,
+    "overflow": false,
+    "text": "Latest positions may be outdated",
+    "errors": []
+  },
+  {
+    "name": "og-unavailable",
+    "ready": "true",
+    "markers": 0,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  },
+  {
+    "name": "og-warming",
+    "ready": "true",
+    "markers": 0,
+    "attribution": true,
+    "overflow": false,
+    "text": "Collecting vessel positions",
+    "errors": []
+  },
+  {
+    "name": "og-map-error",
+    "ready": "error",
+    "markers": 9,
+    "attribution": true,
+    "overflow": false,
+    "text": "Map tiles unavailable · check network access",
+    "errors": []
+  },
+  {
+    "name": "og-demo-density",
+    "ready": "true",
+    "markers": 38,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  }
+]

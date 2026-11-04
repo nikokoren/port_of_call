@@ -1,0 +1,48 @@
+---
+name: Port of Call
+strategy: polling
+polling_verb: get
+# Replace this origin with your deployed HTTPS service before importing.
+polling_url: https://YOUR-BACKEND.example/api/v1/harbors/{{ harbor }}/vessels?scale={{ map_scale }}
+polling_headers: ''
+refresh_interval: 15
+framework_version: '3.4.4'
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+description: Recently reported vessel positions around Finnish harbors. AIS can be incomplete, delayed or inaccurate. Not for navigation.
+custom_fields:
+  - keyname: author_bio
+    field_type: author_bio
+    name: Port of Call
+    description: See who's coming and going. Observed AIS positions, not port schedules. Source Fintraffic / digitraffic.fi, CC BY 4.0; filtered and normalized. Not for navigation.
+  - keyname: harbor
+    field_type: select
+    name: Which harbor?
+    options:
+      - Helsinki, Finland: helsinki
+      - Turku, Finland: turku
+      - Rauma, Finland: rauma
+    default: helsinki
+  - keyname: map_scale
+    field_type: select
+    name: How much of the harbor?
+    options:
+      - Closer: closer
+      - Standard: standard
+      - Wider: wider
+    default: standard
+  - keyname: ship_labels
+    field_type: select
+    name: Show vessel names?
+    description: Up to six names on a full screen. Compact layouts keep names off.
+    options:
+      - 'Off': 'off'
+      - 'On': 'on'
+    default: 'off'
+  - keyname: display_mode
+    field_type: select
+    name: Display mode
+    options:
+      - Harbor Map: map
+    default: map

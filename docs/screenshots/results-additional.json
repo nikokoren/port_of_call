@@ -1,0 +1,47 @@
+[
+  {
+    "name": "x-landscape",
+    "ready": "true",
+    "markers": 14,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  },
+  {
+    "name": "x-portrait",
+    "ready": "true",
+    "markers": 11,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  },
+  {
+    "name": "x-half-horizontal",
+    "ready": "true",
+    "markers": 6,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  },
+  {
+    "name": "x-half-vertical",
+    "ready": "true",
+    "markers": 11,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  },
+  {
+    "name": "x-quadrant",
+    "ready": "true",
+    "markers": 3,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "errors": []
+  }
+]
