@@ -2,6 +2,9 @@
 import argparse
 from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
+import sys
+# Keep this standalone helper usable without activating the backend virtualenv.
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from port_of_call.recipe import release_settings
 
 
