@@ -48,7 +48,7 @@ Test each endpoint through HTTPS. Then set the recipe polling origin and follow 
 - Run only one collector replica; default HTTP and collector share a process. No per-user stream subscription.
 - No browser/fixture/preview server belongs in production. Leave `ENABLE_DEMO` unset/false.
 
-For optional AISStream research, first obtain an account key and confirm caching/public-display rights. Supply `PROVIDER=aisstream`, `AISSTREAM_API_KEY` securely and `AISSTREAM_RIGHTS_CONFIRMED=true` **only after approval**, with a different `DB_PATH`. WSS access to `stream.aisstream.io` is needed. Verify the stream over a useful collection window before adding any candidate to public recipe settings. This path was not credential-tested.
+For AISStream, run the private coverage workflow and promotion steps in [major-ports.md](major-ports.md). The repository secret `AISSTREAM_API` is used only on its Actions runner; the deployed service needs its own securely supplied binding. Confirm caching/public-display rights and promote reviewed registry entries before starting the production service. Supply `PROVIDER=aisstream`, `AISSTREAM_API_KEY` securely and `AISSTREAM_RIGHTS_CONFIRMED=true` **only after approval**, with a different `DB_PATH`. WSS access to `stream.aisstream.io` is needed. Verify the stream over a useful collection window before adding any candidate to public recipe settings. The production collector excludes unverified entries; no verified AISStream ports means startup fails before creating a subscription. Private coverage testing uses the separate probe.
 
 ## Troubleshooting
 

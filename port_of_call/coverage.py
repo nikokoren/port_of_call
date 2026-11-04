@@ -117,7 +117,7 @@ def main():
     try: harbors=stream_harbors(args.ports.split(',') if args.ports else None,candidates=True)
     except ValueError as exc: parser.error(str(exc))
     if args.list:
-        for h in harbors: print(h['id']+' | '+h['name']+' | '+h['region']+' | unverified')
+        for h in harbors: print(h['id']+' | '+h['name']+' | '+h['region']+' | '+('data-verified' if h.get('verified') else 'unverified'))
         return
     evidence=Evidence(harbors,time.time())
     try:

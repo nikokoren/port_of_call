@@ -73,9 +73,13 @@
     ],
     "default_zoom": 10,
     "provider": "aisstream",
-    "verified": false,
+    "verified": true,
     "collection": "major15",
-    "region": "europe"
+    "region": "europe",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 865
   },
   {
     "id": "antwerp",
@@ -94,9 +98,13 @@
     ],
     "default_zoom": 10,
     "provider": "aisstream",
-    "verified": false,
+    "verified": true,
     "collection": "major15",
-    "region": "europe"
+    "region": "europe",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 485
   },
   {
     "id": "hamburg",
@@ -115,9 +123,13 @@
     ],
     "default_zoom": 10,
     "provider": "aisstream",
-    "verified": false,
+    "verified": true,
     "collection": "major15",
-    "region": "europe"
+    "region": "europe",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 282
   },
   {
     "id": "bremerhaven",
@@ -136,9 +148,13 @@
     ],
     "default_zoom": 10,
     "provider": "aisstream",
-    "verified": false,
+    "verified": true,
     "collection": "major15",
-    "region": "europe"
+    "region": "europe",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 73
   },
   {
     "id": "felixstowe",
@@ -157,9 +173,13 @@
     ],
     "default_zoom": 10,
     "provider": "aisstream",
-    "verified": false,
+    "verified": true,
     "collection": "major15",
-    "region": "europe"
+    "region": "europe",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 22
   },
   {
     "id": "southampton",
@@ -178,9 +198,13 @@
     ],
     "default_zoom": 10,
     "provider": "aisstream",
-    "verified": false,
+    "verified": true,
     "collection": "major15",
-    "region": "europe"
+    "region": "europe",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 105
   },
   {
     "id": "los-angeles-long-beach",
@@ -199,9 +223,13 @@
     ],
     "default_zoom": 10,
     "provider": "aisstream",
-    "verified": false,
+    "verified": true,
     "collection": "major15",
-    "region": "us"
+    "region": "us",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 169
   },
   {
     "id": "new-york-new-jersey",
@@ -220,9 +248,13 @@
     ],
     "default_zoom": 10,
     "provider": "aisstream",
-    "verified": false,
+    "verified": true,
     "collection": "major15",
-    "region": "us"
+    "region": "us",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 183
   },
   {
     "id": "savannah",
@@ -241,9 +273,13 @@
     ],
     "default_zoom": 10,
     "provider": "aisstream",
-    "verified": false,
+    "verified": true,
     "collection": "major15",
-    "region": "us"
+    "region": "us",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 30
   },
   {
     "id": "houston",
@@ -262,9 +298,13 @@
     ],
     "default_zoom": 10,
     "provider": "aisstream",
-    "verified": false,
+    "verified": true,
     "collection": "major15",
-    "region": "us"
+    "region": "us",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 96
   },
   {
     "id": "seattle",
@@ -283,9 +323,13 @@
     ],
     "default_zoom": 10,
     "provider": "aisstream",
-    "verified": false,
+    "verified": true,
     "collection": "major15",
-    "region": "us"
+    "region": "us",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 366
   },
   {
     "id": "charleston",
@@ -304,9 +348,13 @@
     ],
     "default_zoom": 10,
     "provider": "aisstream",
-    "verified": false,
+    "verified": true,
     "collection": "major15",
-    "region": "us"
+    "region": "us",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 94
   },
   {
     "id": "singapore",
@@ -325,9 +373,13 @@
     ],
     "default_zoom": 10,
     "provider": "aisstream",
-    "verified": false,
+    "verified": true,
     "collection": "major15",
-    "region": "asia"
+    "region": "asia",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 63
   },
   {
     "id": "shanghai-yangshan",
@@ -348,7 +400,11 @@
     "provider": "aisstream",
     "verified": false,
     "collection": "major15",
-    "region": "asia"
+    "region": "asia",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 0
   },
   {
     "id": "busan-new-port",
@@ -369,6 +425,10 @@
     "provider": "aisstream",
     "verified": false,
     "collection": "major15",
-    "region": "asia"
+    "region": "asia",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 0
   }
 ]

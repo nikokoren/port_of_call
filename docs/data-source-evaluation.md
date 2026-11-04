@@ -6,7 +6,7 @@ Evidence checked **4 November 2026**. These results establish a Finnish private-
 
 An initial native Git inspection found no commits/project files. Runtime binding metadata and exported variable **names/presence only** were inspected: no AISStream binding/key was available. No credentials were requested or exposed.
 
-Official AISStream documentation was accessible at https://aisstream.io/documentation (the trailing-slash variant returned 403). It confirms server-only keys, immediate subscription within three seconds, three subscribed connections/account and three open connections/IP, replacement subscriptions, binary JSON messages, compression and no durable replay or SLA. No authenticated subscription was possible. The terms pages returned 403; display/redistribution/caching rights therefore remain **unconfirmed**. A free key alone would not establish them.
+Official AISStream documentation was accessible at https://aisstream.io/documentation (the trailing-slash variant returned 403). It confirms server-only keys, immediate subscription within three seconds, three subscribed connections/account and three open connections/IP, replacement subscriptions, binary JSON messages, compression and no durable replay or SLA. At the initial setup stage no authenticated subscription was possible; the follow-up documented below now has a completed real subscription. The terms pages returned 403; display/redistribution/caching rights therefore remain **unconfirmed**. A free key alone would not establish them.
 
 Digitraffic marine documentation and terms were accessible:
 
@@ -55,3 +55,19 @@ Production TRMNL rendering, the canonical hosted asset availability from its ren
 ## Follow-up: coverage beyond the initial dropdown
 
 On 4 November 2026, a further genuine Digitraffic snapshot (`dataUpdatedTime: 2026-11-04T18:22:41Z`, 19:22:41 Europe/Berlin) contained valid reports less than 60 minutes old in candidate areas around **Hanko (12), Kotka (14), Oulu (4), Vaasa (5) and Pori (9)**. This confirms that data access is not limited to the three shipped harbors. These were bounded-area exploratory checks, not a review of official harbor boundaries, long-term coverage or a catalog expansion. Their boxes and counts are evidence of observed area coverage only. The three-harbor supported catalog remains unchanged until framing and coverage are reviewed. Worldwide coverage still needs another licensed provider; no international access is inferred from the Finnish feed.
+
+## Major-port preparation and current service references
+
+The user selected AISStream and supplied a repository secret named `AISSTREAM_API`. A manual coverage workflow maps it to `AISSTREAM_API_KEY` on its runner; no secret is extracted into this workspace. The curated candidate catalog is now six European areas, six US areas and three Asian hubs; see [major-ports.md](major-ports.md). Candidates cannot enter the live API, collector or generated plugin form without explicit registry promotion.
+
+On the follow-up check, `https://aisstream.io/documentation#limits` and the website/terms URLs returned HTTP 403 from this machine. The user supplied the Limits table: three subscribed connections/account, three open connections/origin IP, subscribe within three seconds, replacement updates no faster than once/second, MMSI filters up to 200 and continuous consumption to avoid dropped messages. Our design uses one compressed connection, sends within two seconds, has no MMSI filter and batches disk commits. These are service constraints; they do not explicitly state cache or public redistribution rights.
+
+The official https://github.com/aisstream/aisstream README was readable. It calls the service a free global AIS WebSocket API and invites projects, apps and companies to use it. The repository has no license metadata or separate terms file. This is encouraging evidence for the intended use, but it does not explicitly settle public community-recipe redistribution/cache terms. That distinction remains documented rather than inferred from an API key.
+
+AISHub's accessible https://www.aishub.net/api documentation says every station sharing data gets an API key, with latest positions/voyage data available once per minute. This does not supply an immediately available credential-free replacement. NOAA's MarineCadastre vessel-traffic page was reachable, but no suitable current harbor-position feed was verified there. Neither source was substituted for AISStream or presented as fresh global traffic.
+
+## Completed AISStream account check
+
+The user-provided repository secret worked in [run 41894534520](https://github.com/nikokoren/port_of_call/actions/runs/41894534520). The compressed subscription was confirmed and remained connected for **900 seconds, 19:11:43–19:26:43 UTC (20:11:43–20:26:43 Europe/Berlin)** on 4 November 2026. It received **12,380 messages**, with **4 validation rejects**, and recorded **2,833 distinct per-area vessel observations** in 13 areas. All retained positions were under 30 minutes old at the end of the run. [Full counts and limitations](coverage/README.md), [machine-readable evidence](coverage/aisstream-2026-11-04.json).
+
+All six European areas, all six US areas and Singapore had fresh reports. Shanghai/Yangshan and Busan New Port had no reports in this window; this does not establish that the harbors are empty or permanently unsupported. They remain excluded from the first AISStream profile. The 13 positive entries reference this evidence and are marked data-verified. The public-display/cache rights gate remains independent and false by default; the supplied Limits table is not represented as an explicit redistribution license.

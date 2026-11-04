@@ -25,21 +25,25 @@ class Expansion(unittest.TestCase):
         self.assertEqual({r:sum(h['region']==r for h in hs) for r in ['europe','us','asia']},
                          {'europe':6,'us':6,'asia':3})
         for h in hs:
-            self.assertFalse(h['verified']);self.assertTrue(contains(h['bbox'],h['center']));ZoneInfo(h['timezone'])
+            self.assertEqual(h['verified'],h['coverage_distinct_vessels']>0);self.assertTrue(contains(h['bbox'],h['center']));ZoneInfo(h['timezone'])
             w,s,e,n=h['bbox'];self.assertTrue(-180<=w<e<=180 and -90<=s<n<=90)
 
     def test_candidates_cannot_become_live_implicitly(self):
         self.assertEqual(set(verified_harbors('digitraffic')),{'helsinki','turku','rauma'})
-        self.assertEqual(verified_harbors('aisstream'),{})
-        with self.assertRaisesRegex(ValueError,'No verified'):stream_harbors()
-        with self.assertRaisesRegex(ValueError,'No verified'):
-            create_app(Config(provider='aisstream',key='test-only',rights=True),collect=False)
+        active=verified_harbors('aisstream')
+        self.assertEqual(len(active),13)
+        self.assertNotIn('shanghai-yangshan',active);self.assertNotIn('busan-new-port',active)
+        self.assertEqual(len(stream_harbors()),13)
+        with self.assertRaisesRegex(ValueError,'unverified'):stream_harbors(['shanghai-yangshan'])
+        # Coverage success never turns on the public-display rights flag.
+        with self.assertRaisesRegex(ValueError,'RIGHTS_CONFIRMED'):Config(provider='aisstream',key='test-only')
 
     def test_subset_validation_and_subscription_coordinate_order(self):
         hs=stream_harbors(['new-york-new-jersey','hamburg'],candidates=True)
         data=subscription('test-key',hs)
         self.assertEqual(data['BoundingBoxes'][0],[[40.49,-74.25],[40.79,-73.85]])
         self.assertIn('ShipStaticData',data['FilterMessageTypes'])
+        self.assertNotIn('FiltersShipMMSI',data)
         self.assertEqual(len(subscription('test-key',stream_harbors(candidates=True))['BoundingBoxes']),15)
         for ids in (['unknown'],['helsinki'],['hamburg','hamburg'],[]):
             with self.assertRaises(ValueError):stream_harbors(ids,candidates=True)
@@ -92,8 +96,11 @@ class Expansion(unittest.TestCase):
 
     def test_packaging_uses_only_verified_provider_and_preserves_polling_fields(self):
         text=Path('settings.yml').read_text()
-        with self.assertRaisesRegex(ValueError,'cannot be packaged'):release_settings(text,'aisstream')
-        registry=copy.deepcopy(HARBORS);registry['hamburg']['verified']=True
+        empty=copy.deepcopy(HARBORS)
+        for h in empty.values():
+            if h['provider']=='aisstream':h['verified']=False
+        with self.assertRaisesRegex(ValueError,'cannot be packaged'):release_settings(text,'aisstream',registry=empty)
+        registry=empty;registry['hamburg']['verified']=True
         out=release_settings(text,'aisstream',registry=registry,origin='https://harbor.example.com')
         self.assertIn('default: hamburg',out);self.assertNotIn('default: helsinki',out)
         self.assertNotIn('Rotterdam, Netherlands',out);self.assertNotIn('Fintraffic',out)
@@ -103,5 +110,41 @@ class Expansion(unittest.TestCase):
         for origin in ('http://example.com','https://secret@example.com','https://example.com?key=secret'):
             with self.assertRaises(ValueError):release_settings(text,origin=origin)
 
+
+class BatchedPersistence(unittest.TestCase):
+    def test_stream_health_updates_are_visible_without_a_disk_commit_per_report(self):
+        import sqlite3,tempfile
+        from port_of_call.store import Store
+        with tempfile.TemporaryDirectory() as d:
+            s=Store(d+'/positions.db')
+            reader=sqlite3.connect(d+'/positions.db')
+            try:
+                s.state('last_success',NOW,commit=False)
+                self.assertEqual(s.state('last_success'),str(NOW))
+                self.assertIsNone(reader.execute("SELECT value FROM state WHERE key='last_success'").fetchone())
+                s.commit()
+                self.assertEqual(reader.execute("SELECT value FROM state WHERE key='last_success'").fetchone()[0],str(NOW))
+            finally:reader.close();s.close()
+
+class MajorProfileEndpoints(unittest.IsolatedAsyncioTestCase):
+    async def test_profile_serves_thirteen_covered_areas_and_hides_unobserved_candidates(self):
+        from aiohttp.test_utils import TestClient,TestServer
+        from port_of_call.model import position
+        from port_of_call.store import Store
+        s=Store(':memory:')
+        s.put(position('211000001',9.975,53.525,NOW-60,NOW,heading=90,speed=4))
+        s.state('last_success',NOW)
+        config=Config(provider='aisstream',key='test-only-not-a-real-key',rights=True)
+        try:
+            async with TestClient(TestServer(create_app(config,store=s,collect=False,clock=lambda:NOW))) as c:
+                catalog=await (await c.get('/api/v1/harbors')).json()
+                self.assertEqual(len(catalog['harbors']),13)
+                r=await c.get('/api/v1/harbors/hamburg/vessels')
+                data=await r.json();self.assertEqual(r.status,200);self.assertEqual(data['source'],'AISStream')
+                self.assertEqual(data['total'],1);self.assertIsNone(data['attribution'])
+                self.assertNotIn(config.key,json.dumps(data))
+                for mid in ['shanghai-yangshan','busan-new-port','helsinki']:
+                    self.assertEqual((await c.get('/api/v1/harbors/'+mid+'/vessels')).status,404)
+        finally:s.close()
 
 if __name__=='__main__':unittest.main()

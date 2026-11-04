@@ -18,5 +18,5 @@ MapLibre GL JS 5.24.0: BSD-3-Clause; https://github.com/maplibre/maplibre-gl-js
 These assets are loaded from the host or fetched into ignored local preview caches;
 their original licenses remain applicable. No tile archive is redistributed.
 
-AISStream: optional adapter only, no licensed dataset bundled; public redistribution
-and caching rights remain unconfirmed. Synthetic demo data is not observed traffic.
+AISStream: aggregate evaluation counts are included in docs/coverage; no vessel-record
+dataset is bundled. Public redistribution and caching rights remain unconfirmed. Synthetic demo data is not observed traffic.

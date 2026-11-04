@@ -2,6 +2,10 @@
 
 V1 ships a map of recently reported positions. First stabilize Finnish operation with private TRMNL tests and multi-day monitoring. Extend the harbor registry only with provider coverage and license evidence; subscription quotas are an operator concern, never a setting for recipe users.
 
+## Next · Major harbors
+
+Prepare the [15-area collection](major-ports.md), weighted toward the US and Europe. The catalog, one-subscription coverage probe and matching-form packager are implemented. A genuine 15-minute run data-verified 13 areas; two Asian areas remain excluded after no reports. Public release still needs deployment and public-display/cache rights confirmation, plus longer reliability monitoring. The Finnish profile stays available; neither a successful subscription nor a free key automatically promotes a candidate.
+
 ## V2 · Arrivals & Departures
 
 Add a licensed official port-call/schedule provider through a separate adapter and versioned `/api/v1/harbors/{id}/port-calls` contract. Explore Digitraffic Portnet/NEMO for Finland and separately evaluate API.SH, Searoutes, VesselFinder or official port APIs for other countries. Verify price, ship-name completeness, API rate limits, timestamp semantics and public redistribution before selection. No API.SH approximate positions should drive map markers.

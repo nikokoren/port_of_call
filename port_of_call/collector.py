@@ -81,8 +81,9 @@ class Collector:
                     loc, static = providers.aisstream(data, time.time(), self.config.ttl)
                     accepted = self.ingest(loc, static)
                     # Only real dynamic observations advance feed health.
-                    if accepted: self.store.state('last_success', time.time())
+                    if accepted: self.store.state('last_success', time.time(), commit=False)
                 except (ValueError, KeyError, TypeError): self.rejected += 1
+                # Commit a batch, not every report: the socket must keep draining.
                 if time.time()-last_commit > 5:
                     self.store.prune(time.time(), self.config.ttl)
                     last_commit = time.time()

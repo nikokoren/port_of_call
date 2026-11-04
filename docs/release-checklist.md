@@ -14,6 +14,8 @@ Local validation on 4 November 2026: **the backend’s 23 tests passed in the in
 
 The layout follow-up passes **12 recipe/label/pixel tests and 21 browser-rendered scenarios** (19 individual views/states and two native mashups with six independent map instances). The browser checks verify marker projection, card/label/leader clearance, attribution, text bounds and nonblank PNG pixels. Downstream and Hotspots were read as references and remain unchanged. No additional harbors were added to the dropdown; the extra Finnish coverage checks are documented separately.
 
+The major-port expansion passes **33 backend/catalog tests and 12 recipe/label tests**. A secret-backed 900-second GitHub Actions run observed fresh real data in **13 of 15** candidate areas; the generated AISStream archive contains exactly those 13. The default Finnish archive remains unchanged. Public-rights confirmation and deployment remain separate release gates.
+
 ## Required before community submission
 
 - [ ] Deploy a single persistent backend to public HTTPS and verify all catalog endpoints and health externally. **Action:** provision a host/domain and run `docs/deployment.md`; no deployment access was available here.
@@ -25,8 +27,8 @@ The layout follow-up passes **12 recipe/label/pixel tests and 21 browser-rendere
 
 ## Gates only for worldwide AISStream expansion
 
-- [ ] Secure API key via deployment settings, not chat/markup.
+- [x] Repository key used securely in a manual Actions coverage job; it was not extracted or printed. The deployed backend still needs its own secure binding.
 - [ ] Obtain current terms or written confirmation permitting the exact cache/public-display/redistribution use and document any limits/costs.
-- [ ] Authenticated representative collection windows for Hamburg, Rotterdam, Singapore and a smaller harbor; record counts, field completeness, report ages and gaps. No real subscription was possible here.
+- [x] Authenticated 900-second collection for 15 areas, including Hamburg, Rotterdam, Singapore and comparatively smaller Felixstowe/Harwich. Fresh data in 13; two no-report areas are excluded. Counts and field completeness are retained in `docs/coverage/`. Longer continuity tests remain outstanding.
 - [ ] Validate parser/message schemas and reconnect/compression on the actual service. Keep one shared subscription and obey account/IP limits.
-- [ ] Mark catalog entries verified and update recipe dropdown only after these checks. Do not infer zero traffic from unmeasured coverage.
+- [x] Data-verified only the 13 positive areas and generated their provider-specific private-test dropdown; the separate public-rights flag remains off. Two no-report areas remain unverified. Do not infer zero traffic from unmeasured coverage.

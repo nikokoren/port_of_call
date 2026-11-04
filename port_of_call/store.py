@@ -30,10 +30,10 @@ class Store:
 
     def commit(self): self.db.commit()
 
-    def state(self, key, value=None):
+    def state(self, key, value=None, *, commit=True):
         if value is not None:
             self.db.execute('INSERT OR REPLACE INTO state VALUES (?,?)', (key, str(value)))
-            self.db.commit()
+            if commit: self.db.commit()
         row = self.db.execute('SELECT value FROM state WHERE key=?', (key,)).fetchone()
         return row[0] if row else None
 
