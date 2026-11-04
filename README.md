@@ -14,10 +14,12 @@ This is a browser preview with native TRMNL vector tiles and **genuine historica
 
 - Gzip-aware shared Digitraffic polling, position/static normalization, SQLite persistence, bounded retention and outage recovery.
 - Public JSON API, 30-second response cache, ETags and rate limiting; typical response below 15 KB.
-- Native `TRMNLMaps` / MapLibre, geographically anchored hulls, collision-aware names, decluttering and visible OpenStreetMap attribution.
-- Full, half-horizontal, half-vertical and quadrant layouts; OG and X landscape/portrait browser previews, including dark mode.
-- Harbor, framing, optional full-screen names and Map-only display mode settings. Categories are retained internally but not exposed: type coverage is not sufficient to hide unknown vessels confidently.
+- Native `TRMNLMaps` / MapLibre, geographically anchored hulls, Hotspots-style offset names and leader lines, decluttering and visible OpenStreetMap attribution.
+- Downstream-style full maps with a bottom-left information box in full, half-horizontal, half-vertical and quadrant layouts; OG and X landscape/portrait browser previews, including dark mode.
+- Harbor, framing, optional vessel names and Map-only display mode settings. Categories are retained internally but not exposed: type coverage is not sufficient to hide unknown vessels confidently.
 - An isolated synthetic demo endpoint, disabled by default. Production never loads fixtures.
+
+The catalog is deliberately limited, not the full reach of the Finnish feed: a further live check found reports around Hanko, Kotka, Oulu, Vaasa and Pori. Those candidate areas are not yet reviewed catalog entries.
 
 Public deployment and a hosted TRMNL import/device test are **not yet performed**. No hosting or TRMNL account access was provided. Hamburg, Rotterdam and Singapore are research candidates, excluded from the published dropdown. [Release gates](docs/release-checklist.md).
 
@@ -76,6 +78,8 @@ npx playwright install chromium
 npm run preview
 # another terminal
 npm run screenshots
+# Optional multi-instance layout regression check
+node scripts/check-mashups.mjs
 ```
 
 The pinned preview assets come from the official framework Git commit recorded in `scripts/assets.py`. On managed machines where Chromium must use an HTTP proxy, run `.venv/bin/python scripts/asset_proxy.py` and set `MAP_RELAY=true` for screenshots. This local-only TLS-verifying relay allows only the native TRMNL asset/tile hosts. It is not deployed. `PLAYWRIGHT_BROWSERS_PATH` may select an existing browser installation.

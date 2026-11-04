@@ -10,7 +10,9 @@
 - [x] Synthetic demo is opt-in and labeled; density and outage state fixtures are explicitly identified.
 - [x] CI, deployment instructions, license evidence and cost/tradeoff documentation.
 
-Local validation on 4 November 2026: **23 backend tests, 5 recipe tests and 19 distinct browser scenarios passed** (including the intentionally failed tile-load diagnostic). The final backend was restarted on the persisted database, polled successfully and returned HTTP 200 / `ok` for all three standard harbor endpoints: Helsinki 52 reports / 9,344 bytes; Turku 28 / 6,768 bytes; Rauma 18 / 4,617 bytes. Counts differ from the archived Wider screenshots because time and framing differ. Test logs were observed locally; GitHub Actions has been configured but not run remotely here.
+Local validation on 4 November 2026: **the backend’s 23 tests passed in the initial implementation. The updated layout passes 12 recipe, label and screenshot-pixel tests and its browser sweep includes native multi-instance mashups** (including the intentionally failed tile-load diagnostic). The final backend was restarted on the persisted database, polled successfully and returned HTTP 200 / `ok` for all three standard harbor endpoints: Helsinki 52 reports / 9,344 bytes; Turku 28 / 6,768 bytes; Rauma 18 / 4,617 bytes. Counts differ from the archived Wider screenshots because time and framing differ. Test logs were observed locally; GitHub Actions has been configured but not run remotely here.
+
+The layout follow-up passes **12 recipe/label/pixel tests and 21 browser-rendered scenarios** (19 individual views/states and two native mashups with six independent map instances). The browser checks verify marker projection, card/label/leader clearance, attribution, text bounds and nonblank PNG pixels. Downstream and Hotspots were read as references and remain unchanged. No additional harbors were added to the dropdown; the extra Finnish coverage checks are documented separately.
 
 ## Required before community submission
 

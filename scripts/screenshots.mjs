@@ -1,4 +1,6 @@
 import {chromium} from 'playwright';
+import {geometry} from './visual-geometry.mjs';
+import {previewPixels} from './preview-pixels.mjs';
 import {mkdir,writeFile} from 'node:fs/promises';
 const browser=await chromium.launch({headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 const cases=[
@@ -31,16 +33,18 @@ try {
   await page.waitForFunction(()=>window.TRMNL_PLUGINS_READY===true,{timeout:25000});
   const status=await page.evaluate(()=>({ready:document.querySelector('.poc').dataset.mapReady,
    markers:document.querySelectorAll('.poc__ship').length,attribution:document.body.innerText.includes('OpenStreetMap'),
-   overflow:document.querySelector('.poc').scrollHeight>document.querySelector('.poc').clientHeight,
+   overflow:document.querySelector('.poc').scrollHeight>document.querySelector('.poc').clientHeight+Math.max(1,parseFloat(getComputedStyle(document.querySelector('.screen')).getPropertyValue('--ui-scale'))||1),
    text:document.querySelector('.poc__notice').innerText}));
+  const positions=await page.evaluate(geometry);
+  if(!blockTiles && (!positions.cardInside||!positions.attributionClear||positions.hiddenShips||positions.maxProjectionError>1||positions.labelCollisions||positions.leaderCollisions||positions.labelsOutside||positions.textOverflow))throw new Error(name+': geometry '+JSON.stringify(positions));
   if(errors.length||status.ready!==(blockTiles?'error':'true')||!status.attribution||status.overflow)throw new Error(name+': '+JSON.stringify({status,errors}));
   if(!blockTiles && ['helsinki','turku','rauma','demo','stale'].includes(fixture)&&status.markers===0)throw new Error(name+': no markers');
   if(!blockTiles && status.markers) {
    const aboveDither=await page.evaluate(()=>[...document.querySelectorAll('.poc__ship')].every(m=>Number(getComputedStyle(m).zIndex)>0));
    if(!aboveDither)throw new Error(name+': glyphs may be covered by native dither canvas');
   }
-  await page.locator('.screen').screenshot({path:`docs/screenshots/${name}.png`});
-  results.push({name,...status,errors});console.log(name,status.markers,'markers');await page.close();
+  const pixels=previewPixels(await page.locator('.screen').screenshot({path:`docs/screenshots/${name}.png`}));
+  results.push({name,...status,geometry:positions,pixels,errors});console.log(name,status.markers,'markers',positions.labels,'labels',positions.leaders,'leaders');await page.close();
  }
- await writeFile(process.env.CASE_PREFIX?'docs/screenshots/results-additional.json':'docs/screenshots/results.json',JSON.stringify(results,null,2)+'\n');
+ await writeFile(process.env.CASE_PREFIX?'var/visual-subset.json':'docs/screenshots/results.json',JSON.stringify(results,null,2)+'\n');
 }finally{await browser.close();}

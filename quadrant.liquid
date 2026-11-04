@@ -1,19 +1,17 @@
 {% assign opts = trmnl.plugin_settings.custom_fields_values %}
-<section class="poc poc--quadrant" data-status="{{ status | default: 'unavailable' | escape }}" data-labels="{{ opts.ship_labels | escape }}" data-mode="{{ opts.display_mode | default: 'map' | escape }}">
-  <header class="poc__header">
-    <div><div class="poc__eyebrow">PORT OF CALL <span class="poc__demo">{% if demo %} / DEMO · SYNTHETIC{% endif %}</span></div>
-    <h1>{{ port.name | default: 'Harbor map' | escape }}</h1></div>
-    <div class="poc__count"><strong>{{ total | default: 0 }}</strong><span>reported</span></div>
-  </header>
-  <div class="poc__chart">
-    <div class="map poc__map" data-bbox="{{ viewport | join: ',' | escape }}" data-center="{{ port.center | join: ',' | escape }}" aria-label="Recently reported vessel positions"></div>
-    <div class="poc__notice"{% if status == 'ok' %} hidden{% endif %}>{{ message | default: 'Vessel feed unavailable' | escape }}</div>
-    <div class="poc__north" aria-label="North">↑ N</div>
-    <div class="poc__limited" hidden></div>
-  </div>
-  <footer class="poc__footer">
-    <div class="poc__times"><span>AIS positions{% if latest_report_local %} · report {{ latest_report_local | escape }}{% endif %}</span><span>Fetched {{ fetched_local | default: '—' | escape }}</span></div>
-    <div class="poc__credit">{% if demo %}DEMO · SYNTHETIC POSITIONS{% elsif attribution %}<a href="{{ attribution.url | escape }}">Fintraffic / digitraffic.fi</a> · <a href="{{ attribution.license | escape }}">CC BY 4.0</a> · filtered{% else %}{{ source | default: 'Source unavailable' | escape }}{% endif %}<span class="poc__disclaimer"> · Not for navigation</span></div>
-  </footer>
-  <ul class="poc__data" hidden>{% for v in vessels %}<li data-id="{{ v.mmsi | escape }}" data-lon="{{ v.position[0] }}" data-lat="{{ v.position[1] }}" data-bearing="{{ v.bearing_deg }}" data-stale="{{ v.stale }}" data-name="{{ v.name | escape }}"></li>{% endfor %}</ul>
-</section>
+<div class="layout layout--col h--full">
+  <section class="map stretch w--full poc poc--quadrant" data-status="{{ status | default: 'unavailable' | escape }}" data-labels="{{ opts.ship_labels | escape }}" data-mode="{{ opts.display_mode | default: 'map' | escape }}" data-bbox="{{ viewport | join: ',' | escape }}" data-center="{{ port.center | join: ',' | escape }}" aria-label="Recently reported vessel positions">
+    <aside class="absolute bottom--6 lg:bottom--8 left--3 z--2 p--3 bg--canvas outline flex flex--col flex--left gap--xsmall w--[92cqw] poc__box" data-poc-box>
+
+      <span class="label label--small" data-poc-preview hidden></span>
+      {% if demo %}<span class="label label--small">DEMO · SYNTHETIC POSITIONS</span>{% endif %}
+      <span class="w--full title title--small lg:title" data-clamp="2">{{ port.name | default: 'Harbor map' | escape }}</span>
+      <span class="w--full label label--small lg:label--base"><span><strong data-poc-total>{{ total | default: 0 }}</strong> vessel reports<span data-poc-limited></span></span></span>
+      <span class="w--full description label--small poc__notice"{% if status == 'ok' %} hidden{% endif %}>{{ message | default: 'Vessel feed unavailable' | escape }}</span>
+      <span class="w--full label label--small">{% if latest_report_local %}Report {{ latest_report_local | escape }}{% else %}No recent observation{% endif %}</span>
+
+      <span class="w--full label label--small"><span>{% if demo %}DEMO · not observed traffic{% elsif attribution %}<a href="{{ attribution.url | escape }}">Fintraffic / digitraffic.fi</a> · <a href="{{ attribution.license | escape }}">CC BY 4.0</a>{% else %}{{ source | default: 'Source unavailable' | escape }}{% endif %}</span></span>
+    </aside>
+    <ul class="poc__data" hidden>{% for v in vessels %}<li data-id="{{ v.mmsi | escape }}" data-lon="{{ v.position[0] }}" data-lat="{{ v.position[1] }}" data-bearing="{{ v.bearing_deg }}" data-stale="{{ v.stale }}" data-name="{{ v.name | escape }}" data-reported="{{ v.reported_at | escape }}"></li>{% endfor %}</ul>
+  </section>
+</div>

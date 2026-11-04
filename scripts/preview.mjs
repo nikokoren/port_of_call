@@ -19,19 +19,26 @@ http.createServer(async(req,res)=>{
   const data=JSON.parse(await readFile('fixtures/'+fixture+'.json','utf8'));
   let markup=(await render(layout,data,{ship_labels:u.searchParams.get('labels')||'off'}))
    .replaceAll('https://trmnl.com/js/maplibre-gl/5.24.0/','/assets/');
-  if(['stale','empty','unavailable','warming'].includes(fixture))markup=markup.replace('PORT OF CALL <span','STATE TEST · ARCHIVE <span');
-  else if(!data.demo)markup=markup.replace('PORT OF CALL <span','PORT OF CALL · ARCHIVE 04 NOV 2026 <span');
+  if(!data.demo) {
+    const date=new Date(data.snapshot_at).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'});
+    const tag=['stale','empty','unavailable','warming'].includes(fixture)?'STATE TEST · archive':'Archive';
+    markup=markup.replace('data-poc-preview hidden>',`data-poc-preview>${tag} · ${date}`);
+  }
   const device=u.searchParams.get('device')||'og';
   const x=device==='x'||device==='portrait';
   const [w,h]=device==='portrait'?[1404,1872]:x?[1872,1404]:[800,480];
   const dark=u.searchParams.get('dark')==='true';
   // Dimensions use the requested X panel; no assumption about evolving device aliases.
-  const width=layout==='half_vertical'||layout==='quadrant'?w/2:w;
-  const height=layout==='half_horizontal'||layout==='quadrant'?h/2:h;
+  const mashup=u.searchParams.get('mashup')==='true'&&layout!=='full';
+  const width=!mashup&&(layout==='half_vertical'||layout==='quadrant')?w/2:w;
+  const height=!mashup&&(layout==='half_horizontal'||layout==='quadrant')?h/2:h;
+  const one=`<div class="${mashup?'':'preview-view '}view view--${layout}">${markup}</div>`;
+  const kind={half_horizontal:'1Tx1B',half_vertical:'1Lx1R',quadrant:'2x2'}[layout];
+  const inner=mashup?`<div class="mashup mashup--${kind}">${one.repeat(layout==='quadrant'?4:2)}</div>`:one;
   res.setHeader('Content-Type','text/html');res.end(`<!DOCTYPE html><html><head><meta charset="utf-8">
    <link rel="stylesheet" href="/assets/plugins.css"><script src="/assets/plugins.js"></script>
-   <style>html,body{margin:0;padding:0;background:white}.screen{position:relative!important;width:${width}px!important;height:${height}px!important;--screen-w:${w}px;--screen-h:${h}px;--device-ui-scale:${x?2:1};--ui-scale:${x?2:1};--content-scale:1;--color-depth:${x?4:device==='onebit'?1:2}}
+   <style>html,body{margin:0;padding:0;background:white}.screen{isolation:isolate;position:relative!important;width:${width}px!important;height:${height}px!important;--screen-w:${w}px;--screen-h:${h}px;--device-ui-scale:${x?2:1};--ui-scale:${x?2:1};--content-scale:1;--color-depth:${x?4:device==='onebit'?1:2}}
    .preview-view{position:absolute;inset:0;width:100%;height:100%}</style></head>
-   <body class="trmnl"><div class="screen screen--${x?'lg':'og'} screen--${x?'4':device==='onebit'?'1':'2'}bit ${dark?'screen--dark-mode':''} ${device==='portrait'?'screen--portrait':''}"><div class="preview-view view view--${layout}">${markup}</div></div></body></html>`);
+   <body class="trmnl"><div class="screen screen--${x?'lg':'og'} screen--${x?'lg':'md'} screen--${x?'4':device==='onebit'?'1':'2'}bit ${dark?'screen--dark-mode':''} ${device==='portrait'?'screen--portrait':''}">${inner}</div></body></html>`);
  } catch(e) {res.statusCode=500;res.end(e.message);}
 }).listen(8787,'127.0.0.1',()=>console.log('Preview renderer listening on port 8787'));

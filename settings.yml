@@ -35,7 +35,7 @@ custom_fields:
   - keyname: ship_labels
     field_type: select
     name: Show vessel names?
-    description: Up to six names on a full screen. Compact layouts keep names off.
+    description: Names are placed clear of ships, with leader lines when needed. Fewer names fit in compact views.
     options:
       - 'Off': 'off'
       - 'On': 'on'

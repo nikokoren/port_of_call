@@ -1,0 +1,100 @@
+[
+  {
+    "name": "og-mashup-quadrants",
+    "copies": 4,
+    "positions": [
+      {
+        "cardInside": true,
+        "attributionClear": true,
+        "hiddenShips": 0,
+        "maxProjectionError": 0.010402034572249249,
+        "labelCollisions": 0,
+        "leaderCollisions": 0,
+        "labelsOutside": 0,
+        "labels": 2,
+        "leaders": 0,
+        "textOverflow": 0
+      },
+      {
+        "cardInside": true,
+        "attributionClear": true,
+        "hiddenShips": 0,
+        "maxProjectionError": 0.010402034572249249,
+        "labelCollisions": 0,
+        "leaderCollisions": 0,
+        "labelsOutside": 0,
+        "labels": 2,
+        "leaders": 0,
+        "textOverflow": 0
+      },
+      {
+        "cardInside": true,
+        "attributionClear": true,
+        "hiddenShips": 0,
+        "maxProjectionError": 0.010402034572249249,
+        "labelCollisions": 0,
+        "leaderCollisions": 0,
+        "labelsOutside": 0,
+        "labels": 2,
+        "leaders": 0,
+        "textOverflow": 0
+      },
+      {
+        "cardInside": true,
+        "attributionClear": true,
+        "hiddenShips": 0,
+        "maxProjectionError": 0.010402034572249249,
+        "labelCollisions": 0,
+        "leaderCollisions": 0,
+        "labelsOutside": 0,
+        "labels": 2,
+        "leaders": 0,
+        "textOverflow": 0
+      }
+    ],
+    "isolated": true,
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.218875
+    },
+    "errors": []
+  },
+  {
+    "name": "x-mashup-halves",
+    "copies": 2,
+    "positions": [
+      {
+        "cardInside": true,
+        "attributionClear": true,
+        "hiddenShips": 0,
+        "maxProjectionError": 0.020575118065022095,
+        "labelCollisions": 0,
+        "leaderCollisions": 0,
+        "labelsOutside": 0,
+        "labels": 4,
+        "leaders": 1,
+        "textOverflow": 0
+      },
+      {
+        "cardInside": true,
+        "attributionClear": true,
+        "hiddenShips": 0,
+        "maxProjectionError": 0.020575118065022095,
+        "labelCollisions": 0,
+        "leaderCollisions": 0,
+        "labelsOutside": 0,
+        "labels": 4,
+        "leaders": 1,
+        "textOverflow": 0
+      }
+    ],
+    "isolated": true,
+    "pixels": {
+      "width": 1872,
+      "height": 1404,
+      "inkFraction": 0.47596610417123236
+    },
+    "errors": []
+  }
+]

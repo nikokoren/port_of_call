@@ -2,10 +2,27 @@
   {
     "name": "og-helsinki",
     "ready": "true",
-    "markers": 9,
+    "markers": 7,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.020754142965498695,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 6,
+      "leaders": 1,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.5144869791666666
+    },
     "errors": []
   },
   {
@@ -15,6 +32,23 @@
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.019537659387505703,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 5,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.28071875
+    },
     "errors": []
   },
   {
@@ -24,42 +58,127 @@
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.007232447452459334,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 2,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.3200703125
+    },
     "errors": []
   },
   {
     "name": "og-half-horizontal",
     "ready": "true",
-    "markers": 4,
+    "markers": 7,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.020754142988662714,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 4,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 240,
+      "inkFraction": 0.39633854166666665
+    },
     "errors": []
   },
   {
     "name": "og-half-vertical",
     "ready": "true",
-    "markers": 9,
+    "markers": 7,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.02075414298309465,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 4,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 400,
+      "height": 480,
+      "inkFraction": 0.3604375
+    },
     "errors": []
   },
   {
     "name": "og-quadrant",
     "ready": "true",
-    "markers": 4,
+    "markers": 2,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.010402034570743115,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 2,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 400,
+      "height": 240,
+      "inkFraction": 0.22085416666666666
+    },
     "errors": []
   },
   {
     "name": "x-landscape",
     "ready": "true",
-    "markers": 14,
+    "markers": 11,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.020575118085793372,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 6,
+      "leaders": 2,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 1872,
+      "height": 1404,
+      "inkFraction": 0.5368677253025543
+    },
     "errors": []
   },
   {
@@ -69,24 +188,153 @@
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.01765220975580943,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 6,
+      "leaders": 3,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 1404,
+      "height": 1872,
+      "inkFraction": 0.237385705067329
+    },
+    "errors": []
+  },
+  {
+    "name": "x-half-horizontal",
+    "ready": "true",
+    "markers": 11,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.02057511810575226,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 4,
+      "leaders": 1,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 1872,
+      "height": 702,
+      "inkFraction": 0.4318073209633039
+    },
+    "errors": []
+  },
+  {
+    "name": "x-half-vertical",
+    "ready": "true",
+    "markers": 11,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.017652209849876557,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 4,
+      "leaders": 1,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 936,
+      "height": 1404,
+      "inkFraction": 0.3091754023912144
+    },
+    "errors": []
+  },
+  {
+    "name": "x-quadrant",
+    "ready": "true",
+    "markers": 3,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.014464894905275652,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 2,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 936,
+      "height": 702,
+      "inkFraction": 0.31155337619012835
+    },
     "errors": []
   },
   {
     "name": "og-dark",
     "ready": "true",
-    "markers": 9,
+    "markers": 7,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.020754142965498695,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 6,
+      "leaders": 1,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.9863776041666666
+    },
     "errors": []
   },
   {
     "name": "og-one-bit",
     "ready": "true",
-    "markers": 9,
+    "markers": 7,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.020754142965498695,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 6,
+      "leaders": 1,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.26588802083333335
+    },
     "errors": []
   },
   {
@@ -96,15 +344,49 @@
     "attribution": true,
     "overflow": false,
     "text": "No recent vessel reports for this area",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 0,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 400,
+      "height": 240,
+      "inkFraction": 0.19042708333333333
+    },
     "errors": []
   },
   {
     "name": "og-stale",
     "ready": "true",
-    "markers": 9,
+    "markers": 7,
     "attribution": true,
     "overflow": false,
     "text": "Latest positions may be outdated",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.020754142965498695,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 6,
+      "leaders": 1,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.51671875
+    },
     "errors": []
   },
   {
@@ -114,6 +396,23 @@
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 0,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 240,
+      "inkFraction": 0.39803125
+    },
     "errors": []
   },
   {
@@ -123,24 +422,75 @@
     "attribution": true,
     "overflow": false,
     "text": "Collecting vessel positions",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 0,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 400,
+      "height": 240,
+      "inkFraction": 0.18933333333333333
+    },
     "errors": []
   },
   {
     "name": "og-map-error",
     "ready": "error",
-    "markers": 9,
+    "markers": 0,
     "attribution": true,
     "overflow": false,
     "text": "Map tiles unavailable · check network access",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 0,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.011502604166666666
+    },
     "errors": []
   },
   {
     "name": "og-demo-density",
     "ready": "true",
-    "markers": 38,
+    "markers": 29,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.01907274569283118,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 6,
+      "leaders": 5,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.5181171875
+    },
     "errors": []
   }
 ]

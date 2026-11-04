@@ -1,130 +1,194 @@
 <link onerror="window.__pocAssetsFailed=true" rel="stylesheet" href="https://trmnl.com/js/maplibre-gl/5.24.0/maplibre-gl.css">
 <script onerror="window.__pocAssetsFailed=true" src="https://trmnl.com/js/maplibre-gl/5.24.0/maplibre-gl.js"></script>
 <style>
-.poc { font-family:"Inter Variable",Arial,sans-serif; display:flex; flex-direction:column; width:100%; height:100%; min-height:0; overflow:hidden; color:var(--black,#000); background:var(--white,#fff); --poc-unit:var(--ui-scale,1); }
-.poc__header { display:flex; align-items:center; justify-content:space-between; padding:calc(8px * var(--poc-unit)) calc(12px * var(--poc-unit)); gap:8px; flex:none; border-bottom:2px solid currentColor; }
-.poc__eyebrow { font-size:calc(10px * var(--poc-unit)); letter-spacing:.18em; font-weight:600; }
-.poc h1 { font-family:inherit; font-size:calc(30px * var(--poc-unit)); font-weight:700; letter-spacing:.04em; line-height:1.15; margin:2px 0 0; text-transform:uppercase; }
-.poc__demo { letter-spacing:0; }
-.poc__count { display:flex; flex-direction:column; align-items:flex-end; font-size:calc(11px * var(--poc-unit)); }
-.poc__count strong { font-size:calc(30px * var(--poc-unit)); line-height:1.1; }
-.poc__chart { position:relative; flex:1; min-height:0; overflow:hidden; }
-.poc__map { position:absolute; inset:0; width:100%; height:100%; }
-.poc__notice { position:absolute; left:12px; top:12px; max-width:calc(100% - 24px); padding:6px 10px; background:var(--white,#fff); color:var(--black,#000); border:1px solid currentColor; font-size:calc(13px * var(--poc-unit)); z-index:3; }
-.poc__notice[hidden],.poc__limited[hidden] { display:none; }
-.poc__north { position:absolute; top:10px; right:12px; background:var(--white,#fff); font-weight:700; padding:2px 4px; font-size:calc(12px * var(--poc-unit)); }
-.poc__limited { position:absolute; left:8px; bottom:26px; padding:2px 5px; background:var(--white,#fff); font-size:calc(10px * var(--poc-unit)); }
-.poc__footer { flex:none; border-top:1px solid currentColor; padding:calc(6px * var(--poc-unit)) calc(12px * var(--poc-unit)); }
-.poc__times { display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px; font-size:calc(12px * var(--poc-unit)); font-weight:600; }
-.poc__credit { font-size:calc(10px * var(--poc-unit)); margin-top:3px; }
-.poc a { color:inherit; text-decoration:none; }
-.poc__ship { z-index:2; width:18px; height:22px; color:var(--black,#000); }
+/* Like Downstream, layout, typography and the inset card use native framework
+   classes. Custom rules handle geographic overlays, leader lines and link inheritance. */
+.poc { --poc-paper:#fff; --poc-ink:#000; overflow:hidden; }
+.poc__box { z-index:5; }
+.poc__box a { color:inherit; text-decoration:none; }
+.poc__box [hidden] { display:none; }
+.poc__ship { position:absolute; transform:translate(-50%,-50%); z-index:3; color:var(--poc-ink); }
 .poc__ship svg { width:100%; height:100%; display:block; overflow:visible; }
-.poc__ship path { stroke:var(--white,#fff); stroke-width:2; paint-order:stroke; fill:currentColor; }
-.poc__ship--stale path { fill:var(--white,#fff); stroke:currentColor; stroke-width:1.8; }
-.poc__label { z-index:3; position:absolute; padding:1px 3px; background:var(--white,#fff); color:var(--black,#000); font-size:calc(11px * var(--poc-unit)); font-weight:600; white-space:nowrap; pointer-events:none; }
-.poc--half_horizontal h1,.poc--half_vertical h1 { font-size:calc(23px * var(--poc-unit)); }
-.poc--quadrant h1 { font-size:calc(20px * var(--poc-unit)); }
-.poc--quadrant .poc__header { padding:5px 8px; }
-.poc--quadrant .poc__eyebrow { font-size:calc(8px * var(--poc-unit)); }
-.poc--quadrant .poc__count strong { font-size:calc(22px * var(--poc-unit)); }
-.poc--quadrant .poc__footer { padding:4px 8px; }
-.poc--quadrant .poc__times { font-size:calc(10px * var(--poc-unit)); }
-.poc--quadrant .poc__credit { font-size:calc(8px * var(--poc-unit)); }
-.poc--quadrant .poc__times span:last-child,.poc--quadrant .poc__disclaimer { display:none; }
-.poc--half_vertical .poc__times { flex-direction:column; }
-.poc--half_horizontal .poc__eyebrow { display:none; }
-.screen--dark-mode .poc { --black:#fff; --white:#000; }
+.poc__ship path { fill:currentColor; stroke:var(--poc-paper); stroke-width:2; paint-order:stroke; }
+.poc__ship--stale path { fill:var(--poc-paper); stroke:currentColor; stroke-width:1.8; }
+.poc__label { position:absolute; z-index:4; white-space:nowrap; line-height:1; pointer-events:none; }
+.poc__lines { position:absolute; inset:0; width:100%; height:100%; z-index:2; color:var(--poc-ink); pointer-events:none; }
+.poc__lines line { vector-effect:non-scaling-stroke; stroke-linecap:round; }
+.poc__leader-halo { stroke:var(--poc-paper); stroke-width:3px; }
+.poc__leader { stroke:currentColor; stroke-width:1px; }
+.screen--dark-mode .poc { --poc-paper:#000; --poc-ink:#fff; }
 </style>
+<script data-poc-label-engine>
+(function () {
+  if (window.PortOfCallLabels) return;
+  // Adapted from nikokoren/hotspots HSMap.placeLabels: four adjacent placements,
+  // then seven distances along sixteen directions. Only labels move, never ships.
+  var ANGLES = [0,180,-45,-135,45,135,-90,90,-22.5,-157.5,22.5,157.5,-67.5,-112.5,67.5,112.5];
+  function overlaps(a,b) {return a[0]<b[2] && b[0]<a[2] && a[1]<b[3] && b[1]<a[3];}
+  function lineHits(line, boxes) {
+    // Exact segment/rectangle clipping also catches narrow obstacles between samples.
+    return boxes.some(function (b) {
+      var lo=0, hi=1, dx=line[2]-line[0], dy=line[3]-line[1];
+      var p=[-dx,dx,-dy,dy], q=[line[0]-b[0],b[2]-line[0],line[1]-b[1],b[3]-line[1]];
+      for(var i=0;i<4;i++) {
+        if(p[i]===0) {if(q[i]<0)return false;}
+        else {var t=q[i]/p[i];if(p[i]<0)lo=Math.max(lo,t);else hi=Math.min(hi,t);if(lo>hi)return false;}
+      }
+      return hi>0 && lo<1;
+    });
+  }
+  function plan(o) {
+    var x=o.x,y=o.y,ib=o.icon,g=3*o.scale;
+    var boxes=o.boxes, lines=o.lines||[], tw=o.width, th=o.height;
+    function fits(b) {
+      return b[0]>=2 && b[1]>=2 && b[2]<=o.W-2 && b[3]<=o.H-2 &&
+        !boxes.some(function(a){return overlaps(b,a);}) && !lines.some(function(l){return lineHits(l,[b]);});
+    }
+    function rect(anchor,ex,ey,vertical) {
+      if(anchor==='start')return [ex,ey-th/2,ex+tw,ey+th/2];
+      if(anchor==='end')return [ex-tw,ey-th/2,ex,ey+th/2];
+      return vertical<0?[ex-tw/2,ey-th,ex+tw/2,ey]:[ex-tw/2,ey,ex+tw/2,ey+th];
+    }
+    var near=[['start',ib[2]+g,y,0],['end',ib[0]-g,y,0],['middle',x,ib[1]-g,-1],['middle',x,ib[3]+g,1]];
+    for(var n=0;n<near.length;n++) {
+      var a=near[n],r=rect(a[0],a[1],a[2],a[3]);
+      if(fits(r))return {rect:r,line:null};
+    }
+    var steps=[.015,.025,.035,.05,.065,.08,.10];
+    for(var si=0;si<steps.length;si++)for(var ai=0;ai<ANGLES.length;ai++) {
+      var rad=ANGLES[ai]*Math.PI/180,dx=Math.cos(rad),dy=Math.sin(rad);
+      var tx=Math.abs(dx)>1e-9?((dx>0?ib[2]:ib[0])-x)/dx:Infinity;
+      var ty=Math.abs(dy)>1e-9?((dy>0?ib[3]:ib[1])-y)/dy:Infinity;
+      var r0=Math.max(0,Math.min(tx,ty)), ex=x+dx*(r0+steps[si]*o.W),ey=y+dy*(r0+steps[si]*o.W);
+      var anchor=dx>.3?'start':dx<-.3?'end':'middle', r=rect(anchor,ex,ey,dy);
+      var line=[x+dx*r0,y+dy*r0,ex,ey];
+      // The line may touch its own icon only; boxes include all other icons and overlays.
+      var blockers=boxes.filter(function(b){return b!==ib;});
+      if(fits(r)&&!lineHits(line,blockers))return {rect:r,line:line};
+    }
+    return null;
+  }
+  window.PortOfCallLabels={plan:plan,overlaps:overlaps,lineHits:lineHits};
+})();
+
+</script>
 <script>
 (function () {
-  // Shared markup can be repeated in mashups. Each instance initializes once.
   function boot() {
-    document.querySelectorAll('.poc:not([data-started])').forEach(function (root) {
-      root.dataset.started = 'true';
-      var el = root.querySelector('.poc__map'), notice = root.querySelector('.poc__notice');
-      var full = root.classList.contains('poc--full');
-      var done = false, map;
+    document.querySelectorAll('.poc:not([data-started])').forEach(function (el) {
+      el.dataset.started='true';
+      var notice=el.querySelector('.poc__notice'),box=el.querySelector('[data-poc-box]');
+      var full=el.classList.contains('poc--full'),quad=el.classList.contains('poc--quadrant');
+      var done=false,deadline;
       function failure(text) {
-        if (done) return;
-        notice.textContent = text; notice.hidden = false;
-        root.dataset.mapReady = 'error'; done = true;
+        if(done)return;
+        notice.textContent=text;notice.hidden=false;el.dataset.mapReady='error';done=true;
       }
-      var deadline = setTimeout(function () { failure('Map unavailable · check network access'); }, 18000);
+      function setDeadline() {clearTimeout(deadline);deadline=setTimeout(function(){failure('Map unavailable · check network access');},18000);}
+      function rect(node) {
+        var a=node.getBoundingClientRect(),b=el.getBoundingClientRect();
+        return [a.left-b.left,a.top-b.top,a.right-b.left,a.bottom-b.top];
+      }
+      function scale() {return Math.max(1,parseFloat(getComputedStyle(el.closest('.screen')).getPropertyValue('--ui-scale'))||1);}
+      function blockers() {
+        return [box].concat(Array.from(el.querySelectorAll('.map__attribution'))).map(rect);
+      }
+      function fit(map,bounds) {
+        // Downstream's framing: reserve the box's side or the area above it,
+        // whichever gives the reviewed harbor extent more room. Never fit to ships.
+        var g=12*scale(),r=rect(box),W=el.clientWidth,H=el.clientHeight;
+        var beside={top:g,right:g,bottom:g,left:r[2]+g};
+        var above={top:g,right:g,bottom:H-r[1]+g,left:g};
+        var pad=(W-r[2])*H>=W*r[1]?beside:above;
+        if(W-pad.left-pad.right<40 || H-pad.top-pad.bottom<40)pad={top:g,right:g,bottom:g,left:g};
+        TRMNLMaps.fit(map,[[bounds[0],bounds[1]],[bounds[2],bounds[3]]],{padding:pad,maxZoom:14});
+      }
+      function draw(map) {
+        el.querySelectorAll('.poc__ship,.poc__label,.poc__lines').forEach(function(n){n.remove();});
+        var W=el.clientWidth,H=el.clientHeight,unit=scale(),size=16*unit;
+        var reserved=blockers(),shown=[];
+        el.querySelectorAll('.poc__data li').forEach(function (v) {
+          var coord=[Number(v.dataset.lon),Number(v.dataset.lat)];
+          if(!coord.every(Number.isFinite))return;
+          var pt=map.project(coord),bearing=v.dataset.bearing===''?null:Number(v.dataset.bearing);
+          // Rotation-aware icon bounds; do not move markers to make room for names.
+          var angle=(bearing||0)*Math.PI/180;
+          var iw=(Math.abs(Math.cos(angle))*16+Math.abs(Math.sin(angle))*20)*unit;
+          var ih=(Math.abs(Math.sin(angle))*16+Math.abs(Math.cos(angle))*20)*unit;
+          var ib=[pt.x-iw/2,pt.y-ih/2,pt.x+iw/2,pt.y+ih/2];
+          if(ib[0]<2||ib[1]<2||ib[2]>W-2||ib[3]>H-2||reserved.some(function(b){return PortOfCallLabels.overlaps(ib,b);})||
+             shown.some(function(s){return Math.hypot(s.x-pt.x,s.y-pt.y)<size;}))return;
+          var glyph=document.createElement('div');
+          glyph.className='poc__ship'+(v.dataset.stale==='true'?' poc__ship--stale':'');
+          glyph.style.left=pt.x+'px';glyph.style.top=pt.y+'px';glyph.style.width=(16*unit)+'px';glyph.style.height=(20*unit)+'px';
+          glyph.dataset.id=v.dataset.id;glyph.dataset.lon=coord[0];glyph.dataset.lat=coord[1];
+          glyph.title=v.dataset.name||v.dataset.id;
+          glyph.innerHTML='<svg viewBox="0 0 18 22" aria-hidden="true"><path d="'+
+            (bearing===null?'M9 4 L15 11 L9 18 L3 11 Z':'M9 1 L15 10 L13 20 L5 20 L3 10 Z')+'"/></svg>';
+          glyph.querySelector('svg').style.transform='rotate('+(bearing||0)+'deg)';
+          el.appendChild(glyph);shown.push({x:pt.x,y:pt.y,box:ib,data:v.dataset});
+        });
+        var count=el.querySelector('[data-poc-limited]'),total=Number(el.querySelector('[data-poc-total]').textContent)||0;
+        count.textContent=shown.length<total?' · '+shown.length+' shown':'';
+        if(el.dataset.labels!=='on')return;
+        var boxes=shown.map(function(s){return s.box;}).concat(reserved),lines=[];
+        var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+        svg.setAttribute('class','poc__lines');svg.setAttribute('viewBox','0 0 '+W+' '+H);el.appendChild(svg);
+        var placed=0,limit=full?6:quad?2:4;
+        shown.sort(function(a,b){return b.data.reported.localeCompare(a.data.reported)||a.data.id.localeCompare(b.data.id);}).forEach(function(s){
+          if(!s.data.name||placed>=limit)return;
+          var label=document.createElement('span');label.className='poc__label label label--small text-stroke';
+          label.textContent=s.data.name;el.appendChild(label);
+          // Leave the same measurement safety margin used by Hotspots' font pass.
+          var result=PortOfCallLabels.plan({x:s.x,y:s.y,icon:s.box,width:Math.ceil(label.offsetWidth*1.08)+4,
+            height:label.offsetHeight+4,W:W,H:H,boxes:boxes,lines:lines,scale:unit});
+          if(!result){label.remove();return;}
+          label.dataset.id=s.data.id;label.style.left=(result.rect[0]+2)+'px';label.style.top=(result.rect[1]+2)+'px';
+          boxes.push(result.rect);placed++;
+          if(result.line) {
+            lines.push(result.line);
+            ['poc__leader-halo','poc__leader'].forEach(function(cls){
+              var l=document.createElementNS('http://www.w3.org/2000/svg','line');l.setAttribute('class',cls);l.dataset.id=s.data.id;
+              ['x1','y1','x2','y2'].forEach(function(k,i){l.setAttribute(k,result.line[i]);});svg.appendChild(l);
+            });
+          }
+        });
+      }
+      setDeadline();
       function start() {
         if(window.__pocAssetsFailed){failure('Map assets unavailable · check network access');return;}
-        if (!window.TRMNLMaps || !window.maplibregl) {
-          if (!done) setTimeout(start, 50);
-          return;
-        }
-        var bounds = el.dataset.bbox.split(',').map(Number);
-        var center = el.dataset.center.split(',').map(Number);
-        if (bounds.length !== 4 || !bounds.every(Number.isFinite) || bounds[0] >= bounds[2]) {
-          failure('Harbor data unavailable'); return;
-        }
+        if(!window.TRMNLMaps||!window.maplibregl) {if(!done)setTimeout(start,50);return;}
+        var bounds=el.dataset.bbox.split(',').map(Number),center=el.dataset.center.split(',').map(Number);
+        if(bounds.length!==4||!bounds.every(Number.isFinite)||bounds[0]>=bounds[2]){failure('Harbor data unavailable');return;}
         try {
-          TRMNLMaps.watch(el, function () {
-            done = false; delete root.dataset.mapReady;
-            clearTimeout(deadline);deadline=setTimeout(function(){failure('Map unavailable · check network access');},18000);
-            var markers = [], labels = [];
-            map = new maplibregl.Map(TRMNLMaps.options({el:el, preset:full?'streets':'outline', center:center, zoom:10}));
-            // Frame the reviewed harbor extent, never the vessel distribution.
-            TRMNLMaps.fit(map, [[bounds[0],bounds[1]],[bounds[2],bounds[3]]], {padding:12,maxZoom:14});
-            map.on('error', function () { failure('Map tiles unavailable · check network access'); });
-            map.on('load', function () {
-              var occupied = [], labeled = [], hidden = 0;
-              var scale = Math.max(1, parseFloat(getComputedStyle(root.closest('.screen')).getPropertyValue('--ui-scale'))||1);
-              var size = 18*scale;
-              root.querySelectorAll('.poc__data li').forEach(function (v) {
-                var coord = [Number(v.dataset.lon),Number(v.dataset.lat)];
-                if (!coord.every(Number.isFinite)) return;
-                var p = map.project(coord);
-                if (occupied.some(function (a) {return Math.hypot(a.x-p.x,a.y-p.y)<size;})) { hidden++; return; }
-                occupied.push(p);
-                var glyph = document.createElement('div');
-                glyph.className = 'poc__ship' + (v.dataset.stale==='true'?' poc__ship--stale':'');
-                glyph.style.width = (18*scale)+'px'; glyph.style.height = (22*scale)+'px';
-                var bearing = v.dataset.bearing === '' ? null : Number(v.dataset.bearing);
-                // Hull points north at zero degrees. A diamond explicitly has no heading.
-                glyph.innerHTML = '<svg viewBox="0 0 18 22" aria-hidden="true"><path d="'+
-                  (bearing===null?'M9 4 L15 11 L9 18 L3 11 Z':'M9 1 L15 10 L13 20 L5 20 L3 10 Z')+'"/></svg>';
-                glyph.title = v.dataset.name || v.dataset.id;
-                markers.push(new maplibregl.Marker({element:glyph,rotation:bearing||0,rotationAlignment:'map',pitchAlignment:'map'})
-                  .setLngLat(coord).addTo(map));
-                if (full && root.dataset.labels==='on' && v.dataset.name && labels.length<6) {
-                  var label = document.createElement('div');
-                  label.className='poc__label'; label.textContent=v.dataset.name;
-                  el.appendChild(label);
-                  var x=p.x+size/2+3, y=p.y-8*scale, w=label.offsetWidth, h=label.offsetHeight;
-                  var box={x:x,y:y,w:w,h:h};
-                  var overlaps=labeled.some(function(b){return x<b.x+b.w+4 && x+w+4>b.x && y<b.y+b.h+4 && y+h+4>b.y;});
-                  var coversShip=occupied.some(function(a){return a.x>x-size/2 && a.x<x+w+size/2 && a.y>y-size/2 && a.y<y+h+size/2;});
-                  if(overlaps||coversShip||x+w>el.clientWidth-10||y<6||y+h>el.clientHeight-24) label.remove();
-                  else {label.style.left=x+'px';label.style.top=y+'px';labels.push(label);labeled.push(box);}
-                }
-              });
-              // Later ship markers must not be obscured by earlier labels.
-              labels.forEach(function(label){var r=label.getBoundingClientRect(),m=el.getBoundingClientRect();
-                if(occupied.some(function(p){return p.x>r.left-m.left-size/2 && p.x<r.right-m.left+size/2 && p.y>r.top-m.top-size/2 && p.y<r.bottom-m.top+size/2;}))label.remove();});
-              var limited=root.querySelector('.poc__limited');
-              var total=Number(root.querySelector('.poc__count strong').textContent)||0;
-              var drawn=markers.length;
-              limited.textContent=drawn+' of '+total+' shown · decluttered'; limited.hidden=drawn>=total;
-              TRMNLMaps.ready(map).then(function () {
-                if (done) return;
-                done=true;clearTimeout(deadline);root.dataset.mapReady='true';
-                if(window.terminalize)window.terminalize();
+          TRMNLMaps.watch(el,function(){
+            done=false;delete el.dataset.mapReady;setDeadline();
+            var map=new maplibregl.Map(TRMNLMaps.options({el:el,preset:'outline',center:center,zoom:10}));
+            el.__portOfCallMap=map; // Visual checks compare actual marker pixels with projection.
+            fit(map,bounds);
+            map.on('error',function(){failure('Map tiles unavailable · check network access');});
+            map.on('load',function(){
+              Promise.all([document.fonts.ready,TRMNLMaps.ready(map)]).then(function(){
+                if(!map.getContainer().isConnected)return;
+                // Fonts can change the box height after the first fit.
+                fit(map,bounds);draw(map);
+                map.on('moveend',function(){draw(map);});map.on('resize',function(){draw(map);});
+                if(done)return;
+                TRMNLMaps.ready(map).then(function(){
+                  if(done)return;draw(map);done=true;clearTimeout(deadline);el.dataset.mapReady='true';
+                  if(window.terminalize)window.terminalize();
+                });
               });
             });
-            map.on('remove', function () {markers.forEach(function(m){m.remove();});labels.forEach(function(l){l.remove();});});
+            map.on('remove',function(){el.querySelectorAll('.poc__ship,.poc__label,.poc__lines').forEach(function(n){n.remove();});});
             return map;
           });
-        } catch (_) { failure('Map unavailable · renderer could not start'); }
+        }catch(_){failure('Map unavailable · renderer could not start');}
       }
       start();
     });
   }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
-  else setTimeout(boot,0);
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else setTimeout(boot,0);
 })();
+
 </script>
