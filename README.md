@@ -88,10 +88,12 @@ The pinned preview assets come from the official framework Git commit recorded i
 
 ## Sources, rights and cost
 
+**Free data sources only.** Paid subscriptions, API credits and paid-upgrade dependencies are out of scope. Ship Spotlight is designed around existing AIS fields and optional free enrichment; previous-port history is shown only where a suitable free source supplies it. See the [free-source plan](docs/enrichment-sources.md).
+
 The default backend uses [Fintraffic / Digitraffic](https://www.digitraffic.fi/en/marine-traffic/), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Positions are validated, filtered and rounded to about one metre; static metadata is joined by MMSI. Attribution, source and license links are in the recipe and API. Data carries no accuracy or availability warranty. Map data: © OpenStreetMap contributors, ODbL; native TRMNL attribution remains visible.
 
 AISStream's adapter was **live-tested for 15 minutes**, with 12,380 messages and 2,833 distinct per-area vessel observations across 13 areas. Public redistribution/cache rights remain unconfirmed. Its key and `AISSTREAM_RIGHTS_CONFIRMED=true` are required to enable the deployed backend. Never set that flag just to bypass a license review. [Data evaluation](docs/data-source-evaluation.md) records evidence and exact blockers.
 
-One small always-on Linux server with durable disk is sufficient. Budget roughly **US$5–10/month** for a modest VM, plus domain/egress if charged; this is a planning estimate, not a vendor quote. There is no per-user AIS subscription in the default Finnish workflow. Upstream polling stays at 288 shared location fetches/day and 24 metadata fetches/day, independent of recipe installations. See [architecture](docs/architecture.md), [deployment](docs/deployment.md) and [roadmap](docs/roadmap.md).
+The collector needs an always-on host with durable storage. No paid hosting has been approved or provisioned; the existing VM deployment guide is an implementation example, not a selected paid service. A sustainable free hosting route or existing infrastructure still needs to be established, so zero operating cost is not yet verified. There is no per-user AIS subscription in the default Finnish workflow. Upstream polling stays at 288 shared location fetches/day and 24 metadata fetches/day, independent of recipe installations. See [architecture](docs/architecture.md), [deployment](docs/deployment.md) and [roadmap](docs/roadmap.md).
 
 Code is MIT licensed. Data and third-party frameworks retain their own licenses; see [NOTICE](NOTICE).

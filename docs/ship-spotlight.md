@@ -1,6 +1,6 @@
 # Ship Spotlight — feature proposal
 
-Status: researched proposal, not an enabled plugin setting or implemented selection algorithm. Requested 4 November 2026. The existing Harbor Map remains the current display.
+Status: researched proposal, not an enabled plugin setting or implemented selection algorithm. Requested 4 November 2026. **Free data sources only: no paid APIs, purchased credits or paid-upgrade dependency.** The existing Harbor Map remains the current display.
 
 ## Name and setting
 
@@ -38,9 +38,9 @@ Voyage fields need **their own report timestamps**. The current metadata table m
 
 A useful first version can highlight the current ship and show its reported destination plus four to six available facts. Origin remains **unknown** or is omitted unless a source genuinely supplies it. If origin is mandatory for every featured ship, AISStream alone is insufficient.
 
-A lower-cost observational alternative is **Previously seen near [harbor]**, but only when our collector actually observed that vessel there. It must retain its observation date and must never be labeled a confirmed departure/previous port. This would require an explicit bounded history extension; the current latest-position store does not retain it.
+A free observational alternative is **Previously seen near [harbor]**, but only when our collector actually observed that vessel there. It must retain its observation date and must never be labeled a confirmed departure/previous port. This would require an explicit bounded history extension; the current latest-position store does not retain it.
 
-A trustworthy **From → To** story needs a licensed port-call/history source plus destination resolution. Enrich only a small set of featured vessels, cache by IMO/MMSI and share results across all installations. This limits request volume; provider pricing and redistribution rights still need evaluation. Do not assume global origin history is free.
+A trustworthy **From → To** story can be shown only where a freely reusable, relevant port-call/history record and a resolved destination support it. Digitraffic Portnet is one regional source. There is no paid-provider fallback and no promise of globally complete origin history. Share and cache optional free enrichment by IMO/MMSI; missing origin must not prevent a useful focus card.
 
 For the map, keep the current position geographically exact. A resolved destination can support an overview/inset later. A line connecting ports would be an indicative connection, not an observed voyage track; do not draw a guessed sailing route or infer arrival/departure from an observation rectangle.
 
@@ -49,7 +49,7 @@ For the map, keep the current position geographically exact. A resolved destinat
 Selection runs on the backend over **all eligible observations in the chosen harbor**, before the 40-vessel response cap and pixel decluttering. Rotterdam's measured sample had 865 distinct observations: choosing only among its 40 exported map markers would exclude many possible subjects.
 
 1. **Eligibility first.** Require a valid, recent position (initial focus target: within 15 minutes), a usable name and enough real facts for a card. Exclude expired/invalid records. Unknown categories get no rarity bonus. No suitable candidate means the ordinary harbor overview.
-2. **Score useful stories, not just size.** An initial 100-point heuristic could allocate 30 points to usable voyage context, 25 to distinctive size, 20 to activity/new observations, 15 to type variety and 10 to not being featured recently. These are proposal weights to calibrate against real snapshots, not a trained or validated ranking. Use only trusted available inputs. Size should be capped/percentile-based within the harbor, so the biggest permanently moored ship does not always win. "Newly observed" means new to our observation window, not an arrival.
+2. **Score useful stories, not just size.** An initial 100-point heuristic could allocate 30 points to useful validated AIS information, 25 to distinctive size, 20 to not being featured recently, 15 to type variety and 10 to activity/new observations. Reported destination may contribute as one useful fact, but previous-port history, photos and a Wikidata match are never eligibility requirements. These are proposal weights to calibrate against real snapshots, not a trained or validated ranking. Use only trusted available inputs. Size should be capped/percentile-based within the harbor, so the biggest permanently moored ship does not always win. "Newly observed" means new to our observation window, not an arrival.
 3. **Rotate a strong shortlist.** Select from the best few candidates with a stable, score-weighted choice. A deterministic hash of harbor ID and a time bucket makes the choice reproducible and shared across users. Type penalties/rotation should prevent an endless sequence of cargo ships while preserving data quality.
 4. **Hold the subject.** Initial target: retain it for about three hours (roughly 12 standard refreshes). Update its real position/details during that time. Replace it early if it leaves the area or its position becomes too old; never freeze an expired ship merely to fill the slot.
 5. **Avoid repeats.** Start with a 24-hour per-harbor cooldown for featured MMSIs. In a small pool, shorten the cooldown or choose the least recently shown suitable vessel. This needs bounded operational selection state, not per-user tracking or a long location history.
@@ -62,7 +62,7 @@ Explain the selection with a short deterministic reason grounded in the data, su
 
 ## Enrichment source research
 
-See [Sources for enriching Port of Call](enrichment-sources.md) for the verified VesselFinder Voyage/Master contract, MarineTraffic/Kpler alternative, free Digitraffic Portnet fields, CC0 Wikidata options, image licenses and port-directory caveats. Public-display rights need to be part of a paid-provider agreement; they are not established merely by buying API credits.
+See [Free sources for enriching Port of Call](enrichment-sources.md) for the free-only decision, additional AIS fields, CC0 Wikidata facts/port aliases, regional Digitraffic Portnet records and optional freely reusable images/context. Previously researched paid providers are out of scope. Optional enrichment failure must not block the map or require an upgrade.
 
 ## Delivery order
 
@@ -70,6 +70,6 @@ See [Sources for enriching Port of Call](enrichment-sources.md) for the verified
 2. Implement/test selection, shortlist diversity, cooldown and early replacement on captured real observations.
 3. Add the full-screen map/card and compact adaptations using Downstream's native inset design. Compact views show fewer facts, without tiny text.
 4. Expose **Spotlight a ship** only when turning it on reliably produces that experience.
-5. Add independently sourced previous-port history/registry facts when coverage, cost and rights are verified.
+5. Add independently sourced previous-port history/registry facts only from suitable free sources with verified coverage and reuse rights.
 
-The useful map-and-facts experience is feasible with the current shared stream. Universally reliable origin/destination history is a separate data dependency.
+The useful map-and-facts experience is feasible with the current shared stream. Universally reliable origin history is not promised; unknown origin is an intentional supported state.

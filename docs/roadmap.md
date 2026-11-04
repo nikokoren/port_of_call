@@ -1,5 +1,7 @@
 # Roadmap
 
+**Product constraint: free data sources only.** No paid subscriptions, API credits, paid upgrades or expiring trials as feature dependencies. Optional enrichment must fail gracefully without a payment requirement.
+
 V1 ships a map of recently reported positions. First stabilize Finnish operation with private TRMNL tests and multi-day monitoring. Extend the harbor registry only with provider coverage and license evidence; subscription quotas are an operator concern, never a setting for recipe users.
 
 ## Next · Major harbors
@@ -8,7 +10,7 @@ Prepare the [15-area collection](major-ports.md), weighted toward the US and Eur
 
 ## V2 · Arrivals & Departures
 
-Add a licensed official port-call/schedule provider through a separate adapter and versioned `/api/v1/harbors/{id}/port-calls` contract. Explore Digitraffic Portnet/NEMO for Finland and separately evaluate API.SH, Searoutes, VesselFinder or official port APIs for other countries. Verify price, ship-name completeness, API rate limits, timestamp semantics and public redistribution before selection. No API.SH approximate positions should drive map markers.
+Add a licensed official port-call/schedule provider through a separate adapter and versioned `/api/v1/harbors/{id}/port-calls` contract. Use Digitraffic Portnet/NEMO for Finland and evaluate freely reusable official port APIs elsewhere. Verify ship-name completeness, rate limits, timestamp semantics and redistribution rights. Paid API.SH, Searoutes, VesselFinder and other commercial feeds are excluded; a board may remain regional when no suitable free schedule source exists. No API.SH approximate positions should drive map markers.
 
 Keep expected/actual time, timezone, event type and source status separate. Mark unknown explicitly. A position inside a rectangle cannot establish a berth, authoritative arrival, departure, delay or ETA. Do not turn AIS destination text into a schedule. Add the `board` display setting only when a genuine schedule layout and its tests work in all sizes.
 
@@ -16,7 +18,7 @@ Keep expected/actual time, timezone, event type and source status separate. Mark
 
 See [Ship Spotlight — feature proposal](ship-spotlight.md) for the recommended **Spotlight a ship** switch, verified AIS field possibilities, the missing previous-port dependency and a proposed stable/diverse selection algorithm. This starts as a Harbor Map focus option; the setting is not exposed yet. Selection must precede the 40-marker cap and preserve the featured vessel through decluttering. Voyage facts need separate freshness timestamps; a new position must not refresh an old destination.
 
-A first version can use current position, reported destination and available ship facts. A reliable From → To story requires actual port-call/history data. A later dedicated illustrated vessel profile can remain a separate display mode. Type silhouettes must be labeled; exact vessel depictions/photos need separate rights. Unavailable metadata is omitted, and no unsupported biography or voyage claims are generated.
+A first version can use current position, reported destination and available ship facts. A reliable From → To story requires relevant freely reusable port-call/history data; otherwise origin remains unknown and is not a selection requirement. A later dedicated illustrated vessel profile can remain a separate display mode. Type silhouettes must be labeled; exact vessel depictions/photos need separate rights. Unavailable metadata is omitted, and no unsupported biography or voyage claims are generated.
 
 ## Scaling
 
