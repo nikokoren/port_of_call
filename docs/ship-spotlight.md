@@ -60,6 +60,10 @@ Reserve the featured vessel before response-size truncation and marker/label dec
 
 Explain the selection with a short deterministic reason grounded in the data, such as unusual vessel category, substantial reported dimensions, useful voyage details or first feature in this rotation. Do not generate unsupported vessel biographies, destinations or port-call claims.
 
+## Enrichment source research
+
+See [Sources for enriching Port of Call](enrichment-sources.md) for the verified VesselFinder Voyage/Master contract, MarineTraffic/Kpler alternative, free Digitraffic Portnet fields, CC0 Wikidata options, image licenses and port-directory caveats. Public-display rights need to be part of a paid-provider agreement; they are not established merely by buying API credits.
+
 ## Delivery order
 
 1. Enrich normalization and field-level freshness; measure actual metadata availability across the 13 covered areas.
