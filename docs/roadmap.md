@@ -12,9 +12,11 @@ Add a licensed official port-call/schedule provider through a separate adapter a
 
 Keep expected/actual time, timezone, event type and source status separate. Mark unknown explicitly. A position inside a rectangle cannot establish a berth, authoritative arrival, departure, delay or ETA. Do not turn AIS destination text into a schedule. Add the `board` display setting only when a genuine schedule layout and its tests work in all sizes.
 
-## V3 · Vessel Spotlight
+## Ship Spotlight · Requested focus option
 
-Reuse MMSI-keyed static metadata but add reliable flag/dimensions/voyage adapters and field provenance. A type silhouette must be labeled as such; exact vessel depictions/photos need separate rights. Unavailable metadata is omitted. No generated educational facts or unsupported voyage claims. Add a dedicated `spotlight` payload and layout after its source is verified.
+See [Ship Spotlight — feature proposal](ship-spotlight.md) for the recommended **Spotlight a ship** switch, verified AIS field possibilities, the missing previous-port dependency and a proposed stable/diverse selection algorithm. This starts as a Harbor Map focus option; the setting is not exposed yet. Selection must precede the 40-marker cap and preserve the featured vessel through decluttering. Voyage facts need separate freshness timestamps; a new position must not refresh an old destination.
+
+A first version can use current position, reported destination and available ship facts. A reliable From → To story requires actual port-call/history data. A later dedicated illustrated vessel profile can remain a separate display mode. Type silhouettes must be labeled; exact vessel depictions/photos need separate rights. Unavailable metadata is omitted, and no unsupported biography or voyage claims are generated.
 
 ## Scaling
 
