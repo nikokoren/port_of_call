@@ -66,7 +66,9 @@ class Harbor(DurableObject):
         self.socket = None
         self.proxies = []
         self.connected = self.connecting = False
-        self.last_message = self.last_poll = self.last_maintenance = self.last_checkpoint = 0
+        self.last_message = self.last_maintenance = 0
+        self.last_poll = float(self.store.state('positions_poll_at') or 0)
+        self.last_checkpoint = float(self.store.state('checkpoint_at') or 0)
         self.retry_at, self.retry_delay = 0, 1
         self.accepted = self.rejected = 0
         self.lock = asyncio.Lock()
@@ -75,6 +77,7 @@ class Harbor(DurableObject):
         self.started = False
 
     def checkpoint(self, now):
+        self.store.state('checkpoint_at', now)
         body = self.store.checkpoint(now)
         chunks = [body[i:i+CHUNK_SIZE] for i in range(0, len(body), CHUNK_SIZE)]
         def write():
@@ -143,6 +146,7 @@ class Harbor(DurableObject):
     async def poll(self, now):
         if now-self.last_poll < 300: return
         self.last_poll = now
+        self.store.state('positions_poll_at', now)
         try:
             async with self.session.get('https://meri.digitraffic.fi/api/ais/v1/locations', headers=HEADERS) as r:
                 data = await r.json()
@@ -181,14 +185,19 @@ class Harbor(DurableObject):
             else: await self.poll(now)
             self.last_maintenance = now
             self.store.prune(time.time(), TTL)
-            if time.time()-self.last_checkpoint >= CHECKPOINT_SECONDS: self.checkpoint(time.time())
             await self.enricher.portnet(self.session)
+            # A polling object may be evicted while idle. Reconstruct optional
+            # work from durable subjects rather than relying on an in-memory queue.
+            for port in self.active.values():
+                if self.store.current_focus(port['id']):
+                    self.enricher.enqueue(snapshot(self.store, port, time.time(), spotlight=True).get('focus'))
             if not self.enricher.queue.empty():
                 kind, key = self.enricher.queue.get_nowait()
                 try: await self.enricher.refresh(self.session, kind, key)
                 finally:
                     self.enricher.pending.discard(kind+':'+key)
                     self.enricher.queue.task_done()
+            if time.time()-self.last_checkpoint >= CHECKPOINT_SECONDS: self.checkpoint(time.time())
 
     async def alarm(self): await self.tick()
 
@@ -261,7 +270,10 @@ class Default(WorkerEntrypoint):
         if path.endswith('/vessels'):
             cached = await cache.match(request.js_object)
             if cached: return Response(cached)
-        result = await self.stub().fetch(request)
+        try: result = await self.stub().fetch(request)
+        except Exception as exc:
+            print('collector_unavailable', type(exc).__name__)
+            return response({'error': 'Collector unavailable'}, 503, **{'Cache-Control': 'no-store'})
         if path.endswith('/vessels') and result.status == 200:
             await cache.put(request.js_object, result.js_object.clone())
         return result

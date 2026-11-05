@@ -53,3 +53,5 @@ python scripts/check_service.py https://port-of-call.YOUR-SUBDOMAIN.workers.dev 
 ```
 
 Cloudflare manages durable SQLite persistence; use its native recovery/PITR controls for disaster recovery. Never publish checkpoint contents or restore them with altered timestamps. Keep the original VM deployment available as an alternative. For local development, run `python scripts/prepare_cloudflare.py`, then `cd cloudflare && npm ci && uv sync --frozen && uv run pywrangler dev`. This environment blocks the runtime bundle CDN, so native runtime verification runs on GitHub Actions instead.
+
+Native runtime evidence: [GitHub run 42104240937](https://github.com/nikokoren/port_of_call/actions/runs/42104240937) collected genuine Finnish data on 5 November 2026 and passed all eighteen configurations plus native checkpoint/restart and subject recovery. Standard Spotlight scopes observed 42 Helsinki, 25 Turku and 18 Rauma vessels. This was local workerd on a GitHub runner, not deployment to a Cloudflare account or proof of free-tier capacity.

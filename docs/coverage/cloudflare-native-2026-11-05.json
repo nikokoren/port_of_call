@@ -1,0 +1,193 @@
+{
+  "checked_at": "2026-11-05T20:33:06.064965+00:00",
+  "origin": "http://127.0.0.1:8790",
+  "provider": "digitraffic",
+  "health": "ready",
+  "seconds": 0.57,
+  "snapshots": [
+    {
+      "port": "helsinki",
+      "scale": "closer",
+      "spotlight": false,
+      "state": "ok",
+      "total": 41,
+      "shown": 40,
+      "focused": false,
+      "bytes": 10264
+    },
+    {
+      "port": "helsinki",
+      "scale": "closer",
+      "spotlight": true,
+      "state": "ok",
+      "total": 38,
+      "shown": 38,
+      "focused": true,
+      "bytes": 11473
+    },
+    {
+      "port": "helsinki",
+      "scale": "standard",
+      "spotlight": false,
+      "state": "ok",
+      "total": 43,
+      "shown": 40,
+      "focused": false,
+      "bytes": 10268
+    },
+    {
+      "port": "helsinki",
+      "scale": "standard",
+      "spotlight": true,
+      "state": "ok",
+      "total": 42,
+      "shown": 40,
+      "focused": true,
+      "bytes": 11958
+    },
+    {
+      "port": "helsinki",
+      "scale": "wider",
+      "spotlight": false,
+      "state": "ok",
+      "total": 46,
+      "shown": 40,
+      "focused": false,
+      "bytes": 10249
+    },
+    {
+      "port": "helsinki",
+      "scale": "wider",
+      "spotlight": true,
+      "state": "ok",
+      "total": 46,
+      "shown": 40,
+      "focused": true,
+      "bytes": 11950
+    },
+    {
+      "port": "turku",
+      "scale": "closer",
+      "spotlight": false,
+      "state": "ok",
+      "total": 21,
+      "shown": 21,
+      "focused": false,
+      "bytes": 5799
+    },
+    {
+      "port": "turku",
+      "scale": "closer",
+      "spotlight": true,
+      "state": "ok",
+      "total": 19,
+      "shown": 19,
+      "focused": true,
+      "bytes": 7102
+    },
+    {
+      "port": "turku",
+      "scale": "standard",
+      "spotlight": false,
+      "state": "ok",
+      "total": 26,
+      "shown": 26,
+      "focused": false,
+      "bytes": 6981
+    },
+    {
+      "port": "turku",
+      "scale": "standard",
+      "spotlight": true,
+      "state": "ok",
+      "total": 25,
+      "shown": 25,
+      "focused": true,
+      "bytes": 8481
+    },
+    {
+      "port": "turku",
+      "scale": "wider",
+      "spotlight": false,
+      "state": "ok",
+      "total": 27,
+      "shown": 27,
+      "focused": false,
+      "bytes": 7211
+    },
+    {
+      "port": "turku",
+      "scale": "wider",
+      "spotlight": true,
+      "state": "ok",
+      "total": 26,
+      "shown": 26,
+      "focused": true,
+      "bytes": 8719
+    },
+    {
+      "port": "rauma",
+      "scale": "closer",
+      "spotlight": false,
+      "state": "ok",
+      "total": 18,
+      "shown": 18,
+      "focused": false,
+      "bytes": 5083
+    },
+    {
+      "port": "rauma",
+      "scale": "closer",
+      "spotlight": true,
+      "state": "ok",
+      "total": 18,
+      "shown": 18,
+      "focused": true,
+      "bytes": 6963
+    },
+    {
+      "port": "rauma",
+      "scale": "standard",
+      "spotlight": false,
+      "state": "ok",
+      "total": 18,
+      "shown": 18,
+      "focused": false,
+      "bytes": 5081
+    },
+    {
+      "port": "rauma",
+      "scale": "standard",
+      "spotlight": true,
+      "state": "ok",
+      "total": 18,
+      "shown": 18,
+      "focused": true,
+      "bytes": 6954
+    },
+    {
+      "port": "rauma",
+      "scale": "wider",
+      "spotlight": false,
+      "state": "ok",
+      "total": 18,
+      "shown": 18,
+      "focused": false,
+      "bytes": 5076
+    },
+    {
+      "port": "rauma",
+      "scale": "wider",
+      "spotlight": true,
+      "state": "ok",
+      "total": 18,
+      "shown": 18,
+      "focused": true,
+      "bytes": 6953
+    }
+  ],
+  "passed": true,
+  "errors": [],
+  "native_restart_passed": true,
+  "focus_was_available": true
+}

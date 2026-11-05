@@ -43,7 +43,7 @@ The text follow-up validates ordered narrative copy, omission of missing origin/
 
 - [x] Cloudflare Python Worker/SQLite Durable Object deployment, sharing the existing domain code and protected public-use gate.
 - [x] Bounded in-memory ingestion and atomic checkpoints; immediate durable rotation/budget updates; SQLite parity/restart/expiry tests.
-- [x] Native workerd build/start/18-snapshot smoke test on GitHub Actions. A separate `Checks` live input verifies actual collection and restart; retain that run's evidence before marking it complete.
+- [x] Native workerd build/start/18-snapshot smoke test on GitHub Actions. The `Checks` live input also passed genuine collection, checkpoints and subject recovery in [run 42104240937](https://github.com/nikokoren/port_of_call/actions/runs/42104240937); this is native workerd on a runner, not a public Cloudflare deployment.
 - [x] Manual deployment workflow, generated origin-specific ZIP, hourly live monitor, Pages setup/download site and community-listing draft.
 - [ ] Supply Cloudflare account/token repository secrets; deploy and verify a real public origin. No Cloudflare credentials were available at preparation.
 - [ ] Enable GitHub Pages Source = GitHub Actions. Enabling Pages through the current integration returned HTTP 403; the prepared workflow needs this repository setting.

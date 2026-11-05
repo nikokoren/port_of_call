@@ -55,3 +55,7 @@ The cold-start sample observed **833 distinct current per-area observations** ac
 | Busan — New Port | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 These are availability counts, not validation of crew-entered voyage claims, a complete port census or an uptime guarantee. Unknown identifiers, sentinel dimensions/draught and malformed ETAs are excluded. No port-call event is inferred. Public-display/cache rights remain unconfirmed. [Machine-readable follow-up](aisstream-spotlight-2026-11-05.json).
+
+## Native Cloudflare runtime · 5 November 2026
+
+[Run 42104240937](https://github.com/nikokoren/port_of_call/actions/runs/42104240937) used the actual Python workerd runtime on a GitHub runner, with genuine credential-free Digitraffic collection. All eighteen harbor/framing/Spotlight responses and error routes passed; SQLite checkpoints and subject selection survived a native runtime restart. Standard Spotlight scopes contained 42, 25 and 18 vessels in Helsinki, Turku and Rauma at 21:33 Europe/Berlin. [Aggregate-only evidence](cloudflare-native-2026-11-05.json). No vessel names, MMSIs or coordinates are included. This is not a public Cloudflare deployment, native AISStream validation, device validation or a multi-day free-quota study.
