@@ -185,7 +185,7 @@ class Enrichment(unittest.IsolatedAsyncioTestCase):
         session=Session();await self.e.portnet(session);await self.e.portnet(session)
         self.assertEqual(session.calls,1)
         rows=self.s.db.execute('SELECT payload FROM port_calls').fetchall();self.assertEqual(len(rows),1)
-        self.assertNotIn('PRIVATE',rows[0][0]);self.assertEqual(set(json.loads(rows[0][0])),{'port','previous','imo','mmsi','ata','atd'})
+        self.assertNotIn('PRIVATE',rows[0][0]);self.assertEqual(set(json.loads(rows[0][0])),{'port','previous','imo','mmsi','ata','atd','nationality'})
 
     async def test_port_exact_code_and_coordinates(self):
         entity=dict(id='Q1', labels={'en':{'value':'A real port'}}, claims={'P1937':[statement('DERSK')],

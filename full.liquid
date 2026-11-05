@@ -14,14 +14,22 @@
       <span class="w--full label label--small"><span>{% if demo %}DEMO · not observed traffic{% elsif attribution %}<a href="{{ attribution.url | escape }}">Fintraffic / digitraffic.fi</a> · <a href="{{ attribution.license | escape }}">CC BY 4.0</a>{% else %}{{ source | default: 'Source unavailable' | escape }}{% endif %}</span></span>
     </aside>
     {% if focus %}
-    {% assign ship_type = '' %}{% assign ship_size = '' %}{% assign ship_speed = '' %}
-    {% for fact in focus.facts %}{% if fact.label == 'Type' %}{% assign ship_type = fact.value %}{% elsif fact.label contains 'Length' %}{% assign ship_size = fact.value %}{% elsif fact.label == 'Speed' %}{% assign ship_speed = fact.value %}{% endif %}{% endfor %}
-    <aside class="poc__spotlight absolute z--2 p--2 bg--canvas outline flex flex--col flex--left gap--none w--[30cqw]" data-poc-spotlight data-id="{{ focus.mmsi | escape }}" aria-label="Ship Spotlight" style="opacity:0;left:8px;top:8px">
+    {% assign ship_type = '' %}{% assign ship_size = '' %}{% assign ship_speed = '' %}{% assign size_label = 'Length' %}
+    {% for fact in focus.facts %}{% if fact.label == 'Type' %}{% assign ship_type = fact.value %}{% elsif fact.label contains 'Length' %}{% assign ship_size = fact.value %}{% if fact.label == 'Length / beam' %}{% assign size_label = 'Length × width' %}{% endif %}{% elsif fact.label == 'Speed' %}{% assign ship_speed = fact.value %}{% endif %}{% endfor %}
+    <aside class="poc__spotlight absolute z--2 p--2 bg--black text--white outline flex flex--col flex--left gap--xsmall w--[36cqw] portrait:w--[65cqw]" data-poc-spotlight data-id="{{ focus.mmsi | escape }}" aria-label="Ship Spotlight" style="opacity:0;left:8px;top:8px">
       <span class="w--full title title--small lg:title--large" data-clamp="1">{{ focus.name | escape }}</span>
-      {% if ship_type %}<span class="w--full description label--small" data-clamp="1">{{ ship_type | escape }}</span>{% endif %}
-      {% if focus.destination %}<span class="w--full label label--small" data-clamp="2">Reported: {% if focus.origin %}{{ focus.origin.value | remove: 'Port of ' | escape }} → {% else %}To {% endif %}{{ focus.destination_port.name | default: focus.destination.value | remove: 'Port of ' | escape }}</span>{% endif %}
-      <span class="w--full label label--small" data-clamp="1">{% if ship_size %}{{ ship_size | escape }}{% endif %}{% if ship_speed %}{% if ship_size %} · {% endif %}{{ ship_speed | escape }}{% endif %}</span>
-      <span class="w--full description label--small" data-clamp="1">Position {{ focus.reported_local | escape }}</span>
+      {% if ship_type %}<span class="w--full label label--small" data-clamp="1"><span><strong>Type:</strong> {{ ship_type | escape }}</span></span>{% endif %}
+      {% if focus.origin %}<div class="w--full flex flex--col flex--left gap--none"><span class="description label--small">Reported from</span><span class="w--full label label--small" data-clamp="2">{{ focus.origin.value | remove: 'Port of ' | escape }}{% if focus.origin.country %}, {{ focus.origin.country | escape }}{% endif %}</span></div>{% endif %}
+      {% if focus.destination %}<div class="w--full flex flex--col flex--left gap--none"><span class="description label--small">Reported to</span><span class="w--full label label--small" data-clamp="2">{{ focus.destination_port.name | default: focus.destination.value | remove: 'Port of ' | escape }}{% if focus.destination_port.country %}, {{ focus.destination_port.country | escape }}{% endif %}</span></div>{% endif %}
+      <div class="grid grid--cols-2 gap--small w--full">
+        {% if ship_size %}<div class="flex flex--col flex--left gap--none"><span class="description label--small">{{ size_label }}</span><span class="label label--small" data-clamp="1">{{ ship_size | escape }}</span></div>{% endif %}
+        {% if ship_speed %}<div class="flex flex--col flex--left gap--none"><span class="description label--small">Speed</span><span class="label label--small" data-clamp="1">{{ ship_speed | replace: ' kn', ' knots' | escape }}</span></div>{% endif %}
+      </div>
+      <div class="w--full flex flex--col flex--left gap--none" data-poc-optional>
+        {% if focus.flag %}<span class="w--full label label--small" data-clamp="2"><span><strong>{{ focus.flag.label | escape }}:</strong> {{ focus.flag.value | escape }}</span></span>{% endif %}
+        {% if focus.built_in %}<span class="w--full label label--small" data-clamp="2"><span><strong>{{ focus.built_in.label | escape }}:</strong> {{ focus.built_in.value | escape }}</span></span>{% endif %}
+        {% if focus.eta_estimate %}<span class="w--full label label--small" data-clamp="2"><span><strong>Reported ETA:</strong> {{ focus.eta_estimate.display | escape }}</span></span>{% endif %}
+      </div>
     </aside>
     {% endif %}
     <ul class="poc__data" hidden>{% for v in vessels %}<li data-featured="{% if focus.mmsi == v.mmsi %}true{% else %}false{% endif %}" data-id="{{ v.mmsi | escape }}" data-lon="{{ v.position[0] }}" data-lat="{{ v.position[1] }}" data-bearing="{{ v.bearing_deg }}" data-stale="{{ v.stale }}" data-name="{{ v.name | escape }}" data-reported="{{ v.reported_at | escape }}"></li>{% endfor %}</ul>

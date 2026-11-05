@@ -1,6 +1,8 @@
 """Validated reported facts. Missing fields preserve history; explicit unknowns clear it."""
 import calendar
 import re
+from datetime import datetime, timezone
+from .model import epoch, iso
 from .model import name, number
 
 VOYAGE = {'destination', 'eta', 'draught_m'}
@@ -32,8 +34,44 @@ def eta(parts):
     month, day, hour, minute = (integer(parts.get(k), *bounds) for k, bounds in
                                [('Month', (1, 12)), ('Day', (1, 31)), ('Hour', (0, 23)), ('Minute', (0, 59))])
     if None in (month, day, hour, minute) or day > calendar.monthrange(2000, month)[1]: return None
-    # AIS reports no year. Never infer one or turn this into an authoritative schedule.
+    # Preserve the yearless AIS value; a separate bounded heuristic may infer its year.
     return f'{day:02d} {calendar.month_abbr[month]} {hour:02d}:{minute:02d} UTC'
+
+
+def infer_eta(fact, now):
+    """Resolve only a plausible nearby year, anchored to the actual static report.
+
+    Two days behind / 90 days ahead is an explicit heuristic, not a schedule.
+    Old values are omitted rather than blindly rolled forward by a year.
+    """
+    if not fact: return None
+    try:
+        match = re.fullmatch(r'(\d{2}) ([A-Z][a-z]{2}) (\d{2}):(\d{2}) UTC', fact['value'])
+        if not match: return None
+        day, mon, hour, minute = match.groups()
+        month = list(calendar.month_abbr).index(mon)
+        reported = epoch(fact['reported_at'])
+        if not 0 <= now-reported < VOYAGE_TTL: return None
+        anchor = datetime.fromtimestamp(reported, timezone.utc)
+        candidates = []
+        for year in (anchor.year-1, anchor.year, anchor.year+1):
+            try: candidate = datetime(year, month, int(day), int(hour), int(minute), tzinfo=timezone.utc)
+            except ValueError: continue
+            delta = candidate.timestamp()-reported
+            if -2*86400 <= delta <= 90*86400 and candidate.timestamp() >= now-2*86400:
+                candidates.append(candidate)
+        if not candidates: return None
+        result = min(candidates, key=lambda d: abs(d.timestamp()-reported))
+        return dict(**fact, inferred_at=iso(result.timestamp()), year_inferred=True,
+                    inference='nearest_to_report_within_minus_2_plus_90_days',
+                    display=result.strftime('%d %b %H:%M UTC'))
+    except (ValueError, KeyError, TypeError): return None
+
+
+def radio_mid(value):
+    """Only regular ship stations. Do not treat SAR, aids, groups or craft as ships."""
+    value = str(value)
+    return value[:3] if re.fullmatch(r'[2-7]\d{8}', value) else None
 
 
 def packed_eta(value):

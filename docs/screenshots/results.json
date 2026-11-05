@@ -13,6 +13,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -45,6 +46,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -77,6 +79,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -109,6 +112,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -141,6 +145,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -173,6 +178,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -205,6 +211,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -237,6 +244,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -269,6 +277,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -301,6 +310,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -333,6 +343,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -365,6 +376,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -397,6 +409,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -429,6 +442,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -461,6 +475,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -493,6 +508,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -525,6 +541,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -557,6 +574,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -589,6 +607,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -621,6 +640,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": true,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -635,7 +655,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.2823411458333333
+      "inkFraction": 0.3276588541666667
     },
     "errors": []
   },
@@ -653,10 +673,11 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": true,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.016435338276870756,
+      "maxProjectionError": 0.01643533841808328,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelsOutside": 0,
@@ -667,7 +688,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.45529166666666665
+      "inkFraction": 0.5668072916666667
     },
     "errors": []
   },
@@ -685,10 +706,11 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": true,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.017100962696144004,
+      "maxProjectionError": 0.01927696096720236,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelsOutside": 0,
@@ -699,7 +721,7 @@
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.22091666666666668
+      "inkFraction": 0.3271875
     },
     "errors": []
   },
@@ -717,10 +739,11 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": true,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.018111935637562318,
+      "maxProjectionError": 0.011646187622617583,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelsOutside": 0,
@@ -731,7 +754,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.3283125
+      "inkFraction": 0.46772916666666664
     },
     "errors": []
   },
@@ -749,6 +772,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": true,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -763,7 +787,7 @@
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.22686554898093358
+      "inkFraction": 0.2919649597000024
     },
     "errors": []
   },
@@ -781,6 +805,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": true,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -795,7 +820,7 @@
     "pixels": {
       "width": 1404,
       "height": 1872,
-      "inkFraction": 0.6590251905422846
+      "inkFraction": 0.6823921122799328
     },
     "errors": []
   },
@@ -813,10 +838,11 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": true,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.017890097495786923,
+      "maxProjectionError": 0.011646187622617583,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelsOutside": 0,
@@ -827,7 +853,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.3764895833333333
+      "inkFraction": 0.4724583333333333
     },
     "errors": []
   },
@@ -845,6 +871,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": false,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -877,6 +904,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": true,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -891,7 +919,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3374921875
+      "inkFraction": 0.4116171875
     },
     "errors": []
   },
@@ -909,6 +937,7 @@
       "spotlightClear": true,
       "spotlightConnected": true,
       "spotlightVisible": true,
+      "spotlightInverted": true,
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
@@ -923,7 +952,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.23943489583333333
+      "inkFraction": 0.3138984375
     },
     "errors": []
   }

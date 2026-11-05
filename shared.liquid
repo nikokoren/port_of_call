@@ -7,6 +7,10 @@
 .poc__box { z-index:7; }
 .poc__spotlight { z-index:6; max-width:calc(100% - 16px); }
 .poc__spotlight [hidden] { display:none; }
+/* Keep the requested black/white annotation in both screen themes; native
+   semantic colors can otherwise reverse it again in dark mode. */
+.poc .poc__spotlight { background:#000; color:#fff; }
+.poc .poc__spotlight span { color:#fff; background-image:none; }
 .poc .poc__spotlight-lines { z-index:5; }
 .poc__box a { color:inherit; text-decoration:none; }
 .poc__box [hidden] { display:none; }
@@ -168,13 +172,23 @@
               var candidates=[];
               for(var a=1;a<6;a++)for(var b=1;b<6;b++)candidates.push({x:W*a/6,y:H*b/6});
               candidates.sort(function(a,b){return Math.hypot(a.x-point.x,a.y-point.y)-Math.hypot(b.x-point.x,b.y-point.y);});
+              var context=Array.from(el.querySelectorAll('.poc__data li:not([data-featured="true"])')).map(function(v){return map.project([Number(v.dataset.lon),Number(v.dataset.lat)]);});
+              var best=null;
               for(var i=0;i<candidates.length;i++){
                 var p=candidates[i],ib=featuredIcon(p);
                 if(ib[0]<8||ib[1]<8||ib[2]>W-8||ib[3]>H-8||blockers().some(function(r){return PortOfCallLabels.overlaps(ib,r);}))continue;
-                if(PortOfCallLabels.spotlight(spotlightOptions(p,ib))){
-                  map.easeTo({center:coordinate,offset:[p.x-W/2,p.y-H/2],duration:0});break;
+                var shifted=context.map(function(q){var x=q.x+p.x-point.x,y=q.y+p.y-point.y,r=7*scale();return [x-r,y-r,x+r,y+r];});
+                var plan=PortOfCallLabels.spotlight(spotlightOptions(p,ib,shifted));
+                if(plan){
+                  var cells=new Set(),fixed=blockers().concat([plan.rect]);
+                  shifted.forEach(function(r){
+                    if(r[0]>=2&&r[1]>=2&&r[2]<=W-2&&r[3]<=H-2&&!fixed.some(function(b){return PortOfCallLabels.overlaps(r,b);}))cells.add(Math.round(r[0]/(12*scale()))+':'+Math.round(r[1]/(12*scale())));
+                  });
+                  var cost=Math.hypot(p.x-point.x,p.y-point.y)/scale()-cells.size*45;
+                  if(!best||cost<best.cost)best={point:p,cost:cost};
                 }
               }
+              if(best)map.easeTo({center:coordinate,offset:[best.point.x-W/2,best.point.y-H/2],duration:0});
             }
           }
         }

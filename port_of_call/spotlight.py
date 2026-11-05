@@ -1,7 +1,7 @@
 """One shared, persistent subject per harbor; no visitor or voyage tracking."""
 import hashlib
 import math
-from .facts import ship_type, NAVIGATION, text
+from .facts import ship_type, NAVIGATION, text, infer_eta
 from .model import contains, epoch, iso, viewport
 
 HOLD = 3 * 3600
@@ -94,4 +94,5 @@ def card(v, selected_at, reason, now):
     return dict(mmsi=v['mmsi'], imo=value(v, 'imo'), name=v['name'], position=v['position'],
                 reported_at=v['reported_at'], selected_at=iso(selected_at), selected_until=iso(selected_at+HOLD),
                 reason=reason, facts=rows[:6], destination=facts.get('destination'), eta=facts.get('eta'),
-                origin=None, destination_port=None, enrichment=None)
+                origin=None, destination_port=None, enrichment=None,
+                eta_estimate=infer_eta(facts.get('eta'), now), flag=None, built_in=None)

@@ -106,6 +106,7 @@
     "origin": {
       "value": "Port of Hanko",
       "code": "FIHKO",
+      "country": "Finland",
       "source": "Fintraffic / Digitraffic Portnet",
       "reported_at": "2026-11-05T06:25:03Z",
       "url": "https://www.digitraffic.fi/en/marine-traffic/",
@@ -114,6 +115,7 @@
     "destination_port": {
       "code": "GBTIL",
       "name": "Port of Tilbury",
+      "country": "United Kingdom",
       "position": [
         0.345,
         51.46
@@ -133,13 +135,63 @@
           "value": "2009"
         }
       ],
+      "registry_country": {
+        "value": "Netherlands",
+        "source": "Wikidata",
+        "url": "https://www.wikidata.org/wiki/Q52376200",
+        "fetched_at": "2026-11-05T12:19:34Z"
+      },
+      "built_in": {
+        "value": "Poland",
+        "label": "Shipyard country",
+        "method": "builder_shipyard",
+        "site": "Szczecin Shipyard",
+        "source": "Wikidata",
+        "url": "https://www.wikidata.org/wiki/Q16607020",
+        "fetched_at": "2026-11-05T12:19:34Z"
+      },
       "source": "Wikidata",
       "url": "https://www.wikidata.org/wiki/Q52376200",
       "license": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "fetched_at": "2026-11-05T08:28:36Z"
+      "fetched_at": "2026-11-05T12:19:34Z"
     },
     "reported_local": "10:26 EET",
-    "voyage_age_minutes": 4
+    "voyage_age_minutes": 4,
+    "flag": {
+      "value": "Netherlands",
+      "code": "NL",
+      "label": "Flag (AIS)",
+      "inferred": true,
+      "method": "mmsi_mid",
+      "source": "Wikidata / ITU MID assignment",
+      "url": "https://www.wikidata.org/wiki/Q29999",
+      "fetched_at": "2026-11-05T12:19:32Z"
+    },
+    "built_in": {
+      "value": "Poland",
+      "label": "Shipyard country",
+      "method": "builder_shipyard",
+      "site": "Szczecin Shipyard",
+      "source": "Wikidata",
+      "url": "https://www.wikidata.org/wiki/Q16607020",
+      "fetched_at": "2026-11-05T12:19:34Z"
+    },
+    "registry_country": {
+      "value": "Netherlands",
+      "source": "Wikidata",
+      "url": "https://www.wikidata.org/wiki/Q52376200",
+      "fetched_at": "2026-11-05T12:19:34Z"
+    },
+    "flag_reported_country_code": null,
+    "eta_estimate": {
+      "value": "10 Nov 04:00 UTC",
+      "reported_at": "2026-11-05T08:23:31Z",
+      "source": "Fintraffic / Digitraffic",
+      "inferred_at": "2026-11-10T04:00:00Z",
+      "year_inferred": true,
+      "inference": "nearest_to_report_within_minus_2_plus_90_days",
+      "display": "10 Nov 04:00 UTC"
+    }
   },
   "focus_message": "",
   "total": 18,
@@ -435,5 +487,6 @@
       "stale": false
     }
   ],
-  "fixture_note": "Genuine historical free-source capture; NOT current traffic. Original report timestamps preserved."
+  "fixture_note": "Genuine historical AIS observations; NOT current traffic. Free reference facts retrieved at reference_enriched_at; position/report times unchanged.",
+  "reference_enriched_at": "2026-11-05T12:26:42Z"
 }

@@ -29,3 +29,10 @@ No Wikimedia photographs are bundled or assumed to have a blanket license.
 Digitraffic Portnet reported previous-port records retain source/date and the
 same Fintraffic CC BY 4.0 attribution above; unrelated personal/agent/customs
 fields are neither stored nor distributed. Free enrichment is optional.
+
+Country-aware optional reference facts also use CC0 Wikidata structured data,
+including country-qualified ports, maritime radio-assignment areas, registry
+references and identified shipyard countries. Inferences are labeled and retain
+provenance. Reported nationality codes from relevant Finnish Portnet calls retain
+Fintraffic CC BY 4.0 attribution. AIS ETA year inference is a separate derived
+heuristic; original yearless reported values and timestamps are preserved.

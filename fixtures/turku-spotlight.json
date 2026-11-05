@@ -107,6 +107,7 @@
     "destination_port": {
       "code": "FITKU",
       "name": "Turku",
+      "country": "Finland",
       "position": [
         22.17,
         60.415
@@ -128,13 +129,38 @@
           "value": "1996"
         }
       ],
+      "registry_country": {
+        "value": "Finland",
+        "source": "Wikidata",
+        "url": "https://www.wikidata.org/wiki/Q11874250",
+        "fetched_at": "2026-11-05T12:19:29Z"
+      },
+      "built_in": null,
       "source": "Wikidata",
       "url": "https://www.wikidata.org/wiki/Q11874250",
       "license": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "fetched_at": "2026-11-05T08:28:32Z"
+      "fetched_at": "2026-11-05T12:19:29Z"
     },
     "reported_local": "10:27 EET",
-    "voyage_age_minutes": 0
+    "voyage_age_minutes": 0,
+    "flag": {
+      "value": "Finland",
+      "code": "FI",
+      "label": "Flag (AIS)",
+      "inferred": true,
+      "method": "mmsi_mid",
+      "source": "Wikidata / ITU MID assignment",
+      "url": "https://www.wikidata.org/wiki/Q33",
+      "fetched_at": "2026-11-05T12:19:26Z"
+    },
+    "built_in": null,
+    "registry_country": {
+      "value": "Finland",
+      "source": "Wikidata",
+      "url": "https://www.wikidata.org/wiki/Q11874250",
+      "fetched_at": "2026-11-05T12:19:29Z"
+    },
+    "eta_estimate": null
   },
   "focus_message": "",
   "total": 24,
@@ -526,5 +552,6 @@
       "stale": false
     }
   ],
-  "fixture_note": "Genuine historical free-source capture; NOT current traffic. Original report timestamps preserved."
+  "fixture_note": "Genuine historical AIS observations; NOT current traffic. Free reference facts retrieved at reference_enriched_at; position/report times unchanged.",
+  "reference_enriched_at": "2026-11-05T12:26:42Z"
 }

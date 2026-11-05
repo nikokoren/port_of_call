@@ -10,11 +10,12 @@ import re
 import time
 from datetime import datetime, timezone
 import aiohttp
-from .facts import imo, text
+from .facts import imo, text, radio_mid
 from .model import HARBORS, epoch, iso, mmsi
 
 log = logging.getLogger('port_of_call.enrichment')
 WIKI = 'https://www.wikidata.org/w/api.php'
+CACHE_VERSION = 'v2:'  # Country-aware records must not reuse older 30-day payloads.
 HEADERS = {'User-Agent': 'PortOfCall/0.1 (https://github.com/nikokoren/port_of_call)',
            'Digitraffic-User': 'PortOfCall/0.1', 'Accept-Encoding': 'gzip'}
 PORT_CODES = {'helsinki': 'FIHEL', 'turku': 'FITKU', 'rauma': 'FIRAU', 'rotterdam': 'NLRTM',
@@ -24,10 +25,17 @@ PORT_CODES = {'helsinki': 'FIHEL', 'turku': 'FITKU', 'rauma': 'FIRAU', 'rotterda
               'singapore': 'SGSIN', 'shanghai-yangshan': 'CNSHA', 'busan-new-port': 'KRPUS'}
 # These factual aliases are deliberately small and exact. Composite harbor areas
 # do not imply that both component ports share a UN/LOCODE.
-LOCAL_PORTS = {code: dict(code=code, name=HARBORS[key]['name'], position=HARBORS[key]['center'])
+LOCAL_COUNTRIES = {code[:2]: HARBORS[key]['country'] for key, code in PORT_CODES.items()}
+LOCAL_PORTS = {code: dict(code=code, name=HARBORS[key]['name'], country=HARBORS[key]['country'], position=HARBORS[key]['center'])
                for key, code in PORT_CODES.items() if key not in ('shanghai-yangshan', 'busan-new-port')}
-LOCAL_PORTS.update(USLAX=dict(code='USLAX', name='Los Angeles', position=[-118.25, 33.74]),
-                   USLGB=dict(code='USLGB', name='Long Beach', position=[-118.21, 33.75]))
+LOCAL_PORTS.update(USLAX=dict(code='USLAX', name='Los Angeles', country=LOCAL_COUNTRIES['US'], position=[-118.25, 33.74]),
+                   USLGB=dict(code='USLGB', name='Long Beach', country=LOCAL_COUNTRIES['US'], position=[-118.21, 33.75]))
+# Reviewed exact CC0 reference: Q1792 explicitly has UN/LOCODE PLGDN.
+# City-level name/country only; no guessed destination coordinates are supplied.
+LOCAL_PORTS['PLGDN'] = dict(code='PLGDN', name='Gdańsk', country='Poland',
+    source='Reviewed Wikidata port reference', url='https://www.wikidata.org/wiki/Q1792',
+    license='https://creativecommons.org/publicdomain/zero/1.0/')
+LOCAL_COUNTRIES['PL'] = 'Poland'
 ALIASES = {k: v for code, v in LOCAL_PORTS.items() for k in (code, v['name'].upper())}
 ALIASES.update({name.upper(): LOCAL_PORTS[code] for name, code in
                 [('Helsinki', 'FIHEL'), ('Turku', 'FITKU'), ('Rauma', 'FIRAU'), ('Rotterdam', 'NLRTM'),
@@ -40,22 +48,26 @@ def port_key(raw):
 
 
 def cached(store, key, now):
-    row = store.db.execute('SELECT ts,payload FROM enrichment WHERE key=? AND expires>?', (key, now)).fetchone()
+    row = store.db.execute('SELECT ts,payload FROM enrichment WHERE key=? AND expires>?', (CACHE_VERSION+key, now)).fetchone()
     return (row[0], json.loads(row[1])) if row else None
 
 
 def save_cache(store, key, payload, now, ttl):
-    store.db.execute('INSERT OR REPLACE INTO enrichment VALUES (?,?,?,?)', (key, now, now+ttl, json.dumps(payload)))
+    store.db.execute('INSERT OR REPLACE INTO enrichment VALUES (?,?,?,?)', (CACHE_VERSION+key, now, now+ttl, json.dumps(payload)))
     store.commit()
 
 
 def resolve_port(store, raw, now):
     if not raw: return None
     local = ALIASES.get(raw.strip().upper()) or LOCAL_PORTS.get(port_key(raw))
-    if local: return {**local, 'source': 'Reviewed harbor catalog'}
+    if local: return {**local, 'source': local.get('source','Reviewed harbor catalog')}
     key = port_key(raw)
     hit = cached(store, 'port:'+key, now) if key else None
-    return hit[1] if hit else None
+    if hit and hit[1]:
+        result = dict(hit[1])
+        result['country'] = result.get('country') or country_name(store, key[:2], now)
+        return result
+    return None
 
 
 def enrich_card(store, port, focus, now):
@@ -63,6 +75,21 @@ def enrich_card(store, port, focus, now):
     focus['destination_port'] = resolve_port(store, destination['value'], now) if destination else None
     hit = cached(store, 'ship:'+focus['imo'], now) if focus.get('imo') else None
     if hit and hit[1]: focus['enrichment'] = {**hit[1], 'fetched_at': iso(hit[0])}
+    mid = radio_mid(focus['mmsi'])
+    allocation = cached(store, 'mid:'+mid, now) if mid else None
+    if allocation and allocation[1] and allocation[1].get('code'):
+        focus['flag'] = dict(value=country_name(store, allocation[1]['code'], now) or allocation[1]['name'], code=allocation[1].get('code'),
+                             label='Flag (AIS)', inferred=True, method='mmsi_mid',
+                             source='Wikidata / ITU MID assignment', url=allocation[1]['url'],
+                             fetched_at=iso(allocation[0]))
+    if focus.get('enrichment'):
+        registry = focus['enrichment'].get('registry_country')
+        if registry:
+            focus['registry_country'] = registry
+            if not focus.get('flag'):
+                focus['flag'] = dict(value=registry['value'], label='Registry (Wikidata)',
+                                     inferred=False, method='registry_reference', **{k:v for k,v in registry.items() if k!='value'})
+        focus['built_in'] = focus['enrichment'].get('built_in')
     code = PORT_CODES.get(port['id'])
     observed = epoch(focus['reported_at'])
     for ts, payload in store.db.execute('SELECT ts,payload FROM port_calls WHERE ts>? AND ts<=? ORDER BY ts DESC', (now-7*86400, now)):
@@ -73,14 +100,54 @@ def enrich_card(store, port, focus, now):
         if not call.get('ata') or not 0 <= observed-call['ata'] < 7*86400: continue
         if call.get('atd') and call['atd'] <= observed: continue
         # Use an actual current visit record; never turn a planned or old call into origin.
+        nationality = call.get('nationality')
+        focus['flag_reported_country_code'] = nationality
+        nation_name = country_name(store, nationality, now)
+        if nation_name:
+            focus['flag'] = dict(value=nation_name, code=nationality, label='Reported flag',
+                                 inferred=False, method='portnet_nationality', source='Fintraffic / Digitraffic Portnet',
+                                 reported_at=iso(ts), url='https://www.digitraffic.fi/en/marine-traffic/')
         previous = call.get('previous')
         if previous:
             resolved = resolve_port(store, previous, now)
             focus['origin'] = dict(value=resolved['name'] if resolved else previous, code=previous,
+                                   country=resolved.get('country') if resolved else country_name(store, previous[:2], now),
                                    source='Fintraffic / Digitraffic Portnet', reported_at=iso(ts),
                                    url='https://www.digitraffic.fi/en/marine-traffic/',
                                    license='https://creativecommons.org/licenses/by/4.0/')
         break
+
+
+def country_name(store, code, now):
+    if not isinstance(code, str) or not re.fullmatch(r'[A-Z]{2}', code): return None
+    if code in LOCAL_COUNTRIES: return LOCAL_COUNTRIES[code]
+    hit = cached(store, 'country:'+code, now)
+    return hit[1]['name'] if hit and hit[1] else None
+
+
+def current_values(entity, prop, now):
+    """Current reference roles: reject ended, future and ambiguous dated claims."""
+    values = []
+    for claim in entity.get('claims', {}).get(prop, []):
+        if claim.get('rank') == 'deprecated': continue
+        qualifiers = claim.get('qualifiers', {})
+        if 'P582' in qualifiers: continue
+        if 'P580' in qualifiers:
+            try:
+                starts = [q['datavalue']['value'] for q in qualifiers['P580']]
+                if not starts or any(v.get('precision', 0)<11 or epoch(v['time'].lstrip('+'))>now for v in starts): continue
+            except (KeyError, TypeError, ValueError): continue
+        snak = claim.get('mainsnak', {})
+        if snak.get('snaktype') == 'value' and 'datavalue' in snak:
+            values.append((claim.get('rank')=='preferred', snak['datavalue']['value']))
+    preferred = [v for rank, v in values if rank]
+    return preferred or [v for _, v in values]
+
+
+def single_ref(entity, prop, now):
+    vals = current_values(entity, prop, now)
+    ids = list(dict.fromkeys(v['id'] for v in vals if isinstance(v, dict) and re.fullmatch(r'Q\d+', v.get('id', ''))))
+    return ids[0] if len(ids)==1 else None
 
 
 def claim_values(entity, prop):
@@ -107,11 +174,15 @@ class Enricher:
     def enqueue(self, focus):
         if not focus: return
         keys = []
+        mid = radio_mid(focus.get('mmsi'))
+        if mid: keys.append(('mid', mid))
         if focus.get('imo'): keys.append(('ship', focus['imo']))
         for raw in [focus.get('destination', {}).get('value') if focus.get('destination') else None,
                     focus.get('origin', {}).get('code') if focus.get('origin') else None]:
             code = port_key(raw)
             if code and code not in LOCAL_PORTS: keys.append(('port', code))
+        flag_code = focus.get('flag_reported_country_code') or (focus.get('flag', {}).get('code') if focus.get('flag') else None)
+        if flag_code and flag_code not in LOCAL_COUNTRIES: keys.append(('country', flag_code))
         for kind, key in keys:
             token = kind+':'+key
             if token not in self.pending and not cached(self.store, token, self.clock()) and not self.queue.full():
@@ -153,33 +224,79 @@ class Enricher:
         hit = cached(self.store, token, now)
         if hit: return hit[1]
         try:
-            entity = await self.lookup(session, 'P458' if kind == 'ship' else 'P1937', key)
+            entity = await self.lookup(session, {'ship':'P458','port':'P1937','mid':'P2979','country':'P297'}[kind], key)
             result = None
             if entity:
                 source = dict(source='Wikidata', url='https://www.wikidata.org/wiki/'+entity['id'], license='https://creativecommons.org/publicdomain/zero/1.0/')
-                if kind == 'port':
+                if kind in ('mid', 'country'):
+                    codes = current_values(entity, 'P297', now)
+                    code = codes[0] if len(codes)==1 and isinstance(codes[0], str) and re.fullmatch(r'[A-Z]{2}',codes[0]) else None
+                    country_label = label(entity)
+                    allocation_area = None
+                    # Some MIDs identify a radio-registration area, e.g. Madeira,
+                    # rather than a country/territory with its own ISO code.
+                    if kind=='mid' and not code:
+                        parent = single_ref(entity, 'P17', now)
+                        if parent:
+                            countries = (await self.request(session, action='wbgetentities', ids=parent, props='labels|claims', languages='en')).get('entities', {})
+                            country = countries.get(parent, {})
+                            codes = current_values(country, 'P297', now)
+                            if len(codes)==1 and isinstance(codes[0],str) and re.fullmatch(r'[A-Z]{2}',codes[0]) and label(country):
+                                allocation_area, country_label, code = label(entity), label(country), codes[0]
+                    if country_label:
+                        result = dict(name=LOCAL_COUNTRIES.get(code, country_label), code=code, allocation_area=allocation_area, **source)
+                        if code: save_cache(self.store, 'country:'+code, result, now, 30*86400)
+                elif kind == 'port':
                     coords = claim_values(entity, 'P625')
                     valid = [c for c in coords if c.get('globe') == 'http://www.wikidata.org/entity/Q2'
                              and isinstance(c.get('longitude'), (int, float)) and isinstance(c.get('latitude'), (int, float))
                              and -180 <= c['longitude'] <= 180 and -85 <= c['latitude'] <= 85]
                     if len(valid) == 1 and label(entity):
-                        result = dict(code=key, name=label(entity), position=[valid[0]['longitude'], valid[0]['latitude']], **source)
+                        country = country_name(self.store, key[:2], now)
+                        country_id = single_ref(entity, 'P17', now)
+                        if country_id and not country:
+                            countries = (await self.request(session, action='wbgetentities', ids=country_id, props='labels', languages='en')).get('entities', {})
+                            country = label(countries.get(country_id, {}))
+                        result = dict(code=key, name=label(entity), country=country, position=[valid[0]['longitude'], valid[0]['latitude']], **source)
                 else:
                     refs = {}
-                    for prop, title in [('P289', 'Class'), ('P176', 'Builder'), ('P137', 'Operator')]:
-                        vals = claim_values(entity, prop)
-                        ids = list(dict.fromkeys(v['id'] for v in vals if isinstance(v, dict) and re.fullmatch(r'Q\d+', v.get('id', ''))))
-                        if len(ids) == 1: refs[title] = ids[0]
-                    labels = {}
+                    for prop, title in [('P289', 'Class'), ('P176', 'Builder'), ('P137', 'Operator'),
+                                        ('P1071', 'Creation site'), ('P8047', 'Registry')]:
+                        ref = single_ref(entity, prop, now)
+                        if ref: refs[title] = ref
+                    entities = {}
                     if refs:
-                        labels = (await self.request(session, action='wbgetentities', ids='|'.join(set(refs.values())), props='labels', languages='en')).get('entities', {})
-                    facts = [dict(label=title, value=label(labels.get(qid, {}))) for title, qid in refs.items() if label(labels.get(qid, {}))]
+                        entities = (await self.request(session, action='wbgetentities', ids='|'.join(sorted(set(refs.values()))), props='labels|claims', languages='en')).get('entities', {})
+                    facts = [dict(label=title, value=label(entities.get(qid, {}))) for title, qid in refs.items()
+                             if title in ('Class','Builder','Operator') and label(entities.get(qid, {}))]
                     dates = claim_values(entity, 'P729')
                     if len(dates) == 1 and isinstance(dates[0], dict) and dates[0].get('precision', 0) >= 9:
                         match = re.match(r'^\+(\d{4})-', dates[0].get('time', ''))
                         if match and 1700 <= int(match[1]) <= datetime.fromtimestamp(now, timezone.utc).year:
                             facts.append(dict(label='In service', value=match[1]))
-                    if facts: result = dict(facts=facts[:4], **source)
+                    registry = entities.get(refs.get('Registry'), {})
+                    registry_country = dict(value=label(registry), source='Wikidata', url=source['url'], fetched_at=iso(now)) if label(registry) else None
+                    site_id = refs.get('Creation site')
+                    method = 'creation_site'
+                    if not site_id:
+                        builder_id = refs.get('Builder')
+                        builder = entities.get(builder_id, {})
+                        # A company headquarters is not a construction site. Only
+                        # an explicitly identified shipyard is eligible as fallback.
+                        types = claim_values(builder, 'P31')
+                        if any(isinstance(v, dict) and v.get('id')=='Q190928' for v in types):
+                            site_id, method = builder_id, 'builder_shipyard'
+                    site = entities.get(site_id, {})
+                    country_id = single_ref(site, 'P17', now) if site else None
+                    built_in = None
+                    if country_id:
+                        countries = (await self.request(session, action='wbgetentities', ids=country_id, props='labels', languages='en')).get('entities', {})
+                        if label(countries.get(country_id, {})):
+                            built_in = dict(value=label(countries[country_id]), label='Built in' if method=='creation_site' else 'Shipyard country',
+                                            method=method, site=label(site), source='Wikidata',
+                                            url='https://www.wikidata.org/wiki/'+site_id, fetched_at=iso(now))
+                    if facts or registry_country or built_in:
+                        result = dict(facts=facts[:4], registry_country=registry_country, built_in=built_in, **source)
             save_cache(self.store, token, result, now, 30*86400 if result else 7*86400)
             return result
         except (aiohttp.ClientError, asyncio.TimeoutError, ValueError, KeyError, TypeError) as exc:
@@ -206,6 +323,7 @@ class Enricher:
                     departures = [epoch(a['atd']) for a in areas if a.get('atd')]
                     clean = dict(port=call['portToVisit'], previous=port_key(call.get('prevPort')),
                                  imo=imo(call.get('imoLloyds')), mmsi=mmsi(call.get('mmsi')),
+                                 nationality=call.get('nationality') if re.fullmatch(r'[A-Z]{2}', str(call.get('nationality',''))) else None,
                                  ata=min(arrivals) if arrivals else None, atd=max(departures) if departures else None)
                     self.store.db.execute('INSERT OR REPLACE INTO port_calls VALUES (?,?,?)', (str(call['portCallId']), ts, json.dumps(clean)))
                 except (ValueError, KeyError, TypeError): continue

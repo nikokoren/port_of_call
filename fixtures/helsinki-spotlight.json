@@ -104,7 +104,14 @@
       "source": "Fintraffic / Digitraffic"
     },
     "origin": null,
-    "destination_port": null,
+    "destination_port": {
+      "code": "PLGDN",
+      "name": "Gda\u0144sk",
+      "country": "Poland",
+      "source": "Reviewed Wikidata port reference",
+      "url": "https://www.wikidata.org/wiki/Q1792",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
     "enrichment": {
       "facts": [
         {
@@ -112,13 +119,46 @@
           "value": "2011"
         }
       ],
+      "registry_country": {
+        "value": "Portugal",
+        "source": "Wikidata",
+        "url": "https://www.wikidata.org/wiki/Q105768896",
+        "fetched_at": "2026-11-05T12:19:21Z"
+      },
+      "built_in": null,
       "source": "Wikidata",
       "url": "https://www.wikidata.org/wiki/Q105768896",
       "license": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "fetched_at": "2026-11-05T08:28:29Z"
+      "fetched_at": "2026-11-05T12:19:21Z"
     },
     "reported_local": "10:27 EET",
-    "voyage_age_minutes": 2
+    "voyage_age_minutes": 2,
+    "flag": {
+      "value": "Portugal",
+      "code": "PT",
+      "label": "Flag (AIS)",
+      "inferred": true,
+      "method": "mmsi_mid",
+      "source": "Wikidata / ITU MID assignment",
+      "url": "https://www.wikidata.org/wiki/Q26253",
+      "fetched_at": "2026-11-05T12:23:30Z"
+    },
+    "built_in": null,
+    "registry_country": {
+      "value": "Portugal",
+      "source": "Wikidata",
+      "url": "https://www.wikidata.org/wiki/Q105768896",
+      "fetched_at": "2026-11-05T12:19:21Z"
+    },
+    "eta_estimate": {
+      "value": "07 Nov 09:00 UTC",
+      "reported_at": "2026-11-05T08:26:06Z",
+      "source": "Fintraffic / Digitraffic",
+      "inferred_at": "2026-11-07T09:00:00Z",
+      "year_inferred": true,
+      "inference": "nearest_to_report_within_minus_2_plus_90_days",
+      "display": "07 Nov 09:00 UTC"
+    }
   },
   "focus_message": "",
   "total": 20,
@@ -446,5 +486,6 @@
       "stale": false
     }
   ],
-  "fixture_note": "Genuine historical free-source capture; NOT current traffic. Original report timestamps preserved."
+  "fixture_note": "Genuine historical AIS observations; NOT current traffic. Free reference facts retrieved at reference_enriched_at; position/report times unchanged.",
+  "reference_enriched_at": "2026-11-05T12:26:42Z"
 }

@@ -44,6 +44,7 @@ export function geometry(root=document.querySelector('.poc')) {
  return {cardInside:inside(card),attributionClear:!!credit&&!hit(card,credit),
   spotlightInside:!overlay||inside(overlay),spotlightClear:!overlay||(!fixed.some(b=>hit(overlay,b))&&(!featured||!hit(overlay,featured.box))),
   spotlightConnected,spotlightVisible:!!overlay,
+  spotlightInverted:!root.dataset.focus||!!(overlay&&getComputedStyle(overlayNode).backgroundColor==='rgb(0, 0, 0)'&&getComputedStyle(overlayNode.querySelector('.title')).color==='rgb(255, 255, 255)'),
   spotlightTextVisible:!root.dataset.focus||!!(overlay&&overlayNode.innerText.trim().length>12&&overlayNode.querySelector('.title')?.innerText.trim().length>=3&&[...overlayNode.children].filter(n=>n.textContent.trim()&&n.getBoundingClientRect().height>0).length>=3),occludedBySpotlight:overlay?ships.filter(s=>hit(s.box,overlay)).length:0,
   hiddenShips:ships.filter(s=>fixed.some(b=>hit(s.box,b))).length,
   maxProjectionError,labelCollisions,leaderCollisions,

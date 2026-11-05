@@ -41,11 +41,12 @@ try {
    overflow:document.querySelector('.poc').scrollHeight>document.querySelector('.poc').clientHeight+Math.max(1,parseFloat(getComputedStyle(document.querySelector('.screen')).getPropertyValue('--ui-scale'))||1),
    text:document.querySelector('.poc__notice').innerText}));
   const positions=await page.evaluate(geometry);
+  if(name==='spotlight-half-horizontal'&&status.markers<2)throw new Error(name+': camera lost all context vessels');
   if(fixture.endsWith('-spotlight')||fixture==='spotlight-layout-test'){
    const subject=await page.evaluate(()=>{const el=document.querySelector('.poc'),id=el.dataset.focus;return {marker:!!el.querySelector('.poc__ship--featured[data-id="'+id+'"]'),label:!!el.querySelector('[data-poc-spotlight][data-id="'+id+'"]')};});
    if(!subject.marker||!subject.label)throw new Error(name+': featured subject missing '+JSON.stringify(subject));
   }
-  if(!blockTiles && (!positions.spotlightTextVisible||!positions.spotlightInside||!positions.spotlightClear||!positions.spotlightConnected||!positions.cardInside||!positions.attributionClear||positions.hiddenShips||positions.maxProjectionError>1||positions.labelCollisions||positions.leaderCollisions||positions.labelsOutside||positions.textOverflow))throw new Error(name+': geometry '+JSON.stringify(positions));
+  if(!blockTiles && (!positions.spotlightInverted||!positions.spotlightTextVisible||!positions.spotlightInside||!positions.spotlightClear||!positions.spotlightConnected||!positions.cardInside||!positions.attributionClear||positions.hiddenShips||positions.maxProjectionError>1||positions.labelCollisions||positions.leaderCollisions||positions.labelsOutside||positions.textOverflow))throw new Error(name+': geometry '+JSON.stringify(positions));
   if(errors.length||status.ready!==(blockTiles?'error':'true')||!status.attribution||status.overflow)throw new Error(name+': '+JSON.stringify({status,errors}));
   if(!blockTiles && ['helsinki','turku','rauma','demo','stale'].includes(fixture)&&status.markers===0)throw new Error(name+': no markers');
   if(!blockTiles && status.markers) {
