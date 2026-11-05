@@ -86,7 +86,6 @@ def card(v, selected_at, reason, now):
     if length: add('Length / beam' if beam else 'Length', f'{length} × {beam} m' if beam else f'{length} m', 'length_m')
     if v.get('speed_knots') is not None: add('Speed', f"{v['speed_knots']:g} kn")
     if v.get('navigation_status') in NAVIGATION: add('Reported status', NAVIGATION[v['navigation_status']])
-    if value(v, 'draught_m'): add('Reported draught', f"{value(v, 'draught_m'):g} m", 'draught_m')
     add('Call sign', value(v, 'call_sign'), 'call_sign')
     add('IMO', value(v, 'imo'), 'imo')
     add('MMSI', v['mmsi'])

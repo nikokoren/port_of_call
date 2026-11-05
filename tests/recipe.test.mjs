@@ -33,6 +33,8 @@ for(const layout of layouts){
 }
 
 test('Spotlight setting is a native off-by-default boolean',async()=>{
+ assert.match(settings.custom_fields.find(f=>f.keyname==='author_bio').description,/Wikidata.*CC0/);
+ assert.doesNotMatch(settings.description,/reported/i);
  const field=settings.custom_fields.find(f=>f.keyname==='ship_spotlight');
  assert.equal(field.field_type,'boolean');assert.equal(field.default,false);
  const url=await engine.parseAndRender(settings.polling_url,{...fields,ship_spotlight:true});
@@ -45,12 +47,12 @@ for(const layout of layouts)test(`${layout}: ordered ship copy and map-level sou
  const harbor=html.match(/<aside[^>]*data-poc-box[^>]*>([\s\S]*?)<\/aside>/)[1];
  const overlay=html.match(/<aside[^>]*data-poc-spotlight[^>]*>([\s\S]*?)<\/aside>/)[1];
  assert.ok(harbor.includes('Port of Call'));assert.ok(harbor.includes('Rauma, Finland'));
- assert.ok(harbor.includes('vessels recently reported near this port'));
+ assert.ok(harbor.includes('vessels seen near this port'));
  for(const removed of ['Archive','Fetched','Updated','Report ','CC BY','Fintraffic'])assert.ok(!harbor.includes(removed));
  assert.ok(html.includes('map__attribution'));assert.ok(html.includes('data-poc-sources'));assert.ok(html.includes('CC BY 4.0'));assert.ok(html.includes('OpenStreetMap'));
  assert.ok(overlay.includes('&lt;script&gt;'));assert.ok(!overlay.includes('<script>danger()'));
  assert.ok(overlay.includes('Cargo vessel'));assert.ok(!overlay.includes('Type:'));
- const positions=['Cargo vessel','Flag: Netherlands','Voyage (reported)','Reported ETA:','Current speed:'].map(t=>overlay.indexOf(t));
+ const positions=['Cargo vessel','Flag: Netherlands','Voyage:','ETA:','Current speed:'].map(t=>overlay.indexOf(t));
  assert.ok(positions.every(n=>n>=0));assert.deepEqual(positions,[...positions].sort((a,b)=>a-b));
  assert.ok(overlay.includes('Hanko, Finland → Tilbury, United Kingdom'));
  assert.ok(overlay.includes('205 m'));assert.ok(overlay.includes('0 knots'));
@@ -58,9 +60,11 @@ for(const layout of layouts)test(`${layout}: ordered ship copy and map-level sou
   assert.ok(overlay.indexOf('Good to know')>overlay.indexOf('Current speed:'));
   assert.ok(overlay.indexOf('Ship details')>overlay.indexOf('Good to know'));
   assert.ok(overlay.indexOf('Length')>overlay.indexOf('Shipyard country'));
-  assert.ok(overlay.indexOf('Reported draught')>overlay.indexOf('Length'));
  }
  assert.ok(!overlay.includes('Position '));
+ assert.doesNotMatch(overlay,/reported|draught/i);
+ assert.doesNotMatch(harbor,/reported/i);
+ assert.doesNotMatch(html,/Wikidata|CC0/);
  data.focus=null;data.focus_message='No suitable fresh ship · showing harbor';
  assert.ok((await render(layout,data)).includes(data.focus_message));
 });
@@ -69,7 +73,7 @@ for(const layout of layouts)test(`${layout}: absent measurements do not become e
  data.focus.presentation.measurements=[];data.focus.presentation.details=[];data.focus.presentation.speed=null;
  let html=await render(layout,data);
  let overlay=html.match(/<aside[^>]*data-poc-spotlight[^>]*>([\s\S]*?)<\/aside>/)[1];
- assert.ok(!overlay.includes('data-poc-stats'));assert.ok(!overlay.includes('Current speed:'));
+ assert.ok(!overlay.includes('data-poc-measurements'));assert.ok(!overlay.includes('Current speed:'));
  data.focus.presentation.speed='0 knots';html=await render(layout,data);
- assert.ok(html.includes('0 knots'));assert.ok(!html.includes('data-poc-stat-value'));
+ assert.ok(html.includes('0 knots'));assert.ok(!html.includes('data-poc-measurements'));
 });

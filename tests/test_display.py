@@ -21,7 +21,7 @@ class Copy(unittest.TestCase):
     def test_missing_origin_and_country_are_omitted(self):
         f=self.base();f['origin']=None;f['destination_port']['country']=None
         result=focus_copy(f)
-        self.assertEqual(result['journey'],dict(label='Reported destination',value='Tilbury'))
+        self.assertEqual(result['journey'],dict(label='Destination',value='Tilbury'))
         self.assertNotIn('→',result['journey']['value'])
         f['destination']=None;self.assertIsNone(focus_copy(f)['journey'])
     def test_service_year_never_becomes_build_year(self):
@@ -43,3 +43,11 @@ class Copy(unittest.TestCase):
         self.assertEqual(result['measurements'],[]);self.assertEqual(result['highlights'],[])
         f['flag']=dict(value='Bermuda',method='registry_reference')
         self.assertEqual(focus_copy(f)['flag'],'Registry: Bermuda')
+    def test_clean_labels_and_no_draught_in_presentation(self):
+        f=self.base();f['facts'].append(dict(label='Reported draught',value='7.2 m'))
+        f['flag']=dict(value='Netherlands',method='portnet_nationality')
+        result=focus_copy(f)
+        self.assertEqual(result['journey']['label'],'Voyage')
+        self.assertEqual(result['flag'],'Flag: Netherlands')
+        self.assertNotIn('draught',str(result).lower())
+        self.assertNotIn('reported',str(result).lower())

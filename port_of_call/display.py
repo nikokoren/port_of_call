@@ -17,15 +17,14 @@ def focus_copy(focus):
     resolved = focus.get('destination_port') or {}
     start = place(origin.get('value'), origin.get('country'))
     end = place(resolved.get('name') or destination.get('value'), resolved.get('country')) if destination.get('value') else None
-    journey = dict(label='Voyage (reported)', value=start+' → '+end) if start and end else (
-        dict(label='Reported destination', value=end) if end else dict(label='Reported previous port', value=start) if start else None)
+    journey = dict(label='Voyage', value=start+' → '+end) if start and end else (
+        dict(label='Destination', value=end) if end else dict(label='Previous port', value=start) if start else None)
     flag = focus.get('flag') or {}
     method = flag.get('method')
     flag_text = None
     if flag.get('value'):
         flag_text = ('Registry: ' if method=='registry_reference' else 'Flag: ')+flag['value']
         if flag.get('inferred'): flag_text += ' (AIS)'
-        elif method=='portnet_nationality': flag_text += ' (reported)'
     highlights = []
     if reference.get('In service'): highlights.append('In service since '+reference['In service'])
     if reference.get('Operator'): highlights.append('Operator: '+reference['Operator'])
@@ -52,7 +51,6 @@ def focus_copy(focus):
     measurements = []
     if length is not None: measurements.append(dict(label='Length',value=f'{length:g} m'))
     if width is not None: measurements.append(dict(label='Width',value=f'{width:g} m'))
-    if facts.get('Reported draught'): details.append(dict(label='Reported draught',value=facts['Reported draught']))
     return dict(vessel_type=facts.get('Type'), flag=flag_text, journey=journey,
                 eta=(focus.get('eta_estimate') or {}).get('display'),
                 speed=facts.get('Speed','').replace(' kn',' knots') or None,

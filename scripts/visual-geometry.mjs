@@ -41,11 +41,13 @@ export function geometry(root=document.querySelector('.poc')) {
    x>=overlay[0]-.5&&x<=overlay[2]+.5&&y>=overlay[1]-.5&&y<=overlay[3]+.5&&
    Math.min(Math.abs(x-overlay[0]),Math.abs(x-overlay[2]),Math.abs(y-overlay[1]),Math.abs(y-overlay[3]))<.5;
  }
- return {cardInside:inside(card),attributionInside:!!credit&&inside(credit),attributionClear:!!credit&&!hit(card,credit),
+ const inset={left:card[0],bottom:m.height-card[3]};
+ const edge=4*(parseFloat(getComputedStyle(root).getPropertyValue('--content-scale'))||1)+1;
+ return {cardInside:inside(card),cardInset:inset,cardAtCorner:inset.left>=-1&&inset.left<=edge&&inset.bottom>=-1&&inset.bottom<=edge,attributionInside:!!credit&&inside(credit),attributionClear:!!credit&&!hit(card,credit),
   spotlightInside:!overlay||inside(overlay),spotlightClear:!overlay||(!fixed.some(b=>hit(overlay,b))&&(!featured||!hit(overlay,featured.box))),
   spotlightConnected,spotlightVisible:!!overlay,
   spotlightInverted:!root.dataset.focus||!!(overlay&&overlayNode.classList.contains('inverse')&&getComputedStyle(overlayNode).backgroundColor!==getComputedStyle(overlayNode.querySelector('.title')).color),
-  spotlightStatsAligned:!overlay||(()=>{const vals=[...overlayNode.querySelectorAll('[data-poc-stat-value]')];return vals.length<2||Math.abs(vals[0].getBoundingClientRect().top-vals[1].getBoundingClientRect().top)<=1;})(),
+  spotlightTextConsistent:!overlay||(()=>{const styles=[...overlayNode.querySelectorAll('.label')].map(n=>getComputedStyle(n));return styles.length>0&&styles.every(s=>s.fontSize===styles[0].fontSize&&s.fontFamily===styles[0].fontFamily)&&parseFloat(getComputedStyle(overlayNode.querySelector('.title')).fontSize)>parseFloat(styles[0].fontSize);})(),
   spotlightConnectorWidth:connector?parseFloat(getComputedStyle(connector).strokeWidth):0,
   spotlightSurface:overlay?getComputedStyle(overlayNode).backgroundColor:null,
   spotlightTextColor:overlay?getComputedStyle(overlayNode.querySelector('.title')).color:null,
@@ -54,5 +56,5 @@ export function geometry(root=document.querySelector('.poc')) {
   maxProjectionError,labelCollisions,leaderCollisions,
   labelsOutside:labels.filter(b=>!inside(b)).length,labels:labels.length,
   leaders:root.querySelectorAll('.poc__leader').length,
-  textOverflow:[...root.querySelectorAll('[data-poc-box] > span,[data-poc-spotlight] > span,[data-poc-stat-caption],[data-poc-stat-value]')].filter(n=>n.offsetWidth&&n.scrollWidth>n.clientWidth+2).length};
+  textOverflow:[...root.querySelectorAll('[data-poc-box] > span,[data-poc-spotlight] > span,[data-poc-details] > span,[data-poc-highlights] > span')].filter(n=>n.offsetWidth&&n.scrollWidth>n.clientWidth+2).length};
 }

@@ -1,15 +1,21 @@
 {% assign opts = trmnl.plugin_settings.custom_fields_values %}
 <div class="layout layout--col h--full">
-  <section class="map stretch w--full poc poc--quadrant" data-focus="{{ focus.mmsi | escape }}" data-status="{{ status | default: 'unavailable' | escape }}" data-labels="{{ opts.ship_labels | escape }}" data-mode="{{ opts.display_mode | default: 'map' | escape }}" data-bbox="{{ viewport | join: ',' | escape }}" data-center="{{ port.center | join: ',' | escape }}" aria-label="Recently reported vessel positions">
-    <aside class="absolute bottom--10 lg:bottom--20 left--3 z--2 p--2 lg:p--3 bg--canvas outline flex flex--col flex--left gap--xsmall w--[45cqw] poc__box" data-poc-box>
+  <section class="map stretch w--full poc poc--quadrant" data-focus="{{ focus.mmsi | escape }}" data-status="{{ status | default: 'unavailable' | escape }}" data-labels="{{ opts.ship_labels | escape }}" data-mode="{{ opts.display_mode | default: 'map' | escape }}" data-bbox="{{ viewport | join: ',' | escape }}" data-center="{{ port.center | join: ',' | escape }}" aria-label="Recent vessel positions">
+    <div class="absolute bottom--1 left--1 right--1 flex flex--row flex--bottom gap--small poc__corner">
+    <aside class="p--2 lg:p--3 bg--canvas outline flex flex--col flex--left gap--xsmall w--[45cqw] poc__box" data-poc-box>
       <span class="label label--small">Port of Call</span>
       {% if demo %}<span class="label label--small">DEMO · SYNTHETIC POSITIONS</span>{% endif %}
       <span class="w--full title title--small lg:title--large" data-clamp="3">{{ port.name | default: 'Harbor' | escape }}{% if port.country and port.country != port.name %}, {{ port.country | escape }}{% endif %}</span>
-      <span class="w--full label label--small" data-clamp="3">{{ total | default: 0 }} vessels recently reported near this port</span>
+      <span class="w--full label label--small" data-clamp="3">{{ total | default: 0 }} vessels seen near this port</span>
       <span hidden><strong data-poc-total>{{ total | default: 0 }}</strong><span data-poc-limited></span></span>
       <span class="w--full description poc__notice"{% if status == 'ok' %} hidden{% endif %}>{{ message | default: 'Vessel feed unavailable' | escape }}</span>
       {% if focus_message %}<span class="w--full label label--small" data-clamp="2">{{ focus_message | escape }}</span>{% endif %}
     </aside>
+    <div class="map__attribution poc__attribution flex flex--wrap flex--right gap--xsmall" data-poc-sources>
+      <span>{% if demo %}DEMO · synthetic data{% elsif attribution %}<a href="{{ attribution.url | escape }}">Fintraffic / digitraffic.fi</a> · <a href="{{ attribution.license | escape }}">CC BY 4.0</a>{% else %}{{ source | default: 'Source unavailable' | escape }}{% endif %}</span>
+      <span><a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a></span>
+    </div>
+    </div>
     {% if focus %}
     {% assign copy = focus.presentation %}
     <aside class="poc__spotlight absolute z--2 p--2 inverse outline flex flex--col flex--left gap--none w--auto w--min-[42cqw] w--max-[47cqw]" data-poc-spotlight data-id="{{ focus.mmsi | escape }}" aria-label="Ship Spotlight" style="opacity:0;left:8px;top:8px">
@@ -17,19 +23,15 @@
       {% if copy.vessel_type %}<span class="w--full label label--small" data-clamp="1">{{ copy.vessel_type | escape }}</span>{% endif %}
       {% if copy.flag %}<span class="w--full label label--small" data-clamp="2">{{ copy.flag | escape }}</span>{% endif %}
       {% if copy.journey %}<span class="w--full label label--small" data-clamp="3"><span><strong>{{ copy.journey.label | escape }}:</strong> {{ copy.journey.value | escape }}</span></span>{% endif %}
-      {% if copy.eta %}<span class="w--full label label--small" data-clamp="2"><span><strong>Reported ETA:</strong> {{ copy.eta | escape }}</span></span>{% endif %}
+      {% if copy.eta %}<span class="w--full label label--small" data-clamp="2"><span><strong>ETA:</strong> {{ copy.eta | escape }}</span></span>{% endif %}
       {% if copy.speed %}<span class="w--full label label--small" data-clamp="1"><span><strong>Current speed:</strong> {{ copy.speed | escape }}</span></span>{% endif %}
-      {% if copy.details.size > 0 or copy.measurements.size > 0 %}<div class="w--full flex flex--col flex--left gap--none" data-poc-details>
+      {% if copy.measurements.size > 0 %}<div class="w--full flex flex--col flex--left gap--none" data-poc-details>
 
-        {% if copy.measurements.size > 0 %}<span class="w--full label label--small" data-clamp="2" data-poc-compact-measurements><span>{% for fact in copy.measurements %}<strong>{{ fact.label | escape }}:</strong> {{ fact.value | escape }}{% unless forloop.last %} · {% endunless %}{% endfor %}</span></span>{% endif %}
+        {% if copy.measurements.size > 0 %}<span class="w--full label label--small" data-clamp="2" data-poc-measurements><span>{% for fact in copy.measurements %}<strong>{{ fact.label | escape }}:</strong> {{ fact.value | escape }}{% unless forloop.last %} · {% endunless %}{% endfor %}</span></span>{% endif %}
       </div>{% endif %}
     </aside>
     {% endif %}
-    <div class="map__attribution poc__attribution flex flex--wrap flex--right gap--xsmall w--max-[96cqw]" data-poc-sources>
-      <span>{% if demo %}DEMO · synthetic data{% elsif attribution %}<a href="{{ attribution.url | escape }}">Fintraffic / digitraffic.fi</a> · <a href="{{ attribution.license | escape }}">CC BY 4.0</a>{% else %}{{ source | default: 'Source unavailable' | escape }}{% endif %}</span>
-      {% if focus.enrichment or focus.flag or focus.built_in %}<span><a href="https://www.wikidata.org/">Wikidata</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></span>{% endif %}
-      <span><a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a></span>
-    </div>
+
     <ul class="poc__data" hidden>{% for v in vessels %}<li data-featured="{% if focus.mmsi == v.mmsi %}true{% else %}false{% endif %}" data-id="{{ v.mmsi | escape }}" data-lon="{{ v.position[0] }}" data-lat="{{ v.position[1] }}" data-bearing="{{ v.bearing_deg }}" data-stale="{{ v.stale }}" data-name="{{ v.name | escape }}" data-reported="{{ v.reported_at | escape }}"></li>{% endfor %}</ul>
   </section>
 </div>

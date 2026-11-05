@@ -28,7 +28,7 @@
   ],
   "source": "Fintraffic / Digitraffic",
   "attribution": {
-    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
+    "label": "Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS",
     "url": "https://www.digitraffic.fi/en/marine-traffic/",
     "license": "https://creativecommons.org/licenses/by/4.0/"
   },
@@ -81,12 +81,6 @@
         "source": "AIS position report"
       },
       {
-        "label": "Reported draught",
-        "value": "7.2 m",
-        "reported_at": "2026-11-05T08:23:31Z",
-        "source": "Fintraffic / Digitraffic"
-      },
-      {
         "label": "Call sign",
         "value": "PBNN",
         "reported_at": "2026-11-05T08:23:31Z",
@@ -134,20 +128,15 @@
       "vessel_type": "Cargo vessel",
       "flag": null,
       "journey": {
-        "label": "Voyage (reported)",
-        "value": "Hanko \u2192 A VERY LONG UNRESOLVED DESTINATION FOR TESTS"
+        "label": "Voyage",
+        "value": "Hanko → A VERY LONG UNRESOLVED DESTINATION FOR TESTS"
       },
       "eta": null,
       "speed": "0 knots",
       "highlights": [
         "In service since 2009"
       ],
-      "details": [
-        {
-          "label": "Reported draught",
-          "value": "7.2 m"
-        }
-      ],
+      "details": [],
       "measurements": [
         {
           "label": "Length",

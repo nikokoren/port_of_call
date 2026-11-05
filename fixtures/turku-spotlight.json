@@ -28,7 +28,7 @@
   ],
   "source": "Fintraffic / Digitraffic",
   "attribution": {
-    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
+    "label": "Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS",
     "url": "https://www.digitraffic.fi/en/marine-traffic/",
     "license": "https://creativecommons.org/licenses/by/4.0/"
   },
@@ -64,7 +64,7 @@
       },
       {
         "label": "Length / beam",
-        "value": "54 \u00d7 12 m",
+        "value": "54 × 12 m",
         "reported_at": "2026-11-05T08:28:13Z",
         "source": "Fintraffic / Digitraffic"
       },
@@ -79,12 +79,6 @@
         "value": "Moored",
         "reported_at": "2026-11-05T08:27:04Z",
         "source": "AIS position report"
-      },
-      {
-        "label": "Reported draught",
-        "value": "3.9 m",
-        "reported_at": "2026-11-05T08:28:13Z",
-        "source": "Fintraffic / Digitraffic"
       },
       {
         "label": "Call sign",
@@ -165,7 +159,7 @@
       "vessel_type": "Passenger vessel",
       "flag": "Flag: Finland (AIS)",
       "journey": {
-        "label": "Reported destination",
+        "label": "Destination",
         "value": "Turku, Finland"
       },
       "eta": null,
@@ -174,12 +168,7 @@
         "In service since 1996",
         "Operator: Finferries"
       ],
-      "details": [
-        {
-          "label": "Reported draught",
-          "value": "3.9 m"
-        }
-      ],
+      "details": [],
       "measurements": [
         {
           "label": "Length",

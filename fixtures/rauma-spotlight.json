@@ -28,7 +28,7 @@
   ],
   "source": "Fintraffic / Digitraffic",
   "attribution": {
-    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
+    "label": "Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS",
     "url": "https://www.digitraffic.fi/en/marine-traffic/",
     "license": "https://creativecommons.org/licenses/by/4.0/"
   },
@@ -79,12 +79,6 @@
         "value": "Moored",
         "reported_at": "2026-11-05T08:26:30Z",
         "source": "AIS position report"
-      },
-      {
-        "label": "Reported draught",
-        "value": "7.2 m",
-        "reported_at": "2026-11-05T08:23:31Z",
-        "source": "Fintraffic / Digitraffic"
       },
       {
         "label": "Call sign",
@@ -196,8 +190,8 @@
       "vessel_type": "Cargo vessel",
       "flag": "Flag: Netherlands (AIS)",
       "journey": {
-        "label": "Voyage (reported)",
-        "value": "Hanko, Finland \u2192 Tilbury, United Kingdom"
+        "label": "Voyage",
+        "value": "Hanko, Finland → Tilbury, United Kingdom"
       },
       "eta": "10 Nov 04:00 UTC",
       "speed": "0 knots",
@@ -208,10 +202,6 @@
         {
           "label": "Shipyard country",
           "value": "Poland"
-        },
-        {
-          "label": "Reported draught",
-          "value": "7.2 m"
         }
       ],
       "measurements": [

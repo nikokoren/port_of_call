@@ -113,6 +113,7 @@ class Expansion(unittest.TestCase):
         self.assertIn('https://harbor.example.com/api/v1/harbors/{{ harbor }}/vessels?scale={{ map_scale }}',out)
         self.assertIn("framework_version: '3.4.4'",out)
         self.assertIn('refresh_interval: 15',out)
+        self.assertIn('Wikidata',out);self.assertIn('CC0',out)
         for origin in ('http://example.com','https://secret@example.com','https://example.com?key=secret'):
             with self.assertRaises(ValueError):release_settings(text,origin=origin)
 

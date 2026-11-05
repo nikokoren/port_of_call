@@ -5,6 +5,11 @@
     "positions": [
       {
         "cardInside": true,
+        "cardInset": {
+          "left": 4,
+          "bottom": 4
+        },
+        "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
         "spotlightInside": true,
@@ -12,7 +17,7 @@
         "spotlightConnected": true,
         "spotlightVisible": false,
         "spotlightInverted": true,
-        "spotlightStatsAligned": true,
+        "spotlightTextConsistent": true,
         "spotlightConnectorWidth": 0,
         "spotlightSurface": null,
         "spotlightTextColor": null,
@@ -29,6 +34,11 @@
       },
       {
         "cardInside": true,
+        "cardInset": {
+          "left": 4,
+          "bottom": 4
+        },
+        "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
         "spotlightInside": true,
@@ -36,7 +46,7 @@
         "spotlightConnected": true,
         "spotlightVisible": false,
         "spotlightInverted": true,
-        "spotlightStatsAligned": true,
+        "spotlightTextConsistent": true,
         "spotlightConnectorWidth": 0,
         "spotlightSurface": null,
         "spotlightTextColor": null,
@@ -53,6 +63,11 @@
       },
       {
         "cardInside": true,
+        "cardInset": {
+          "left": 4,
+          "bottom": 4
+        },
+        "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
         "spotlightInside": true,
@@ -60,7 +75,7 @@
         "spotlightConnected": true,
         "spotlightVisible": false,
         "spotlightInverted": true,
-        "spotlightStatsAligned": true,
+        "spotlightTextConsistent": true,
         "spotlightConnectorWidth": 0,
         "spotlightSurface": null,
         "spotlightTextColor": null,
@@ -77,6 +92,11 @@
       },
       {
         "cardInside": true,
+        "cardInset": {
+          "left": 4,
+          "bottom": 4
+        },
+        "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
         "spotlightInside": true,
@@ -84,7 +104,7 @@
         "spotlightConnected": true,
         "spotlightVisible": false,
         "spotlightInverted": true,
-        "spotlightStatsAligned": true,
+        "spotlightTextConsistent": true,
         "spotlightConnectorWidth": 0,
         "spotlightSurface": null,
         "spotlightTextColor": null,
@@ -104,7 +124,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.2948125
+      "inkFraction": 0.35201041666666666
     },
     "errors": []
   },
@@ -114,6 +134,11 @@
     "positions": [
       {
         "cardInside": true,
+        "cardInset": {
+          "left": 4,
+          "bottom": 4
+        },
+        "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
         "spotlightInside": true,
@@ -121,14 +146,14 @@
         "spotlightConnected": true,
         "spotlightVisible": false,
         "spotlightInverted": true,
-        "spotlightStatsAligned": true,
+        "spotlightTextConsistent": true,
         "spotlightConnectorWidth": 0,
         "spotlightSurface": null,
         "spotlightTextColor": null,
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.02057511810579283,
+        "maxProjectionError": 0.020575118085407462,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelsOutside": 0,
@@ -138,6 +163,11 @@
       },
       {
         "cardInside": true,
+        "cardInset": {
+          "left": 4,
+          "bottom": 4
+        },
+        "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
         "spotlightInside": true,
@@ -145,14 +175,14 @@
         "spotlightConnected": true,
         "spotlightVisible": false,
         "spotlightInverted": true,
-        "spotlightStatsAligned": true,
+        "spotlightTextConsistent": true,
         "spotlightConnectorWidth": 0,
         "spotlightSurface": null,
         "spotlightTextColor": null,
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.02057511810579283,
+        "maxProjectionError": 0.020575118085407462,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelsOutside": 0,
@@ -165,7 +195,7 @@
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.564643600701293
+      "inkFraction": 0.5418234226994911
     },
     "errors": []
   },
@@ -175,6 +205,11 @@
     "positions": [
       {
         "cardInside": true,
+        "cardInset": {
+          "left": 4,
+          "bottom": 4
+        },
+        "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
         "spotlightInside": true,
@@ -182,14 +217,14 @@
         "spotlightConnected": true,
         "spotlightVisible": true,
         "spotlightInverted": true,
-        "spotlightStatsAligned": true,
+        "spotlightTextConsistent": true,
         "spotlightConnectorWidth": 3,
         "spotlightSurface": "rgb(0, 0, 0)",
         "spotlightTextColor": "rgb(255, 255, 255)",
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.014731391471744152,
+        "maxProjectionError": 0.011646187236527515,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelsOutside": 0,
@@ -199,6 +234,11 @@
       },
       {
         "cardInside": true,
+        "cardInset": {
+          "left": 4,
+          "bottom": 4
+        },
+        "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
         "spotlightInside": true,
@@ -206,14 +246,14 @@
         "spotlightConnected": true,
         "spotlightVisible": true,
         "spotlightInverted": true,
-        "spotlightStatsAligned": true,
+        "spotlightTextConsistent": true,
         "spotlightConnectorWidth": 3,
         "spotlightSurface": "rgb(0, 0, 0)",
         "spotlightTextColor": "rgb(255, 255, 255)",
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.014731391471744152,
+        "maxProjectionError": 0.011646187236527515,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelsOutside": 0,
@@ -223,6 +263,11 @@
       },
       {
         "cardInside": true,
+        "cardInset": {
+          "left": 4,
+          "bottom": 4
+        },
+        "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
         "spotlightInside": true,
@@ -230,14 +275,14 @@
         "spotlightConnected": true,
         "spotlightVisible": true,
         "spotlightInverted": true,
-        "spotlightStatsAligned": true,
+        "spotlightTextConsistent": true,
         "spotlightConnectorWidth": 3,
         "spotlightSurface": "rgb(0, 0, 0)",
         "spotlightTextColor": "rgb(255, 255, 255)",
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.014731391471744152,
+        "maxProjectionError": 0.011646187236527515,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelsOutside": 0,
@@ -247,6 +292,11 @@
       },
       {
         "cardInside": true,
+        "cardInset": {
+          "left": 4,
+          "bottom": 4
+        },
+        "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
         "spotlightInside": true,
@@ -254,14 +304,14 @@
         "spotlightConnected": true,
         "spotlightVisible": true,
         "spotlightInverted": true,
-        "spotlightStatsAligned": true,
+        "spotlightTextConsistent": true,
         "spotlightConnectorWidth": 3,
         "spotlightSurface": "rgb(0, 0, 0)",
         "spotlightTextColor": "rgb(255, 255, 255)",
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.014731391471744152,
+        "maxProjectionError": 0.011646187236527515,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelsOutside": 0,
@@ -274,7 +324,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.4153854166666667
+      "inkFraction": 0.40378125
     },
     "errors": []
   },
@@ -284,6 +334,11 @@
     "positions": [
       {
         "cardInside": true,
+        "cardInset": {
+          "left": 4,
+          "bottom": 4
+        },
+        "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
         "spotlightInside": true,
@@ -291,7 +346,7 @@
         "spotlightConnected": true,
         "spotlightVisible": true,
         "spotlightInverted": true,
-        "spotlightStatsAligned": true,
+        "spotlightTextConsistent": true,
         "spotlightConnectorWidth": 6,
         "spotlightSurface": "rgb(0, 0, 0)",
         "spotlightTextColor": "rgb(255, 255, 255)",
@@ -308,6 +363,11 @@
       },
       {
         "cardInside": true,
+        "cardInset": {
+          "left": 4,
+          "bottom": 4
+        },
+        "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
         "spotlightInside": true,
@@ -315,7 +375,7 @@
         "spotlightConnected": true,
         "spotlightVisible": true,
         "spotlightInverted": true,
-        "spotlightStatsAligned": true,
+        "spotlightTextConsistent": true,
         "spotlightConnectorWidth": 6,
         "spotlightSurface": "rgb(0, 0, 0)",
         "spotlightTextColor": "rgb(255, 255, 255)",
@@ -335,7 +395,7 @@
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.3552951579126793
+      "inkFraction": 0.3197122994131541
     },
     "errors": []
   }

@@ -10,12 +10,12 @@ framework_version: '3.4.4'
 no_screen_padding: 'no'
 dark_mode: 'no'
 static_data: ''
-description: Recently reported vessel positions around Finnish harbors. AIS can be incomplete, delayed or inaccurate. Not for navigation.
+description: Recent vessel positions around Finnish harbors. AIS can be incomplete, delayed or inaccurate. Not for navigation.
 custom_fields:
   - keyname: author_bio
     field_type: author_bio
     name: Port of Call
-    description: See who's coming and going. Observed AIS positions, not port schedules. Source Fintraffic / digitraffic.fi, CC BY 4.0; filtered and normalized. Not for navigation.
+    description: See who's coming and going. Observed AIS positions, not port schedules. Source Fintraffic / digitraffic.fi, CC BY 4.0; filtered and normalized. Optional vessel reference facts from <a href="https://www.wikidata.org/">Wikidata</a> (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>). Not for navigation.
   - keyname: harbor
     field_type: select
     name: Which harbor?
@@ -43,7 +43,7 @@ custom_fields:
   - keyname: ship_spotlight
     field_type: boolean
     name: Spotlight a ship
-    description: Highlight one fresh vessel with reported voyage details and available facts. Rotates about every three hours. Unknown origin stays unknown; no suitable ship shows the harbor overview.
+    description: Highlight one fresh vessel with voyage details and available facts. Rotates about every three hours. Unknown origin stays unknown; no suitable ship shows the harbor overview.
     default: false
   - keyname: display_mode
     field_type: select

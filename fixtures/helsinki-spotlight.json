@@ -28,7 +28,7 @@
   ],
   "source": "Fintraffic / Digitraffic",
   "attribution": {
-    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
+    "label": "Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS",
     "url": "https://www.digitraffic.fi/en/marine-traffic/",
     "license": "https://creativecommons.org/licenses/by/4.0/"
   },
@@ -64,7 +64,7 @@
       },
       {
         "label": "Length / beam",
-        "value": "158 \u00d7 24 m",
+        "value": "158 × 24 m",
         "reported_at": "2026-11-05T08:26:06Z",
         "source": "Fintraffic / Digitraffic"
       },
@@ -79,12 +79,6 @@
         "value": "Under way using engine",
         "reported_at": "2026-11-05T08:27:27Z",
         "source": "AIS position report"
-      },
-      {
-        "label": "Reported draught",
-        "value": "8.8 m",
-        "reported_at": "2026-11-05T08:26:06Z",
-        "source": "Fintraffic / Digitraffic"
       },
       {
         "label": "Call sign",
@@ -106,7 +100,7 @@
     "origin": null,
     "destination_port": {
       "code": "PLGDN",
-      "name": "Gda\u0144sk",
+      "name": "Gdańsk",
       "country": "Poland",
       "source": "Reviewed Wikidata port reference",
       "url": "https://www.wikidata.org/wiki/Q1792",
@@ -163,20 +157,15 @@
       "vessel_type": "Cargo vessel",
       "flag": "Flag: Portugal (AIS)",
       "journey": {
-        "label": "Reported destination",
-        "value": "Gda\u0144sk, Poland"
+        "label": "Destination",
+        "value": "Gdańsk, Poland"
       },
       "eta": "07 Nov 09:00 UTC",
       "speed": "12 knots",
       "highlights": [
         "In service since 2011"
       ],
-      "details": [
-        {
-          "label": "Reported draught",
-          "value": "8.8 m"
-        }
-      ],
+      "details": [],
       "measurements": [
         {
           "label": "Length",

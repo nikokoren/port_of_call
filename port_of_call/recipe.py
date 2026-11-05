@@ -17,7 +17,7 @@ def release_settings(text, provider='digitraffic', *, origin=None, registry=None
     if provider=='aisstream':
         text=text.replace('around Finnish harbors.','around supported harbors.')
         text=re.sub(r'(    name: Port of Call\n    description: )[^\n]*',
-            lambda m:m.group(1)+"See who's coming and going. Observed AIS positions from AISStream; coverage varies. See the maintainer's source and license notes. Not for navigation.",text)
+            lambda m:m.group(1)+"See who's coming and going. Observed AIS positions from AISStream; coverage varies. See the maintainer's source and license notes. Optional vessel reference facts from <a href=\"https://www.wikidata.org/\">Wikidata</a> (<a href=\"https://creativecommons.org/publicdomain/zero/1.0/\">CC0</a>). Not for navigation.",text)
     if origin:
         url=urlsplit(origin)
         if url.scheme!='https' or not url.hostname or url.username or url.password or url.query or url.fragment:

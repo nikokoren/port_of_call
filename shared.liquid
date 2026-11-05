@@ -4,8 +4,9 @@
 /* Like Downstream, layout, typography and the inset card use native framework
    classes. Custom rules handle geographic overlays, leader lines and link inheritance. */
 .poc { --poc-paper:#fff; --poc-ink:#000; overflow:hidden; }
-.poc__box { z-index:7; }
-.poc .poc__attribution { white-space:normal; }
+.poc__corner { z-index:7; }
+.poc__box { flex-shrink:0; }
+.poc .poc__attribution { position:static; flex:1; min-width:0; white-space:normal; }
 .poc__attribution a { color:inherit; text-decoration:none; pointer-events:auto; }
 .poc__spotlight { z-index:6; }
 .poc__spotlight [hidden] { display:none; }
