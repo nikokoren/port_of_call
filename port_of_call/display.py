@@ -9,6 +9,24 @@ def place(name, country=None):
     return f'{name}, {country}' if country else name
 
 
+def label_voyage(context):
+    """Compact route, preserving the distinction between origin and destination.
+
+    Country codes come from resolved UN/LOCODEs, never from a ship's position.
+    Raw/ambiguous destination text is retained without guessing an origin.
+    """
+    def location(port, name):
+        code = port.get('code') or ''
+        country = code[:2] if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{3}', code) and port.get('country') else port.get('country')
+        return place(name, country)
+    origin = context.get('origin') or {}
+    destination = context.get('destination') or {}
+    resolved = context.get('destination_port') or {}
+    start = location(origin, origin.get('value'))
+    end = location(resolved, resolved.get('name') or destination.get('value')) if destination.get('value') else None
+    return start+' → '+end if start and end else 'To '+end if end else 'From '+start if start else None
+
+
 def focus_copy(focus):
     facts = {f['label']: f['value'] for f in focus.get('facts', [])}
     reference = {f['label']: f['value'] for f in (focus.get('enrichment') or {}).get('facts', [])}

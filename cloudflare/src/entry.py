@@ -14,6 +14,7 @@ from port_of_call.enrichment import Enricher, HEADERS
 from port_of_call.memory_store import MemoryStore
 from port_of_call.model import contains
 from port_of_call.snapshot import snapshot
+from port_of_call.payload import encode_snapshot
 from transport import FetchSession
 
 TTL, CHECKPOINT_SECONDS, CHUNK_SIZE = 3600, 300, 120_000
@@ -242,14 +243,7 @@ class Harbor(DurableObject):
             if len(self.cache) >= 96: self.cache.clear()
             payload = snapshot(self.store, self.active[parts[3]], now, scale=scale, spotlight=focus)
             self.enricher.enqueue(payload.get('focus'))
-            def encode(): return json.dumps(payload, separators=(',', ':'), ensure_ascii=True)
-            body = encode()
-            while len(body) >= 15_000 and len(payload['vessels']) > (1 if payload.get('focus') else 0):
-                payload['vessels'].pop()
-                payload['shown'] = len(payload['vessels'])
-                payload['omitted'] = payload['total']-payload['shown']
-                body = encode()
-            self.cache[key] = body
+            self.cache[key] = encode_snapshot(payload)
         body = self.cache[key]
         etag = '"'+hashlib.sha256(body.encode()).hexdigest()[:24]+'"'
         headers = {'Cache-Control': 'public, max-age=30', 'ETag': etag}

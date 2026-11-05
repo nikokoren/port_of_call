@@ -1,0 +1,361 @@
+{
+  "schema_version": 1,
+  "display_mode": "map",
+  "port": {
+    "id": "rauma",
+    "name": "Rauma",
+    "country": "Finland",
+    "timezone": "Europe/Helsinki",
+    "center": [
+      21.475,
+      61.12
+    ],
+    "bbox": [
+      21.35,
+      61.06,
+      21.6,
+      61.18
+    ],
+    "default_zoom": 11,
+    "provider": "digitraffic",
+    "verified": true
+  },
+  "viewport": [
+    21.315025,
+    61.066575,
+    21.565025,
+    61.186575000000005
+  ],
+  "source": "Fintraffic / Digitraffic",
+  "attribution": {
+    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
+    "url": "https://www.digitraffic.fi/en/marine-traffic/",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "snapshot_at": "2026-11-05T08:28:29Z",
+  "fetched_at": "2026-11-05T08:28:28Z",
+  "latest_report_at": "2026-11-05T08:27:26Z",
+  "fetched_local": "10:28 EET",
+  "latest_report_local": "10:27 EET",
+  "latest_report_age_minutes": 1,
+  "status": "ok",
+  "message": "",
+  "demo": false,
+  "focus_requested": false,
+  "focus_mode": "harbor",
+  "focus": null,
+  "focus_message": "",
+  "total": 18,
+  "shown": 18,
+  "omitted": 0,
+  "vessels": [
+    {
+      "mmsi": "245897000",
+      "position": [
+        21.44002,
+        61.12658
+      ],
+      "reported_at": "2026-11-05T08:26:30Z",
+      "heading_deg": 262.0,
+      "course_deg": 55.4,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "PLYCA",
+      "type": "cargo",
+      "bearing_deg": 262.0,
+      "stale": false,
+      "voyage": "Hanko, FI \u2192 Tilbury, GB"
+    },
+    {
+      "mmsi": "352005218",
+      "position": [
+        21.42687,
+        61.12725
+      ],
+      "reported_at": "2026-11-05T08:26:38Z",
+      "heading_deg": 110.0,
+      "course_deg": 144.7,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "NORSE IKUCHI",
+      "type": "cargo",
+      "bearing_deg": 110.0,
+      "stale": false,
+      "voyage": "To TR IDS"
+    },
+    {
+      "mmsi": "230153880",
+      "position": [
+        21.44482,
+        61.12657
+      ],
+      "reported_at": "2026-11-05T08:27:23Z",
+      "heading_deg": 12.0,
+      "course_deg": 87.6,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "L247",
+      "type": "other",
+      "bearing_deg": 12.0,
+      "stale": false,
+      "voyage": "To RAUMA PILOT CH 09"
+    },
+    {
+      "mmsi": "230025040",
+      "position": [
+        21.44916,
+        61.13209
+      ],
+      "reported_at": "2026-11-05T08:27:26Z",
+      "heading_deg": 34.0,
+      "course_deg": 148.0,
+      "speed_knots": 0.1,
+      "navigation_status": 3,
+      "name": "TUIKKU",
+      "type": "other",
+      "bearing_deg": 34.0,
+      "stale": false,
+      "voyage": "To Rauma, FI"
+    },
+    {
+      "mmsi": "230174220",
+      "position": [
+        21.47249,
+        61.126
+      ],
+      "reported_at": "2026-11-05T08:26:56Z",
+      "heading_deg": 244.0,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "PRINCESS CAROLINE",
+      "type": "passenger",
+      "bearing_deg": 244.0,
+      "stale": false,
+      "voyage": "To Rauma, FI"
+    },
+    {
+      "mmsi": "230992260",
+      "position": [
+        21.47272,
+        61.12731
+      ],
+      "reported_at": "2026-11-05T08:27:19Z",
+      "heading_deg": 178.0,
+      "course_deg": 46.4,
+      "speed_knots": 0.1,
+      "navigation_status": 0,
+      "name": "MT2305",
+      "type": "other",
+      "bearing_deg": 178.0,
+      "stale": false,
+      "voyage": "To FAIRWAY WORKS"
+    },
+    {
+      "mmsi": "245266000",
+      "position": [
+        21.43109,
+        61.13149
+      ],
+      "reported_at": "2026-11-05T08:25:21Z",
+      "heading_deg": 86.0,
+      "course_deg": 86.7,
+      "speed_knots": 0.1,
+      "navigation_status": 5,
+      "name": "LADY MENNA",
+      "type": "cargo",
+      "bearing_deg": 86.0,
+      "stale": false,
+      "voyage": "GBFOY, GB \u2192 Rauma, FI"
+    },
+    {
+      "mmsi": "255806245",
+      "position": [
+        21.44551,
+        61.11416
+      ],
+      "reported_at": "2026-11-05T08:27:07Z",
+      "heading_deg": 145.0,
+      "course_deg": 199.3,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "LETTLAND",
+      "type": "cargo",
+      "bearing_deg": 145.0,
+      "stale": false,
+      "voyage": "LVMRX \u2192 Rauma, FI"
+    },
+    {
+      "mmsi": "230111580",
+      "position": [
+        21.44011,
+        61.13441
+      ],
+      "reported_at": "2026-11-05T08:27:23Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": null,
+      "type": null,
+      "bearing_deg": null,
+      "stale": false
+    },
+    {
+      "mmsi": "255806320",
+      "position": [
+        21.45266,
+        61.1258
+      ],
+      "reported_at": "2026-11-05T08:26:55Z",
+      "heading_deg": 249.0,
+      "course_deg": 311.1,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "BIRTHE ESSBERGER",
+      "type": "tanker",
+      "bearing_deg": 249.0,
+      "stale": false,
+      "voyage": "SEOSK \u2192 Rauma, FI"
+    },
+    {
+      "mmsi": "230991780",
+      "position": [
+        21.44058,
+        61.13349
+      ],
+      "reported_at": "2026-11-05T08:27:20Z",
+      "heading_deg": 136.0,
+      "course_deg": 353.5,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "JOONAS",
+      "type": "other",
+      "bearing_deg": 136.0,
+      "stale": false,
+      "voyage": "To PORT TOWAGE"
+    },
+    {
+      "mmsi": "230178000",
+      "position": [
+        21.44159,
+        61.13304
+      ],
+      "reported_at": "2026-11-05T08:27:19Z",
+      "heading_deg": 312.0,
+      "course_deg": 70.0,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "APOLLON",
+      "type": "other",
+      "bearing_deg": 312.0,
+      "stale": false,
+      "voyage": "To Rauma, FI"
+    },
+    {
+      "mmsi": "230711000",
+      "position": [
+        21.44099,
+        61.13332
+      ],
+      "reported_at": "2026-11-05T08:27:19Z",
+      "heading_deg": 314.0,
+      "course_deg": 257.1,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "JUPITER",
+      "type": "other",
+      "bearing_deg": 314.0,
+      "stale": false,
+      "voyage": "To HARBOUR ASSISTANCE"
+    },
+    {
+      "mmsi": "230961000",
+      "position": [
+        21.44794,
+        61.13101
+      ],
+      "reported_at": "2026-11-05T08:26:16Z",
+      "heading_deg": 32.0,
+      "course_deg": null,
+      "speed_knots": 0.1,
+      "navigation_status": 5,
+      "name": "POLARIS",
+      "type": "other",
+      "bearing_deg": 32.0,
+      "stale": false,
+      "voyage": "To Rauma, FI"
+    },
+    {
+      "mmsi": "230708000",
+      "position": [
+        21.44203,
+        61.13284
+      ],
+      "reported_at": "2026-11-05T08:26:04Z",
+      "heading_deg": 311.0,
+      "course_deg": 344.7,
+      "speed_knots": 0.1,
+      "navigation_status": 5,
+      "name": "VICTORIA",
+      "type": "other",
+      "bearing_deg": 311.0,
+      "stale": false,
+      "voyage": "To HARBOUR ASSISTANCE"
+    },
+    {
+      "mmsi": "230109460",
+      "position": [
+        21.44907,
+        61.13221
+      ],
+      "reported_at": "2026-11-05T08:25:40Z",
+      "heading_deg": 33.0,
+      "course_deg": 0.0,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "ULLA",
+      "type": "other",
+      "bearing_deg": 33.0,
+      "stale": false,
+      "voyage": "To Rauma, FI"
+    },
+    {
+      "mmsi": "230937650",
+      "position": [
+        21.44862,
+        61.13201
+      ],
+      "reported_at": "2026-11-05T08:25:05Z",
+      "heading_deg": 31.0,
+      "course_deg": 116.9,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "NOKO",
+      "type": "other",
+      "bearing_deg": 31.0,
+      "stale": false,
+      "voyage": "To Rauma, FI"
+    },
+    {
+      "mmsi": "230928000",
+      "position": [
+        21.44825,
+        61.13122
+      ],
+      "reported_at": "2026-11-05T08:24:33Z",
+      "heading_deg": 214.0,
+      "course_deg": 265.8,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "MINOS",
+      "type": "other",
+      "bearing_deg": 214.0,
+      "stale": false,
+      "voyage": "To Rauma, FI"
+    }
+  ],
+  "fixture_note": "Overview presentation of genuine historical AIS snapshot; NOT current traffic. Original positions, observation scope and timestamps retained.",
+  "reference_enriched_at": "2026-11-05T12:26:42Z",
+  "label_note": "Voyage labels derived from matching archived MMSI/report-time/position records and cached reference facts. No observation timestamps or positions changed."
+}

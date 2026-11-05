@@ -34,8 +34,8 @@ custom_fields:
     default: standard
   - keyname: ship_labels
     field_type: select
-    name: Show vessel names?
-    description: Names are placed clear of ships, with leader lines when needed. Fewer names fit in compact views.
+    name: Show ship labels?
+    description: Outlined labels show ship names and available voyage details in overview and Spotlight views. Missing origins stay omitted. Fewer labels fit in compact views.
     options:
       - 'Off': 'off'
       - 'On': 'on'

@@ -54,6 +54,8 @@ export function geometry(root=document.querySelector('.poc')) {
   spotlightTextVisible:!root.dataset.focus||!!(overlay&&overlayNode.innerText.trim().length>12&&overlayNode.querySelector('.title')?.innerText.trim().length>=3&&[...overlayNode.children].filter(n=>n.textContent.trim()&&n.getBoundingClientRect().height>0).length>=3),occludedBySpotlight:overlay?ships.filter(s=>hit(s.box,overlay)).length:0,
   hiddenShips:ships.filter(s=>fixed.some(b=>hit(s.box,b))).length,
   maxProjectionError,labelCollisions,leaderCollisions,
+  labelRoutes:root.querySelectorAll('.poc__label-route').length,
+  labelContentsValid:[...root.querySelectorAll('.poc__label')].every(n=>{const v=[...root.querySelectorAll('.poc__data li')].find(v=>v.dataset.id===n.dataset.id);return v&&n.querySelector('.font--bold')?.textContent===v.dataset.name&&(!n.querySelector('.poc__label-route')||n.querySelector('.poc__label-route').textContent===v.dataset.voyage)&&getComputedStyle(n).backgroundColor===getComputedStyle(root.querySelector('[data-poc-box]')).backgroundColor;}),
   labelsOutside:labels.filter(b=>!inside(b)).length,labels:labels.length,
   leaders:root.querySelectorAll('.poc__leader').length,
   textOverflow:[...root.querySelectorAll('[data-poc-box] > span,[data-poc-spotlight] > span,[data-poc-details] > span,[data-poc-highlights] > span')].filter(n=>n.offsetWidth&&n.scrollWidth>n.clientWidth+2).length};

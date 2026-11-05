@@ -14,6 +14,7 @@ from .catalog import verified_harbors
 from .snapshot import snapshot
 from .store import Store
 from .enrichment import Enricher
+from .payload import encode_snapshot
 
 
 @dataclass
@@ -112,15 +113,7 @@ def create_app(config=None, *, store=None, collect=True, clock=time.time):
             else:
                 payload = snapshot(store, port, clock(), config.fresh, config.ttl, scale, spotlight=spotlight)
                 if collect: enricher.enqueue(payload.get('focus'))
-            def encode():
-                return json.dumps(payload, ensure_ascii=True, separators=(',',':')).encode()
-            body = encode()
-            # Bound bytes as well as vessel count, including long non-ASCII names.
-            while len(body) >= 15_000 and len(payload['vessels']) > (1 if payload.get('focus') else 0):
-                payload['vessels'].pop()
-                payload['shown'] = len(payload['vessels'])
-                payload['omitted'] = payload['total'] - payload['shown']
-                body = encode()
+            body = encode_snapshot(payload).encode()
             cache[key] = body
         body = cache[key]
         headers = {'Cache-Control':'public, max-age=30, stale-if-error=60',

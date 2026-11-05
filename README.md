@@ -19,9 +19,9 @@ This is a browser preview with native TRMNL vector tiles and **genuine historica
 
 - Gzip-aware shared Digitraffic polling, position/static normalization, SQLite persistence, bounded retention and outage recovery.
 - Public JSON API, 30-second response cache, ETags and rate limiting; typical response below 15 KB.
-- Native `TRMNLMaps` / MapLibre, geographically anchored hulls, Hotspots-style offset names and leader lines, decluttering and visible OpenStreetMap attribution.
+- Native `TRMNLMaps` / MapLibre, geographically anchored hulls, Hotspots-style outlined name/voyage labels and leader lines, decluttering and visible OpenStreetMap attribution.
 - Downstream-style full maps with a bottom-left information box in full, half-horizontal, half-vertical and quadrant layouts; OG and X landscape/portrait browser previews, including dark mode.
-- Harbor, framing, optional vessel names, **Spotlight a ship** and Map-only display mode settings. Categories are retained internally but not exposed: type coverage is not sufficient to hide unknown vessels confidently.
+- Harbor, framing, optional ship labels, **Spotlight a ship** and Map-only display mode settings. Categories are retained internally but not exposed: type coverage is not sufficient to hide unknown vessels confidently.
 - An isolated synthetic demo endpoint, disabled by default. Production never loads fixtures.
 
 The catalog is deliberately limited, not the full reach of the Finnish feed: a further live check found reports around Hanko, Kotka, Oulu, Vaasa and Pori. Those candidate areas are not yet reviewed catalog entries.
@@ -104,3 +104,9 @@ AISStream's adapter was **live-tested for 15 minutes**, with 12,380 messages and
 The collector needs persistent storage and ongoing collection. The Cloudflare route uses one Python Worker/SQLite Durable Object, memory ingestion and bounded batch checkpoints to fit published free allowances; the original VM route remains available. No paid plan or automatic paid upgrade is configured. The deployed service passed initial verification; actual free capacity and multi-day reliability still need to be measured. See [Cloudflare setup and quota arithmetic](docs/cloudflare.md). There is no per-user AIS subscription in the default Finnish workflow. Upstream AIS polling stays at 288 shared location fetches/day and 24 metadata fetches/day; optional Finnish Portnet adds at most 24/day, while cached Wikidata has a hard 500-request/day cap, independent of recipe installations. See [architecture](docs/architecture.md), [deployment](docs/deployment.md) and [roadmap](docs/roadmap.md).
 
 Code is MIT licensed. Data and third-party frameworks retain their own licenses; see [NOTICE](NOTICE).
+
+## Compact ship labels
+
+Turn **Show ship labels?** On for outlined name/voyage badges in both harbor overview and Ship Spotlight. The name is bold above a divided voyage row, with native canvas/inverse theme behavior. Ordinary labels use country codes to stay compact; Spotlight retains full country names. A supported previous port and destination become `Hanko, FI → Tilbury, GB`; destination alone becomes `To Tilbury, GB`. Missing voyage data leaves a name-only badge. The current harbor is never assumed to be a ship's origin. Long lines truncate inside the badge, and the full label text stays in its tooltip/API.
+
+[Overview preview](docs/screenshots/labels-overview.png) · [Spotlight with context labels](docs/screenshots/labels-spotlight.png) · [Dark preview](docs/screenshots/labels-spotlight-dark.png). These use genuine **archived** AIS from 5 November 2026, not current traffic.

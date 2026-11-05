@@ -13,11 +13,11 @@ try{
    const r=await fetch('http://127.0.0.1:8788/?url='+encodeURIComponent(route.request().url()));
    await route.fulfill({status:r.status,body:Buffer.from(await r.arrayBuffer()),contentType:r.headers.get('content-type')||'application/octet-stream'});
   });
-  await page.goto(`http://127.0.0.1:8787/?layout=${layout}&device=${device}&labels=${fixture.endsWith('-spotlight')?'off':'on'}&mashup=true&fixture=${fixture}`);
+  await page.goto(`http://127.0.0.1:8787/?layout=${layout}&device=${device}&labels=on&mashup=true&fixture=${fixture}`);
   await page.waitForFunction(n=>document.querySelectorAll('.poc[data-map-ready="true"]').length===n,copies,{timeout:35000});
   await page.waitForFunction(()=>window.TRMNL_PLUGINS_READY===true,{timeout:25000});
   const positions=await page.evaluate(`[...document.querySelectorAll('.poc')].map(${geometry.toString()})`);
-  if(errors.length||positions.length!==copies||positions.some(p=>!p.spotlightTextConsistent||!p.spotlightInverted||!p.spotlightTextVisible||!p.spotlightInside||!p.spotlightClear||!p.spotlightConnected||!p.cardInside||!p.cardAtCorner||!p.attributionInside||!p.attributionClear||p.hiddenShips||p.maxProjectionError>1||p.labelCollisions||p.leaderCollisions||p.labelsOutside||p.textOverflow))throw new Error(name+': '+JSON.stringify({positions,errors}));
+  if(errors.length||positions.length!==copies||positions.some(p=>!p.labelContentsValid||!p.spotlightTextConsistent||!p.spotlightInverted||!p.spotlightTextVisible||!p.spotlightInside||!p.spotlightClear||!p.spotlightConnected||!p.cardInside||!p.cardAtCorner||!p.attributionInside||!p.attributionClear||p.hiddenShips||p.maxProjectionError>1||p.labelCollisions||p.leaderCollisions||p.labelsOutside||p.textOverflow))throw new Error(name+': '+JSON.stringify({positions,errors}));
   const isolated=await page.evaluate(()=>{
    const maps=[...document.querySelectorAll('.poc')].map(e=>e.__portOfCallMap);
    return new Set(maps).size===maps.length && [...document.querySelectorAll('.poc')].every(e=>e.querySelectorAll('.poc__ship').length>0);

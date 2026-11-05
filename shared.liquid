@@ -22,7 +22,10 @@
 .poc__ship--featured { z-index:4; }
 .poc__ship--featured path { stroke-width:3; }
 .poc__ship--stale path { fill:var(--poc-paper); stroke:currentColor; stroke-width:1.8; }
-.poc__label { position:absolute; z-index:4; white-space:nowrap; line-height:1; pointer-events:none; }
+.poc__label { position:absolute; z-index:4; pointer-events:none; }
+/* Bound overlay text before measuring it; type/paint/spacing use native roles. */
+.poc__label .label { display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.poc__label-route { border-top:1px solid currentColor; }
 .poc__lines { position:absolute; inset:0; width:100%; height:100%; z-index:2; color:var(--poc-ink); pointer-events:none; }
 .poc__lines line { vector-effect:non-scaling-stroke; stroke-linecap:round; }
 .poc__leader-halo { stroke:var(--poc-paper); stroke-width:3px; }
@@ -242,20 +245,24 @@
         var boxes=shown.map(function(s){return s.box;}).concat(reserved),lines=annotation?[annotation.line]:[];
         var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
         svg.setAttribute('class','poc__lines');svg.setAttribute('viewBox','0 0 '+W+' '+H);el.appendChild(svg);
-        var placed=0,limit=full?6:quad?2:4;
+        var placed=0,limit=full?8:quad?2:4;
         shown.sort(function(a,b){return (b.data.featured==='true')-(a.data.featured==='true')||b.data.reported.localeCompare(a.data.reported)||a.data.id.localeCompare(b.data.id);}).forEach(function(s){
           if(s.data.featured==='true'||!s.data.name||placed>=limit)return;
-          var label=document.createElement('span');label.className='poc__label label label--small text-stroke';
-          label.textContent=s.data.name;if(s.data.featured==='true'){label.classList.remove('text-stroke');label.classList.add('label--inverted');}el.appendChild(label);
-          // Leave the same measurement safety margin used by Hotspots' font pass.
-          function place(){return PortOfCallLabels.plan({x:s.x,y:s.y,icon:s.box,width:Math.ceil(label.offsetWidth*1.08)+4,
-            height:label.offsetHeight+4,W:W,H:H,boxes:boxes,lines:lines,scale:unit});}
-          var result=place(),nameChars=Array.from(s.data.name),chars=nameChars.length;
-          // A long featured name may be abbreviated on the map; the card and
-          // underlying data retain it. Never move the reported position.
-          while(!result&&s.data.featured==='true'&&chars>6){
-            chars=Math.max(6,chars-3);label.textContent=nameChars.slice(0,chars).join('')+'…';result=place();
+          var label=document.createElement('div');
+          label.className='poc__label bg--canvas outline p--1 flex flex--col flex--left gap--none';
+          label.style.maxWidth=Math.min(200*unit,W*.45)+'px';
+          label.style.left='0px';label.style.top='0px';
+          var name=document.createElement('span');name.className='w--full label label--small font--bold';
+          name.textContent=s.data.name;label.appendChild(name);
+          if(s.data.voyage){
+            var route=document.createElement('span');route.className='poc__label-route w--full label label--small';
+            route.textContent=s.data.voyage;label.appendChild(route);
           }
+          label.title=s.data.name+(s.data.voyage?' · '+s.data.voyage:'');
+          el.appendChild(label);
+          // Reserve the box, stroke and the existing native font-pass safety margin.
+          var result=PortOfCallLabels.plan({x:s.x,y:s.y,icon:s.box,width:Math.ceil(label.offsetWidth*1.08)+4,
+            height:label.offsetHeight+4,W:W,H:H,boxes:boxes,lines:lines,scale:unit});
           if(!result){label.remove();return;}
           label.dataset.id=s.data.id;label.style.left=(result.rect[0]+2)+'px';label.style.top=(result.rect[1]+2)+'px';
           boxes.push(result.rect);placed++;

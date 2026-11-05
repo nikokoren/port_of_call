@@ -28,7 +28,7 @@
   ],
   "source": "Fintraffic / Digitraffic",
   "attribution": {
-    "label": "Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS",
+    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
     "url": "https://www.digitraffic.fi/en/marine-traffic/",
     "license": "https://creativecommons.org/licenses/by/4.0/"
   },
@@ -64,7 +64,7 @@
       },
       {
         "label": "Length / beam",
-        "value": "54 × 12 m",
+        "value": "54 \u00d7 12 m",
         "reported_at": "2026-11-05T08:28:13Z",
         "source": "Fintraffic / Digitraffic"
       },
@@ -200,7 +200,8 @@
       "name": "MERILUOTO",
       "type": "passenger",
       "bearing_deg": 256.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Turku, FI"
     },
     {
       "mmsi": "230666000",
@@ -216,7 +217,8 @@
       "name": "BALTIC MADONNA",
       "type": "cargo",
       "bearing_deg": 17.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Turku, FI"
     },
     {
       "mmsi": "230937480",
@@ -232,7 +234,8 @@
       "name": "RESCUE RIMIC",
       "type": "other",
       "bearing_deg": null,
-      "stale": false
+      "stale": false,
+      "voyage": "To SAR TURKU AREA"
     },
     {
       "mmsi": "230155950",
@@ -264,7 +267,8 @@
       "name": "BISON",
       "type": "other",
       "bearing_deg": 27.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Turku, FI"
     },
     {
       "mmsi": "230981050",
@@ -280,7 +284,8 @@
       "name": "MERISILTA",
       "type": "passenger",
       "bearing_deg": 327.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Turku, FI"
     },
     {
       "mmsi": "230943350",
@@ -296,7 +301,8 @@
       "name": "TUULI",
       "type": "passenger",
       "bearing_deg": 36.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To KUMLINGE-ENKLINGE"
     },
     {
       "mmsi": "230990260",
@@ -312,7 +318,8 @@
       "name": "ISO-PUKKI",
       "type": "other",
       "bearing_deg": 238.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Turku, FI"
     },
     {
       "mmsi": "230938610",
@@ -328,7 +335,8 @@
       "name": "RUDOLFINA",
       "type": "passenger",
       "bearing_deg": null,
-      "stale": false
+      "stale": false,
+      "voyage": "To TURKU-AIRISTO-TURKU"
     },
     {
       "mmsi": "230993680",
@@ -360,7 +368,8 @@
       "name": "SEAGAS",
       "type": "tanker",
       "bearing_deg": 8.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Turku, FI"
     },
     {
       "mmsi": "230990880",
@@ -376,7 +385,8 @@
       "name": "ROSALA II",
       "type": "passenger",
       "bearing_deg": 217.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Turku, FI"
     },
     {
       "mmsi": "230091950",
@@ -392,7 +402,8 @@
       "name": "BALTIC AMELIE",
       "type": "cargo",
       "bearing_deg": 181.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Turku, FI"
     },
     {
       "mmsi": "230938590",
@@ -408,7 +419,8 @@
       "name": "UKKOPEKKA",
       "type": "passenger",
       "bearing_deg": 224.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To FOR SALE"
     },
     {
       "mmsi": "230359000",
@@ -424,7 +436,8 @@
       "name": "ARKTIS",
       "type": "cargo",
       "bearing_deg": 191.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Turku, FI"
     },
     {
       "mmsi": "212409000",
@@ -440,7 +453,8 @@
       "name": "ZEUS OF FINLAND",
       "type": "other",
       "bearing_deg": 279.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To TURKU SEA TRIAL"
     },
     {
       "mmsi": "230183820",
@@ -472,7 +486,8 @@
       "name": "U614",
       "type": "other",
       "bearing_deg": 170.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To B"
     },
     {
       "mmsi": "230987410",
@@ -488,7 +503,8 @@
       "name": "MERGUS",
       "type": "passenger",
       "bearing_deg": 143.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To LATOKARI"
     },
     {
       "mmsi": "230176640",
@@ -504,7 +520,8 @@
       "name": "LOVSKAR",
       "type": "passenger",
       "bearing_deg": 48.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To ABOSJALONAGU"
     },
     {
       "mmsi": "230991740",
@@ -520,7 +537,8 @@
       "name": "SAAGA",
       "type": "cargo",
       "bearing_deg": 10.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To PANSIQ"
     },
     {
       "mmsi": "230225000",
@@ -536,7 +554,8 @@
       "name": "HELENA",
       "type": "other",
       "bearing_deg": 43.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To KASNAS"
     },
     {
       "mmsi": "230111650",
@@ -552,7 +571,8 @@
       "name": "GAIA",
       "type": "other",
       "bearing_deg": 12.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Turku, FI"
     },
     {
       "mmsi": "230716000",
@@ -572,5 +592,6 @@
     }
   ],
   "fixture_note": "Genuine historical AIS observations; NOT current traffic. Free reference facts retrieved at reference_enriched_at; position/report times unchanged.",
-  "reference_enriched_at": "2026-11-05T12:26:42Z"
+  "reference_enriched_at": "2026-11-05T12:26:42Z",
+  "label_note": "Voyage labels derived from matching archived MMSI/report-time/position records and cached reference facts. No observation timestamps or positions changed."
 }

@@ -45,6 +45,7 @@ def check(origin, *, allow_degraded=False, all_framings=False):
                 for vessel in data['vessels']:
                     if not re.fullmatch(r'\d{9}', vessel['mmsi']) or vessel['mmsi'] in mids: raise ValueError('Invalid/duplicate MMSI')
                     mids.add(vessel['mmsi'])
+                    if 'voyage' in vessel and not isinstance(vessel['voyage'],str): raise ValueError('Invalid voyage label')
                     lon, lat = vessel['position']
                     if not all(isinstance(x, (int, float)) and math.isfinite(x) for x in (lon, lat)): raise ValueError('Invalid coordinates')
                     if not -180 <= lon <= 180 or not -90 <= lat <= 90: raise ValueError('Invalid coordinate range')
@@ -55,7 +56,8 @@ def check(origin, *, allow_degraded=False, all_framings=False):
                 if subject and (not focus or not data['vessels'] or data['vessels'][0]['mmsi'] != subject['mmsi']): raise ValueError('Featured marker missing')
                 if subject and any('draught' in fact['label'].lower() for fact in subject.get('facts', [])): raise ValueError('Removed fact in card')
                 rows.append(dict(port=port['id'], scale=scale, spotlight=focus, state=data['status'],
-                                 total=data['total'], shown=data['shown'], focused=bool(subject), bytes=size))
+                                 total=data['total'], shown=data['shown'], focused=bool(subject),
+                                 voyage_labels=sum(bool(v.get('voyage')) for v in data['vessels']), bytes=size))
     for path, code in [('/api/v1/harbors/not-a-port/vessels', 404),
                        ('/demo/api/v1/harbors/'+catalog['harbors'][0]['id']+'/vessels', 404),
                        ('/api/v1/harbors/'+catalog['harbors'][0]['id']+'/vessels?scale=bad', 400)]:

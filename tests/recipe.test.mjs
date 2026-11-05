@@ -18,11 +18,12 @@ for(const layout of layouts){
  test(`${layout}: fields, markers, escaping and fallback states`,async()=>{
   const data=structuredClone(fixture);data.port.name='<script>bad()</script>';
   data.vessels[0].name='" onmouseover="bad()';
+  data.vessels[0].voyage='To <script>bad()</script> \" onmouseover=\"bad()';
   const html=await render(layout,data,{ship_labels:'on'});
   assert.ok(html.includes('data-labels="on"'));assert.ok(html.includes('&lt;script&gt;'));
   assert.match(html,/(&quot;|&#34;) onmouseover=(&quot;|&#34;)/);assert.ok(!html.includes('<script>bad()'));
   assert.ok(html.includes('data-poc-box'));assert.ok(!html.includes('poc__header'));
-  assert.ok(html.includes('data-bearing='));assert.ok(html.includes('CC BY 4.0'));
+  assert.ok(html.includes('data-voyage="To &lt;script&gt;'));assert.ok(html.includes('data-bearing='));assert.ok(html.includes('CC BY 4.0'));
   for(const state of ['empty','stale','unavailable','warming']){
    const h=await render(layout,{...fixture,status:state,message:'STATE MESSAGE',vessels:[]});
    assert.match(h,/class="[^"]*poc__notice"[^>]*>STATE MESSAGE/);

@@ -67,7 +67,7 @@ def resolve_port(store, raw, now):
     return None
 
 
-def enrich_card(store, port, focus, now):
+def enrich_card(store, port, focus, now, *, calls=None):
     destination = focus.get('destination')
     focus['destination_port'] = resolve_port(store, destination['value'], now) if destination else None
     hit = cached(store, 'ship:'+focus['imo'], now) if focus.get('imo') else None
@@ -89,7 +89,7 @@ def enrich_card(store, port, focus, now):
         focus['built_in'] = focus['enrichment'].get('built_in')
     code = PORT_CODES.get(port['id'])
     observed = epoch(focus['reported_at'])
-    for ts, call in store.recent_calls(now):
+    for ts, call in store.recent_calls(now) if calls is None else calls:
         if call['port'] != code: continue
         if focus.get('imo') and call.get('imo') and focus['imo'] != call['imo']: continue
         if not ((focus.get('imo') and focus['imo'] == call.get('imo')) or focus['mmsi'] == call.get('mmsi')): continue

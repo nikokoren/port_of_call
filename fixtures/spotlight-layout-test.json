@@ -28,7 +28,7 @@
   ],
   "source": "Fintraffic / Digitraffic",
   "attribution": {
-    "label": "Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS",
+    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
     "url": "https://www.digitraffic.fi/en/marine-traffic/",
     "license": "https://creativecommons.org/licenses/by/4.0/"
   },
@@ -129,7 +129,7 @@
       "flag": null,
       "journey": {
         "label": "Voyage",
-        "value": "Hanko → A VERY LONG UNRESOLVED DESTINATION FOR TESTS"
+        "value": "Hanko \u2192 A VERY LONG UNRESOLVED DESTINATION FOR TESTS"
       },
       "eta": null,
       "speed": "0 knots",
@@ -164,7 +164,8 @@
       "name": "A VERY LONG FEATURED VESSEL NAME FOR LAYOUT TESTS",
       "type": "cargo",
       "bearing_deg": 262.0,
-      "stale": false
+      "stale": false,
+      "voyage": "Hanko, FI \u2192 Tilbury, GB"
     },
     {
       "mmsi": "352005218",
@@ -180,7 +181,8 @@
       "name": "NORSE IKUCHI",
       "type": "cargo",
       "bearing_deg": 110.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To TR IDS"
     },
     {
       "mmsi": "230153880",
@@ -196,7 +198,8 @@
       "name": "L247",
       "type": "other",
       "bearing_deg": 12.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To RAUMA PILOT CH 09"
     },
     {
       "mmsi": "230025040",
@@ -212,7 +215,8 @@
       "name": "TUIKKU",
       "type": "other",
       "bearing_deg": 34.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Rauma, FI"
     },
     {
       "mmsi": "230174220",
@@ -228,7 +232,8 @@
       "name": "PRINCESS CAROLINE",
       "type": "passenger",
       "bearing_deg": 244.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Rauma, FI"
     },
     {
       "mmsi": "230992260",
@@ -244,7 +249,8 @@
       "name": "MT2305",
       "type": "other",
       "bearing_deg": 178.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To FAIRWAY WORKS"
     },
     {
       "mmsi": "245266000",
@@ -260,7 +266,8 @@
       "name": "LADY MENNA",
       "type": "cargo",
       "bearing_deg": 86.0,
-      "stale": false
+      "stale": false,
+      "voyage": "GBFOY, GB \u2192 Rauma, FI"
     },
     {
       "mmsi": "255806245",
@@ -276,7 +283,8 @@
       "name": "LETTLAND",
       "type": "cargo",
       "bearing_deg": 145.0,
-      "stale": false
+      "stale": false,
+      "voyage": "LVMRX \u2192 Rauma, FI"
     },
     {
       "mmsi": "230111580",
@@ -308,7 +316,8 @@
       "name": "BIRTHE ESSBERGER",
       "type": "tanker",
       "bearing_deg": 249.0,
-      "stale": false
+      "stale": false,
+      "voyage": "SEOSK \u2192 Rauma, FI"
     },
     {
       "mmsi": "230991780",
@@ -324,7 +333,8 @@
       "name": "JOONAS",
       "type": "other",
       "bearing_deg": 136.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To PORT TOWAGE"
     },
     {
       "mmsi": "230178000",
@@ -340,7 +350,8 @@
       "name": "APOLLON",
       "type": "other",
       "bearing_deg": 312.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Rauma, FI"
     },
     {
       "mmsi": "230711000",
@@ -356,7 +367,8 @@
       "name": "JUPITER",
       "type": "other",
       "bearing_deg": 314.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To HARBOUR ASSISTANCE"
     },
     {
       "mmsi": "230961000",
@@ -372,7 +384,8 @@
       "name": "POLARIS",
       "type": "other",
       "bearing_deg": 32.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Rauma, FI"
     },
     {
       "mmsi": "230708000",
@@ -388,7 +401,8 @@
       "name": "VICTORIA",
       "type": "other",
       "bearing_deg": 311.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To HARBOUR ASSISTANCE"
     },
     {
       "mmsi": "230109460",
@@ -404,7 +418,8 @@
       "name": "ULLA",
       "type": "other",
       "bearing_deg": 33.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Rauma, FI"
     },
     {
       "mmsi": "230937650",
@@ -420,7 +435,8 @@
       "name": "NOKO",
       "type": "other",
       "bearing_deg": 31.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Rauma, FI"
     },
     {
       "mmsi": "230928000",
@@ -436,8 +452,10 @@
       "name": "MINOS",
       "type": "other",
       "bearing_deg": 214.0,
-      "stale": false
+      "stale": false,
+      "voyage": "To Rauma, FI"
     }
   ],
-  "fixture_note": "LAYOUT TEST ONLY: synthetic name/destination on genuine archive positions. Not observed vessel metadata."
+  "fixture_note": "LAYOUT TEST ONLY: synthetic name/destination on genuine archive positions. Not observed vessel metadata.",
+  "label_note": "Voyage labels derived from matching archived MMSI/report-time/position records and cached reference facts. No observation timestamps or positions changed."
 }

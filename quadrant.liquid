@@ -32,6 +32,6 @@
     </aside>
     {% endif %}
 
-    <ul class="poc__data" hidden>{% for v in vessels %}<li data-featured="{% if focus.mmsi == v.mmsi %}true{% else %}false{% endif %}" data-id="{{ v.mmsi | escape }}" data-lon="{{ v.position[0] }}" data-lat="{{ v.position[1] }}" data-bearing="{{ v.bearing_deg }}" data-stale="{{ v.stale }}" data-name="{{ v.name | escape }}" data-reported="{{ v.reported_at | escape }}"></li>{% endfor %}</ul>
+    <ul class="poc__data" hidden>{% for v in vessels %}<li data-featured="{% if focus.mmsi == v.mmsi %}true{% else %}false{% endif %}" data-id="{{ v.mmsi | escape }}" data-lon="{{ v.position[0] }}" data-lat="{{ v.position[1] }}" data-bearing="{{ v.bearing_deg }}" data-stale="{{ v.stale }}" data-name="{{ v.name | escape }}" data-voyage="{{ v.voyage | escape }}" data-reported="{{ v.reported_at | escape }}"></li>{% endfor %}</ul>
   </section>
 </div>

@@ -20,7 +20,7 @@ def main():
     site = ROOT/'site';site.mkdir(exist_ok=True)
     package = 'port-of-call'+('-aisstream' if provider=='aisstream' else '')+'.zip'
     shutil.copy2(ROOT/'dist'/package, site/package)
-    shutil.copy2(ROOT/'docs/screenshots/spotlight-full.png', site/'archived-preview.png')
+    shutil.copy2(ROOT/'docs/screenshots/labels-spotlight.png', site/'archived-preview.png')
     (site/'.nojekyll').touch()
     repo = 'https://github.com/nikokoren/port_of_call'
     ports = ', '.join(p['name']+', '+p['country'] for p in verified_harbors(provider).values())

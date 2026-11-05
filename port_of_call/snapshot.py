@@ -2,7 +2,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 from .model import viewport, contains, select, epoch, iso, bearing
 from .spotlight import choose, focus_viewport, card
-from .display import focus_copy
+from .display import focus_copy, label_voyage
 
 MESSAGES = {
     'warming': 'Collecting vessel positions', 'empty': 'No recent vessel reports for this area',
@@ -32,13 +32,24 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale='standard', demo=Fals
     if status == 'unavailable': all_vessels = []
     vessels = select([v for v in all_vessels if not focus or v['mmsi'] != focus['mmsi']], box, 39 if focus else 40)
     if focus: vessels.insert(0, subject[0])
-    # Rich facts belong only to the selected card, not every overview marker.
-    vessels = [{k: val for k, val in v.items() if k != 'facts'} for v in vessels]
+    # Labels use cached metadata only. Read relevant calls once for the batch;
+    # this never opens per-ship network requests or infers an origin from motion.
+    from .enrichment import enrich_card
+    calls = store.recent_calls(now)
+    markers = []
     for v in vessels:
+        context = focus if focus and focus['mmsi'] == v['mmsi'] else card(v, now, '', now)
+        if context is not focus: enrich_card(store, port, context, now, calls=calls)
+        voyage = label_voyage(context)
+        # Keep the rich facts/provenance in the store, not every overview marker.
+        v = {k: val for k, val in v.items() if k != 'facts'}
+        if voyage: v['voyage'] = voyage
         v['bearing_deg'] = bearing(v)
         v['stale'] = now-epoch(v['reported_at']) >= fresh
         # 5 decimal places is ~1m; keep payload small without moving markers materially.
         v['position'] = [round(c, 5) for c in v['position']]
+        markers.append(v)
+    vessels = markers
     zone = ZoneInfo(port['timezone'])
     def local(ts): return datetime.fromtimestamp(ts, zone).strftime('%H:%M %Z') if ts else None
     if focus:
