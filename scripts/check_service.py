@@ -11,8 +11,8 @@ from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
 
-def get(url):
-    try: r = urlopen(Request(url, headers={'User-Agent': 'PortOfCall release monitor'}), timeout=30)
+def get(url, *, timeout=30):
+    try: r = urlopen(Request(url, headers={'User-Agent': 'PortOfCall release monitor'}), timeout=timeout)
     except HTTPError as error: r = error
     with r:
         body = r.read(100_001)
@@ -78,7 +78,11 @@ def main():
         parser.error('Use an origin without credentials/query/fragment')
     if url.scheme != 'https' and not (args.allow_local and url.scheme == 'http' and url.hostname in ('127.0.0.1', 'localhost')):
         parser.error('Public probes require HTTPS')
-    report = check(args.origin.rstrip('/'), allow_degraded=args.allow_degraded, all_framings=args.all_framings)
+    try: report = check(args.origin.rstrip('/'), allow_degraded=args.allow_degraded, all_framings=args.all_framings)
+    except Exception as exc:
+        report = dict(checked_at=datetime.now(timezone.utc).isoformat(), origin=args.origin,
+                      provider='unknown', health='unreachable', passed=False, snapshots=[],
+                      errors=[str(exc) if isinstance(exc, ValueError) else type(exc).__name__])
     path = Path(args.output);path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(report, indent=2)+'\n')
     print(report['provider'], report['health'], len(report['snapshots']), 'snapshots;', 'passed' if report['passed'] else 'FAILED')

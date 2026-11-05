@@ -47,6 +47,9 @@ def main():
         if not report['passed']: raise ValueError('Runtime contract failed')
         print('Native runtime contract passed: 18 snapshots and invalid-route checks')
         if not args.live: return
+        status, event, _, _ = get(ORIGIN+'/cdn-cgi/local/scheduled?format=json', timeout=120)
+        if status != 200 or event.get('outcome') not in (None, 'ok'):
+            raise ValueError('Native cron handler failed')
         deadline = time.monotonic()+240
         while time.monotonic() < deadline:
             status, health, _, _ = get(ORIGIN+'/health')
@@ -64,6 +67,7 @@ def main():
         if before and (not restored or before['mmsi'] != restored['mmsi'] or before['selected_at'] != restored['selected_at']):
             raise ValueError('Subject selection did not survive native runtime restart')
         report['native_restart_passed'] = True
+        report['native_cron_passed'] = True
         report['focus_was_available'] = bool(before)
         (ROOT/'var/cloudflare-live.json').write_text(json.dumps(report, indent=2)+'\n')
         if not report['passed']: raise ValueError('Real feed contract/freshness check failed')

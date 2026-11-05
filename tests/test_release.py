@@ -5,9 +5,22 @@ import tempfile
 import unittest
 from unittest.mock import patch
 from scripts import deploy_cloudflare
+from scripts import check_service
 
 
 class DeploymentGates(unittest.TestCase):
+    def test_monitor_retains_aggregate_failure_evidence_when_origin_is_unreachable(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d)/'report.json'
+            with patch('sys.argv', ['check_service', 'https://example.invalid', '--output', str(path)]), \
+                 patch.object(check_service, 'check', side_effect=ConnectionError('test only')):
+                with self.assertRaises(SystemExit) as exit:
+                    check_service.main()
+            self.assertEqual(exit.exception.code, 1)
+            data = json.loads(path.read_text())
+            self.assertFalse(data['passed']);self.assertEqual(data['snapshots'], [])
+            self.assertEqual(data['errors'], ['ConnectionError'])
+
     def test_public_ais_requires_reviewed_permission_before_any_deploy(self):
         with patch.dict(os.environ, {'CLOUDFLARE_ACCOUNT_ID': 'a'*32, 'CLOUDFLARE_API_TOKEN': 'test-only',
                                      'AISSTREAM_API_KEY': 'test-only'}, clear=True):

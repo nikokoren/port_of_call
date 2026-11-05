@@ -278,5 +278,5 @@ class Default(WorkerEntrypoint):
             await cache.put(request.js_object, result.js_object.clone())
         return result
 
-    async def scheduled(self, controller, ctx):
+    async def scheduled(self, controller, env, ctx):
         await self.stub().fetch(Request('https://collector.internal/_tick'))
