@@ -57,3 +57,9 @@ Cloudflare manages durable SQLite persistence; use its native recovery/PITR cont
 Native runtime evidence: [GitHub run 42104240937](https://github.com/nikokoren/port_of_call/actions/runs/42104240937) collected genuine Finnish data on 5 November 2026 and passed all eighteen configurations plus native checkpoint/restart and subject recovery. Standard Spotlight scopes observed 42 Helsinki, 25 Turku and 18 Rauma vessels. This was local workerd on a GitHub runner, not deployment to a Cloudflare account or proof of free-tier capacity.
 
 The first account deployment reached Cloudflare successfully but found its five free cron slots already occupied. The service therefore uses Durable Object alarms and health-probe recovery, without changing any existing account cron jobs or upgrading the plan. Preview URLs are disabled so alternate deployment URLs cannot create extra active collectors.
+
+## Deployed Finnish private beta
+
+Live origin: https://port-of-call.5g5wqr7kzx-466.workers.dev. [Deployment 42119720182](https://github.com/nikokoren/port_of_call/actions/runs/42119720182) passed real-feed readiness and all eighteen configuration checks on 5 November 2026, 23:15 Europe/Berlin. Standard Spotlight scopes contained 43 Helsinki, 25 Turku and 18 Rauma vessels; these counts are historical verification evidence. [Public monitor 42119977676](https://github.com/nikokoren/port_of_call/actions/runs/42119977676) also passed. The deployed revision/provider/origin are recorded in `deploy/release.json`, and the workflow artifact contains the ready-to-import ZIP.
+
+The separate Pages job failed because Pages is not enabled. Set the repository Pages source to GitHub Actions, then run **Publish setup and downloads**. Existing account cron jobs were preserved, no paid upgrade was made, and AISStream public-use permission remains unconfirmed. Hosted TRMNL/device tests and multi-day capacity observation remain outstanding.

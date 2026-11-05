@@ -18,7 +18,7 @@ The major-port profile retains the genuine secret-backed 900-second coverage evi
 
 ## Required before community submission
 
-- [ ] Deploy a single persistent backend to public HTTPS and verify all catalog endpoints and health externally. **Action:** provision a host/domain and run `docs/deployment.md`; no deployment access was available here.
+- [x] Deployed and verified the Finnish Cloudflare backend over public HTTPS, including all eighteen harbor/framing/Spotlight combinations. Initial deployment and first public monitor passed; multi-day behavior remains unverified.
 - [ ] Import the six-file ZIP into a private TRMNL plugin; check form defaults and switching every harbor/scale against your deployed origin. **Action:** use your TRMNL account, replace the placeholder polling origin and test.
 - [ ] Confirm canonical MapLibre asset and native tile access from TRMNL's production renderer. Local previews use pinned official assets; some canonical hosts returned 403 to research requests.
 - [ ] Test OG (including 1-bit hardware/2-bit previews), X 1872×1404 landscape/1404×1872 portrait, all mashup layouts and light/dark on actual hardware/hosted screenshots. Local Chromium previews are not hardware proof.
@@ -45,9 +45,11 @@ The text follow-up validates ordered narrative copy, omission of missing origin/
 - [x] Bounded in-memory ingestion and atomic checkpoints; immediate durable rotation/budget updates; SQLite parity/restart/expiry tests.
 - [x] Native workerd build/start/18-snapshot smoke test on GitHub Actions. The `Checks` live input also passed genuine collection, checkpoints and subject recovery in [run 42104240937](https://github.com/nikokoren/port_of_call/actions/runs/42104240937); this is native workerd on a runner, not a public Cloudflare deployment.
 - [x] Manual deployment workflow, generated origin-specific ZIP, hourly live monitor, Pages setup/download site and community-listing draft.
-- [ ] Supply Cloudflare account/token repository secrets; deploy and verify a real public origin. No Cloudflare credentials were available at preparation.
+- [x] Cloudflare account/token securely supplied through repository secrets; public Finnish backend deployed and verified in [run 42119720182](https://github.com/nikokoren/port_of_call/actions/runs/42119720182). Its separate Pages job remains blocked.
 - [ ] Enable GitHub Pages Source = GitHub Actions. Enabling Pages through the current integration returned HTTP 403; the prepared workflow needs this repository setting.
 - [ ] Import and verify in the user's private TRMNL plugin. No TRMNL account/plugin credentials were available.
 - [ ] Complete several days of live monitoring/quota observation after deployment. An installed hourly monitor is not a completed study.
 
-The current deployment status is machine-readable in `deploy/release.json`; a null origin is explicitly pending. AISStream terms/permission remain separately recorded in `deploy/aisstream-rights.json`. Neither check is bypassed by a working API key or a prepared workflow. See [Cloudflare operations](cloudflare.md) and [submission copy](community-listing.md).
+The current deployment status is machine-readable in `deploy/release.json`; the current origin is a verified private beta. AISStream terms/permission remain separately recorded in `deploy/aisstream-rights.json`. Neither check is bypassed by a working API key or a prepared workflow. See [Cloudflare operations](cloudflare.md) and [submission copy](community-listing.md).
+
+First public monitor: [run 42119977676](https://github.com/nikokoren/port_of_call/actions/runs/42119977676), successful. The six-file ZIP contains the live polling origin and the matching Finnish dropdown. GitHub Pages still requires Source = GitHub Actions; this does not block the backend or private-plugin artifact.

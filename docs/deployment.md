@@ -1,8 +1,8 @@
 # Deployment and private-plugin test
 
-No public backend or TRMNL plugin was deployed during implementation: hosting/DNS and TRMNL account access were not supplied. You can test the Python API now without credentials. To complete end-to-end testing, provide a Linux host with persistent disk and a public HTTPS hostname, then perform the plugin import in your account.
+The Finnish Cloudflare private-beta backend is deployed at https://port-of-call.5g5wqr7kzx-466.workers.dev and passed live validation on 5 November 2026. See `deploy/release.json` for the exact deployed revision and check time. All eighteen configurations and the first public monitor passed. Import the generated origin-specific ZIP into the user's private TRMNL plugin to complete hosted/device testing. The VM instructions below remain an alternative; no VM was provisioned.
 
-For a free-account deployment without a VM or purchased domain, use [Cloudflare Workers Free](cloudflare.md). Its manual deployment workflow, native runtime checks, hourly public-service monitor and Pages download build are prepared. Cloudflare credentials and the private TRMNL import remain necessary.
+For a free-account deployment without a VM or purchased domain, use [Cloudflare Workers Free](cloudflare.md). Its manual deployment workflow, native runtime checks, hourly public-service monitor and Pages download build are prepared. Cloudflare credentials are securely configured in GitHub Actions; the private TRMNL import remains necessary.
 
 ## One small Linux VM
 
