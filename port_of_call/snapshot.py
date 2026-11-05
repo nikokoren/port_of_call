@@ -2,6 +2,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 from .model import viewport, contains, select, epoch, iso, bearing
 from .spotlight import choose, focus_viewport, card
+from .display import focus_copy
 
 MESSAGES = {
     'warming': 'Collecting vessel positions', 'empty': 'No recent vessel reports for this area',
@@ -20,6 +21,7 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale='standard', demo=Fals
         focus = card(vessel, selected_at, reason, now)
         from .enrichment import enrich_card
         enrich_card(store, port, focus, now)
+        focus['presentation'] = focus_copy(focus)
     all_vessels = [v for v in harbor_vessels if contains(box, v['position'])]
     latest = max((epoch(v['reported_at']) for v in all_vessels), default=None)
     if not fetched: status = 'warming'

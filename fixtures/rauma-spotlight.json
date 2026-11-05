@@ -191,6 +191,35 @@
       "year_inferred": true,
       "inference": "nearest_to_report_within_minus_2_plus_90_days",
       "display": "10 Nov 04:00 UTC"
+    },
+    "presentation": {
+      "vessel_type": "Cargo vessel",
+      "flag": "Flag: Netherlands (AIS)",
+      "journey": {
+        "label": "Voyage (reported)",
+        "value": "Hanko, Finland \u2192 Tilbury, United Kingdom"
+      },
+      "eta": "10 Nov 04:00 UTC",
+      "speed": "0 knots",
+      "highlights": [
+        "In service since 2009"
+      ],
+      "details": [
+        {
+          "label": "Shipyard country",
+          "value": "Poland"
+        },
+        {
+          "label": "Reported draught",
+          "value": "7.2 m"
+        }
+      ],
+      "measurements": [
+        {
+          "label": "Length",
+          "value": "205 m"
+        }
+      ]
     }
   },
   "focus_message": "",

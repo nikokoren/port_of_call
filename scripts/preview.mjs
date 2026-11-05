@@ -19,10 +19,11 @@ http.createServer(async(req,res)=>{
   const data=JSON.parse(await readFile('fixtures/'+fixture+'.json','utf8'));
   let markup=(await render(layout,data,{ship_labels:u.searchParams.get('labels')||'off'}))
    .replaceAll('https://trmnl.com/js/maplibre-gl/5.24.0/','/assets/');
+  let provenance='';
   if(!data.demo) {
     const date=new Date(data.snapshot_at).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'});
     const tag=(['stale','empty','unavailable','warming'].includes(fixture)||fixture.startsWith('spotlight-layout-test')||fixture==='spotlight-fallback')?'STATE TEST · archive':'Archive';
-    markup=markup.replace('data-poc-preview hidden>',`data-poc-preview>${tag} · ${date}`);
+    provenance=`<div class="description p--2" data-preview-provenance>${tag} · ${date} · Historical test capture, not current traffic</div>`;
   }
   const device=u.searchParams.get('device')||'og';
   const x=device==='x'||device==='portrait';
@@ -39,6 +40,6 @@ http.createServer(async(req,res)=>{
    <link rel="stylesheet" href="/assets/plugins.css"><script src="/assets/plugins.js"></script>
    <style>html,body{margin:0;padding:0;background:white}.screen{isolation:isolate;position:relative!important;width:${width}px!important;height:${height}px!important;--screen-w:${w}px;--screen-h:${h}px;--device-ui-scale:${x?2:1};--ui-scale:${x?2:1};--content-scale:1;--color-depth:${x?4:device==='onebit'?1:2}}
    .preview-view{position:absolute;inset:0;width:100%;height:100%}</style></head>
-   <body class="trmnl"><div class="screen screen--${x?'lg':'og'} screen--${x?'lg':'md'} screen--${x?'4':device==='onebit'?'1':'2'}bit ${dark?'screen--dark-mode':''} ${device==='portrait'?'screen--portrait':''}">${inner}</div></body></html>`);
+   <body class="trmnl">${provenance}<div class="screen screen--${x?'lg':'og'} screen--${x?'lg':'md'} screen--${x?'4':device==='onebit'?'1':'2'}bit ${dark?'screen--dark-mode':''} ${device==='portrait'?'screen--portrait':''}">${inner}</div></body></html>`);
  } catch(e) {res.statusCode=500;res.end(e.message);}
 }).listen(8787,'127.0.0.1',()=>console.log('Preview renderer listening on port 8787'));

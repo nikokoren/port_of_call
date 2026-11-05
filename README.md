@@ -4,7 +4,7 @@
 
 A map-first TRMNL recipe showing **observed AIS positions**, not authoritative port schedules. The first catalog is **Helsinki, Turku and Rauma, Finland**. One shared backend serves every installation; users never need AIS keys.
 
-**AIS can be incomplete, delayed and inaccurate. Not for navigation.** A vessel marker is an observation, not proof of an arrival, departure or berth. Hulls point to true heading when available, otherwise course above 0.5 knots; diamonds have no useful orientation. Hollow hulls indicate reports older than 30 minutes. Counts refer to reports within the selected area, not all ships in port.
+**AIS can be incomplete, delayed and inaccurate. Not for navigation.** A vessel marker is an observation, not proof of an arrival, departure or berth. Hulls point to true heading when available, otherwise course above 0.5 knots; diamonds have no useful orientation. Hollow hulls indicate reports older than 30 minutes. The count is distinct vessels with recent reports in the selected observation area near the port, rather than a complete physical port census or the number of visible glyphs.
 
 ![Helsinki: genuine historical AIS capture, 4 November 2026](docs/screenshots/og-helsinki.png)
 
@@ -13,7 +13,7 @@ This is a browser preview with native TRMNL vector tiles and **genuine historica
 
 ![Ship Spotlight: PLYCA, genuine archive capture, 5 November 2026](docs/screenshots/spotlight-full.png)
 
-**Ship Spotlight** adds a floating, connected ship annotation alongside the bottom-left harbor card. It highlights one recent ship in black and keeps context vessels grey, with a labeled white-on-black annotation, country-qualified reported ports, dimensions and speed. Larger views add supported flag/yard-country facts and a plausible reported ETA. Previous port stays unknown unless a relevant official record supports it. This example is an archive, not current traffic. [Selection, freshness and free-source details](docs/ship-spotlight.md) · [Ranked overlay facts for review](docs/ship-spotlight-content.md).
+**Ship Spotlight** adds a floating, connected ship annotation alongside the bottom-left harbor card. It highlights one recent ship in black and keeps context vessels grey, with a native inverse annotation ordered as type, flag, reported voyage/ETA, current speed, sourced highlights and ship details. The port card shows port/country and the recent report count; source credits sit on the map. Previous port stays unknown unless a relevant official record supports it. This example is an archive, not current traffic. [Selection, freshness and free-source details](docs/ship-spotlight.md) · [Ranked overlay facts for review](docs/ship-spotlight-content.md).
 
 ## What works
 

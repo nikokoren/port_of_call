@@ -129,7 +129,32 @@
       "fetched_at": "2026-11-05T08:28:36Z"
     },
     "reported_local": "10:26 EET",
-    "voyage_age_minutes": 4
+    "voyage_age_minutes": 4,
+    "presentation": {
+      "vessel_type": "Cargo vessel",
+      "flag": null,
+      "journey": {
+        "label": "Voyage (reported)",
+        "value": "Hanko \u2192 A VERY LONG UNRESOLVED DESTINATION FOR TESTS"
+      },
+      "eta": null,
+      "speed": "0 knots",
+      "highlights": [
+        "In service since 2009"
+      ],
+      "details": [
+        {
+          "label": "Reported draught",
+          "value": "7.2 m"
+        }
+      ],
+      "measurements": [
+        {
+          "label": "Length",
+          "value": "205 m"
+        }
+      ]
+    }
   },
   "focus_message": "",
   "total": 18,

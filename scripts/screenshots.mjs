@@ -16,7 +16,8 @@ const cases=[
  ['spotlight-half-vertical','half_vertical','og','turku-spotlight'],['spotlight-quadrant','quadrant','og','rauma-spotlight'],
  ['spotlight-x','full','x','turku-spotlight'],['spotlight-portrait','full','portrait','helsinki-spotlight'],
  ['spotlight-layout-test','quadrant','og','spotlight-layout-test'],['spotlight-fallback','quadrant','og','spotlight-fallback'],
- ['spotlight-one-bit','full','onebit','helsinki-spotlight'],['spotlight-dark','full','og','turku-spotlight']
+ ['spotlight-one-bit','full','onebit','helsinki-spotlight'],['spotlight-dark','full','og','turku-spotlight',true],
+ ['spotlight-one-bit-dark','full','onebit','helsinki-spotlight',true]
 ];
 await mkdir('docs/screenshots',{recursive:true});
 const results=[];
@@ -44,9 +45,10 @@ try {
   if(name==='spotlight-half-horizontal'&&status.markers<2)throw new Error(name+': camera lost all context vessels');
   if(fixture.endsWith('-spotlight')||fixture==='spotlight-layout-test'){
    const subject=await page.evaluate(()=>{const el=document.querySelector('.poc'),id=el.dataset.focus;return {marker:!!el.querySelector('.poc__ship--featured[data-id="'+id+'"]'),label:!!el.querySelector('[data-poc-spotlight][data-id="'+id+'"]')};});
+   if(positions.spotlightConnectorWidth<3)throw new Error(name+': Spotlight connector too thin');
    if(!subject.marker||!subject.label)throw new Error(name+': featured subject missing '+JSON.stringify(subject));
   }
-  if(!blockTiles && (!positions.spotlightInverted||!positions.spotlightTextVisible||!positions.spotlightInside||!positions.spotlightClear||!positions.spotlightConnected||!positions.cardInside||!positions.attributionClear||positions.hiddenShips||positions.maxProjectionError>1||positions.labelCollisions||positions.leaderCollisions||positions.labelsOutside||positions.textOverflow))throw new Error(name+': geometry '+JSON.stringify(positions));
+  if(!blockTiles && (!positions.spotlightStatsAligned||!positions.spotlightInverted||!positions.spotlightTextVisible||!positions.spotlightInside||!positions.spotlightClear||!positions.spotlightConnected||!positions.cardInside||!positions.attributionInside||!positions.attributionClear||positions.hiddenShips||positions.maxProjectionError>1||positions.labelCollisions||positions.leaderCollisions||positions.labelsOutside||positions.textOverflow))throw new Error(name+': geometry '+JSON.stringify(positions));
   if(errors.length||status.ready!==(blockTiles?'error':'true')||!status.attribution||status.overflow)throw new Error(name+': '+JSON.stringify({status,errors}));
   if(!blockTiles && ['helsinki','turku','rauma','demo','stale'].includes(fixture)&&status.markers===0)throw new Error(name+': no markers');
   if(!blockTiles && status.markers) {

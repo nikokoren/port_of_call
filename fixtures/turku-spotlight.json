@@ -160,7 +160,37 @@
       "url": "https://www.wikidata.org/wiki/Q11874250",
       "fetched_at": "2026-11-05T12:19:29Z"
     },
-    "eta_estimate": null
+    "eta_estimate": null,
+    "presentation": {
+      "vessel_type": "Passenger vessel",
+      "flag": "Flag: Finland (AIS)",
+      "journey": {
+        "label": "Reported destination",
+        "value": "Turku, Finland"
+      },
+      "eta": null,
+      "speed": "0 knots",
+      "highlights": [
+        "In service since 1996",
+        "Operator: Finferries"
+      ],
+      "details": [
+        {
+          "label": "Reported draught",
+          "value": "3.9 m"
+        }
+      ],
+      "measurements": [
+        {
+          "label": "Length",
+          "value": "54 m"
+        },
+        {
+          "label": "Width",
+          "value": "12 m"
+        }
+      ]
+    }
   },
   "focus_message": "",
   "total": 24,

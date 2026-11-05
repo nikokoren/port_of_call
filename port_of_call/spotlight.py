@@ -93,6 +93,6 @@ def card(v, selected_at, reason, now):
     # A separate identifier list prevents six-row limits from hiding enrichment keys.
     return dict(mmsi=v['mmsi'], imo=value(v, 'imo'), name=v['name'], position=v['position'],
                 reported_at=v['reported_at'], selected_at=iso(selected_at), selected_until=iso(selected_at+HOLD),
-                reason=reason, facts=rows[:6], destination=facts.get('destination'), eta=facts.get('eta'),
+                reason=reason, facts=rows[:6], dimensions=dict(length_m=length,beam_m=beam), destination=facts.get('destination'), eta=facts.get('eta'),
                 origin=None, destination_port=None, enrichment=None,
                 eta_estimate=infer_eta(facts.get('eta'), now), flag=None, built_in=None)

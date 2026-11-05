@@ -5,12 +5,10 @@
    classes. Custom rules handle geographic overlays, leader lines and link inheritance. */
 .poc { --poc-paper:#fff; --poc-ink:#000; overflow:hidden; }
 .poc__box { z-index:7; }
-.poc__spotlight { z-index:6; max-width:calc(100% - 16px); }
+.poc .poc__attribution { white-space:normal; }
+.poc__attribution a { color:inherit; text-decoration:none; pointer-events:auto; }
+.poc__spotlight { z-index:6; }
 .poc__spotlight [hidden] { display:none; }
-/* Keep the requested black/white annotation in both screen themes; native
-   semantic colors can otherwise reverse it again in dark mode. */
-.poc .poc__spotlight { background:#000; color:#fff; }
-.poc .poc__spotlight span { color:#fff; background-image:none; }
 .poc .poc__spotlight-lines { z-index:5; }
 .poc__box a { color:inherit; text-decoration:none; }
 .poc__box [hidden] { display:none; }
@@ -28,6 +26,9 @@
 .poc__lines line { vector-effect:non-scaling-stroke; stroke-linecap:round; }
 .poc__leader-halo { stroke:var(--poc-paper); stroke-width:3px; }
 .poc__leader { stroke:currentColor; stroke-width:1px; }
+/* Only the Spotlight connector receives the stronger ink and separation halo. */
+.poc__spotlight-lines .poc__leader { stroke-width:3px; }
+.poc__spotlight-lines .poc__leader-halo { stroke-width:7px; }
 .screen--dark-mode .poc { --poc-paper:#000; --poc-ink:#fff; }
 </style>
 <script data-poc-label-engine>
@@ -148,6 +149,7 @@
       function line(svg,points,id) {
         ['poc__leader-halo','poc__leader'].forEach(function(cls){
           var l=document.createElementNS('http://www.w3.org/2000/svg','line');l.setAttribute('class',cls);l.dataset.id=id;
+          var unit=scale();l.style.strokeWidth=(cls==='poc__leader'?3*unit:7*unit)+'px';
           ['x1','y1','x2','y2'].forEach(function(k,i){l.setAttribute(k,points[i]);});svg.appendChild(l);
         });
       }

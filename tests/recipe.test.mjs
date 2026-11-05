@@ -38,25 +38,38 @@ test('Spotlight setting is a native off-by-default boolean',async()=>{
  const url=await engine.parseAndRender(settings.polling_url,{...fields,ship_spotlight:true});
  assert.ok(url.endsWith('&spotlight=true'));
 });
-for(const layout of layouts)test(`${layout}: independent Spotlight overlay and preserved harbor card`,async()=>{
+for(const layout of layouts)test(`${layout}: ordered ship copy and map-level source credits`,async()=>{
  const data=JSON.parse(await readFile('fixtures/rauma-spotlight.json','utf8'));
  data.focus.name='<script>danger()</script>';
  const html=await render(layout,data,{ship_labels:'off',ship_spotlight:true});
- assert.ok(html.includes('Ship Spotlight'));assert.ok(html.includes('&lt;script&gt;'));
- assert.ok(html.includes('data-featured="true"'));assert.ok(!html.includes('<script>danger()'));
- assert.ok(html.includes('Reported to'));assert.ok(!html.includes('Position '));
- assert.ok(html.includes('data-poc-spotlight'));assert.ok(html.includes('opacity:0;left:8px;top:8px'));assert.ok(html.includes('>Port of Call</span>'));
  const harbor=html.match(/<aside[^>]*data-poc-box[^>]*>([\s\S]*?)<\/aside>/)[1];
  const overlay=html.match(/<aside[^>]*data-poc-spotlight[^>]*>([\s\S]*?)<\/aside>/)[1];
- assert.ok(harbor.includes(data.port.name));assert.ok(!harbor.includes('&lt;script&gt;'));
- assert.ok(overlay.includes('&lt;script&gt;'));assert.ok(!overlay.includes('data-poc-total'));
- assert.ok(overlay.includes('205 m'));assert.ok(overlay.includes('0 knots'));assert.ok(overlay.includes('bg--black')||html.includes('bg--black'));
- assert.ok(overlay.includes('Length'));assert.ok(overlay.includes('Speed'));assert.ok(overlay.includes('Type:'));
- assert.ok(overlay.includes('Hanko, Finland'));assert.ok(overlay.includes('Tilbury, United Kingdom'));
- if(layout==='full'){
-  assert.ok(overlay.includes('Reported from'));assert.ok(overlay.includes('Reported ETA:'));assert.ok(overlay.includes('Shipyard country:'));
-  data.focus.origin=null;const unknown=await render(layout,data);assert.ok(unknown.includes('Tilbury, United Kingdom'));assert.ok(!unknown.includes('Hanko, Finland'));
+ assert.ok(harbor.includes('Port of Call'));assert.ok(harbor.includes('Rauma, Finland'));
+ assert.ok(harbor.includes('vessels recently reported near this port'));
+ for(const removed of ['Archive','Fetched','Updated','Report ','CC BY','Fintraffic'])assert.ok(!harbor.includes(removed));
+ assert.ok(html.includes('map__attribution'));assert.ok(html.includes('data-poc-sources'));assert.ok(html.includes('CC BY 4.0'));assert.ok(html.includes('OpenStreetMap'));
+ assert.ok(overlay.includes('&lt;script&gt;'));assert.ok(!overlay.includes('<script>danger()'));
+ assert.ok(overlay.includes('Cargo vessel'));assert.ok(!overlay.includes('Type:'));
+ const positions=['Cargo vessel','Flag: Netherlands','Voyage (reported)','Reported ETA:','Current speed:'].map(t=>overlay.indexOf(t));
+ assert.ok(positions.every(n=>n>=0));assert.deepEqual(positions,[...positions].sort((a,b)=>a-b));
+ assert.ok(overlay.includes('Hanko, Finland → Tilbury, United Kingdom'));
+ assert.ok(overlay.includes('205 m'));assert.ok(overlay.includes('0 knots'));
+ if(layout==='full'||layout==='half_vertical'){
+  assert.ok(overlay.indexOf('Good to know')>overlay.indexOf('Current speed:'));
+  assert.ok(overlay.indexOf('Ship details')>overlay.indexOf('Good to know'));
+  assert.ok(overlay.indexOf('Length')>overlay.indexOf('Shipyard country'));
+  assert.ok(overlay.indexOf('Reported draught')>overlay.indexOf('Length'));
  }
+ assert.ok(!overlay.includes('Position '));
  data.focus=null;data.focus_message='No suitable fresh ship · showing harbor';
  assert.ok((await render(layout,data)).includes(data.focus_message));
+});
+for(const layout of layouts)test(`${layout}: absent measurements do not become empty facts`,async()=>{
+ const data=JSON.parse(await readFile('fixtures/rauma-spotlight.json','utf8'));
+ data.focus.presentation.measurements=[];data.focus.presentation.details=[];data.focus.presentation.speed=null;
+ let html=await render(layout,data);
+ let overlay=html.match(/<aside[^>]*data-poc-spotlight[^>]*>([\s\S]*?)<\/aside>/)[1];
+ assert.ok(!overlay.includes('data-poc-stats'));assert.ok(!overlay.includes('Current speed:'));
+ data.focus.presentation.speed='0 knots';html=await render(layout,data);
+ assert.ok(html.includes('0 knots'));assert.ok(!html.includes('data-poc-stat-value'));
 });

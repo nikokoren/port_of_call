@@ -158,6 +158,35 @@
       "year_inferred": true,
       "inference": "nearest_to_report_within_minus_2_plus_90_days",
       "display": "07 Nov 09:00 UTC"
+    },
+    "presentation": {
+      "vessel_type": "Cargo vessel",
+      "flag": "Flag: Portugal (AIS)",
+      "journey": {
+        "label": "Reported destination",
+        "value": "Gda\u0144sk, Poland"
+      },
+      "eta": "07 Nov 09:00 UTC",
+      "speed": "12 knots",
+      "highlights": [
+        "In service since 2011"
+      ],
+      "details": [
+        {
+          "label": "Reported draught",
+          "value": "8.8 m"
+        }
+      ],
+      "measurements": [
+        {
+          "label": "Length",
+          "value": "158 m"
+        },
+        {
+          "label": "Width",
+          "value": "24 m"
+        }
+      ]
     }
   },
   "focus_message": "",

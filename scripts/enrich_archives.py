@@ -6,6 +6,7 @@ from pathlib import Path
 from aiohttp import ClientSession, ClientTimeout
 from port_of_call.enrichment import Enricher, enrich_card
 from port_of_call.facts import infer_eta
+from port_of_call.display import focus_copy
 from port_of_call.model import HARBORS, epoch, iso
 from port_of_call.store import Store
 
@@ -29,6 +30,7 @@ async def run():
                 enricher.queue.task_done()
             enrich_card(store, HARBORS[key], focus, time.time())
             focus['eta_estimate'] = infer_eta(focus.get('eta'), epoch(data['snapshot_at']))
+            focus['presentation'] = focus_copy(focus)
             data['reference_enriched_at'] = iso(time.time())
             data['fixture_note'] = 'Genuine historical AIS observations; NOT current traffic. Free reference facts retrieved at reference_enriched_at; position/report times unchanged.'
             path.write_text(json.dumps(data, indent=2)+'\n')
