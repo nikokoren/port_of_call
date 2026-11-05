@@ -11,6 +11,7 @@ test('polling URL interpolates every harbor and framing value',async()=>{
   const url=await engine.parseAndRender(settings.polling_url,{...fields,harbor,map_scale});
   assert.equal(url,`https://YOUR-BACKEND.example/api/v1/harbors/${harbor}/vessels?scale=${map_scale}&spotlight=false`);
  }
+ assert.ok(settings.description.length<=35,'TRMNL short description must be at most 35 characters');
  assert.equal(settings.framework_version,'3.4.4');assert.equal(settings.refresh_interval,15);
  assert.deepEqual(settings.custom_fields.find(f=>f.keyname==='display_mode').options,[{'Harbor Map':'map'}]);
 });

@@ -10,7 +10,7 @@ framework_version: '3.4.4'
 no_screen_padding: 'no'
 dark_mode: 'no'
 static_data: ''
-description: Recent vessel positions around Finnish harbors. AIS can be incomplete, delayed or inaccurate. Not for navigation.
+description: Harbor maps and Ship Spotlight
 custom_fields:
   - keyname: author_bio
     field_type: author_bio
