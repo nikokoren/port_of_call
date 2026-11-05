@@ -14,11 +14,9 @@ Add a licensed official port-call/schedule provider through a separate adapter a
 
 Keep expected/actual time, timezone, event type and source status separate. Mark unknown explicitly. A position inside a rectangle cannot establish a berth, authoritative arrival, departure, delay or ETA. Do not turn AIS destination text into a schedule. Add the `board` display setting only when a genuine schedule layout and its tests work in all sizes.
 
-## Ship Spotlight · Requested focus option
+## Ship Spotlight · Implemented
 
-See [Ship Spotlight — feature proposal](ship-spotlight.md) for the recommended **Spotlight a ship** switch, verified AIS field possibilities, the missing previous-port dependency and a proposed stable/diverse selection algorithm. This starts as a Harbor Map focus option; the setting is not exposed yet. Selection must precede the 40-marker cap and preserve the featured vessel through decluttering. Voyage facts need separate freshness timestamps; a new position must not refresh an old destination.
-
-A first version can use current position, reported destination and available ship facts. A reliable From → To story requires relevant freely reusable port-call/history data; otherwise origin remains unknown and is not a selection requirement. A later dedicated illustrated vessel profile can remain a separate display mode. Type silhouettes must be labeled; exact vessel depictions/photos need separate rights. Unavailable metadata is omitted, and no unsupported biography or voyage claims are generated.
+The optional **Spotlight a ship** setting now adds a shared rotating subject, validated AIS facts, optional CC0 Wikidata reference facts and relevant Finnish Portnet previous-port records. All four layouts prioritize the featured marker and name. Field freshness and selection history persist independently. [Implementation and limits](ship-spotlight.md). A dedicated illustrated profile and additional free regional port-call adapters remain future work; complete worldwide origin history is not promised.
 
 ## Scaling
 

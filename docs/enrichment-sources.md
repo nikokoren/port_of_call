@@ -28,7 +28,7 @@ Research retrieved on 4 November 2026. No paid account was created or activated.
 
 ### Existing AIS fields
 
-AISStream's official schema includes `ShipStaticData.Destination`, `Eta`, `Dimension`, `MaximumStaticDraught`, `ImoNumber`, `CallSign`, and dynamic navigation status. Our current normalization retains only some of those fields. Retaining the others requires validation and field-level freshness, not another subscription.
+AISStream's official schema includes `ShipStaticData.Destination`, `Eta`, `Dimension`, `MaximumStaticDraught`, `ImoNumber`, `CallSign`, and dynamic navigation status. The Spotlight normalization now retains and validates those fields with independent freshness timestamps; no additional subscription is needed. [Implementation](ship-spotlight.md).
 
 Schema: https://github.com/aisstream/ais-message-models/blob/291c17682a1108f722c130402089678156613320/type-definition.yaml
 

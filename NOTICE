@@ -20,3 +20,12 @@ their original licenses remain applicable. No tile archive is redistributed.
 
 AISStream: aggregate evaluation counts are included in docs/coverage; no vessel-record
 dataset is bundled. Public redistribution and caching rights remain unconfirmed. Synthetic demo data is not observed traffic.
+
+Optional vessel reference facts and exact UN/LOCODE resolutions: Wikidata,
+CC0 structured data: https://www.wikidata.org/wiki/Wikidata:Licensing
+https://creativecommons.org/publicdomain/zero/1.0/
+Each enriched card links to its source entity and preserves its fetch date.
+No Wikimedia photographs are bundled or assumed to have a blanket license.
+Digitraffic Portnet reported previous-port records retain source/date and the
+same Fintraffic CC BY 4.0 attribution above; unrelated personal/agent/customs
+fields are neither stored nor distributed. Free enrichment is optional.

@@ -1,75 +1,43 @@
-# Ship Spotlight — feature proposal
+# Ship Spotlight
 
-Status: researched proposal, not an enabled plugin setting or implemented selection algorithm. Requested 4 November 2026. **Free data sources only: no paid APIs, purchased credits or paid-upgrade dependency.** The existing Harbor Map remains the current display.
+Implemented 5 November 2026. **Free data sources only**: existing AIS, CC0 Wikidata and CC BY 4.0 Digitraffic Portnet. No paid subscription, credits, trial or per-installation data key.
 
-## Name and setting
+## Use it
 
-Recommended feature name: **Ship Spotlight**. Recommended boolean setting: **Spotlight a ship**, off by default. This modifies the Harbor Map: one ship receives the strongest marker, its own name/leader label and an information card. Other ships can remain as quiet context. Alternatives: **In Focus** (quieter but less explicit) and **Featured Ship** (clear but less distinctive).
+Turn on **Spotlight a ship** in the Harbor Map settings. The same harbor shares one subject across installations and framing choices. Labels can remain off: the featured name is always prioritized. Turn the switch off for the ordinary harbor overview. No suitable fresh candidate means an explicit overview fallback, never a frozen or invented ship.
 
-This is a focus option within `display_mode: map`, conceptually `focus_mode: harbor | ship`. A later dedicated vessel illustration/profile layout could still be a separate `spotlight` display mode. Do not expose the switch until the data and layout work end to end.
+The full native map card shows reported destination, reported previous port where available, reported ETA, up to six AIS facts and two optional reference facts. Half layouts reduce the facts; the quadrant keeps identity, destination and two short facts beside the map. The stronger hull and inverted name label work at one bit. Marker positions are never displaced to make room for text.
 
-## What the current source can provide
+## What the facts mean
 
-Checked against AISStream's official `ais-message-models/type-definition.yaml`, 4 November 2026:
-https://github.com/aisstream/ais-message-models/blob/291c17682a1108f722c130402089678156613320/type-definition.yaml
+- Positions, speed, heading/course and navigation status retain the dynamic report time. Focus requires a position younger than 15 minutes and a feed younger than the configured freshness threshold.
+- IMO numbers require the seven-digit checksum. Unknown/saturated dimensions and draught, malformed ETAs and unavailable text are omitted. Length/beam derive from antenna distances. Digitraffic draught is decimetres converted to metres; AISStream's decoded floating-point draught is metres, not divided again. AIS ETA has no year; the card says so and never infers a schedule or delay.
+- Destination, ETA and draught expire independently after six hours. Identity/dimensions expire after seven days. Each field retains its source and report timestamp. A new position/name cannot refresh a destination; out-of-order static messages cannot overwrite newer facts. An explicit unknown clears a previous value. A crew can keep broadcasting an obsolete destination or ETA: even a recent report is not independent voyage confirmation.
+- Previous port is absent from standard AIS. The optional Finnish Portnet join requires an exact IMO or MMSI, the selected Finnish port, a recent record with an actual arrival before the observation, and no actual departure before it. An IMO mismatch rejects the record even if MMSI matches. Planned calls and old calls elsewhere do not supply origin. This is a **reported previous port**, not a reconstructed voyage. Otherwise the full card says unknown.
+- Wikidata ship lookup requires a unique exact IMO statement. It can add class, builder, operator and service-entry year. Deprecated and ended-role statements are excluded; reference information is not a verified current commercial registry. It does not provide a verified flag or build year. Port lookup requires a unique exact UN/LOCODE, an English label and Earth coordinates. Ambiguous destinations remain raw reported text. A small reviewed exact alias catalog avoids unnecessary lookups. There are no fuzzy ship-name joins, guessed tracks, inferred origins or photo-license assumptions.
 
-The referenced schema file last changed on 3 June 2023; its current contents were retrieved on 4 November 2026. The standard field definitions establish feasibility, not measured current field completeness.
+The JSON card retains identifiers, sources and timestamps even when the compact display omits some facts. Destination coordinates are optional reference metadata; no straight line is presented as a sailing route. No personal/agent/customs fields from Portnet are retained.
 
-| Fact | Source | Conditions and honest wording |
-|---|---|---|
-| Current position, speed, course, heading | PositionReport and class-B position reports | Current parser retains these; heading/course may be unavailable. Keep observation time visible. |
-| Name and vessel category | Metadata, ShipStaticData, StaticDataReport, ExtendedClassBPositionReport | Current parser retains name and coarse category. The fuller reported type code would support better variety. |
-| Reported destination | ShipStaticData.Destination | Crew-entered text; can be stale, abbreviated, non-port text or blank. Label **Reported destination**. Resolve only with a reviewed port/alias catalog; keep ambiguous text unresolved. |
-| Reported ETA | ShipStaticData.Eta (Month, Day, Hour, Minute) | No year. Validate unavailable values, dates and UTC/year rollover before display. Label **Reported ETA**; never infer delays or an authoritative schedule. |
-| Length and beam | Dimension.A/B/C/D in static and extended class-B messages | Derived from reported distances to the antenna reference point: A+B and C+D. Validate units, unknowns and plausible values before shipping. |
-| Draught | ShipStaticData.MaximumStaticDraught | Reported value, not a verified live measurement; verify decoder units/sentinels first. |
-| IMO, MMSI, call sign | Static data/envelope | Show only valid identifiers; use IMO/MMSI for enrichment joins, never ship name alone. |
-| Reported navigation status | PositionReport.NavigationalStatus | Not in every message class. Reported status is distinct from inferred speed/motion and is not a port call. |
-| Previous port / departure port | Not a standard field in these AIS messages | Requires reliable port-call/history data. Do not substitute flag, course, old destination text or proximity to a harbor. |
-| Verified flag, age, owner, photographs | Separate registry/licensed reference source | Do not present an MMSI allocation country as independently verified current flag, or a type silhouette as an exact depiction. |
+## Selection
 
-The schema establishes possible fields, not their completeness in our harbor feeds. The previous live probe measured names, type and orientation, not destination/ETA/dimension coverage. Measure those fields in a follow-up counts-only probe before choosing the final card content.
+`port_of_call/spotlight.py` evaluates every eligible observation within the reviewed harbor box **before** the 40-marker cap. Eligibility requires a fresh position, a name and at least two available facts (including the reported category). Previous port and Wikidata are not prerequisites.
 
-The current implementation intentionally discards destination, ETA, dimensions, draught, IMO/call sign and navigation status. Supporting the focus card requires retaining and validating them, not simply changing the template.
+A transparent heuristic scores metadata quality (up to 30), capped local length percentile (25), time since last feature (20), category variety (15) and reported motion (10). Unknown categories receive no variety bonus. The best five form a score-weighted deterministic choice seeded by harbor and three-hour UTC bucket. This is a heuristic, not a learned or validated measure of human interest.
 
-Voyage fields need **their own report timestamps**. The current metadata table merges names/type and receives name context alongside fresh position messages. Adding destination/ETA to that same single-timestamp record would risk making an old destination look freshly reported. Split voyage data or track timestamps per field. Identity can have a longer lifetime than voyage details.
+SQLite holds the subject for up to three hours, survives restart and replaces it early if it leaves the area or becomes stale/ineligible. The 24-hour MMSI cooldown relaxes only when all suitable candidates have already featured. At most 64 per-harbor history entries retain MMSI, category and selection time; no visitor data or position history. A short data-grounded reason explains selection.
 
-## Where it came from and where it is going
+The chosen ship is first in the snapshot and protected from count/byte truncation. The map camera reserves space beside/above the card, then centers the subject in that free space; its marker remains at the exact projected coordinate. Other ships yield during decluttering. The Hotspots-derived label planner prioritizes the featured name even when ordinary labels are off.
 
-A useful first version can highlight the current ship and show its reported destination plus four to six available facts. Origin remains **unknown** or is omitted unless a source genuinely supplies it. If origin is mandatory for every featured ship, AISStream alone is insufficient.
+## Free enrichment operations
 
-A free observational alternative is **Previously seen near [harbor]**, but only when our collector actually observed that vessel there. It must retain its observation date and must never be labeled a confirmed departure/previous port. This would require an explicit bounded history extension; the current latest-position store does not retain it.
+One asynchronous worker shares the ingestion process and SQLite database. HTTP snapshot generation uses cached data only. Queue capacity is 128 unique pending keys. Wikidata requests are spaced by at least one second, with a persisted hard cap of 500 requests/day across the service, independent of installations. Positive results cache 30 days, absent/ambiguous matches seven days and transient failures one hour. There is no account or charge fallback. All structured facts link to their entity and CC0; a cached hit preserves its original fetch date.
 
-A trustworthy **From → To** story can be shown only where a freely reusable, relevant port-call/history record and a resolved destination support it. Digitraffic Portnet is one regional source. There is no paid-provider fallback and no promise of globally complete origin history. Share and cache optional free enrichment by IMO/MMSI; missing origin must not prevent a useful focus card.
+Portnet is polled at most once/hour only for the Finnish provider, with failure backoff. Only the relevant Finnish calls' identifiers, port codes and actual event times are stored, for at most seven days. Source credit and CC BY 4.0 remain visible. Optional-source failures cannot stop AIS collection or block a map response. Run one ingestion/enrichment leader as documented; multiple independent replicas are not the supported deployment.
 
-For the map, keep the current position geographically exact. A resolved destination can support an overview/inset later. A line connecting ports would be an indicative connection, not an observed voyage track; do not draw a guessed sailing route or infer arrival/departure from an observation rectangle.
+## Evidence and limits
 
-## Proposed selection algorithm
+`fixtures/*-spotlight.json` are genuine historical free-source captures from **5 November 2026, 08:28 UTC**, visibly labeled Archive in previews, never served by the public backend. The capture found 54/54 suitable Helsinki observations, 24/25 Turku and 17/18 Rauma. Those denominators are time-limited observations, not port traffic totals. `fixtures/spotlight-metrics.json` records richer field availability. PLYCA's current Rauma Portnet record supplied reported previous port Hanko; its reported destination code resolved to Tilbury through Wikidata. Other subjects correctly retain unknown origin. The collector also found exact IMO reference matches for the selected vessels.
 
-Selection runs on the backend over **all eligible observations in the chosen harbor**, before the 40-vessel response cap and pixel decluttering. Rotterdam's measured sample had 865 distinct observations: choosing only among its 40 exported map markers would exclude many possible subjects.
+The 13-area AISStream profile uses the same normalization and selector, with offline decoder/selection tests. The earlier live coverage probe measured basic metadata, not these richer fields; worldwide field completeness and long-term reliability remain unmeasured. AISStream public display/cache rights and a public always-on host remain separate deployment requirements. No public TRMNL import/device test is claimed.
 
-1. **Eligibility first.** Require a valid, recent position (initial focus target: within 15 minutes), a usable name and enough real facts for a card. Exclude expired/invalid records. Unknown categories get no rarity bonus. No suitable candidate means the ordinary harbor overview.
-2. **Score useful stories, not just size.** An initial 100-point heuristic could allocate 30 points to useful validated AIS information, 25 to distinctive size, 20 to not being featured recently, 15 to type variety and 10 to activity/new observations. Reported destination may contribute as one useful fact, but previous-port history, photos and a Wikidata match are never eligibility requirements. These are proposal weights to calibrate against real snapshots, not a trained or validated ranking. Use only trusted available inputs. Size should be capped/percentile-based within the harbor, so the biggest permanently moored ship does not always win. "Newly observed" means new to our observation window, not an arrival.
-3. **Rotate a strong shortlist.** Select from the best few candidates with a stable, score-weighted choice. A deterministic hash of harbor ID and a time bucket makes the choice reproducible and shared across users. Type penalties/rotation should prevent an endless sequence of cargo ships while preserving data quality.
-4. **Hold the subject.** Initial target: retain it for about three hours (roughly 12 standard refreshes). Update its real position/details during that time. Replace it early if it leaves the area or its position becomes too old; never freeze an expired ship merely to fill the slot.
-5. **Avoid repeats.** Start with a 24-hour per-harbor cooldown for featured MMSIs. In a small pool, shorten the cooldown or choose the least recently shown suitable vessel. This needs bounded operational selection state, not per-user tracking or a long location history.
-
-Changing label visibility should not change the chosen vessel. Map scale can change the amount of context around the featured position, within the known harbor area. Cache the shared subject by harbor and selection period.
-
-Reserve the featured vessel before response-size truncation and marker/label decluttering. Its real position must remain in the response and visible. Prioritize its name in the existing Hotspots-derived label planner. Use a clear fill/outline/size distinction that works at 1 bit; do not rely on color or animation.
-
-Explain the selection with a short deterministic reason grounded in the data, such as unusual vessel category, substantial reported dimensions, useful voyage details or first feature in this rotation. Do not generate unsupported vessel biographies, destinations or port-call claims.
-
-## Enrichment source research
-
-See [Free sources for enriching Port of Call](enrichment-sources.md) for the free-only decision, additional AIS fields, CC0 Wikidata facts/port aliases, regional Digitraffic Portnet records and optional freely reusable images/context. Previously researched paid providers are out of scope. Optional enrichment failure must not block the map or require an upgrade.
-
-## Delivery order
-
-1. Enrich normalization and field-level freshness; measure actual metadata availability across the 13 covered areas.
-2. Implement/test selection, shortlist diversity, cooldown and early replacement on captured real observations.
-3. Add the full-screen map/card and compact adaptations using Downstream's native inset design. Compact views show fewer facts, without tiny text.
-4. Expose **Spotlight a ship** only when turning it on reliably produces that experience.
-5. Add independently sourced previous-port history/registry facts only from suitable free sources with verified coverage and reuse rights.
-
-The useful map-and-facts experience is feasible with the current shared stream. Universally reliable origin history is not promised; unknown origin is an intentional supported state.
+Refresh these archive examples explicitly with `.venv/bin/python scripts/capture_spotlight.py`. This overwrites only the Spotlight fixtures/metrics, not the original overview captures. Run the Python and Node suites and browser screenshots as described in the repository README.

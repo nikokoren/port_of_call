@@ -10,6 +10,7 @@ from .catalog import stream_harbors, subscription
 from .model import contains, epoch, iso, bearing
 from .providers import aisstream
 from .store import Store
+from .spotlight import eligible
 
 
 class Evidence:
@@ -63,6 +64,9 @@ class Evidence:
                 courses=sum(v['course_deg'] is not None for v in vs) if observed else None,
                 usable_orientation=sum(bearing(v) is not None for v in vs) if observed else None,
                 types=sum(v['type'] is not None for v in vs) if observed else None,
+                spotlight_eligible=sum(eligible(v, now) for v in vs) if observed else None,
+                metadata_fields={field: sum(field in v['facts'] for v in vs) if observed else None
+                    for field in ('imo','call_sign','ship_type_code','length_m','beam_m','destination','eta','draught_m')},
                 latest_report_at=iso(latest) if latest else None))
         return dict(schema_version=1,provider='AISStream',outcome=outcome,reason=reason,
             started_at=iso(self.started_at),ended_at=iso(now),window_seconds=round(now-self.started_at),

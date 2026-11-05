@@ -21,7 +21,7 @@ http.createServer(async(req,res)=>{
    .replaceAll('https://trmnl.com/js/maplibre-gl/5.24.0/','/assets/');
   if(!data.demo) {
     const date=new Date(data.snapshot_at).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'});
-    const tag=['stale','empty','unavailable','warming'].includes(fixture)?'STATE TEST · archive':'Archive';
+    const tag=(['stale','empty','unavailable','warming'].includes(fixture)||fixture.startsWith('spotlight-layout-test')||fixture==='spotlight-fallback')?'STATE TEST · archive':'Archive';
     markup=markup.replace('data-poc-preview hidden>',`data-poc-preview>${tag} · ${date}`);
   }
   const device=u.searchParams.get('device')||'og';

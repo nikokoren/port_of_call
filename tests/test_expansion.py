@@ -54,6 +54,7 @@ class Expansion(unittest.TestCase):
             r=e.report(NOW,'blocked',reason='Missing AISSTREAM_API_KEY')
             self.assertFalse(r['network_attempted']);self.assertFalse(r['subscription_confirmed'])
             self.assertTrue(all(h['distinct_observed'] is None for h in r['harbors']))
+            self.assertTrue(all(h['spotlight_eligible'] is None and h['metadata_fields']['destination'] is None for h in r['harbors']))
         finally:e.close()
 
     def test_reports_merging_age_fields_and_no_secrets_or_raw_positions(self):
@@ -61,6 +62,9 @@ class Expansion(unittest.TestCase):
         try:
             e.observe({'MessageType':'SubscriptionConfirmation','Message':{'CompressionEnabled':True}},NOW)
             e.observe(report(hs[0]),NOW)
+            e.observe({'MessageType':'ShipStaticData','MetaData':{'MMSI':211000001,'time_utc':iso(NOW-15)},
+                'Message':{'ShipStaticData':{'Valid':True,'Name':'TEST ONLY','Type':70,'Destination':'NLRTM',
+                'ImoNumber':9241061,'MaximumStaticDraught':6.2,'Dimension':{'A':28,'B':172,'C':13,'D':13}}}},NOW)
             e.observe(report(hs[0],when=NOW-20,TrueHeading=20),NOW)
             e.observe(report(hs[0],mid=211000002,when=NOW-2000,TrueHeading=511,Cog=360,Sog=0),NOW)
             e.observe(report(hs[0],mid=211000003,when=NOW+60),NOW)
@@ -69,6 +73,8 @@ class Expansion(unittest.TestCase):
             self.assertEqual(h['distinct_observed'],2);self.assertEqual(h['current_under_60min'],2)
             self.assertEqual(h['fresh_under_30min'],1);self.assertEqual(h['headings'],1)
             self.assertEqual(h['usable_orientation'],1);self.assertTrue(r['compression_confirmed'])
+            self.assertEqual(h['spotlight_eligible'],1);self.assertEqual(h['metadata_fields']['destination'],1)
+            self.assertEqual(h['metadata_fields']['draught_m'],1)
             self.assertEqual(r['harbors'][1]['distinct_observed'],0)
             self.assertEqual(r['validation_rejects'],1)
             body=json.dumps(r)

@@ -11,7 +11,12 @@ const cases=[
  ['og-dark','full','og','helsinki',true],['og-one-bit','full','onebit','helsinki'],['og-empty','quadrant','og','empty'],
  ['og-stale','full','og','stale'],['og-unavailable','half_horizontal','og','unavailable'],['og-warming','quadrant','og','warming'],
  ['og-map-error','full','og','helsinki',false,true],
- ['og-demo-density','full','og','demo']
+ ['og-demo-density','full','og','demo'],
+ ['spotlight-full','full','og','rauma-spotlight'],['spotlight-half-horizontal','half_horizontal','og','helsinki-spotlight'],
+ ['spotlight-half-vertical','half_vertical','og','turku-spotlight'],['spotlight-quadrant','quadrant','og','rauma-spotlight'],
+ ['spotlight-x','full','x','turku-spotlight'],['spotlight-portrait','full','portrait','helsinki-spotlight'],
+ ['spotlight-layout-test','quadrant','og','spotlight-layout-test'],['spotlight-fallback','quadrant','og','spotlight-fallback'],
+ ['spotlight-one-bit','full','onebit','helsinki-spotlight'],['spotlight-dark','full','og','turku-spotlight']
 ];
 await mkdir('docs/screenshots',{recursive:true});
 const results=[];
@@ -27,7 +32,7 @@ try {
     await route.fulfill({status:r.status,body:Buffer.from(await r.arrayBuffer()),contentType:r.headers.get('content-type')||'application/octet-stream'});
    }catch{await route.abort();}
   });
-  await page.goto(`http://127.0.0.1:8787/?layout=${layout}&device=${device}&fixture=${fixture}&labels=on&dark=${dark}`);
+  await page.goto(`http://127.0.0.1:8787/?layout=${layout}&device=${device}&fixture=${fixture}&labels=${fixture.endsWith('-spotlight')?'off':'on'}&dark=${dark}`);
   await page.waitForFunction(()=>document.querySelector('.poc')?.dataset.mapReady,{timeout:35000});
   await page.evaluate(()=>document.fonts.ready);
   await page.waitForFunction(()=>window.TRMNL_PLUGINS_READY===true,{timeout:25000});
@@ -36,6 +41,10 @@ try {
    overflow:document.querySelector('.poc').scrollHeight>document.querySelector('.poc').clientHeight+Math.max(1,parseFloat(getComputedStyle(document.querySelector('.screen')).getPropertyValue('--ui-scale'))||1),
    text:document.querySelector('.poc__notice').innerText}));
   const positions=await page.evaluate(geometry);
+  if(fixture.endsWith('-spotlight')||fixture==='spotlight-layout-test'){
+   const subject=await page.evaluate(()=>{const el=document.querySelector('.poc'),id=el.dataset.focus;return {marker:!!el.querySelector('.poc__ship--featured[data-id="'+id+'"]'),label:!!el.querySelector('.poc__label[data-id="'+id+'"]')};});
+   if(!subject.marker||!subject.label)throw new Error(name+': featured subject missing '+JSON.stringify(subject));
+  }
   if(!blockTiles && (!positions.cardInside||!positions.attributionClear||positions.hiddenShips||positions.maxProjectionError>1||positions.labelCollisions||positions.leaderCollisions||positions.labelsOutside||positions.textOverflow))throw new Error(name+': geometry '+JSON.stringify(positions));
   if(errors.length||status.ready!==(blockTiles?'error':'true')||!status.attribution||status.overflow)throw new Error(name+': '+JSON.stringify({status,errors}));
   if(!blockTiles && ['helsinki','turku','rauma','demo','stale'].includes(fixture)&&status.markers===0)throw new Error(name+': no markers');

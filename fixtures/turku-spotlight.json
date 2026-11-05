@@ -1,0 +1,530 @@
+{
+  "schema_version": 1,
+  "display_mode": "map",
+  "port": {
+    "id": "turku",
+    "name": "Turku",
+    "country": "Finland",
+    "timezone": "Europe/Helsinki",
+    "center": [
+      22.17,
+      60.415
+    ],
+    "bbox": [
+      22.04,
+      60.34,
+      22.3,
+      60.49
+    ],
+    "default_zoom": 11,
+    "provider": "digitraffic",
+    "verified": true
+  },
+  "viewport": [
+    22.088932999999997,
+    60.357519999999994,
+    22.348933000000002,
+    60.50752
+  ],
+  "source": "Fintraffic / Digitraffic",
+  "attribution": {
+    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
+    "url": "https://www.digitraffic.fi/en/marine-traffic/",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "snapshot_at": "2026-11-05T08:28:29Z",
+  "fetched_at": "2026-11-05T08:28:28Z",
+  "latest_report_at": "2026-11-05T08:27:26Z",
+  "fetched_local": "10:28 EET",
+  "latest_report_local": "10:27 EET",
+  "latest_report_age_minutes": 1,
+  "status": "ok",
+  "message": "",
+  "demo": false,
+  "focus_requested": true,
+  "focus_mode": "ship",
+  "focus": {
+    "mmsi": "230108490",
+    "imo": "8685739",
+    "name": "MERILUOTO",
+    "position": [
+      22.218933,
+      60.43252
+    ],
+    "reported_at": "2026-11-05T08:27:04Z",
+    "selected_at": "2026-11-05T08:28:29Z",
+    "selected_until": "2026-11-05T11:28:29Z",
+    "reason": "Reported voyage details",
+    "facts": [
+      {
+        "label": "Type",
+        "value": "Passenger vessel",
+        "reported_at": "2026-11-05T08:28:13Z",
+        "source": "Fintraffic / Digitraffic"
+      },
+      {
+        "label": "Length / beam",
+        "value": "54 \u00d7 12 m",
+        "reported_at": "2026-11-05T08:28:13Z",
+        "source": "Fintraffic / Digitraffic"
+      },
+      {
+        "label": "Speed",
+        "value": "0 kn",
+        "reported_at": "2026-11-05T08:27:04Z",
+        "source": "AIS position report"
+      },
+      {
+        "label": "Reported status",
+        "value": "Moored",
+        "reported_at": "2026-11-05T08:27:04Z",
+        "source": "AIS position report"
+      },
+      {
+        "label": "Reported draught",
+        "value": "3.9 m",
+        "reported_at": "2026-11-05T08:28:13Z",
+        "source": "Fintraffic / Digitraffic"
+      },
+      {
+        "label": "Call sign",
+        "value": "OI9738",
+        "reported_at": "2026-11-05T08:28:13Z",
+        "source": "Fintraffic / Digitraffic"
+      }
+    ],
+    "destination": {
+      "value": "TURKU",
+      "reported_at": "2026-11-05T08:28:13Z",
+      "source": "Fintraffic / Digitraffic"
+    },
+    "eta": {
+      "value": "27 Aug 05:50 UTC",
+      "reported_at": "2026-11-05T08:28:13Z",
+      "source": "Fintraffic / Digitraffic"
+    },
+    "origin": null,
+    "destination_port": {
+      "code": "FITKU",
+      "name": "Turku",
+      "position": [
+        22.17,
+        60.415
+      ],
+      "source": "Reviewed harbor catalog"
+    },
+    "enrichment": {
+      "facts": [
+        {
+          "label": "Builder",
+          "value": "Uki Workboat"
+        },
+        {
+          "label": "Operator",
+          "value": "Finferries"
+        },
+        {
+          "label": "In service",
+          "value": "1996"
+        }
+      ],
+      "source": "Wikidata",
+      "url": "https://www.wikidata.org/wiki/Q11874250",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "fetched_at": "2026-11-05T08:28:32Z"
+    },
+    "reported_local": "10:27 EET",
+    "voyage_age_minutes": 0
+  },
+  "focus_message": "",
+  "total": 24,
+  "shown": 24,
+  "omitted": 0,
+  "vessels": [
+    {
+      "mmsi": "230108490",
+      "position": [
+        22.21893,
+        60.43252
+      ],
+      "reported_at": "2026-11-05T08:27:04Z",
+      "heading_deg": 256.0,
+      "course_deg": 171.4,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "MERILUOTO",
+      "type": "passenger",
+      "bearing_deg": 256.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230666000",
+      "position": [
+        22.11546,
+        60.39621
+      ],
+      "reported_at": "2026-11-05T08:27:24Z",
+      "heading_deg": 17.0,
+      "course_deg": 18.8,
+      "speed_knots": 10.6,
+      "navigation_status": 0,
+      "name": "BALTIC MADONNA",
+      "type": "cargo",
+      "bearing_deg": 17.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230937480",
+      "position": [
+        22.1246,
+        60.37527
+      ],
+      "reported_at": "2026-11-05T08:27:21Z",
+      "heading_deg": null,
+      "course_deg": 324.6,
+      "speed_knots": 0.0,
+      "navigation_status": null,
+      "name": "RESCUE RIMIC",
+      "type": "other",
+      "bearing_deg": null,
+      "stale": false
+    },
+    {
+      "mmsi": "230155950",
+      "position": [
+        22.15299,
+        60.44326
+      ],
+      "reported_at": "2026-11-05T08:27:26Z",
+      "heading_deg": 193.0,
+      "course_deg": 113.7,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": null,
+      "type": null,
+      "bearing_deg": 193.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230938570",
+      "position": [
+        22.16667,
+        60.44067
+      ],
+      "reported_at": "2026-11-05T08:25:37Z",
+      "heading_deg": 27.0,
+      "course_deg": 280.1,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "BISON",
+      "type": "other",
+      "bearing_deg": 27.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230981050",
+      "position": [
+        22.21772,
+        60.43265
+      ],
+      "reported_at": "2026-11-05T08:27:17Z",
+      "heading_deg": 327.0,
+      "course_deg": 254.2,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "MERISILTA",
+      "type": "passenger",
+      "bearing_deg": 327.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230943350",
+      "position": [
+        22.22049,
+        60.43218
+      ],
+      "reported_at": "2026-11-05T08:27:19Z",
+      "heading_deg": 36.0,
+      "course_deg": 0.0,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "TUULI",
+      "type": "passenger",
+      "bearing_deg": 36.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230990260",
+      "position": [
+        22.22977,
+        60.43348
+      ],
+      "reported_at": "2026-11-05T08:27:21Z",
+      "heading_deg": 238.0,
+      "course_deg": 11.3,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "ISO-PUKKI",
+      "type": "other",
+      "bearing_deg": 238.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230938610",
+      "position": [
+        22.25154,
+        60.4434
+      ],
+      "reported_at": "2026-11-05T08:26:16Z",
+      "heading_deg": null,
+      "course_deg": 306.9,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "RUDOLFINA",
+      "type": "passenger",
+      "bearing_deg": null,
+      "stale": false
+    },
+    {
+      "mmsi": "230993680",
+      "position": [
+        22.15373,
+        60.44358
+      ],
+      "reported_at": "2026-11-05T08:27:08Z",
+      "heading_deg": 284.0,
+      "course_deg": 67.7,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "AIRISTO",
+      "type": "other",
+      "bearing_deg": 284.0,
+      "stale": false
+    },
+    {
+      "mmsi": "265704520",
+      "position": [
+        22.21716,
+        60.44328
+      ],
+      "reported_at": "2026-11-05T08:26:28Z",
+      "heading_deg": 8.0,
+      "course_deg": 299.8,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "SEAGAS",
+      "type": "tanker",
+      "bearing_deg": 8.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230990880",
+      "position": [
+        22.22026,
+        60.43219
+      ],
+      "reported_at": "2026-11-05T08:25:15Z",
+      "heading_deg": 217.0,
+      "course_deg": 342.0,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "ROSALA II",
+      "type": "passenger",
+      "bearing_deg": 217.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230091950",
+      "position": [
+        22.219,
+        60.44139
+      ],
+      "reported_at": "2026-11-05T08:27:17Z",
+      "heading_deg": 181.0,
+      "course_deg": 0.0,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "BALTIC AMELIE",
+      "type": "cargo",
+      "bearing_deg": 181.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230938590",
+      "position": [
+        22.25317,
+        60.44414
+      ],
+      "reported_at": "2026-11-05T08:15:00Z",
+      "heading_deg": 224.0,
+      "course_deg": 203.0,
+      "speed_knots": 0.1,
+      "navigation_status": 0,
+      "name": "UKKOPEKKA",
+      "type": "passenger",
+      "bearing_deg": 224.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230359000",
+      "position": [
+        22.15256,
+        60.44235
+      ],
+      "reported_at": "2026-11-05T08:26:16Z",
+      "heading_deg": 191.0,
+      "course_deg": 5.1,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "ARKTIS",
+      "type": "cargo",
+      "bearing_deg": 191.0,
+      "stale": false
+    },
+    {
+      "mmsi": "212409000",
+      "position": [
+        22.21529,
+        60.43975
+      ],
+      "reported_at": "2026-11-05T08:26:08Z",
+      "heading_deg": 279.0,
+      "course_deg": 0.0,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "ZEUS OF FINLAND",
+      "type": "other",
+      "bearing_deg": 279.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230183820",
+      "position": [
+        22.21893,
+        60.44314
+      ],
+      "reported_at": "2026-11-05T08:26:53Z",
+      "heading_deg": 0.0,
+      "course_deg": 181.2,
+      "speed_knots": 0.1,
+      "navigation_status": 5,
+      "name": "BOGOEY",
+      "type": "passenger",
+      "bearing_deg": 0.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230117940",
+      "position": [
+        22.14382,
+        60.4403
+      ],
+      "reported_at": "2026-11-05T08:26:08Z",
+      "heading_deg": 170.0,
+      "course_deg": 13.8,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "U614",
+      "type": "other",
+      "bearing_deg": 170.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230987410",
+      "position": [
+        22.21745,
+        60.43255
+      ],
+      "reported_at": "2026-11-05T08:26:07Z",
+      "heading_deg": 143.0,
+      "course_deg": 355.9,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "MERGUS",
+      "type": "passenger",
+      "bearing_deg": 143.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230176640",
+      "position": [
+        22.25102,
+        60.44313
+      ],
+      "reported_at": "2026-11-05T08:26:41Z",
+      "heading_deg": 48.0,
+      "course_deg": 50.5,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "LOVSKAR",
+      "type": "passenger",
+      "bearing_deg": 48.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230991740",
+      "position": [
+        22.15267,
+        60.44286
+      ],
+      "reported_at": "2026-11-05T08:26:06Z",
+      "heading_deg": 10.0,
+      "course_deg": 266.7,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "SAAGA",
+      "type": "cargo",
+      "bearing_deg": 10.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230225000",
+      "position": [
+        22.24147,
+        60.43774
+      ],
+      "reported_at": "2026-11-05T08:25:24Z",
+      "heading_deg": 43.0,
+      "course_deg": 37.2,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "HELENA",
+      "type": "other",
+      "bearing_deg": 43.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230111650",
+      "position": [
+        22.15277,
+        60.4429
+      ],
+      "reported_at": "2026-11-05T08:25:47Z",
+      "heading_deg": 12.0,
+      "course_deg": 272.1,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "GAIA",
+      "type": "other",
+      "bearing_deg": 12.0,
+      "stale": false
+    },
+    {
+      "mmsi": "230716000",
+      "position": [
+        22.23129,
+        60.43412
+      ],
+      "reported_at": "2026-11-05T08:25:02Z",
+      "heading_deg": 232.0,
+      "course_deg": 250.8,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "KRAFT",
+      "type": "other",
+      "bearing_deg": 232.0,
+      "stale": false
+    }
+  ],
+  "fixture_note": "Genuine historical free-source capture; NOT current traffic. Original report timestamps preserved."
+}

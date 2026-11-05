@@ -3,7 +3,7 @@ name: Port of Call
 strategy: polling
 polling_verb: get
 # Replace this origin with your deployed HTTPS service before importing.
-polling_url: https://YOUR-BACKEND.example/api/v1/harbors/{{ harbor }}/vessels?scale={{ map_scale }}
+polling_url: https://YOUR-BACKEND.example/api/v1/harbors/{{ harbor }}/vessels?scale={{ map_scale }}&spotlight={{ ship_spotlight }}
 polling_headers: ''
 refresh_interval: 15
 framework_version: '3.4.4'
@@ -40,6 +40,11 @@ custom_fields:
       - 'Off': 'off'
       - 'On': 'on'
     default: 'off'
+  - keyname: ship_spotlight
+    field_type: boolean
+    name: Spotlight a ship
+    description: Highlight one fresh vessel with reported voyage details and available facts. Rotates about every three hours. Unknown origin stays unknown; no suitable ship shows the harbor overview.
+    default: false
   - keyname: display_mode
     field_type: select
     name: Display mode

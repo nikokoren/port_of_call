@@ -13,6 +13,7 @@ from .model import HARBORS
 from .catalog import verified_harbors
 from .snapshot import snapshot
 from .store import Store
+from .enrichment import Enricher
 
 
 @dataclass
@@ -53,6 +54,7 @@ def create_app(config=None, *, store=None, collect=True, clock=time.time):
         raise ValueError('Use a separate DB_PATH for each provider')
     store.state('provider', config.provider)
     collector = Collector(store, config)
+    enricher = Enricher(store, config.provider, clock=clock)
     cache, clients = {}, OrderedDict()
 
     @web.middleware
@@ -95,20 +97,26 @@ def create_app(config=None, *, store=None, collect=True, clock=time.time):
         if demo and not config.demo: raise web.HTTPNotFound()
         scale = request.query.get('scale','standard')
         if scale not in ('closer','standard','wider'): raise web.HTTPBadRequest(reason='Unknown scale')
-        key = (mid, scale, demo, int(clock()//30))
+        raw_focus = request.query.get('spotlight', '').lower()
+        if raw_focus not in ('', 'true', 'false', 'on', 'off', 'yes', 'no', '1', '0'):
+            raise web.HTTPBadRequest(reason='Unknown spotlight value')
+        spotlight = raw_focus in ('true', 'on', 'yes', '1')
+        key = (mid, scale, demo, spotlight, int(clock()//30))
         if key not in cache:
             if len(cache) >= 64: cache.clear()
             if demo:
                 from .demo import demo_store
                 ds = demo_store(port, clock())
-                payload = snapshot(ds, port, clock(), config.fresh, config.ttl, scale, True)
+                payload = snapshot(ds, port, clock(), config.fresh, config.ttl, scale, True, spotlight)
                 ds.close()
-            else: payload = snapshot(store, port, clock(), config.fresh, config.ttl, scale)
+            else:
+                payload = snapshot(store, port, clock(), config.fresh, config.ttl, scale, spotlight=spotlight)
+                if collect: enricher.enqueue(payload.get('focus'))
             def encode():
                 return json.dumps(payload, ensure_ascii=True, separators=(',',':')).encode()
             body = encode()
             # Bound bytes as well as vessel count, including long non-ASCII names.
-            while len(body) >= 15_000 and payload['vessels']:
+            while len(body) >= 15_000 and len(payload['vessels']) > (1 if payload.get('focus') else 0):
                 payload['vessels'].pop()
                 payload['shown'] = len(payload['vessels'])
                 payload['omitted'] = payload['total'] - payload['shown']
@@ -126,10 +134,10 @@ def create_app(config=None, *, store=None, collect=True, clock=time.time):
     app.router.add_get('/demo/api/v1/harbors/{port}/vessels', vessels)
 
     async def lifecycle(app):
-        task = asyncio.create_task(collector.run()) if collect else None
+        tasks = [asyncio.create_task(collector.run()), asyncio.create_task(enricher.run())] if collect else []
         yield
-        if task:
-            task.cancel()
+        for task in tasks: task.cancel()
+        for task in tasks:
             with suppress(asyncio.CancelledError): await task
         store.commit()
         if own_store: store.close()

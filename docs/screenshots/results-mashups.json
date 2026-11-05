@@ -96,5 +96,103 @@
       "inkFraction": 0.47596610417123236
     },
     "errors": []
+  },
+  {
+    "name": "spotlight-mashup-quadrants",
+    "copies": 4,
+    "positions": [
+      {
+        "cardInside": true,
+        "attributionClear": true,
+        "hiddenShips": 0,
+        "maxProjectionError": 3.635072336740095e-10,
+        "labelCollisions": 0,
+        "leaderCollisions": 0,
+        "labelsOutside": 0,
+        "labels": 1,
+        "leaders": 0,
+        "textOverflow": 0
+      },
+      {
+        "cardInside": true,
+        "attributionClear": true,
+        "hiddenShips": 0,
+        "maxProjectionError": 3.635072336740095e-10,
+        "labelCollisions": 0,
+        "leaderCollisions": 0,
+        "labelsOutside": 0,
+        "labels": 1,
+        "leaders": 0,
+        "textOverflow": 0
+      },
+      {
+        "cardInside": true,
+        "attributionClear": true,
+        "hiddenShips": 0,
+        "maxProjectionError": 3.635072336740095e-10,
+        "labelCollisions": 0,
+        "leaderCollisions": 0,
+        "labelsOutside": 0,
+        "labels": 1,
+        "leaders": 0,
+        "textOverflow": 0
+      },
+      {
+        "cardInside": true,
+        "attributionClear": true,
+        "hiddenShips": 0,
+        "maxProjectionError": 3.635072336740095e-10,
+        "labelCollisions": 0,
+        "leaderCollisions": 0,
+        "labelsOutside": 0,
+        "labels": 1,
+        "leaders": 0,
+        "textOverflow": 0
+      }
+    ],
+    "isolated": true,
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.3056041666666667
+    },
+    "errors": []
+  },
+  {
+    "name": "spotlight-mashup-halves",
+    "copies": 2,
+    "positions": [
+      {
+        "cardInside": true,
+        "attributionClear": true,
+        "hiddenShips": 0,
+        "maxProjectionError": 0.017759150677335054,
+        "labelCollisions": 0,
+        "leaderCollisions": 0,
+        "labelsOutside": 0,
+        "labels": 1,
+        "leaders": 0,
+        "textOverflow": 0
+      },
+      {
+        "cardInside": true,
+        "attributionClear": true,
+        "hiddenShips": 0,
+        "maxProjectionError": 0.017759150677335054,
+        "labelCollisions": 0,
+        "leaderCollisions": 0,
+        "labelsOutside": 0,
+        "labels": 1,
+        "leaders": 0,
+        "textOverflow": 0
+      }
+    ],
+    "isolated": true,
+    "pixels": {
+      "width": 1872,
+      "height": 1404,
+      "inkFraction": 0.20612352984147855
+    },
+    "errors": []
   }
 ]

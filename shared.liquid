@@ -10,6 +10,9 @@
 .poc__ship { position:absolute; transform:translate(-50%,-50%); z-index:3; color:var(--poc-ink); }
 .poc__ship svg { width:100%; height:100%; display:block; overflow:visible; }
 .poc__ship path { fill:currentColor; stroke:var(--poc-paper); stroke-width:2; paint-order:stroke; }
+.poc[data-focus]:not([data-focus=""]) .poc__ship:not(.poc__ship--featured) path { fill:var(--poc-paper); stroke:currentColor; stroke-width:1.3; }
+.poc__ship--featured { z-index:4; }
+.poc__ship--featured path { stroke-width:3; }
 .poc__ship--stale path { fill:var(--poc-paper); stroke:currentColor; stroke-width:1.8; }
 .poc__label { position:absolute; z-index:4; white-space:nowrap; line-height:1; pointer-events:none; }
 .poc__lines { position:absolute; inset:0; width:100%; height:100%; z-index:2; color:var(--poc-ink); pointer-events:none; }
@@ -102,6 +105,9 @@
         var pad=(W-r[2])*H>=W*r[1]?beside:above;
         if(W-pad.left-pad.right<40 || H-pad.top-pad.bottom<40)pad={top:g,right:g,bottom:g,left:g};
         TRMNLMaps.fit(map,[[bounds[0],bounds[1]],[bounds[2],bounds[3]]],{padding:pad,maxZoom:14});
+        var featured=el.querySelector('.poc__data li[data-featured="true"]');
+        if(featured)map.easeTo({center:[Number(featured.dataset.lon),Number(featured.dataset.lat)],
+          offset:[(pad.left-pad.right)/2,(pad.top-pad.bottom)/2],duration:0});
       }
       function draw(map) {
         el.querySelectorAll('.poc__ship,.poc__label,.poc__lines').forEach(function(n){n.remove();});
@@ -110,18 +116,19 @@
         el.querySelectorAll('.poc__data li').forEach(function (v) {
           var coord=[Number(v.dataset.lon),Number(v.dataset.lat)];
           if(!coord.every(Number.isFinite))return;
+          var featured=v.dataset.featured==='true',factor=featured?1.5:1;
           var pt=map.project(coord),bearing=v.dataset.bearing===''?null:Number(v.dataset.bearing);
           // Rotation-aware icon bounds; do not move markers to make room for names.
           var angle=(bearing||0)*Math.PI/180;
-          var iw=(Math.abs(Math.cos(angle))*16+Math.abs(Math.sin(angle))*20)*unit;
-          var ih=(Math.abs(Math.sin(angle))*16+Math.abs(Math.cos(angle))*20)*unit;
+          var iw=(Math.abs(Math.cos(angle))*16+Math.abs(Math.sin(angle))*20)*unit*factor;
+          var ih=(Math.abs(Math.sin(angle))*16+Math.abs(Math.cos(angle))*20)*unit*factor;
           var ib=[pt.x-iw/2,pt.y-ih/2,pt.x+iw/2,pt.y+ih/2];
           if(ib[0]<2||ib[1]<2||ib[2]>W-2||ib[3]>H-2||reserved.some(function(b){return PortOfCallLabels.overlaps(ib,b);})||
              shown.some(function(s){return Math.hypot(s.x-pt.x,s.y-pt.y)<size;}))return;
           var glyph=document.createElement('div');
-          glyph.className='poc__ship'+(v.dataset.stale==='true'?' poc__ship--stale':'');
-          glyph.style.left=pt.x+'px';glyph.style.top=pt.y+'px';glyph.style.width=(16*unit)+'px';glyph.style.height=(20*unit)+'px';
-          glyph.dataset.id=v.dataset.id;glyph.dataset.lon=coord[0];glyph.dataset.lat=coord[1];
+          glyph.className='poc__ship'+(featured?' poc__ship--featured':'')+(v.dataset.stale==='true'?' poc__ship--stale':'');
+          glyph.style.left=pt.x+'px';glyph.style.top=pt.y+'px';glyph.style.width=(16*unit*factor)+'px';glyph.style.height=(20*unit*factor)+'px';
+          glyph.dataset.featured=String(featured);glyph.dataset.id=v.dataset.id;glyph.dataset.lon=coord[0];glyph.dataset.lat=coord[1];
           glyph.title=v.dataset.name||v.dataset.id;
           glyph.innerHTML='<svg viewBox="0 0 18 22" aria-hidden="true"><path d="'+
             (bearing===null?'M9 4 L15 11 L9 18 L3 11 Z':'M9 1 L15 10 L13 20 L5 20 L3 10 Z')+'"/></svg>';
@@ -130,18 +137,24 @@
         });
         var count=el.querySelector('[data-poc-limited]'),total=Number(el.querySelector('[data-poc-total]').textContent)||0;
         count.textContent=shown.length<total?' · '+shown.length+' shown':'';
-        if(el.dataset.labels!=='on')return;
+        if(el.dataset.labels!=='on'&&!el.dataset.focus)return;
         var boxes=shown.map(function(s){return s.box;}).concat(reserved),lines=[];
         var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
         svg.setAttribute('class','poc__lines');svg.setAttribute('viewBox','0 0 '+W+' '+H);el.appendChild(svg);
         var placed=0,limit=full?6:quad?2:4;
-        shown.sort(function(a,b){return b.data.reported.localeCompare(a.data.reported)||a.data.id.localeCompare(b.data.id);}).forEach(function(s){
-          if(!s.data.name||placed>=limit)return;
+        shown.sort(function(a,b){return (b.data.featured==='true')-(a.data.featured==='true')||b.data.reported.localeCompare(a.data.reported)||a.data.id.localeCompare(b.data.id);}).forEach(function(s){
+          if(!s.data.name||placed>=limit||(el.dataset.labels!=='on'&&s.data.featured!=='true'))return;
           var label=document.createElement('span');label.className='poc__label label label--small text-stroke';
-          label.textContent=s.data.name;el.appendChild(label);
+          label.textContent=s.data.name;if(s.data.featured==='true'){label.classList.remove('text-stroke');label.classList.add('label--inverted');}el.appendChild(label);
           // Leave the same measurement safety margin used by Hotspots' font pass.
-          var result=PortOfCallLabels.plan({x:s.x,y:s.y,icon:s.box,width:Math.ceil(label.offsetWidth*1.08)+4,
-            height:label.offsetHeight+4,W:W,H:H,boxes:boxes,lines:lines,scale:unit});
+          function place(){return PortOfCallLabels.plan({x:s.x,y:s.y,icon:s.box,width:Math.ceil(label.offsetWidth*1.08)+4,
+            height:label.offsetHeight+4,W:W,H:H,boxes:boxes,lines:lines,scale:unit});}
+          var result=place(),nameChars=Array.from(s.data.name),chars=nameChars.length;
+          // A long featured name may be abbreviated on the map; the card and
+          // underlying data retain it. Never move the reported position.
+          while(!result&&s.data.featured==='true'&&chars>6){
+            chars=Math.max(6,chars-3);label.textContent=nameChars.slice(0,chars).join('')+'…';result=place();
+          }
           if(!result){label.remove();return;}
           label.dataset.id=s.data.id;label.style.left=(result.rect[0]+2)+'px';label.style.top=(result.rect[1]+2)+'px';
           boxes.push(result.rect);placed++;

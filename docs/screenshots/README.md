@@ -25,3 +25,19 @@ The official code assets were fetched from the pinned Git commit because direct 
 These renders use Downstream’s full-map layout, with a native outlined information box bottom left and an integer-zoom frame chosen to clear that box. Ship names use Hotspots’ adjacent/offset placement and leader lines, with fewer names in compact views. Both reference repositories are unchanged. Reports remain the same genuine historical captures, so changes in shown marker counts reflect framing/decluttering rather than new or invented traffic.
 
 The preview host explicitly isolates the screen’s stacking context, matching the device wrapper’s transformed screen. Without it, X mashup views with native negative stacking could produce an all-white PNG despite valid DOM geometry. `tests/preview-pixels.test.mjs` reproduces that class of false pass and the render scripts now reject it.
+
+## Ship Spotlight · 5 November 2026
+
+The Spotlight captures use genuine AIS observations at **08:28 UTC / 09:28 Europe/Berlin** on 5 November 2026, with original field/report times and free CC0 Wikidata facts. PLYCA's reported Hanko origin comes from a relevant actual Rauma Portnet call (Fintraffic CC BY 4.0), not inferred motion. The other archived subjects retain unknown origin. These are historical test captures, not current traffic.
+
+| Spotlight preview | Purpose |
+|---|---|
+| [Full](spotlight-full.png) | PLYCA, reported from Hanko / to Tilbury, available AIS and free reference facts |
+| [Half-horizontal](spotlight-half-horizontal.png), [half-vertical](spotlight-half-vertical.png), [quadrant](spotlight-quadrant.png) | Fewer facts and a protected, geographically exact highlighted ship |
+| [X](spotlight-x.png), [portrait](spotlight-portrait.png) | Large-screen native layout adaptations |
+| [One-bit](spotlight-one-bit.png), [dark](spotlight-dark.png) | Size/fill/outline distinction without color dependence |
+| [Four-quadrant mashup](spotlight-mashup-quadrants.png), [two-half mashup](spotlight-mashup-halves.png) | Independent map instances with highlighted subject and featured name |
+| [Long-name layout test](spotlight-layout-test.png) | **Synthetic name/destination text on archived real positions**, explicitly marked STATE TEST; tests abbreviation and card clipping |
+| [Selection fallback](spotlight-fallback.png) | **Artificial selection state on archived real positions**, explicitly marked STATE TEST; ordinary harbor overview when no subject qualifies |
+
+Ordinary names are Off for the genuine Spotlight cases: the featured name remains visible. Geometry checks require both its marker and label, and compare the marker with the map's actual projection to within one pixel. Full sweeps cover 29 individual views/states and four native mashups (12 independent map instances). Long map labels may be abbreviated; the card/data retain the subject's name. Native map camera framing moves the viewport, never the vessel coordinates.

@@ -492,5 +492,265 @@
       "inkFraction": 0.5181171875
     },
     "errors": []
+  },
+  {
+    "name": "spotlight-full",
+    "ready": "true",
+    "markers": 6,
+    "attribution": true,
+    "overflow": false,
+    "text": "",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.01772394759825983,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 1,
+      "leaders": 1,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.35528125
+    },
+    "errors": []
+  },
+  {
+    "name": "spotlight-half-horizontal",
+    "ready": "true",
+    "markers": 8,
+    "attribution": true,
+    "overflow": false,
+    "text": "",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.016435338495105357,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 1,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 240,
+      "inkFraction": 0.5127291666666667
+    },
+    "errors": []
+  },
+  {
+    "name": "spotlight-half-vertical",
+    "ready": "true",
+    "markers": 3,
+    "attribution": true,
+    "overflow": false,
+    "text": "",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.018559076766486594,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 1,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 400,
+      "height": 480,
+      "inkFraction": 0.19755729166666666
+    },
+    "errors": []
+  },
+  {
+    "name": "spotlight-quadrant",
+    "ready": "true",
+    "markers": 1,
+    "attribution": true,
+    "overflow": false,
+    "text": "",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 1.2433093682865224e-10,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 1,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 400,
+      "height": 240,
+      "inkFraction": 0.35165625
+    },
+    "errors": []
+  },
+  {
+    "name": "spotlight-x",
+    "ready": "true",
+    "markers": 9,
+    "attribution": true,
+    "overflow": false,
+    "text": "",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.01409119046816824,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 1,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 1872,
+      "height": 1404,
+      "inkFraction": 0.23932194645335672
+    },
+    "errors": []
+  },
+  {
+    "name": "spotlight-portrait",
+    "ready": "true",
+    "markers": 11,
+    "attribution": true,
+    "overflow": false,
+    "text": "",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.019413134645407074,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 1,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 1404,
+      "height": 1872,
+      "inkFraction": 0.626714423990065
+    },
+    "errors": []
+  },
+  {
+    "name": "spotlight-layout-test",
+    "ready": "true",
+    "markers": 1,
+    "attribution": true,
+    "overflow": false,
+    "text": "",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 1.2433093682865224e-10,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 1,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 400,
+      "height": 240,
+      "inkFraction": 0.36516666666666664
+    },
+    "errors": []
+  },
+  {
+    "name": "spotlight-fallback",
+    "ready": "true",
+    "markers": 4,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.016382473498295254,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 2,
+      "leaders": 1,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 400,
+      "height": 240,
+      "inkFraction": 0.28389583333333335
+    },
+    "errors": []
+  },
+  {
+    "name": "spotlight-one-bit",
+    "ready": "true",
+    "markers": 11,
+    "attribution": true,
+    "overflow": false,
+    "text": "",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.017651231691253197,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 1,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.2858776041666667
+    },
+    "errors": []
+  },
+  {
+    "name": "spotlight-dark",
+    "ready": "true",
+    "markers": 9,
+    "attribution": true,
+    "overflow": false,
+    "text": "",
+    "geometry": {
+      "cardInside": true,
+      "attributionClear": true,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.019921376335459536,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelsOutside": 0,
+      "labels": 1,
+      "leaders": 0,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.20507291666666666
+    },
+    "errors": []
   }
 ]

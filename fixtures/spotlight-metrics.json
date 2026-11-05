@@ -1,0 +1,51 @@
+{
+  "captured_at": 1793867309.5822208,
+  "source": "Fintraffic / Digitraffic \u00b7 CC BY 4.0",
+  "harbors": [
+    {
+      "id": "helsinki",
+      "observations": 54,
+      "eligible": 54,
+      "fields": {
+        "imo": 26,
+        "destination": 50,
+        "eta": 39,
+        "length_m": 51,
+        "beam_m": 49,
+        "draught_m": 49,
+        "call_sign": 54
+      },
+      "spotlight": true
+    },
+    {
+      "id": "turku",
+      "observations": 25,
+      "eligible": 24,
+      "fields": {
+        "imo": 19,
+        "destination": 21,
+        "eta": 16,
+        "length_m": 23,
+        "beam_m": 22,
+        "draught_m": 20,
+        "call_sign": 24
+      },
+      "spotlight": true
+    },
+    {
+      "id": "rauma",
+      "observations": 18,
+      "eligible": 17,
+      "fields": {
+        "imo": 9,
+        "destination": 17,
+        "eta": 15,
+        "length_m": 16,
+        "beam_m": 15,
+        "draught_m": 16,
+        "call_sign": 17
+      },
+      "spotlight": true
+    }
+  ]
+}

@@ -58,3 +58,15 @@ For AISStream, run the private coverage workflow and promotion steps in [major-p
 - Names missing: static metadata may not be known or may be expired; valid positions still render. Names are optional in every layout, with smaller label budgets in compact views. A name is omitted if it would cover a ship, the information box, another name or attribution. Leader lines can place a name farther from its ship without moving the ship.
 - Too few markers: compare `total`, `shown`, `omitted` and the screen's decluttering notice; try Closer framing. Markers are never displaced to make room.
 - 429: use the cached endpoint/edge cache and do not forward untrusted IP headers. Standard refresh is 15 minutes, not one backend poll per device.
+
+## Test Ship Spotlight
+
+No additional account or paid service is needed. Keep the existing persistent SQLite volume; startup adds the fact, selection and free-cache tables. Allow HTTPS to `www.wikidata.org` for optional CC0 facts and `meri.digitraffic.fi` for the Finnish official port-call feed. After a genuine position/static collection, request:
+
+```sh
+curl -f 'http://127.0.0.1:8080/api/v1/harbors/helsinki/vessels?scale=standard&spotlight=true'
+```
+
+Expect `focus_mode: ship` and the selected MMSI first in `vessels`, or a truthful `focus_message` with harbor overview when no fresh suitable subject exists. First response uses AIS alone; later polls can include cached reference facts. Optional enrichment failure does not make health unhealthy or stop collection. Daily Wikidata requests stop at the hard shared limit; no upgrade is requested.
+
+Rebuild/import the six-file ZIP to receive the **Spotlight a ship** boolean, off by default. Preserve its `spotlight={{ ship_spotlight }}` polling parameter. Check names Off still leaves the featured name visible, each scale keeps the same subject, and each compact layout shows a legible card clear of the marker. A public deployment, hosted TRMNL capture and real device check still require your hosting/TRMNL access.
