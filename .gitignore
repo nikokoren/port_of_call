@@ -9,3 +9,11 @@ var/
 playwright-report/
 test-results/
 dist/
+cloudflare/.venv/
+cloudflare/.wrangler/
+cloudflare/src/port_of_call/
+cloudflare/build/
+cloudflare/.venv-workers/
+cloudflare/python_modules/
+.dev.vars
+.dev.vars.*

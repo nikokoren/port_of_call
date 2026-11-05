@@ -26,13 +26,12 @@ def reason_for(vessel):
 
 def choose(store, port, vessels, now):
     candidates = [v for v in vessels if contains(port['bbox'], v['position']) and eligible(v, now)]
-    current = store.db.execute('SELECT mmsi,selected_at,reason FROM focus_current WHERE port=?', (port['id'],)).fetchone()
+    current = store.current_focus(port['id'])
     if current and 0 <= now-current[1] < HOLD:
         held = next((v for v in candidates if v['mmsi'] == current[0]), None)
         if held: return held, current[1], reason_for(held)
     if not candidates: return None
-    history = {mid: (ts, category) for mid, ts, category in store.db.execute(
-        'SELECT mmsi,ts,category FROM focus_history WHERE port=?', (port['id'],))}
+    history = store.focus_history(port['id'])
     unseen = [v for v in candidates if now-history.get(v['mmsi'], (0, None))[0] >= COOLDOWN]
     pool = unseen or candidates  # Small harbors may repeat rather than fabricate a subject.
     lengths = sorted(value(v, 'length_m') for v in candidates if value(v, 'length_m'))
@@ -59,10 +58,7 @@ def choose(store, port, vessels, now):
     reason = reason_for(selected)
     mid = selected['mmsi']
     cat = str(value(selected, 'ship_type_code') or selected.get('type') or '')
-    store.db.execute('INSERT OR REPLACE INTO focus_current VALUES (?,?,?,?)', (port['id'], mid, now, reason))
-    store.db.execute('INSERT OR REPLACE INTO focus_history VALUES (?,?,?,?)', (port['id'], mid, now, cat))
-    store.db.execute('DELETE FROM focus_history WHERE port=? AND mmsi NOT IN (SELECT mmsi FROM focus_history WHERE port=? ORDER BY ts DESC LIMIT 64)', (port['id'], port['id']))
-    store.commit()
+    store.save_focus(port['id'], mid, now, reason, cat)
     return selected, now, reason
 
 

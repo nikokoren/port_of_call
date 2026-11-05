@@ -21,3 +21,44 @@ jobs:
         with:
           name: private-plugin
           path: dist/port-of-call.zip
+  cloudflare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: astral-sh/setup-uv@v7
+      - run: npm ci
+        working-directory: cloudflare
+      - run: python scripts/prepare_cloudflare.py
+      - run: uv sync --frozen && uv run pywrangler deploy --dry-run --outdir build
+        working-directory: cloudflare
+      - name: Native Workers runtime smoke test
+        run: |
+          set -e
+          mkdir -p var
+          (cd cloudflare && uv run pywrangler dev --port 8790 --ip 127.0.0.1 > ../var/cloudflare-runtime.log 2>&1) &
+          worker_pid=$!
+          trap 'kill "$worker_pid" 2>/dev/null || true' EXIT
+          python - <<'PY'
+          import time,urllib.request
+          for attempt in range(90):
+              try:
+                  with urllib.request.urlopen('http://127.0.0.1:8790/',timeout=5) as r:
+                      if r.status==200: break
+              except Exception: time.sleep(2)
+          else: raise SystemExit('Workers runtime did not start; inspect runtime artifact')
+          PY
+          python scripts/check_service.py http://127.0.0.1:8790 --allow-local --allow-degraded --all-framings --output var/cloudflare-smoke.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cloudflare-runtime-check
+          path: |
+            var/cloudflare-runtime.log
+            var/cloudflare-smoke.json
+          retention-days: 7

@@ -9,7 +9,6 @@ import logging
 import re
 import time
 from datetime import datetime, timezone
-import aiohttp
 from .facts import imo, text, radio_mid
 from .model import HARBORS, epoch, iso, mmsi
 
@@ -48,13 +47,11 @@ def port_key(raw):
 
 
 def cached(store, key, now):
-    row = store.db.execute('SELECT ts,payload FROM enrichment WHERE key=? AND expires>?', (CACHE_VERSION+key, now)).fetchone()
-    return (row[0], json.loads(row[1])) if row else None
+    return store.reference(CACHE_VERSION+key, now)
 
 
 def save_cache(store, key, payload, now, ttl):
-    store.db.execute('INSERT OR REPLACE INTO enrichment VALUES (?,?,?,?)', (CACHE_VERSION+key, now, now+ttl, json.dumps(payload)))
-    store.commit()
+    store.save_reference(CACHE_VERSION+key, payload, now, ttl)
 
 
 def resolve_port(store, raw, now):
@@ -92,8 +89,7 @@ def enrich_card(store, port, focus, now):
         focus['built_in'] = focus['enrichment'].get('built_in')
     code = PORT_CODES.get(port['id'])
     observed = epoch(focus['reported_at'])
-    for ts, payload in store.db.execute('SELECT ts,payload FROM port_calls WHERE ts>? AND ts<=? ORDER BY ts DESC', (now-7*86400, now)):
-        call = json.loads(payload)
+    for ts, call in store.recent_calls(now):
         if call['port'] != code: continue
         if focus.get('imo') and call.get('imo') and focus['imo'] != call['imo']: continue
         if not ((focus.get('imo') and focus['imo'] == call.get('imo')) or focus['mmsi'] == call.get('mmsi')): continue
@@ -299,7 +295,7 @@ class Enricher:
                         result = dict(facts=facts[:4], registry_country=registry_country, built_in=built_in, **source)
             save_cache(self.store, token, result, now, 30*86400 if result else 7*86400)
             return result
-        except (aiohttp.ClientError, asyncio.TimeoutError, ValueError, KeyError, TypeError) as exc:
+        except Exception as exc:
             log.warning('optional_enrichment_unavailable kind=%s error=%s', kind, type(exc).__name__)
             save_cache(self.store, token, None, now, 3600)
             return None
@@ -325,13 +321,14 @@ class Enricher:
                                  imo=imo(call.get('imoLloyds')), mmsi=mmsi(call.get('mmsi')),
                                  nationality=call.get('nationality') if re.fullmatch(r'[A-Z]{2}', str(call.get('nationality',''))) else None,
                                  ata=min(arrivals) if arrivals else None, atd=max(departures) if departures else None)
-                    self.store.db.execute('INSERT OR REPLACE INTO port_calls VALUES (?,?,?)', (str(call['portCallId']), ts, json.dumps(clean)))
+                    self.store.save_call(str(call['portCallId']), ts, clean)
                 except (ValueError, KeyError, TypeError): continue
             self.store.commit()
-        except (aiohttp.ClientError, asyncio.TimeoutError, ValueError, KeyError, TypeError) as exc:
+        except Exception as exc:
             log.warning('optional_portnet_unavailable error=%s', type(exc).__name__)
 
     async def run(self):
+        import aiohttp
         async with aiohttp.ClientSession(trust_env=True, timeout=aiohttp.ClientTimeout(total=30, sock_connect=10)) as session:
             while True:
                 await self.portnet(session)

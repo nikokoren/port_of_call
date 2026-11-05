@@ -81,3 +81,31 @@ class Store:
         return result
 
     def close(self): self.db.close()
+
+    def current_focus(self, port):
+        return self.db.execute('SELECT mmsi,selected_at,reason FROM focus_current WHERE port=?', (port,)).fetchone()
+
+    def focus_history(self, port):
+        return {mid: (ts, category) for mid, ts, category in self.db.execute(
+            'SELECT mmsi,ts,category FROM focus_history WHERE port=?', (port,))}
+
+    def save_focus(self, port, mid, now, reason, category):
+        self.db.execute('INSERT OR REPLACE INTO focus_current VALUES (?,?,?,?)', (port, mid, now, reason))
+        self.db.execute('INSERT OR REPLACE INTO focus_history VALUES (?,?,?,?)', (port, mid, now, category))
+        self.db.execute('DELETE FROM focus_history WHERE port=? AND mmsi NOT IN (SELECT mmsi FROM focus_history WHERE port=? ORDER BY ts DESC LIMIT 64)', (port, port))
+        self.commit()
+
+    def reference(self, key, now):
+        row = self.db.execute('SELECT ts,payload FROM enrichment WHERE key=? AND expires>?', (key, now)).fetchone()
+        return (row[0], json.loads(row[1])) if row else None
+
+    def save_reference(self, key, payload, now, ttl):
+        self.db.execute('INSERT OR REPLACE INTO enrichment VALUES (?,?,?,?)', (key, now, now+ttl, json.dumps(payload)))
+        self.commit()
+
+    def recent_calls(self, now):
+        return [(ts, json.loads(payload)) for ts, payload in self.db.execute(
+            'SELECT ts,payload FROM port_calls WHERE ts>? AND ts<=? ORDER BY ts DESC', (now-7*86400, now))]
+
+    def save_call(self, key, ts, clean):
+        self.db.execute('INSERT OR REPLACE INTO port_calls VALUES (?,?,?)', (key, ts, json.dumps(clean)))

@@ -1,0 +1,10 @@
+[project]
+name = "port-of-call-cloudflare"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "tzdata==2026.2",
+]
+
+[dependency-groups]
+dev = ["workers-py==1.17.9"]

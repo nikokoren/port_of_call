@@ -1,0 +1,270 @@
+"""One shared collector; in-memory ingestion and bounded SQLite checkpoints."""
+import asyncio
+import hashlib
+import json
+import time
+from collections import OrderedDict
+from urllib.parse import parse_qs, urlparse
+from workers import DurableObject, WorkerEntrypoint, Response, Request, fetch
+from js import TextDecoder, caches
+from pyodide.ffi import create_proxy
+from port_of_call import providers
+from port_of_call.catalog import verified_harbors, stream_harbors, subscription
+from port_of_call.enrichment import Enricher, HEADERS
+from port_of_call.memory_store import MemoryStore
+from port_of_call.model import contains
+from port_of_call.snapshot import snapshot
+from transport import FetchSession
+
+TTL, CHECKPOINT_SECONDS, CHUNK_SIZE = 3600, 300, 120_000
+HEADERS_OUT = {'Content-Type': 'application/json', 'X-Content-Type-Options': 'nosniff', 'Access-Control-Allow-Origin': '*'}
+
+
+def response(data, status=200, **headers):
+    body = None if status == 304 else data if isinstance(data, str) else json.dumps(data, separators=(',', ':'))
+    return Response(body, status=status, headers={**HEADERS_OUT, **headers})
+
+
+class EdgeStore(MemoryStore):
+    def __init__(self, sql, provider, payload):
+        super().__init__(payload)
+        self.sql, self.provider = sql, provider
+        sql.exec('CREATE TABLE IF NOT EXISTS control(key TEXT PRIMARY KEY, value TEXT)')
+        for key, value in sql.exec('SELECT key,value FROM control').raw().toArray():
+            if key == 'wikidata_daily_budget': self.data['states'][key] = value
+            elif key == 'focus:'+provider:
+                saved = json.loads(value)
+                self.data.update(current=saved['current'], history=saved['history'])
+
+    def state(self, key, value=None, *, commit=True):
+        result = super().state(key, value, commit=commit)
+        if value is not None and key == 'wikidata_daily_budget':
+            self.sql.exec('INSERT OR REPLACE INTO control VALUES (?,?)', key, str(value))
+        return result
+
+    def save_focus(self, *args):
+        super().save_focus(*args)
+        # Rare subject changes are durable immediately, preserving rotation after
+        # an eviction. High-frequency positions still use batched checkpoints.
+        value = json.dumps({k: self.data[k] for k in ('current', 'history')}, separators=(',', ':'))
+        self.sql.exec('INSERT OR REPLACE INTO control VALUES (?,?)', 'focus:'+self.provider, value)
+
+
+class Harbor(DurableObject):
+    def __init__(self, ctx, env):
+        super().__init__(ctx, env)
+        self.provider = str(env.PROVIDER)
+        self.active = verified_harbors(self.provider)
+        self.allowed = bool(self.active) and (self.provider == 'digitraffic' or (
+            str(env.AISSTREAM_RIGHTS_CONFIRMED) == 'true' and bool(getattr(env, 'AISSTREAM_API_KEY', ''))))
+        self.sql = self.ctx.storage.sql
+        self.sql.exec('CREATE TABLE IF NOT EXISTS checkpoint(provider TEXT, part INTEGER, payload TEXT, PRIMARY KEY(provider, part))')
+        rows = self.sql.exec('SELECT payload FROM checkpoint WHERE provider=? ORDER BY part', self.provider).raw().toArray()
+        self.store = EdgeStore(self.sql, self.provider, ''.join(row[0] for row in rows) if rows else None)
+        self.enricher = Enricher(self.store, self.provider)
+        self.session = FetchSession()
+        self.socket = None
+        self.proxies = []
+        self.connected = self.connecting = False
+        self.last_message = self.last_poll = self.last_maintenance = self.last_checkpoint = 0
+        self.retry_at, self.retry_delay = 0, 1
+        self.accepted = self.rejected = 0
+        self.lock = asyncio.Lock()
+        self.cache = {}
+        self.clients = OrderedDict()
+        self.started = False
+
+    def checkpoint(self, now):
+        body = self.store.checkpoint(now)
+        chunks = [body[i:i+CHUNK_SIZE] for i in range(0, len(body), CHUNK_SIZE)]
+        def write():
+            for part, chunk in enumerate(chunks):
+                self.sql.exec('INSERT OR REPLACE INTO checkpoint VALUES (?,?,?)', self.provider, part, chunk)
+            self.sql.exec('DELETE FROM checkpoint WHERE provider=? AND part>=?', self.provider, len(chunks))
+        callback = create_proxy(write)
+        try: self.ctx.storage.transactionSync(callback)
+        finally: callback.destroy()
+        self.last_checkpoint = now
+
+    def ingest(self, loc=None, static=None):
+        if loc and not any(contains(h['bbox'], loc['position']) for h in self.active.values()): return
+        self.store.put(loc, static)
+        if loc:
+            self.store.state('last_success', time.time())
+            self.accepted += 1
+
+    def receive(self, event):
+        self.last_message = time.time()
+        try:
+            raw = event.data if isinstance(event.data, str) else str(TextDecoder.new().decode(event.data))
+            if len(raw) > 256_000: raise ValueError('Oversized AIS frame')
+            data = json.loads(raw)
+            if data.get('error'):
+                self.disconnect()
+                return
+            loc, static = providers.aisstream(data, self.last_message)
+            self.ingest(loc, static)
+        except (ValueError, KeyError, TypeError): self.rejected += 1
+
+    def disconnect(self, *args):
+        socket, self.socket = self.socket, None
+        self.connected = False
+        if socket:
+            for name, callback in zip(('message', 'close', 'error'), self.proxies): socket.removeEventListener(name, callback)
+            try: socket.close(1000, 'Reconnect')
+            except Exception: pass
+        self.retry_at = time.time()+self.retry_delay
+        self.retry_delay = min(self.retry_delay*2, 300)
+
+    async def connect(self):
+        if self.connecting or self.socket or time.time() < self.retry_at: return
+        self.connecting = True
+        try:
+            for callback in self.proxies: callback.destroy()
+            self.proxies = []
+            result = await asyncio.wait_for(fetch('https://stream.aisstream.io/v0/stream',
+                headers={'Upgrade': 'websocket', 'Sec-WebSocket-Extensions': 'permessage-deflate'}), timeout=20)
+            socket = result.js_object.webSocket
+            if not socket: raise ValueError('AISStream upgrade rejected')
+            self.socket = socket
+            if 'permessage-deflate' not in (result.headers.get('Sec-WebSocket-Extensions') or ''):
+                raise ValueError('AISStream compression was not negotiated')
+            self.proxies = [create_proxy(self.receive), create_proxy(self.disconnect), create_proxy(self.disconnect)]
+            for name, callback in zip(('message', 'close', 'error'), self.proxies): socket.addEventListener(name, callback)
+            socket.accept()
+            # No await between accepting and sending the subscription.
+            socket.send(json.dumps(subscription(str(self.env.AISSTREAM_API_KEY), stream_harbors())))
+            self.connected, self.last_message, self.retry_delay = True, time.time(), 1
+        except Exception as exc:
+            self.disconnect()
+            print('aisstream_connect_failed', type(exc).__name__)
+        finally: self.connecting = False
+
+    async def poll(self, now):
+        if now-self.last_poll < 300: return
+        self.last_poll = now
+        try:
+            async with self.session.get('https://meri.digitraffic.fi/api/ais/v1/locations', headers=HEADERS) as r:
+                data = await r.json()
+            for feature in data['features']:
+                try: self.ingest(providers.digitraffic(feature, time.time()))
+                except (ValueError, KeyError, TypeError): self.rejected += 1
+            self.store.state('last_success', time.time())
+            self.connected = True
+        except Exception as exc:
+            self.connected = False
+            print('digitraffic_positions_failed', type(exc).__name__)
+            return
+        if now-float(self.store.state('metadata_success') or 0) < 3600: return
+        try:
+            async with self.session.get('https://meri.digitraffic.fi/api/ais/v1/vessels', headers=HEADERS) as r:
+                records = await r.json()
+            for record in records:
+                try:
+                    static = providers.digitraffic_static(record)
+                    if 0 <= now-static['updated_at'] < 7*86400: self.store.put(static=static)
+                except (ValueError, KeyError, TypeError): self.rejected += 1
+            self.store.state('metadata_success', now)
+        except Exception as exc: print('digitraffic_metadata_failed', type(exc).__name__)
+
+    async def tick(self):
+        async with self.lock:
+            if not self.allowed:
+                self.disconnect()
+                await self.ctx.storage.deleteAlarm()
+                return
+            now = time.time()
+            await self.ctx.storage.setAlarm(int((now+60)*1000))
+            if self.provider == 'aisstream':
+                if self.socket and now-self.last_message > 120: self.disconnect()
+                await self.connect()
+            else: await self.poll(now)
+            self.last_maintenance = now
+            self.store.prune(time.time(), TTL)
+            if time.time()-self.last_checkpoint >= CHECKPOINT_SECONDS: self.checkpoint(time.time())
+            await self.enricher.portnet(self.session)
+            if not self.enricher.queue.empty():
+                kind, key = self.enricher.queue.get_nowait()
+                try: await self.enricher.refresh(self.session, kind, key)
+                finally:
+                    self.enricher.pending.discard(kind+':'+key)
+                    self.enricher.queue.task_done()
+
+    async def alarm(self): await self.tick()
+
+    async def fetch(self, request):
+        if not self.allowed: return response({'error': 'Provider configuration or public-use permission missing'}, 503)
+        now = time.time()
+        path = urlparse(request.url).path
+        if path == '/_tick':
+            await self.tick()
+            return response({'status': 'started'})
+        if not self.started:
+            await self.ctx.storage.setAlarm(int(now*1000)+1)
+            self.started = True
+        if path == '/health':
+            last = float(self.store.state('last_success') or 0)
+            ready = bool(last and now-last < TTL)
+            return response(dict(status='ready' if ready else 'degraded', provider=self.provider,
+                feed_connected=self.connected, last_success_age_seconds=int(now-last) if last else None,
+                accepted=self.accepted, rejected=self.rejected,
+                checkpoint_age_seconds=int(now-self.last_checkpoint) if self.last_checkpoint else None),
+                200 if ready else 503, **{'Cache-Control': 'no-store'})
+        if path == '/api/v1/harbors':
+            return response({'harbors': list(self.active.values())}, **{'Cache-Control': 'public, max-age=3600'})
+        parts = path.strip('/').split('/')
+        if len(parts) != 5 or parts[:3] != ['api', 'v1', 'harbors'] or parts[4] != 'vessels' or parts[3] not in self.active:
+            return response({'error': 'Not found'}, 404)
+        query = parse_qs(urlparse(request.url).query, keep_blank_values=True)
+        scale, raw_focus = query.get('scale', ['standard'])[0], query.get('spotlight', ['false'])[0].lower()
+        if scale not in ('closer', 'standard', 'wider') or raw_focus not in ('', 'true', 'false', 'on', 'off', 'yes', 'no', '1', '0'):
+            return response({'error': 'Unknown scale or spotlight value'}, 400)
+        client = request.headers.get('CF-Connecting-IP') or 'shared'
+        minute = int(now//60)
+        count, period = self.clients.pop(client, (0, minute))
+        count = count+1 if period == minute else 1
+        self.clients[client] = (count, minute)
+        while len(self.clients) > 4096: self.clients.popitem(last=False)
+        if count > 120: return response({'error': 'Too many requests'}, 429, **{'Retry-After': '60'})
+        focus = raw_focus in ('true', 'on', 'yes', '1')
+        key = (parts[3], scale, focus, int(now//30))
+        if key not in self.cache:
+            if len(self.cache) >= 96: self.cache.clear()
+            payload = snapshot(self.store, self.active[parts[3]], now, scale=scale, spotlight=focus)
+            self.enricher.enqueue(payload.get('focus'))
+            def encode(): return json.dumps(payload, separators=(',', ':'), ensure_ascii=True)
+            body = encode()
+            while len(body) >= 15_000 and len(payload['vessels']) > (1 if payload.get('focus') else 0):
+                payload['vessels'].pop()
+                payload['shown'] = len(payload['vessels'])
+                payload['omitted'] = payload['total']-payload['shown']
+                body = encode()
+            self.cache[key] = body
+        body = self.cache[key]
+        etag = '"'+hashlib.sha256(body.encode()).hexdigest()[:24]+'"'
+        headers = {'Cache-Control': 'public, max-age=30', 'ETag': etag}
+        if request.headers.get('If-None-Match') == etag: return response('', 304, **headers)
+        return response(body, **headers)
+
+
+class Default(WorkerEntrypoint):
+    def stub(self): return self.env.HARBOR.get(self.env.HARBOR.idFromName('shared-v1'))
+
+    async def fetch(self, request):
+        if request.method not in ('GET', 'HEAD'): return response({'error': 'Method not allowed'}, 405)
+        path = urlparse(request.url).path
+        if path == '/':
+            return response({'name': 'Port of Call', 'catalog': '/api/v1/harbors', 'health': '/health',
+                             'source': 'https://github.com/nikokoren/port_of_call', 'notice': 'AIS is incomplete and delayed. Not for navigation.'})
+        if path != '/health' and not path.startswith('/api/v1/harbors'): return response({'error': 'Not found'}, 404)
+        cache = getattr(caches, 'default')
+        if path.endswith('/vessels'):
+            cached = await cache.match(request.js_object)
+            if cached: return Response(cached)
+        result = await self.stub().fetch(request)
+        if path.endswith('/vessels') and result.status == 200:
+            await cache.put(request.js_object, result.js_object.clone())
+        return result
+
+    async def scheduled(self, controller, ctx):
+        await self.stub().fetch(Request('https://collector.internal/_tick'))
