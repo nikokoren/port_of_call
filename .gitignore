@@ -17,3 +17,4 @@ cloudflare/.venv-workers/
 cloudflare/python_modules/
 .dev.vars
 .dev.vars.*
+site/

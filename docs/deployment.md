@@ -2,6 +2,8 @@
 
 No public backend or TRMNL plugin was deployed during implementation: hosting/DNS and TRMNL account access were not supplied. You can test the Python API now without credentials. To complete end-to-end testing, provide a Linux host with persistent disk and a public HTTPS hostname, then perform the plugin import in your account.
 
+For a free-account deployment without a VM or purchased domain, use [Cloudflare Workers Free](cloudflare.md). Its manual deployment workflow, native runtime checks, hourly public-service monitor and Pages download build are prepared. Cloudflare credentials and the private TRMNL import remain necessary.
+
 ## One small Linux VM
 
 Use Python 3.12+, durable disk, one process and normal outbound HTTPS to `meri.digitraffic.fi`. Ubuntu 24.04 is a suitable base. A 512 MB–1 GB VM should be sufficient for modest adoption; measure actual memory/bandwidth before promising a capacity. No GPU, Docker, Redis, Worker or background browser is needed on the host.

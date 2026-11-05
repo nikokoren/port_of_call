@@ -1,0 +1,39 @@
+name: Live service monitor
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: live-service-monitor
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - id: release
+        run: |
+          python - <<'PY'
+          import json,os
+          r=json.load(open('deploy/release.json'))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('origin='+(r.get('origin') or '')+'\n')
+          if not r.get('origin'):print('No production origin yet; monitor is prepared and will start after deployment.')
+          PY
+      - name: Verify freshness and every layout configuration
+        if: steps.release.outputs.origin != ''
+        env:
+          SERVICE_ORIGIN: ${{ steps.release.outputs.origin }}
+        run: python scripts/check_service.py "$SERVICE_ORIGIN" --all-framings
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.release.outputs.origin != ''
+        with:
+          name: aggregate-health-${{ github.run_id }}
+          path: var/release-check.json
+          if-no-files-found: warn
+          retention-days: 30

@@ -1,5 +1,13 @@
 name: Checks
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      live:
+        description: Include real Finnish feed and native restart validation
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -39,21 +47,13 @@ jobs:
         working-directory: cloudflare
       - name: Native Workers runtime smoke test
         run: |
-          set -e
-          mkdir -p var
-          (cd cloudflare && uv run pywrangler dev --port 8790 --ip 127.0.0.1 > ../var/cloudflare-runtime.log 2>&1) &
-          worker_pid=$!
-          trap 'kill "$worker_pid" 2>/dev/null || true' EXIT
-          python - <<'PY'
-          import time,urllib.request
-          for attempt in range(90):
-              try:
-                  with urllib.request.urlopen('http://127.0.0.1:8790/',timeout=5) as r:
-                      if r.status==200: break
-              except Exception: time.sleep(2)
-          else: raise SystemExit('Workers runtime did not start; inspect runtime artifact')
-          PY
-          python scripts/check_service.py http://127.0.0.1:8790 --allow-local --allow-degraded --all-framings --output var/cloudflare-smoke.json
+          if [ "$LIVE_CHECK" = true ]; then
+            python scripts/cloudflare_smoke.py --live
+          else
+            python scripts/cloudflare_smoke.py
+          fi
+        env:
+          LIVE_CHECK: ${{ inputs.live || false }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -61,4 +61,5 @@ jobs:
           path: |
             var/cloudflare-runtime.log
             var/cloudflare-smoke.json
+            var/cloudflare-live.json
           retention-days: 7
