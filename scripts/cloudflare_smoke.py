@@ -30,7 +30,7 @@ def main():
     def start(state):
         nonlocal process
         process = subprocess.Popen(['uv', 'run', 'pywrangler', 'dev', '--port', '8790', '--ip', '127.0.0.1',
-            '--persist-to', state], cwd=ROOT/'cloudflare', stdout=log, stderr=log, start_new_session=True)
+            '--persist-to', state, '--test-scheduled'], cwd=ROOT/'cloudflare', stdout=log, stderr=log, start_new_session=True)
         deadline = time.monotonic()+180
         while time.monotonic() < deadline:
             if process.poll() is not None: raise ValueError('Workers runtime exited; inspect runtime log')
@@ -47,7 +47,7 @@ def main():
         if not report['passed']: raise ValueError('Runtime contract failed')
         print('Native runtime contract passed: 18 snapshots and invalid-route checks')
         if not args.live: return
-        status, event, _, _ = get(ORIGIN+'/cdn-cgi/local/scheduled?format=json', timeout=120)
+        status, event, _, _ = get(ORIGIN+'/cdn-cgi/local/scheduled?format=json&cron=%2A%2F5+%2A+%2A+%2A+%2A', timeout=120)
         if status != 200 or event.get('outcome') not in (None, 'ok'):
             raise ValueError('Native cron handler failed')
         deadline = time.monotonic()+240

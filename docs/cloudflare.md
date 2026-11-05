@@ -19,7 +19,7 @@ If deployment succeeded but validation failed, the workflow retains the public U
 
 ## What runs
 
-- One Worker and one Durable Object, independent of subscriber count. A five-minute cron starts/restarts the service; one-minute alarms maintain it. AISStream uses one continuous outbound compressed WebSocket and sends its subscription immediately. New requests return warming promptly while collection starts.
+- One Worker and one Durable Object, independent of subscriber count. The first deployment health probe starts a durable one-minute alarm, which maintains collection. Public requests and the hourly external monitor restore a missing alarm. No account-level Cloudflare cron slot is needed. AISStream uses one continuous outbound compressed WebSocket and sends its subscription immediately. New requests return warming promptly while collection starts.
 - The same 15 KB schema-1 snapshots and settings work on both the Python VM and Cloudflare. All four Liquid layouts remain unchanged.
 - Recent positions and per-field facts live in bounded memory. Five-minute checkpoints atomically persist ASCII JSON chunks in SQLite, at most 8 MB. A crash can lose up to five minutes of positions, never refresh their timestamps. Selected subjects and the shared Wikidata daily request budget persist immediately.
 - There is one active provider. Checkpoint datasets are separated by provider in the same object's database; immediate code updates close the old collector before starting a new provider. The recipe is rebuilt to match.
@@ -55,3 +55,5 @@ python scripts/check_service.py https://port-of-call.YOUR-SUBDOMAIN.workers.dev 
 Cloudflare manages durable SQLite persistence; use its native recovery/PITR controls for disaster recovery. Never publish checkpoint contents or restore them with altered timestamps. Keep the original VM deployment available as an alternative. For local development, run `python scripts/prepare_cloudflare.py`, then `cd cloudflare && npm ci && uv sync --frozen && uv run pywrangler dev`. This environment blocks the runtime bundle CDN, so native runtime verification runs on GitHub Actions instead.
 
 Native runtime evidence: [GitHub run 42104240937](https://github.com/nikokoren/port_of_call/actions/runs/42104240937) collected genuine Finnish data on 5 November 2026 and passed all eighteen configurations plus native checkpoint/restart and subject recovery. Standard Spotlight scopes observed 42 Helsinki, 25 Turku and 18 Rauma vessels. This was local workerd on a GitHub runner, not deployment to a Cloudflare account or proof of free-tier capacity.
+
+The first account deployment reached Cloudflare successfully but found its five free cron slots already occupied. The service therefore uses Durable Object alarms and health-probe recovery, without changing any existing account cron jobs or upgrading the plan. Preview URLs are disabled so alternate deployment URLs cannot create extra active collectors.

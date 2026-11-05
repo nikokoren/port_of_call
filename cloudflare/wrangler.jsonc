@@ -4,6 +4,7 @@
   "compatibility_date": "2026-11-01",
   "compatibility_flags": ["python_workers"],
   "workers_dev": true,
+  "preview_urls": false,
   "vars": {
     "PROVIDER": "digitraffic",
     "AISSTREAM_RIGHTS_CONFIRMED": "false"
@@ -12,6 +13,5 @@
     "bindings": [{"name": "HARBOR", "class_name": "Harbor"}]
   },
   "migrations": [{"tag": "v1", "new_sqlite_classes": ["Harbor"]}],
-  "triggers": {"crons": ["*/5 * * * *"]},
   "observability": {"enabled": false}
 }

@@ -208,8 +208,9 @@ class Harbor(DurableObject):
         if path == '/_tick':
             await self.tick()
             return response({'status': 'started'})
-        if not self.started:
-            await self.ctx.storage.setAlarm(int(now*1000)+1)
+        if not self.started or now-self.last_maintenance > 120:
+            if not await self.ctx.storage.getAlarm():
+                await self.ctx.storage.setAlarm(int(now*1000)+1)
             self.started = True
         if path == '/health':
             last = float(self.store.state('last_success') or 0)
