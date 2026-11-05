@@ -45,11 +45,11 @@ The text follow-up validates ordered narrative copy, omission of missing origin/
 - [x] Bounded in-memory ingestion and atomic checkpoints; immediate durable rotation/budget updates; SQLite parity/restart/expiry tests.
 - [x] Native workerd build/start/18-snapshot smoke test on GitHub Actions. The `Checks` live input also passed genuine collection, checkpoints and subject recovery in [run 42104240937](https://github.com/nikokoren/port_of_call/actions/runs/42104240937); this is native workerd on a runner, not a public Cloudflare deployment.
 - [x] Manual deployment workflow, generated origin-specific ZIP, hourly live monitor, Pages setup/download site and community-listing draft.
-- [x] Cloudflare account/token securely supplied through repository secrets; public Finnish backend deployed and verified in [run 42119720182](https://github.com/nikokoren/port_of_call/actions/runs/42119720182). Its separate Pages job remains blocked.
-- [ ] Enable GitHub Pages Source = GitHub Actions. Enabling Pages through the current integration returned HTTP 403; the prepared workflow needs this repository setting.
+- [x] Cloudflare account/token securely supplied through repository secrets; public Finnish backend deployed and verified in [run 42119720182](https://github.com/nikokoren/port_of_call/actions/runs/42119720182). Its initial Pages job was blocked; the site is now published.
+- [x] GitHub Pages Source = GitHub Actions enabled by the user. [Publication 42120540201](https://github.com/nikokoren/port_of_call/actions/runs/42120540201) succeeded; the public HTML, release metadata and six-file ZIP were fetched and verified.
 - [ ] Import and verify in the user's private TRMNL plugin. No TRMNL account/plugin credentials were available.
 - [ ] Complete several days of live monitoring/quota observation after deployment. An installed hourly monitor is not a completed study.
 
 The current deployment status is machine-readable in `deploy/release.json`; the current origin is a verified private beta. AISStream terms/permission remain separately recorded in `deploy/aisstream-rights.json`. Neither check is bypassed by a working API key or a prepared workflow. See [Cloudflare operations](cloudflare.md) and [submission copy](community-listing.md).
 
-First public monitor: [run 42119977676](https://github.com/nikokoren/port_of_call/actions/runs/42119977676), successful. The six-file ZIP contains the live polling origin and the matching Finnish dropdown. GitHub Pages still requires Source = GitHub Actions; this does not block the backend or private-plugin artifact.
+First public monitor: [run 42119977676](https://github.com/nikokoren/port_of_call/actions/runs/42119977676), successful. The six-file ZIP contains the live polling origin and the matching Finnish dropdown. The [public setup/download site](https://nikokoren.github.io/port_of_call/) is live and its ZIP contains the verified Cloudflare polling origin.
