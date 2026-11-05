@@ -14,7 +14,7 @@ Local validation on **5 November 2026**: **52 backend tests**, **17 recipe/label
 
 A real credential-free backend served fresh Spotlight responses for all three Finnish harbors, added cached Wikidata facts on later responses, supplied a reported previous port only for matching actual Portnet calls, and kept the same subjects across scale changes and a process restart. Representative archived Spotlight captures/field-completeness counts are retained separately from the older overview fixtures. Downstream and Hotspots remain unchanged.
 
-The major-port profile retains the genuine secret-backed 900-second coverage evidence: fresh real reports in **13 of 15** areas, with exactly those 13 in its generated form. The new richer fields have parser tests and real Finnish capture evidence; AISStream-wide rich-field completeness remains unmeasured. Public-rights confirmation and deployment remain separate release gates.
+The major-port profile retains the genuine secret-backed 900-second coverage evidence: fresh real reports in **13 of 15** areas, with exactly those 13 in its generated form. The richer fields have parser tests, real Finnish capture evidence and a successful 120-second live AISStream follow-up: 833 current per-area observations and 93 eligible subjects in ten areas. Three areas had positions but insufficient static facts in that short cold-start window. Completeness and multi-day reliability remain unproven. Public-rights confirmation and deployment remain separate release gates.
 
 ## Required before community submission
 

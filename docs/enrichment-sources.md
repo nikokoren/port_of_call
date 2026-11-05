@@ -77,3 +77,9 @@ References: https://unlocode.unece.org/terms · https://github.com/datasets/un-l
 5. Add optional images/context only when useful and freely reusable. Missing or rate-limited enrichment should omit a fact rather than block the map or trigger a paid fallback.
 
 Hosting is a separate deployment question: no paid host has been approved or provisioned. Existing infrastructure or a verified sustainable free service should be assessed for the persistent collector; brief cron samples are not a replacement for continuous AIS collection. Free data does not by itself prove zero operating cost, and no such promise is made here.
+
+## Implementation evidence · 5 November 2026
+
+Ship Spotlight now uses the existing AIS fields plus optional exact-IMO Wikidata reference facts and relevant current Finnish Portnet calls. Genuine Finnish captures found 54/54, 24/25 and 17/18 suitable observations in Helsinki, Turku and Rauma, with source-specific field counts in `fixtures/spotlight-metrics.json`. A subsequent two-minute live AISStream follow-up observed 833 current per-area observations and 93 eligible subjects in ten areas; three covered areas had positions but insufficient static facts during this short cold start. See [aggregate evidence](coverage/README.md#spotlight-field-follow-up--5-november-2026).
+
+AIS ETA is retained without inventing a year. Digitraffic's draught is converted from decimetres; AISStream's floating-point draught is decoded metres, consistent with the upstream AIS decoder's `Field10` conversion (https://github.com/BertoldVdb/go-ais/blob/master/messages.go and https://github.com/BertoldVdb/go-ais/blob/master/codec.go). Saturated draught/dimension values are omitted rather than treated as exact measurements. Optional ship images and NOAA context remain future enhancements, not dependencies of this implementation.
