@@ -1,30 +1,42 @@
 {% assign opts = trmnl.plugin_settings.custom_fields_values %}
 <div class="layout layout--col h--full">
   <section class="map stretch w--full poc poc--quadrant" data-focus="{{ focus.mmsi | escape }}" data-status="{{ status | default: 'unavailable' | escape }}" data-labels="{{ opts.ship_labels | escape }}" data-mode="{{ opts.display_mode | default: 'map' | escape }}" data-bbox="{{ viewport | join: ',' | escape }}" data-center="{{ port.center | join: ',' | escape }}" aria-label="Recently reported vessel positions">
-    <aside class="absolute bottom--6 lg:bottom--8 left--3 z--2 p--3 bg--canvas outline flex flex--col flex--left gap--xsmall {% if focus or focus_requested %}w--[60cqw]{% else %}w--[92cqw]{% endif %} poc__box" data-poc-box>
+    {% if focus %}
+    <aside class="absolute bottom--3 left--3 z--2 p--2 bg--canvas outline flex flex--col flex--left gap--none w--[45cqw] poc__box" data-poc-box>
+      <span class="description label--small">Port of Call</span>
+      <span class="label label--small" data-poc-preview hidden></span>
+      {% if demo %}<span class="label label--small">DEMO · SYNTHETIC</span>{% endif %}
+      <span class="w--full title title--small lg:title" data-clamp="1">{{ port.name | escape }}</span>
+      <span class="w--full label label--small"><span><strong data-poc-total>{{ total }}</strong> reports<span data-poc-limited></span></span></span>
+      <span class="w--full label label--small">Updated {{ fetched_local | default: '—' | escape }}</span>
+      <span class="w--full description label--small poc__notice"{% if status == 'ok' %} hidden{% endif %}>{{ message | escape }}</span>
+      <span class="w--full label label--small"><span>{% if demo %}DEMO{% elsif attribution %}<a href="{{ attribution.url | escape }}">Fintraffic</a> · <a href="{{ attribution.license | escape }}">CC BY 4.0</a>{% else %}{{ source | escape }}{% endif %}</span></span>
+    </aside>
+    {% else %}
+    <aside class="absolute bottom--6 lg:bottom--8 left--3 z--2 p--3 bg--canvas outline flex flex--col flex--left gap--xsmall w--[92cqw] poc__box" data-poc-box>
 
       <span class="label label--small" data-poc-preview hidden></span>
       {% if demo %}<span class="label label--small">DEMO · SYNTHETIC POSITIONS</span>{% endif %}
-      {% if focus %}
-      <span class="w--full description label--small" data-clamp="1">Ship Spotlight · {{ port.name | escape }}</span>
-      <span class="w--full title title--small lg:title" data-clamp="1">{{ focus.name | escape }}</span>
-      {% if focus.destination %}<span class="w--full label label--small" data-clamp="1">Reported to {{ focus.destination_port.name | default: focus.destination.value | escape }}</span>{% endif %}
-      <div class="grid grid--cols-2 gap--small w--full">
-        {% for fact in focus.facts limit: 2 %}<div class="flex flex--col flex--left gap--none" title="{{ fact.source | escape }} · {{ fact.reported_at | escape }}"><span class="label label--small" data-clamp="1">{{ fact.value | escape }}</span></div>{% endfor %}
-      </div>
-      <span class="w--full label label--small">Position {{ focus.reported_local | escape }}</span>
-      <span class="w--full description label--small poc__notice"{% if status == 'ok' %} hidden{% endif %}>{{ message | escape }}</span>
-      <span hidden><strong data-poc-total>{{ total | default: 0 }}</strong><span data-poc-limited></span></span>
-      {% else %}
       <span class="w--full title title--small lg:title" data-clamp="2">{{ port.name | default: 'Harbor map' | escape }}</span>
       <span class="w--full label label--small lg:label--base"><span><strong data-poc-total>{{ total | default: 0 }}</strong> vessel reports<span data-poc-limited></span></span></span>
       <span class="w--full description label--small poc__notice"{% if status == 'ok' %} hidden{% endif %}>{{ message | default: 'Vessel feed unavailable' | escape }}</span>
+      {% if focus_message %}<span class="w--full description label--small">{{ focus_message | escape }}</span>{% endif %}
       <span class="w--full label label--small">{% if latest_report_local %}Report {{ latest_report_local | escape }}{% else %}No recent observation{% endif %}</span>
 
-      {% if focus_message %}<span class="w--full description label--small">{{ focus_message | escape }}</span>{% endif %}
-      {% endif %}
-      <span class="w--full label label--small"><span>{% if demo %}DEMO · not observed traffic{% elsif attribution %}<a href="{{ attribution.url | escape }}">{% if focus %}Fintraffic{% else %}Fintraffic / digitraffic.fi{% endif %}</a> · <a href="{{ attribution.license | escape }}">CC BY 4.0</a>{% else %}{{ source | default: 'Source unavailable' | escape }}{% endif %}</span></span>
+      <span class="w--full label label--small"><span>{% if demo %}DEMO · not observed traffic{% elsif attribution %}<a href="{{ attribution.url | escape }}">Fintraffic / digitraffic.fi</a> · <a href="{{ attribution.license | escape }}">CC BY 4.0</a>{% else %}{{ source | default: 'Source unavailable' | escape }}{% endif %}</span></span>
     </aside>
+    {% endif %}
+    {% if focus %}
+    {% assign ship_type = '' %}{% assign ship_size = '' %}{% assign ship_speed = '' %}
+    {% for fact in focus.facts %}{% if fact.label == 'Type' %}{% assign ship_type = fact.value %}{% elsif fact.label contains 'Length' %}{% assign ship_size = fact.value %}{% elsif fact.label == 'Speed' %}{% assign ship_speed = fact.value %}{% endif %}{% endfor %}
+    <aside class="poc__spotlight absolute z--2 p--2 bg--canvas outline flex flex--col flex--left gap--none w--[45cqw]" data-poc-spotlight data-id="{{ focus.mmsi | escape }}" aria-label="Ship Spotlight" style="opacity:0;left:8px;top:8px">
+      <span class="w--full title title--small lg:title--large" data-clamp="1">{{ focus.name | escape }}</span>
+      {% if ship_type %}<span class="w--full description label--small" data-clamp="1">{{ ship_type | escape }}</span>{% endif %}
+      {% if focus.destination %}<span class="w--full label label--small" data-clamp="1">Reported: {% if focus.origin %}{{ focus.origin.value | remove: 'Port of ' | escape }} → {% else %}To {% endif %}{{ focus.destination_port.name | default: focus.destination.value | remove: 'Port of ' | escape }}</span>{% endif %}
+      <span class="w--full label label--small" data-clamp="1">{% if ship_size %}{{ ship_size | escape }}{% endif %}{% if ship_speed %}{% if ship_size %} · {% endif %}{{ ship_speed | escape }}{% endif %}</span>
+      <span class="w--full description label--small" data-clamp="1">Position {{ focus.reported_local | escape }}</span>
+    </aside>
+    {% endif %}
     <ul class="poc__data" hidden>{% for v in vessels %}<li data-featured="{% if focus.mmsi == v.mmsi %}true{% else %}false{% endif %}" data-id="{{ v.mmsi | escape }}" data-lon="{{ v.position[0] }}" data-lat="{{ v.position[1] }}" data-bearing="{{ v.bearing_deg }}" data-stale="{{ v.stale }}" data-name="{{ v.name | escape }}" data-reported="{{ v.reported_at | escape }}"></li>{% endfor %}</ul>
   </section>
 </div>

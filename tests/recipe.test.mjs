@@ -38,16 +38,22 @@ test('Spotlight setting is a native off-by-default boolean',async()=>{
  const url=await engine.parseAndRender(settings.polling_url,{...fields,ship_spotlight:true});
  assert.ok(url.endsWith('&spotlight=true'));
 });
-for(const layout of layouts)test(`${layout}: Spotlight card, reserved subject and honest origin`,async()=>{
+for(const layout of layouts)test(`${layout}: independent Spotlight overlay and preserved harbor card`,async()=>{
  const data=JSON.parse(await readFile('fixtures/rauma-spotlight.json','utf8'));
  data.focus.name='<script>danger()</script>';
  const html=await render(layout,data,{ship_labels:'off',ship_spotlight:true});
  assert.ok(html.includes('Ship Spotlight'));assert.ok(html.includes('&lt;script&gt;'));
  assert.ok(html.includes('data-featured="true"'));assert.ok(!html.includes('<script>danger()'));
- assert.ok(html.includes('Reported to'));assert.ok(html.includes('Position '));
+ assert.ok(html.includes('Reported: '));assert.ok(html.includes('Position '));
+ assert.ok(html.includes('data-poc-spotlight'));assert.ok(html.includes('opacity:0;left:8px;top:8px'));assert.ok(html.includes('>Port of Call</span>'));
+ const harbor=html.match(/<aside[^>]*data-poc-box[^>]*>([\s\S]*?)<\/aside>/)[1];
+ const overlay=html.match(/<aside[^>]*data-poc-spotlight[^>]*>([\s\S]*?)<\/aside>/)[1];
+ assert.ok(harbor.includes(data.port.name));assert.ok(!harbor.includes('&lt;script&gt;'));
+ assert.ok(overlay.includes('&lt;script&gt;'));assert.ok(!overlay.includes('data-poc-total'));
+ assert.ok(overlay.includes('205 m'));assert.ok(overlay.includes('0 kn'));
  if(layout==='full'){
-  assert.ok(html.includes('Reported from'));assert.ok(html.includes('Wikidata'));assert.ok(html.includes('CC0'));
-  data.focus.origin=null;assert.ok((await render(layout,data)).includes('Previous port unknown'));
+  assert.ok(overlay.includes('Hanko → Tilbury'));
+  data.focus.origin=null;const unknown=await render(layout,data);assert.ok(unknown.includes('To Tilbury'));assert.ok(!unknown.includes('Hanko →'));
  }
  data.focus=null;data.focus_message='No suitable fresh ship · showing harbor';
  assert.ok((await render(layout,data)).includes(data.focus_message));

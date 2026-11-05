@@ -35,3 +35,21 @@ test('placement is deterministic and keeps names inside narrow views',()=>{
  const p=labels.plan(o);assert.ok(p);assert.deepEqual(p,labels.plan(o));
  assert.ok(p.rect[0]>=0&&p.rect[1]>=0&&p.rect[2]<=140&&p.rect[3]<=100);
 });
+
+test('extended ship label always has a connector and avoids fixed overlays',()=>{
+ const icon=[270,140,290,160],fixed=[[0,190,180,300],[250,280,400,300]];
+ const o={x:280,y:150,icon,width:170,height:95,W:400,H:300,fixed,ships:[],scale:1};
+ const p=labels.spotlight(o);assert.ok(p?.line);assert.ok(!labels.overlaps(p.rect,icon));
+ assert.ok(fixed.every(b=>!labels.overlaps(p.rect,b)));assert.ok(!labels.lineHits(p.line,fixed));
+ assert.deepEqual(p,labels.spotlight(o));
+ assert.ok(p.rect[0]>=8&&p.rect[1]>=8&&p.rect[2]<=392&&p.rect[3]<=292);
+});
+test('other vessels are soft obstacles for the extended label',()=>{
+ const o={x:350,y:150,icon:[340,140,360,160],width:170,height:95,W:400,H:300,fixed:[],ships:[[0,0,330,300]],scale:1};
+ const p=labels.spotlight(o);assert.ok(p);assert.equal(p.covered,1);
+ assert.equal(labels.spotlight({...o,fixed:[[0,0,400,300]]}),null);
+});
+test('compact extended label can share a view with the independent harbor key',()=>{
+ const o={x:280,y:110,icon:[268,95,292,125],width:171,height:84,W:380,H:220,fixed:[[8,116,182,212],[190,200,380,220]],ships:[],scale:1};
+ const p=labels.spotlight(o);assert.ok(p?.line);assert.ok(!o.fixed.some(b=>labels.overlaps(p.rect,b)));
+});

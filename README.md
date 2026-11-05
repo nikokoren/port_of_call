@@ -13,7 +13,7 @@ This is a browser preview with native TRMNL vector tiles and **genuine historica
 
 ![Ship Spotlight: PLYCA, genuine archive capture, 5 November 2026](docs/screenshots/spotlight-full.png)
 
-**Ship Spotlight** highlights one recent ship, its reported destination, available AIS facts and optional free reference facts. Previous port stays unknown unless a relevant official record supports it. This example is an archive, not current traffic. [Selection, freshness and free-source details](docs/ship-spotlight.md).
+**Ship Spotlight** adds a floating, connected ship annotation alongside the bottom-left harbor card. It highlights one recent ship in black and keeps context vessels grey, with a compact selection of reported facts. Previous port stays unknown unless a relevant official record supports it. This example is an archive, not current traffic. [Selection, freshness and free-source details](docs/ship-spotlight.md) · [Ranked overlay facts for review](docs/ship-spotlight-content.md).
 
 ## What works
 

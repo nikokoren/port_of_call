@@ -32,12 +32,14 @@ The Spotlight captures use genuine AIS observations at **08:28 UTC / 09:28 Europ
 
 | Spotlight preview | Purpose |
 |---|---|
-| [Full](spotlight-full.png) | PLYCA, reported from Hanko / to Tilbury, available AIS and free reference facts |
-| [Half-horizontal](spotlight-half-horizontal.png), [half-vertical](spotlight-half-vertical.png), [quadrant](spotlight-quadrant.png) | Fewer facts and a protected, geographically exact highlighted ship |
+| [Full](spotlight-full.png) | Independent harbor card plus connected PLYCA annotation, reported Hanko → Tilbury, grey context vessels |
+| [Half-horizontal](spotlight-half-horizontal.png), [half-vertical](spotlight-half-vertical.png), [quadrant](spotlight-quadrant.png) | Two independent overlays, a mandatory connector and a geographically exact highlighted ship |
 | [X](spotlight-x.png), [portrait](spotlight-portrait.png) | Large-screen native layout adaptations |
 | [One-bit](spotlight-one-bit.png), [dark](spotlight-dark.png) | Size/fill/outline distinction without color dependence |
 | [Four-quadrant mashup](spotlight-mashup-quadrants.png), [two-half mashup](spotlight-mashup-halves.png) | Independent map instances with highlighted subject and featured name |
 | [Long-name layout test](spotlight-layout-test.png) | **Synthetic name/destination text on archived real positions**, explicitly marked STATE TEST; tests abbreviation and card clipping |
 | [Selection fallback](spotlight-fallback.png) | **Artificial selection state on archived real positions**, explicitly marked STATE TEST; ordinary harbor overview when no subject qualifies |
 
-Ordinary names are Off for the genuine Spotlight cases: the featured name remains visible. Geometry checks require both its marker and label, and compare the marker with the map's actual projection to within one pixel. Full sweeps cover 29 individual views/states and four native mashups (12 independent map instances). Long map labels may be abbreviated; the card/data retain the subject's name. Native map camera framing moves the viewport, never the vessel coordinates.
+Ordinary names are Off for the genuine Spotlight cases: the featured name remains visible in its extended annotation. Geometry checks require both its marker and label, and compare the marker with the map's actual projection to within one pixel. Full sweeps cover 29 individual views/states and four native mashups (12 independent map instances). Long annotation text uses native clamping; the underlying data retains the complete subject name. Context ships may be covered by the annotation, while the selected ship, harbor key and map credit remain clear. Native map camera framing moves the viewport, never the vessel coordinates.
+
+The extended-label revision checks that the headline and at least three text rows are actually visible after native clamping, not merely that an empty card has valid bounds. It also checks the connector endpoint, separation of the harbor and ship overlays, permitted context occlusion and unchanged geographic projection. The plain harbor views retain their original inset layout. The annotation content is a provisional shortlist from the [ranked review](../ship-spotlight-content.md).
