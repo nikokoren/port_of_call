@@ -17,6 +17,7 @@ custom_fields:
     field_type: author_bio
     name: Port of Call
     description: See who's coming and going. Observed AIS positions from AISStream; coverage varies. See the maintainer's source and license notes. Optional vessel reference facts from <a href="https://www.wikidata.org/">Wikidata</a> (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>). Not for navigation.
+    email_address: isarworks@gmail.com
   - keyname: harbor
     field_type: select
     name: Which harbors?

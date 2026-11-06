@@ -108,5 +108,6 @@ class FalseCodes(unittest.TestCase):
         self.assertEqual(parse('BELLINGHAM')['text'], 'Bellingham')
         self.assertEqual(parse('CLEAN WATER')['text'], 'Clean Water')
         self.assertEqual(destination_text('CLEAN WATER'), 'Clean Water')
-        for raw, code in {'DEBRVDEBRK': 'DEBRK', 'BEANRMAPTM': 'MAPTM', 'DEHAMCASJB': 'CASJB'}.items():
+        for raw, code in {'DEBRVDEBRK': 'DEBRK', 'BEANRMAPTM': 'MAPTM', 'DEHAMCASJB': 'CASJB', 'NLEURGBIMM': 'GBIMM',
+                          'ROTTERDAM BOTLEK BO': 'NLRTM', 'NLRTM00102CITYX1033': 'NLRTM'}.items():
             self.assertEqual(parse(raw)['code'], code, raw)

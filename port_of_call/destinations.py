@@ -104,7 +104,8 @@ def parse(raw):
     # ten-letter word like "BELLINGHAM" is never split into two codes.
     m = re.fullmatch(rf'({CODE})\s*([-/]?)\s*({CODE})', target)
     if m and _code(m.group(1)) and _code(m.group(3)) and (
-            m.group(2) or ' ' in target or {_code(m.group(1)), _code(m.group(3))} & CATALOG):
+            m.group(2) or ' ' in target or {_code(m.group(1)), _code(m.group(3))} & CATALOG
+            or m.group(1)[:2] in MAJOR and m.group(3)[:2] in MAJOR):
         return dict(code=_code(m.group(3)), text=None)
     words = target.split()
     # A country code in front of a port name or code: "US SAVANNAH", "SG AWPB".
@@ -121,10 +122,11 @@ def parse(raw):
             # A short abbreviation must stand alone ("HH", not "HH 4"); names may
             # carry berth or state detail, but never an alternative port.
             if len(name) <= 3 and rest: break
-            if {'OR', 'AND', '&'} & set(rest) or any(w in NAMES for w in rest if len(w) > 3): break
+            if {'OR', 'AND', '&'} & set(rest) or any(NAMES.get(w, NAMES[name]) != NAMES[name] for w in rest if len(w) > 3): break
             return dict(code=NAMES[name], text=None)
     # A code, optionally followed by a berth or anchorage: "SGSIN AEBA - P28".
-    m = re.match(rf'({CODE})(?![A-Z0-9])', target)
+    # Digits may follow directly: berth numbers like "NLRTM00102CITYX1033".
+    m = re.match(rf'({CODE})(?![A-Z])', target)
     if m and _code(m.group(1)):
         # A pronounceable first word ("BATAM", "CLEAN WATER") keeps its text in
         # case no such code exists; codes like "DEBRB" or "SGSIN" do not.

@@ -5,9 +5,9 @@
     <aside class="p--2 lg:p--3 bg--canvas outline flex flex--col flex--left gap--xsmall w--[48cqw] portrait:w--[60cqw] poc__box" data-poc-box>
       <span class="label label--small">Port of Call</span>
       {% if demo %}<span class="label label--small">DEMO · SYNTHETIC POSITIONS</span>{% endif %}
-      <span class="w--full title title--small lg:title--large" data-clamp="3">{{ port.name | default: 'Harbor' | escape }}{% if port.country and port.country != port.name %}, {{ port.country | escape }}{% endif %}</span>
-      <span class="w--full label label--small" data-clamp="3">{{ total | default: 0 }} vessels near this port</span>
-      {% if opts.port_facts == true or opts.port_facts == 'true' %}{% if port_fact.text %}<span class="w--full label label--small" data-clamp="3" data-poc-port-fact>{{ port_fact.text | escape }}</span>{% endif %}{% endif %}
+      <span class="w--full title title--small lg:title--large" data-clamp="3">{{ port.name | default: 'Harbor' | split: ' — ' | first | escape }}{% if port.country and port.country != port.name %}, {{ port.country | escape }}{% endif %}</span>
+      <span class="w--full label label--small lg:label--large" data-clamp="3">{{ total | default: 0 }} vessels near this port</span>
+      {% if opts.port_facts == true or opts.port_facts == 'true' %}{% if port_fact.text %}<span class="w--full label label--small lg:label--large" data-clamp="3" data-poc-port-fact>{{ port_fact.text | escape }}</span>{% endif %}{% endif %}
       <span hidden><strong data-poc-total>{{ total | default: 0 }}</strong><span data-poc-limited></span></span>
       <span class="w--full description poc__notice"{% if status == 'ok' %} hidden{% endif %}>{{ message | default: 'Vessel feed unavailable' | escape }}</span>
       {% if focus_message %}<span class="w--full label label--small" data-clamp="2">{{ focus_message | escape }}</span>{% endif %}
@@ -19,13 +19,13 @@
     </div>
     {% if focus %}
     {% assign copy = focus.presentation %}
-    <aside class="poc__spotlight absolute z--2 p--2 inverse outline flex flex--col flex--left gap--xsmall w--auto w--min-[48cqw] w--max-[56cqw]" data-poc-spotlight data-id="{{ focus.mmsi | escape }}" aria-label="Ship Spotlight" style="opacity:0;left:8px;top:8px">
-      <span class="w--full title title--base lg:title--large" data-clamp="1">{{ focus.name | escape }}</span>
-      {% if copy.vessel_type %}<span class="w--full label label--small" data-clamp="1">{{ copy.vessel_type | escape }}</span>{% endif %}
+    <aside class="poc__spotlight poc__spotlight--pending absolute z--2 p--2 inverse outline flex flex--col flex--left gap--xsmall w--auto w--min-[48cqw] w--max-[56cqw]" data-poc-spotlight data-id="{{ focus.mmsi | escape }}" aria-label="Ship Spotlight">
+      <span class="w--full title title--base lg:title--large" data-clamp="1" data-clamp-lg="2">{{ focus.name | escape }}</span>
+      {% if copy.vessel_type %}<span class="w--full label label--small" data-clamp="1" data-clamp-lg="2">{{ copy.vessel_type | escape }}</span>{% endif %}
       {% if copy.flag %}<span class="w--full label label--small" data-clamp="2">{{ copy.flag | escape }}</span>{% endif %}
       {% if copy.journey %}<span class="w--full label label--small" data-clamp="3"><span><strong>{{ copy.journey.label | escape }}:</strong> {{ copy.journey.value | escape }}</span></span>{% endif %}
       {% if copy.eta %}<span class="w--full label label--small" data-clamp="2"><span><strong>ETA:</strong> {{ copy.eta | escape }}</span></span>{% endif %}
-      {% if copy.speed %}<span class="w--full label label--small" data-clamp="1"><span><strong>Current speed:</strong> {{ copy.speed | escape }}</span></span>{% endif %}
+      {% if copy.speed %}<span class="w--full label label--small" data-clamp="1" data-clamp-lg="2"><span><strong>Current speed:</strong> {{ copy.speed | escape }}</span></span>{% endif %}
       {% if copy.highlights.size > 0 %}<div class="w--full flex flex--col flex--left gap--none" data-poc-highlights>
         <span class="label label--small font--bold">Good to know</span>
         {% for fact in copy.highlights limit: 1 %}<span class="w--full label label--small" data-clamp="2">{{ fact | escape }}</span>{% endfor %}

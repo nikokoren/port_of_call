@@ -54,6 +54,24 @@ for(const layout of layouts){
  });
 }
 
+test('TRMNL review: contact, Spotlight clamp, no inline style or opacity, short harbor name',async()=>{
+ assert.equal(settings.custom_fields.find(f=>f.keyname==='author_bio').email_address,'isarworks@gmail.com');
+ const data=JSON.parse(await readFile('fixtures/rauma-spotlight.json','utf8'));
+ data.port={...data.port,name:'Seattle — Elliott Bay',country:'USA'};
+ for(const layout of layouts){
+  const source=await readFile(layout+'.liquid','utf8');
+  assert.doesNotMatch(source,/style="/,layout+': inline style');
+  assert.doesNotMatch(source,/opacity/,layout+': opacity');
+  const html=await render(layout,data,{port_facts:true});
+  assert.match(html,/<span class="w--full title [^"]*" data-clamp="1" data-clamp-lg="2">/);
+  assert.match(html,/class="poc__spotlight poc__spotlight--pending /);
+  assert.ok(html.includes('Seattle, USA'));assert.ok(!html.includes('Elliott Bay'));
+  // Larger count on large screens where the card has room; compact views keep it small.
+  if(layout==='full'||layout==='half_vertical')assert.match(html,/label--small lg:label--large" data-clamp="3">\d+ vessels/);
+ }
+ assert.doesNotMatch(await readFile('shared.liquid','utf8'),/opacity/);
+});
+
 test('Spotlight setting is a native off-by-default boolean',async()=>{
  assert.match(settings.custom_fields.find(f=>f.keyname==='author_bio').description,/Wikidata.*CC0/);
  assert.doesNotMatch(settings.description,/reported/i);

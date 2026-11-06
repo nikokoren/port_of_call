@@ -9,7 +9,10 @@
 .poc__credits { flex:1; min-width:0; }
 .poc .poc__attribution { position:static; white-space:normal; }
 .poc__attribution a { color:inherit; text-decoration:none; pointer-events:auto; }
-.poc__spotlight { z-index:6; }
+.poc__spotlight { z-index:6; left:8px; top:8px; }
+/* Hidden while it is measured and placed. Clipping keeps its text measurable
+   for native clamping (visibility:hidden would not), with no translucency on e-ink. */
+.poc__spotlight--pending { clip-path:inset(0 0 100% 0); }
 .poc__spotlight [hidden] { display:none; }
 .poc .poc__spotlight-lines { z-index:5; }
 .poc__box a { color:inherit; text-decoration:none; }
@@ -136,15 +139,16 @@
         notice.textContent=text;notice.hidden=false;el.dataset.mapReady='error';done=true;
       }
       function setDeadline() {clearTimeout(deadline);deadline=setTimeout(function(){failure('Map unavailable · check network access');},18000);}
-      function rect(node) {
-        var a=node.getBoundingClientRect(),b=el.getBoundingClientRect();
-        return [a.left-b.left,a.top-b.top,a.right-b.left,a.bottom-b.top];
-      }
+      // The framework scales the whole screen by --pixel-ratio (1.8 on TRMNL X).
+      // Client rects are scaled; map projection and layout sizes are not.
+      function pixelRatio() {var b=el.getBoundingClientRect();return el.offsetWidth?b.width/el.offsetWidth:1;}
+      function local(r,b,k) {return [(r.left-b.left)/k,(r.top-b.top)/k,(r.right-b.left)/k,(r.bottom-b.top)/k];}
+      function rect(node) {return local(node.getBoundingClientRect(),el.getBoundingClientRect(),pixelRatio());}
       function scale() {return Math.max(1,parseFloat(getComputedStyle(el.closest('.screen')).getPropertyValue('--ui-scale'))||1);}
       function blockers() {
-        var base=el.getBoundingClientRect(),boxes=[rect(box)];
+        var base=el.getBoundingClientRect(),k=pixelRatio(),boxes=[rect(box)];
         el.querySelectorAll('.map__attribution').forEach(function(n){
-          Array.from(n.getClientRects()).forEach(function(r){boxes.push([r.left-base.left,r.top-base.top,r.right-base.left,r.bottom-base.top]);});
+          Array.from(n.getClientRects()).forEach(function(r){boxes.push(local(r,base,k));});
         });
         return boxes;
       }
@@ -221,9 +225,9 @@
         var hl=overview?null:spotlight;el.dataset.spotlightFallback=overview?'true':'';
         el.querySelectorAll('.poc__ship,.poc__label,.poc__lines').forEach(function(n){n.remove();});
         var W=el.clientWidth,H=el.clientHeight,unit=scale(),size=(hl?11:16)*unit;
-        // Opacity preserves innerText for native data-clamp measurement.
-        // visibility:hidden would make the framework cache empty text.
-        if(spotlight)spotlight.style.opacity='0';
+        // The pending class clips the card but keeps innerText for native
+        // data-clamp measurement; visibility:hidden would cache empty text.
+        if(spotlight)spotlight.classList.add('poc__spotlight--pending');
         var reserved=blockers(),shown=[];
         el.querySelectorAll('.poc__data li').forEach(function (v) {
           var coord=[Number(v.dataset.lon),Number(v.dataset.lat)];
@@ -251,7 +255,7 @@
         if(hl&&featured){
           annotation=PortOfCallLabels.spotlight(spotlightOptions(featured,featured.box,shown.filter(function(s){return s!==featured;}).map(function(s){return s.box;})));
           if(annotation){
-            spotlight.style.left=annotation.rect[0]+'px';spotlight.style.top=annotation.rect[1]+'px';spotlight.style.opacity='1';
+            spotlight.style.left=annotation.rect[0]+'px';spotlight.style.top=annotation.rect[1]+'px';spotlight.classList.remove('poc__spotlight--pending');
             var connector=document.createElementNS('http://www.w3.org/2000/svg','svg');
             connector.setAttribute('class','poc__lines poc__spotlight-lines');connector.setAttribute('viewBox','0 0 '+W+' '+H);el.appendChild(connector);
             line(connector,annotation.line,featured.data.id);reserved.push(annotation.rect);

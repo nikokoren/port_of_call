@@ -3,11 +3,15 @@ export function geometry(root=document.querySelector('.poc')) {
  const map=root.__portOfCallMap,m=root.getBoundingClientRect();
  // A layout that cannot show the subject without moving the harbor view draws the overview instead.
  const focusId=root.dataset.spotlightFallback==='true'?'':root.dataset.focus;
- const rect=n=>{const r=n.getBoundingClientRect();return [r.left-m.left,r.top-m.top,r.right-m.left,r.bottom-m.top];};
+ // Undo the framework's screen scale (--pixel-ratio) so rects match map projection.
+ const k=root.offsetWidth?m.width/root.offsetWidth:1;
+ const local=r=>[(r.left-m.left)/k,(r.top-m.top)/k,(r.right-m.left)/k,(r.bottom-m.top)/k];
+ const rect=n=>local(n.getBoundingClientRect());
  const hit=(a,b)=>a[0]<b[2]-.5&&b[0]<a[2]-.5&&a[1]<b[3]-.5&&b[1]<a[3]-.5;
- const inside=b=>b[0]>=-1&&b[1]>=-1&&b[2]<=m.width+1&&b[3]<=m.height+1;
+ const W=root.offsetWidth,H=root.offsetHeight;
+ const inside=b=>b[0]>=-1&&b[1]>=-1&&b[2]<=W+1&&b[3]<=H+1;
  const card=rect(root.querySelector('[data-poc-box]'));
- const credits=[...root.querySelectorAll('.map__attribution')].flatMap(n=>[...n.getClientRects()].map(r=>[r.left-m.left,r.top-m.top,r.right-m.left,r.bottom-m.top]));
+ const credits=[...root.querySelectorAll('.map__attribution')].flatMap(n=>[...n.getClientRects()].map(local));
  const nodes=[...root.querySelectorAll('.poc__ship')];
  const ships=nodes.map(n=>({id:n.dataset.id,box:rect(n.querySelector('svg'))}));
  let maxProjectionError=0;
@@ -18,7 +22,7 @@ export function geometry(root=document.querySelector('.poc')) {
  const labels=[...root.querySelectorAll('.poc__label')].map(rect);
  const fixed=[card,...credits];
  const overlayNode=root.querySelector('[data-poc-spotlight]');
- const overlay=overlayNode&&Number(getComputedStyle(overlayNode).opacity)>0?rect(overlayNode):null;
+ const overlay=overlayNode&&!overlayNode.classList.contains('poc__spotlight--pending')&&!overlayNode.hidden?rect(overlayNode):null;
  const reserved=fixed.concat(overlay?[overlay]:[]);
  let labelCollisions=0,leaderCollisions=0;
  labels.forEach((r,i)=>{if(ships.some(s=>hit(r,s.box))||reserved.some(b=>hit(r,b))||labels.slice(0,i).some(b=>hit(r,b)))labelCollisions++;});
@@ -43,7 +47,7 @@ export function geometry(root=document.querySelector('.poc')) {
    x>=overlay[0]-.5&&x<=overlay[2]+.5&&y>=overlay[1]-.5&&y<=overlay[3]+.5&&
    Math.min(Math.abs(x-overlay[0]),Math.abs(x-overlay[2]),Math.abs(y-overlay[1]),Math.abs(y-overlay[3]))<.5;
  }
- const inset={left:card[0],bottom:m.height-card[3]};
+ const inset={left:card[0],bottom:H-card[3]};
  const edge=12*(parseFloat(getComputedStyle(root).getPropertyValue('--content-scale'))||1)+1;
  return {cardInside:inside(card),cardInset:inset,cardAtCorner:inset.left>=-1&&inset.left<=edge&&inset.bottom>=-1&&inset.bottom<=edge,attributionInside:credits.length>0&&credits.every(inside),attributionClear:credits.length>0&&credits.every(c=>!hit(card,c)),
   attributionTight:[...root.querySelectorAll('.map__attribution')].every(n=>getComputedStyle(n).display==='inline')&&getComputedStyle(root.querySelector('[data-poc-sources]')).backgroundColor==='rgba(0, 0, 0, 0)',
