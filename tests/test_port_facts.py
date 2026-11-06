@@ -12,7 +12,7 @@ class PortFacts(unittest.TestCase):
         for port in HARBORS.values():
             if not port.get('verified'): continue
             facts=FACTS[port['id']]
-            self.assertGreaterEqual(len(facts),2)
+            self.assertEqual(len(facts),4)
             self.assertEqual(len(facts),len({text for text,url in facts}))
             for text,url in facts:
                 self.assertLessEqual(len(text),100)
