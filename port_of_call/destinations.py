@@ -49,6 +49,9 @@ QUALIFIERS = {'PORT', 'HARBOR', 'HARBOUR', 'ANCH', 'ANCHORAGE', 'ROADS', 'OPL', 
 US_STATES = set('''AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY
 NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'''.split())
 CATALOG = set(NAMES.values())
+# Countries whose port codes dominate AIS traffic in our catalog; a token with
+# one of these prefixes is shown as a code until named ("USORF", not "Usorf").
+MAJOR = set('US GB DE NL BE FR ES IT PT IE DK SE NO FI PL RU CN JP KR SG TW HK IN AE SA EG MA TR GR CA MX BR'.split())
 ARROW = re.compile(r'\s*(?:->|=>|>|\bTO\b)\s*')
 CODE = r'[A-Z]{2} ?[A-Z2-9]{3}'
 
@@ -75,9 +78,10 @@ def _tidy(words):
     if len(words) > 1 and words[-1] in US_STATES: words = words[:-1]
     words = [w for w in words if w not in QUALIFIERS] or words
     def fix(w):
-        # Short consonant clusters are acronyms ("APM", "ASPP"); keep them as typed.
-        if not w.isalpha() or len(w) > 14 or not re.search(r'[AEIOUY]', w): return w
-        if len(w) <= 4 and re.search(r'[^AEIOUY]{2}', w): return w
+        # Letters, two-letter words and short consonant clusters are abbreviations
+        # ("NY", "APM"); a lone four-letter cluster is too ("ASPP"), "PARK" in a phrase is not.
+        if not w.isalpha() or len(w) > 14 or len(w) <= 2 or not re.search(r'[AEIOUY]', w): return w
+        if re.search(r'[^AEIOUY]{2}', w) and (len(w) <= 3 or len(w) == 4 and len(words) == 1): return w
         return w.capitalize()
     return ' '.join(fix(w) for w in words)
 
@@ -102,8 +106,14 @@ def parse(raw):
     if m and _code(m.group(1)) and _code(m.group(3)) and (
             m.group(2) or ' ' in target or {_code(m.group(1)), _code(m.group(3))} & CATALOG):
         return dict(code=_code(m.group(3)), text=None)
-    # A known port name at the start, then only qualifiers, a state or berth detail.
     words = target.split()
+    # A country code in front of a port name or code: "US SAVANNAH", "SG AWPB".
+    if len(words) > 1 and words[0] in ISO_COUNTRIES and not _code(' '.join(words[:2])):
+        inner = parse(' '.join(words[1:]))
+        if inner['code'] and inner['code'][:2] == words[0]: return dict(code=inner['code'], text=None)
+        # Singapore is one port, so any Singapore anchorage or terminal is Singapore.
+        if words[0] == 'SG': return dict(code='SGSIN', text=None)
+    # A known port name at the start, then only qualifiers, a state or berth detail.
     for n in range(min(3, len(words)), 0, -1):
         name = ' '.join(words[:n])
         if name in NAMES:
@@ -118,6 +128,7 @@ def parse(raw):
     if m and _code(m.group(1)):
         # A pronounceable first word ("BATAM", "CLEAN WATER") keeps its text in
         # case no such code exists; codes like "DEBRB" or "SGSIN" do not.
-        word = ' ' not in m.group(1) and _pronounceable(words[0])
+        code = _code(m.group(1))
+        word = ' ' not in m.group(1) and _pronounceable(words[0]) and code[:2] not in MAJOR
         return dict(code=_code(m.group(1)), text=_tidy(words) if word else None)
     return dict(code=None, text=_tidy(words))

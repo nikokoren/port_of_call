@@ -45,6 +45,15 @@ class Parsing(unittest.TestCase):
         self.assertEqual(parse('APM TERMINALS MAASVL')['text'], 'APM Terminals Maasvl')
         self.assertEqual(parse('AREA 51')['text'], 'Area 51')
         self.assertEqual(parse('ASPP')['text'], 'ASPP')
+        self.assertEqual(parse('NY')['text'], 'NY')
+        self.assertEqual(parse('I.T.C. DEER PARK')['text'], 'I T C Deer Park')
+
+    def test_country_prefixes_and_major_codes(self):
+        self.assertEqual(parse('US SAVANNAH')['code'], 'USSAV')
+        self.assertEqual(parse('SG AWPB')['code'], 'SGSIN')
+        self.assertEqual(parse('USORF'), dict(code='USORF', text=None))
+        self.assertEqual(parse('DE HAM'), dict(code='DEHAM', text=None))
+        self.assertEqual(parse('GB HAMBURG')['code'], None)
         for raw in ('XX XXX?? ???', 'US^0XDW0YWN', 'L', '', None):
             self.assertEqual(parse(raw), dict(code=None, text=None), raw)
 
