@@ -26,6 +26,23 @@ def deployment_config(provider):
     return rights
 
 
+# The checked-in settings.yml is the world profile, so only a world deploy may
+# move the primary release (site download and hourly monitor).
+PRIMARY_PROVIDER = 'aisstream'
+FRESHNESS = ('warming', 'stale')
+
+
+def release_files(provider):
+    files = ['finland-release.json' if provider == 'digitraffic' else 'world-release.json']
+    return files+['release.json'] if provider == PRIMARY_PROVIDER else files
+
+
+def only_catching_up(report):
+    # A restart reloads the last checkpoint (up to five minutes old); after an
+    # outage some views stay stale until fresh reports arrive. Anything else fails.
+    return bool(report['errors']) and all(e.rsplit(': ', 1)[-1] in FRESHNESS for e in report['errors'])
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--provider', choices=['digitraffic', 'aisstream'], default='digitraffic')
@@ -68,12 +85,17 @@ def main():
         time.sleep(10)
     else: raise ValueError('Worker deployed but feed did not become ready; see the deployment URL and Cloudflare logs')
     report = check(origin, all_framings=True)
+    for _ in range(5):
+        if report['passed'] or not only_catching_up(report): break
+        print('Feed catching up after restart:', len(report['errors']), 'views not yet fresh; re-checking in 60 s')
+        time.sleep(60)
+        report = check(origin, all_framings=True)
     (ROOT/'var/release-check.json').write_text(json.dumps(report, indent=2)+'\n')
     if not report['passed']: raise ValueError('Live validation failed; production recipe metadata was not promoted')
     revision = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
     release = dict(provider=args.provider, origin=origin, status='private-beta', revision=revision, verified_at=report['checked_at'])
-    (ROOT/'deploy'/('finland-release.json' if args.provider=='digitraffic' else 'world-release.json')).write_text(json.dumps(release, indent=2)+'\n')
-    (ROOT/'deploy/release.json').write_text(json.dumps(release, indent=2)+'\n')
+    for name in release_files(args.provider):
+        (ROOT/'deploy'/name).write_text(json.dumps(release, indent=2)+'\n')
     result_path.write_text(json.dumps(release, indent=2)+'\n')
     subprocess.run(['python', 'scripts/package_recipe.py', '--provider', args.provider, '--origin', origin], cwd=ROOT, check=True)
     print('Deployed and verified', origin, '; private-beta package ready. No community submission was performed.')

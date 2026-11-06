@@ -45,3 +45,14 @@ class DeploymentGates(unittest.TestCase):
             with patch.object(deploy_cloudflare, 'ROOT', root), patch.dict(os.environ, {}, clear=True):
                 with self.assertRaisesRegex(ValueError, 'AISSTREAM_API'):
                     deploy_cloudflare.deployment_config('aisstream')
+
+    def test_only_the_world_deploy_moves_the_primary_release(self):
+        self.assertEqual(deploy_cloudflare.release_files('aisstream'), ['world-release.json', 'release.json'])
+        self.assertEqual(deploy_cloudflare.release_files('digitraffic'), ['finland-release.json'])
+
+    def test_validation_waits_only_for_post_restart_freshness(self):
+        catching_up = dict(passed=False, errors=['charleston: stale', 'rotterdam: warming'])
+        self.assertTrue(deploy_cloudflare.only_catching_up(catching_up))
+        for errors in (['Invalid route accepted'], ['rotterdam: stale', 'Selected harbor not pinned'],
+                       ['rotterdam: unavailable'], []):
+            self.assertFalse(deploy_cloudflare.only_catching_up(dict(passed=not errors, errors=errors)))
