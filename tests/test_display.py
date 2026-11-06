@@ -16,7 +16,7 @@ class Copy(unittest.TestCase):
         result=focus_copy(self.base())
         self.assertEqual(result['vessel_type'],'Cargo vessel')
         self.assertEqual(result['flag'],'Flag: Netherlands')
-        self.assertEqual(result['journey']['value'],'Hanko, Finland → Tilbury, United Kingdom')
+        self.assertEqual(result['journey']['value'],'Hanko, Finland → Tilbury, UK')
         self.assertEqual(result['eta'],'10 Nov 04:00 UTC');self.assertEqual(result['speed'],'12 knots')
     def test_missing_origin_and_country_are_omitted(self):
         f=self.base();f['origin']=None;f['destination_port']['country']=None
@@ -51,3 +51,12 @@ class Copy(unittest.TestCase):
         self.assertEqual(result['flag'],'Flag: Netherlands')
         self.assertNotIn('draught',str(result).lower())
         self.assertNotIn('reported',str(result).lower())
+    def test_long_country_names_are_shortened_on_screen(self):
+        from port_of_call.model import HARBORS
+        self.assertEqual(HARBORS['southampton']['country'],'UK');self.assertEqual(HARBORS['houston']['country'],'USA')
+        f=self.base();f['flag']=dict(value='United States of America',method='mid_allocation')
+        f['built_in']=dict(label='Shipyard country',value='United Kingdom')
+        result=focus_copy(f)
+        self.assertEqual(result['flag'],'Flag: USA')
+        self.assertEqual(result['details'][0]['value'],'UK')
+        self.assertNotIn('United',str(result))

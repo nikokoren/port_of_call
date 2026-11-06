@@ -187,7 +187,7 @@
   {
     "id": "felixstowe",
     "name": "Felixstowe / Harwich",
-    "country": "United Kingdom",
+    "country": "UK",
     "timezone": "Europe/London",
     "center": [
       1.325,
@@ -216,7 +216,7 @@
   {
     "id": "southampton",
     "name": "Southampton",
-    "country": "United Kingdom",
+    "country": "UK",
     "timezone": "Europe/London",
     "center": [
       -1.35,
@@ -245,7 +245,7 @@
   {
     "id": "los-angeles-long-beach",
     "name": "Los Angeles / Long Beach",
-    "country": "United States",
+    "country": "USA",
     "timezone": "America/Los_Angeles",
     "center": [
       -118.205,
@@ -274,7 +274,7 @@
   {
     "id": "new-york-new-jersey",
     "name": "New York / New Jersey",
-    "country": "United States",
+    "country": "USA",
     "timezone": "America/New_York",
     "center": [
       -74.05,
@@ -303,7 +303,7 @@
   {
     "id": "savannah",
     "name": "Savannah",
-    "country": "United States",
+    "country": "USA",
     "timezone": "America/New_York",
     "center": [
       -81.01,
@@ -332,7 +332,7 @@
   {
     "id": "houston",
     "name": "Houston — Ship Channel",
-    "country": "United States",
+    "country": "USA",
     "timezone": "America/Chicago",
     "center": [
       -95.08,
@@ -361,7 +361,7 @@
   {
     "id": "seattle",
     "name": "Seattle — Elliott Bay",
-    "country": "United States",
+    "country": "USA",
     "timezone": "America/Los_Angeles",
     "center": [
       -122.37,
@@ -390,7 +390,7 @@
   {
     "id": "charleston",
     "name": "Charleston",
-    "country": "United States",
+    "country": "USA",
     "timezone": "America/New_York",
     "center": [
       -79.915,

@@ -68,7 +68,8 @@ for(const layout of layouts)test(`${layout}: ordered ship copy and map-level sou
  const harbor=html.match(/<aside[^>]*data-poc-box[^>]*>([\s\S]*?)<\/aside>/)[1];
  const overlay=html.match(/<aside[^>]*data-poc-spotlight[^>]*>([\s\S]*?)<\/aside>/)[1];
  assert.ok(harbor.includes('Port of Call'));assert.ok(harbor.includes('Rauma, Finland'));
- assert.ok(harbor.includes('vessels seen near this port'));
+ assert.ok(harbor.includes(layout==='full'?'vessels seen near this port':'vessels near this port'));
+ if(layout!=='full')assert.ok(!harbor.includes('vessels seen'));
  for(const removed of ['Archive','Fetched','Updated','Report ','CC BY','Fintraffic'])assert.ok(!harbor.includes(removed));
  assert.ok(html.includes('map__attribution'));assert.ok(html.includes('data-poc-sources'));assert.ok(html.includes('CC BY 4.0'));assert.ok(html.includes('OpenStreetMap'));
  assert.ok(overlay.includes('&lt;script&gt;'));assert.ok(!overlay.includes('<script>danger()'));
@@ -107,7 +108,7 @@ for(const layout of layouts)test(`${layout}: port facts are opt-in, escaped and 
  const on=await render(layout,data,{port_facts:true});
  const harbor=on.match(/<aside[^>]*data-poc-box[^>]*>([\s\S]*?)<\/aside>/)[1];
  assert.ok(harbor.includes('&lt;script&gt;bad()&lt;/script&gt;'));
- assert.ok(harbor.indexOf('data-poc-port-fact')>harbor.indexOf('vessels seen'));
+ assert.ok(harbor.indexOf('data-poc-port-fact')>harbor.indexOf('vessels '));
  if(layout==='quadrant'||layout==='half_horizontal')assert.ok(harbor.includes('hidden lg:block'));
  assert.ok(!on.includes('source_url'));
  assert.ok((await render(layout,data,{port_facts:'true'})).includes('data-poc-port-fact'));

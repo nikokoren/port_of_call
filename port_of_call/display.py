@@ -3,9 +3,19 @@ import re
 from datetime import datetime, timezone
 
 
+# Short forms for on-screen text; reference sources may supply the long names.
+SHORT_COUNTRIES = {'United Kingdom': 'UK', 'United Kingdom of Great Britain and Northern Ireland': 'UK',
+                   'United States': 'USA', 'United States of America': 'USA'}
+
+
+def short_country(name):
+    return SHORT_COUNTRIES.get(name, name) if isinstance(name, str) else name
+
+
 def place(name, country=None):
     if not name: return None
     name = name.removeprefix('Port of ')
+    country = short_country(country)
     return f'{name}, {country}' if country else name
 
 
@@ -51,7 +61,7 @@ def focus_copy(focus):
     method = flag.get('method')
     flag_text = None
     if flag.get('value'):
-        flag_text = ('Registry: ' if method=='registry_reference' else 'Flag: ')+flag['value']
+        flag_text = ('Registry: ' if method=='registry_reference' else 'Flag: ')+short_country(flag['value'])
     highlights = []
     if reference.get('In service'): highlights.append('In service since '+reference['In service'])
     if reference.get('Operator'): highlights.append('Operator: '+reference['Operator'])
@@ -59,7 +69,7 @@ def focus_copy(focus):
     details = []
     built = focus.get('built_in') or {}
     if built.get('value'):
-        value = built['value']
+        value = short_country(built['value'])
         # Service-entry year is not a build year. Only an explicitly supplied
         # construction year can accompany this country fact.
         year = built.get('year')
