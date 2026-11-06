@@ -1,6 +1,6 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from .model import DEFAULT_SCALE, HARBOR_ZOOM, viewport, contains, select, epoch, iso, bearing
+from .model import DEFAULT_SCALE, harbor_zoom, viewport, contains, select, epoch, iso, bearing
 from .spotlight import choose, focus_viewport, card
 from .display import focus_copy, label_voyage
 from .port_facts import port_fact
@@ -60,7 +60,7 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
     source = 'AISStream' if port['provider'] == 'aisstream' else 'Fintraffic / Digitraffic'
     if demo: source = 'Synthetic fixture — DEMO'
     # Fixed-zoom framing tells the map its zoom and centre; other scales fit the box.
-    camera = dict(zoom=HARBOR_ZOOM, center=list(focus['position'] if focus else port.get('focus') or port['center'])) if scale == 'harbor' else None
+    camera = dict(zoom=harbor_zoom(port), center=list(focus['position'] if focus else port.get('focus') or port['center'])) if scale == 'harbor' else None
     return dict(schema_version=1, display_mode='map', port=port, port_fact=port_fact(port['id'], now), viewport=box, camera=camera, source=source,
                 attribution={'label': 'Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS',
                     'url': 'https://www.digitraffic.fi/en/marine-traffic/',
