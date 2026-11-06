@@ -89,6 +89,15 @@ test('ship markers carry type, speed and length for their icons',async()=>{
  assert.match(shared,/poc__ship--stopped path \{ fill:var\(--poc-paper\)/);
  assert.match(shared,/poc__ship--stale path \{[^}]*stroke-dasharray/);
  assert.doesNotMatch(shared,/poc__wake|speedMarks|__pocSpeedStyle/);
+ // Ships under way are solid ink; only the Spotlight ship has a paper outline.
+ assert.match(shared,/\.poc__ship path \{ fill:currentColor; stroke:currentColor;/);
+ assert.match(shared,/\.poc__ship--featured path \{ stroke:var\(--poc-paper\)/);
+ // "Port of Call" one step up: always on full; on large screens only elsewhere,
+ // since the OG city name in those layouts is the same 16px.
+ for(const layout of layouts){
+  const source=await readFile(layout+'.liquid','utf8');
+  assert.ok(source.includes(layout==='full'?'<span class="label label--base">Port of Call':'<span class="label label--small lg:label--base">Port of Call'),layout);
+ }
 });
 
 test('Spotlight setting is a native off-by-default boolean',async()=>{
