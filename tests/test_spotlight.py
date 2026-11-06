@@ -191,10 +191,31 @@ class Enrichment(unittest.IsolatedAsyncioTestCase):
         entity=dict(id='Q1', labels={'en':{'value':'A real port'}}, claims={'P1937':[statement('DERSK')],
                     'P625':[statement(dict(globe='http://www.wikidata.org/entity/Q2',longitude=12,latitude=54))]})
         self.e.lookup=AsyncMock(return_value=entity)
-        result=await self.e.refresh(None,'port','DERSK')
-        self.assertEqual(result['position'],[12,54]);self.assertEqual(resolve_port(self.s,'DE RSK',NOW)['name'],'A real port')
+        result=await self.e.refresh(None,'port','DE RSK')
+        self.assertEqual(result['position'],[12,54]);self.assertEqual(result['code'],'DERSK')
+        self.assertEqual(resolve_port(self.s,'DE RSK',NOW)['name'],'A real port')
+        self.assertEqual(resolve_port(self.s,'DERSK',NOW)['name'],'A real port')
         self.assertIsNone(resolve_port(self.s,'HAMBURG OR ROTTERDAM',NOW))
         self.assertEqual(resolve_port(self.s,'NLRTM',NOW)['code'],'NLRTM')
+    async def test_unlocode_lookup_uses_wikidata_spaced_form(self):
+        # Wikidata stores P1937 as "GB IMM"; AIS gives "GB IMM" or "GBIMM".
+        port=dict(id='Q9', labels={'en':{'value':'Immingham'}}, claims={'P1937':[statement('GB IMM')],
+                  'P625':[statement(dict(globe='http://www.wikidata.org/entity/Q2',longitude=-0.19,latitude=53.63))]})
+        calls=[]
+        async def request(session,**params):
+            calls.append(params)
+            if params.get('list')=='search': return {'query':{'search':[{'title':'Q9'}]}}
+            return {'entities':{'Q9':port}}
+        self.e.request=request
+        focus=dict(mmsi='235000001',destination=dict(value='GB IMM'))
+        self.e.enqueue(focus)
+        self.assertIn('port:GB IMM',self.e.pending)
+        queued=[self.e.queue.get_nowait() for _ in range(self.e.queue.qsize())]
+        self.assertIn(('port','GB IMM'),queued);kind,key='port','GB IMM'
+        result=await self.e.refresh(None,kind,key)
+        self.assertEqual(calls[0]['srsearch'],'haswbstatement:"P1937=GB IMM"')
+        self.assertEqual(result['name'],'Immingham');self.assertEqual(result['code'],'GBIMM')
+        for raw in ('GB IMM','GBIMM','gb imm'):self.assertEqual(resolve_port(self.s,raw,NOW)['name'],'Immingham')
     async def test_only_relevant_actual_port_call_can_supply_origin(self):
         v=put(self.s,imo='9241061');focus=card(v,NOW,'Reported dimensions',NOW)
         base=dict(port='FIHEL',imo='9241061',mmsi=v['mmsi'],previous='NLRTM',ata=NOW-300,atd=None)

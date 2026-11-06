@@ -49,6 +49,12 @@ def port_key(raw):
     return key if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{3}', key) else None
 
 
+def locode_id(key):
+    # Wikidata stores UN/LOCODE (P1937) with a space: "GB IMM". AIS crews type
+    # either form; port_key normalizes to "GBIMM" for display and local data.
+    return key[:2]+' '+key[2:]
+
+
 def cached(store, key, now):
     return store.reference(CACHE_VERSION+key, now)
 
@@ -62,7 +68,7 @@ def resolve_port(store, raw, now):
     local = ALIASES.get(raw.strip().upper()) or LOCAL_PORTS.get(port_key(raw))
     if local: return {**local, 'source': local.get('source','Reviewed harbor catalog')}
     key = port_key(raw)
-    hit = cached(store, 'port:'+key, now) if key else None
+    hit = cached(store, 'port:'+locode_id(key), now) if key else None
     if hit and hit[1]:
         result = dict(hit[1])
         result['country'] = result.get('country') or country_name(store, key[:2], now)
@@ -179,7 +185,7 @@ class Enricher:
         for raw in [focus.get('destination', {}).get('value') if focus.get('destination') else None,
                     focus.get('origin', {}).get('code') if focus.get('origin') else None]:
             code = port_key(raw)
-            if code and code not in LOCAL_PORTS: keys.append(('port', code))
+            if code and code not in LOCAL_PORTS: keys.append(('port', locode_id(code)))
         flag_code = focus.get('flag_reported_country_code') or (focus.get('flag', {}).get('code') if focus.get('flag') else None)
         if flag_code and flag_code not in LOCAL_COUNTRIES: keys.append(('country', flag_code))
         for kind, key in keys:
@@ -208,14 +214,15 @@ class Enricher:
             return data
 
     async def lookup(self, session, prop, identifier):
-        data = await self.request(session, action='query', list='search', srsearch=f'haswbstatement:{prop}={identifier}',
+        data = await self.request(session, action='query', list='search', srsearch=f'haswbstatement:"{prop}={identifier}"',
                                   srnamespace=0, srlimit=4)
         hits = data.get('query', {}).get('search', [])
         if not hits or len(hits) > 3: return None
         ids = [h['title'] for h in hits if re.fullmatch(r'Q\d+', h.get('title', ''))]
         if not ids: return None
         entities = (await self.request(session, action='wbgetentities', ids='|'.join(ids), props='claims|labels', languages='en')).get('entities', {})
-        exact = [e for e in entities.values() if identifier in claim_values(e, prop)]
+        def norm(value): return value.replace(' ', '') if isinstance(value, str) else value
+        exact = [e for e in entities.values() if norm(identifier) in [norm(v) for v in claim_values(e, prop)]]
         return exact[0] if len(exact) == 1 else None
 
     async def refresh(self, session, kind, key):
@@ -256,7 +263,7 @@ class Enricher:
                         if country_id and not country:
                             countries = (await self.request(session, action='wbgetentities', ids=country_id, props='labels', languages='en')).get('entities', {})
                             country = label(countries.get(country_id, {}))
-                        result = dict(code=key, name=label(entity), country=country, position=[valid[0]['longitude'], valid[0]['latitude']], **source)
+                        result = dict(code=key.replace(' ', ''), name=label(entity), country=country, position=[valid[0]['longitude'], valid[0]['latitude']], **source)
                 else:
                     refs = {}
                     for prop, title in [('P289', 'Class'), ('P176', 'Builder'), ('P137', 'Operator'),

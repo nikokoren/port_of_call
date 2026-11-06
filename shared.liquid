@@ -308,9 +308,24 @@
                 map.on('moveend',function(){draw(map);});map.on('resize',function(){draw(map);});
                 if(done)return;
                 TRMNLMaps.ready(map).then(function(){
-                  if(done)return;draw(map);done=true;clearTimeout(deadline);el.dataset.mapReady='true';
+                  if(done)return;draw(map);
+                  // The framework's final text pass (clamping, fonts) can resize the
+                  // harbor card and the Spotlight card. Place overlays against the
+                  // final sizes before reporting ready, so the capture never sees an
+                  // annotation tucked under a card that grew.
                   if(window.terminalize)window.terminalize();
+                  fit(map,bounds);draw(map);
+                  done=true;clearTimeout(deadline);el.dataset.mapReady='true';
                 });
+                if(window.ResizeObserver){
+                  // Any later size change of a fixed card re-runs placement.
+                  var queued=false,sizes=new WeakMap(),ro=new ResizeObserver(function(entries){
+                    var changed=entries.some(function(e){var r=e.contentRect,k=r.width+'x'+r.height,old=sizes.get(e.target);sizes.set(e.target,k);return old!==undefined&&old!==k;});
+                    if(!changed||!done||queued)return;
+                    queued=true;requestAnimationFrame(function(){queued=false;if(map.getContainer().isConnected){fit(map,bounds);draw(map);}});
+                  });
+                  [box,spotlight,el.querySelector('[data-poc-sources]')].forEach(function(n){if(n)ro.observe(n);});
+                }
               });
             });
             map.on('remove',function(){el.querySelectorAll('.poc__ship,.poc__label,.poc__lines').forEach(function(n){n.remove();});});
