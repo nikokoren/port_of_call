@@ -1,6 +1,6 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from .model import viewport, contains, select, epoch, iso, bearing
+from .model import DEFAULT_SCALE, viewport, contains, select, epoch, iso, bearing
 from .spotlight import choose, focus_viewport, card
 from .display import focus_copy, label_voyage
 from .port_facts import port_fact
@@ -10,7 +10,7 @@ MESSAGES = {
     'stale': 'Latest positions may be outdated', 'unavailable': 'Vessel feed unavailable', 'ok': ''}
 
 
-def snapshot(store, port, now, fresh=1800, ttl=3600, scale='standard', demo=False, spotlight=False):
+def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=False, spotlight=False):
     box = viewport(port, scale)
     harbor_vessels = [v for v in store.vessels(now, ttl) if contains(port['bbox'], v['position'])]
     fetched = float(store.state('last_success') or 0)

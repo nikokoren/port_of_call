@@ -8,11 +8,12 @@ from .catalog import verified_harbors
 def release_settings(text, provider='digitraffic', *, origin=None, registry=None):
     harbors=list(verified_harbors(provider,registry).values())
     if not harbors: raise ValueError('No verified harbors for '+provider+'; candidate ports cannot be packaged')
-    block='  - keyname: harbor\n    field_type: select\n    name: Which harbor?\n    options:\n'
-    for h in harbors:
-        block+='      - '+json.dumps(h['name']+', '+h['country'],ensure_ascii=False)+': '+json.dumps(h['id'])+'\n'
-    block+='    default: '+harbors[0]['id']+'\n'
-    text,n=re.subn(r'  - keyname: harbor\n.*?(?=  - keyname:|\Z)',lambda m:block,text,count=1,flags=re.S)
+    # Keep the hand-written field header (name, help text, multiple/optional)
+    # and replace only its options with the verified catalog.
+    options='    options:\n'+''.join('      - '+json.dumps(h['name']+', '+h['country'],ensure_ascii=False)+': '+json.dumps(h['id'])+'\n'
+                                  for h in harbors)
+    text,n=re.subn(r'(  - keyname: harbor\n(?:(?!  - keyname:|    options:\n).*\n)*)    options:\n(?:      - .*\n)*(?:    default: .*\n)?',
+                   lambda m:m.group(1)+options,text,count=1)
     if n!=1: raise ValueError('Harbor form field not found')
     if provider=='aisstream':
         text=text.replace('around Finnish harbors.','around supported harbors.')
@@ -22,6 +23,7 @@ def release_settings(text, provider='digitraffic', *, origin=None, registry=None
         url=urlsplit(origin)
         if url.scheme!='https' or not url.hostname or url.username or url.password or url.query or url.fragment:
             raise ValueError('Polling origin must be HTTPS without credentials, query or fragment')
-        text=re.sub(r'(?m)^polling_url: .*?/api/v1/harbors/',
-                    'polling_url: '+origin.rstrip('/')+'/api/v1/harbors/',text,count=1)
+        text,n=re.subn(r'(?m)^polling_url: ("?)https://[^/\s"]+/api/v1/',
+                       lambda m:'polling_url: '+m.group(1)+origin.rstrip('/')+'/api/v1/',text,count=1)
+        if n!=1: raise ValueError('Polling URL not found')
     return text

@@ -85,9 +85,14 @@ def bearing(vessel):
     return None
 
 
-def viewport(port, scale='standard'):
+SCALES = {'closer': 0.48, 'standard': 0.76, 'wider': 1.0}
+# The recipe no longer offers a framing choice; every harbor uses this one.
+DEFAULT_SCALE = 'standard'
+
+
+def viewport(port, scale=DEFAULT_SCALE):
     # Wider is the subscribed/collected box. Standard and closer are nested.
-    factor = {'closer': 0.48, 'standard': 0.76, 'wider': 1.0}.get(scale, 0.76)
+    factor = SCALES.get(scale, SCALES[DEFAULT_SCALE])
     w, s, e, n = port['bbox']
     x, y = (w + e) / 2, (s + n) / 2
     return [round(x-(e-w)*factor/2, 6), round(y-(n-s)*factor/2, 6),

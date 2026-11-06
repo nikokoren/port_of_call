@@ -3,11 +3,11 @@ name: Port of Call
 strategy: polling
 polling_verb: get
 # Replace this origin with your deployed HTTPS service before importing.
-polling_url: https://YOUR-BACKEND.example/api/v1/harbors/{{ harbor }}/vessels?scale={{ map_scale }}&spotlight={{ ship_spotlight }}
+polling_url: "https://YOUR-BACKEND.example/api/v1/vessels?harbors={{ harbor | join: ',' }}&spotlight={{ ship_spotlight }}"
 polling_headers: ''
 refresh_interval: 15
 framework_version: '3.4.4'
-no_screen_padding: 'no'
+no_screen_padding: 'yes'
 dark_mode: 'no'
 static_data: ''
 description: Harbor maps and Ship Spotlight
@@ -18,39 +18,24 @@ custom_fields:
     description: See who's coming and going. Observed AIS positions, not port schedules. Source Fintraffic / digitraffic.fi, CC BY 4.0; filtered and normalized. Optional vessel reference facts from <a href="https://www.wikidata.org/">Wikidata</a> (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>). Not for navigation.
   - keyname: harbor
     field_type: select
-    name: Which harbor?
+    name: Which harbors?
+    description: Optional. Leave empty to cycle through every harbor, or pick several to cycle through those; each refresh shows the next one. Pick one to always show it. Use Cmd+click or Ctrl+click to select more than one.
+    multiple: true
+    optional: true
     options:
       - Helsinki, Finland: helsinki
       - Turku, Finland: turku
       - Rauma, Finland: rauma
-    default: helsinki
-  - keyname: map_scale
-    field_type: select
-    name: How much of the harbor?
-    options:
-      - Closer: closer
-      - Standard: standard
-      - Wider: wider
-    default: standard
   - keyname: ship_labels
-    field_type: select
+    field_type: boolean
     name: Show ship labels?
     description: Outlined labels show ship names and available voyage details in overview and Spotlight views. Missing origins stay omitted. Fewer labels fit in compact views.
-    options:
-      - 'Off': 'off'
-      - 'On': 'on'
-    default: 'off'
+    default: false
   - keyname: ship_spotlight
     field_type: boolean
     name: Spotlight a ship
     description: Highlight one fresh vessel with voyage details and available facts. Rotates about every three hours. Unknown origin stays unknown; no suitable ship shows the harbor overview.
     default: false
-  - keyname: display_mode
-    field_type: select
-    name: Display mode
-    options:
-      - Harbor Map: map
-    default: map
   - keyname: port_facts
     field_type: boolean
     name: Show port facts?

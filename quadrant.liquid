@@ -1,7 +1,7 @@
 {% assign opts = trmnl.plugin_settings.custom_fields_values %}
 <div class="layout layout--col h--full">
-  <section class="map stretch w--full poc poc--quadrant" data-focus="{{ focus.mmsi | escape }}" data-status="{{ status | default: 'unavailable' | escape }}" data-labels="{{ opts.ship_labels | escape }}" data-mode="{{ opts.display_mode | default: 'map' | escape }}" data-bbox="{{ viewport | join: ',' | escape }}" data-center="{{ port.center | join: ',' | escape }}" aria-label="Recent vessel positions">
-    <div class="absolute bottom--1 left--1 right--1 flex flex--row flex--bottom gap--small poc__corner">
+  <section class="map stretch w--full poc poc--quadrant" data-focus="{{ focus.mmsi | escape }}" data-status="{{ status | default: 'unavailable' | escape }}" data-labels="{% if opts.ship_labels == true or opts.ship_labels == 'true' or opts.ship_labels == 'on' %}on{% else %}off{% endif %}" data-bbox="{{ viewport | join: ',' | escape }}" data-center="{{ port.center | join: ',' | escape }}" aria-label="Recent vessel positions">
+    <div class="absolute bottom--3 left--3 right--3 flex flex--row flex--bottom gap--small poc__corner">
     <aside class="p--2 lg:p--3 bg--canvas outline flex flex--col flex--left gap--xsmall w--[45cqw] poc__box" data-poc-box>
       <span class="label label--small">Port of Call</span>
       {% if demo %}<span class="label label--small">DEMO · SYNTHETIC POSITIONS</span>{% endif %}

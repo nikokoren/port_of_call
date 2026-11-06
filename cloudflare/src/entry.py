@@ -12,7 +12,8 @@ from port_of_call import providers
 from port_of_call.catalog import verified_harbors, stream_harbors, subscription
 from port_of_call.enrichment import Enricher, HEADERS
 from port_of_call.memory_store import MemoryStore
-from port_of_call.model import contains
+from port_of_call.model import DEFAULT_SCALE, contains
+from port_of_call.rotation import parse_selection, rotate
 from port_of_call.snapshot import snapshot
 from port_of_call.payload import encode_snapshot
 from transport import FetchSession
@@ -244,10 +245,16 @@ class Harbor(DurableObject):
         if path == '/api/v1/harbors':
             return response({'harbors': list(self.active.values())}, **{'Cache-Control': 'public, max-age=3600'})
         parts = path.strip('/').split('/')
-        if len(parts) != 5 or parts[:3] != ['api', 'v1', 'harbors'] or parts[4] != 'vessels' or parts[3] not in self.active:
-            return response({'error': 'Not found'}, 404)
         query = parse_qs(urlparse(request.url).query, keep_blank_values=True)
-        scale, raw_focus = query.get('scale', ['standard'])[0], query.get('spotlight', ['false'])[0].lower()
+        if path == '/api/v1/vessels':
+            # Recipe endpoint: zero, one or several harbors; several rotate per refresh.
+            harbor = rotate(parse_selection(query.get('harbors', [''])[0], self.active), now)
+            scale = DEFAULT_SCALE
+        elif len(parts) == 5 and parts[:3] == ['api', 'v1', 'harbors'] and parts[4] == 'vessels' and parts[3] in self.active:
+            harbor, scale = parts[3], query.get('scale', [DEFAULT_SCALE])[0]
+        else:
+            return response({'error': 'Not found'}, 404)
+        raw_focus = query.get('spotlight', ['false'])[0].lower()
         if scale not in ('closer', 'standard', 'wider') or raw_focus not in ('', 'true', 'false', 'on', 'off', 'yes', 'no', '1', '0'):
             return response({'error': 'Unknown scale or spotlight value'}, 400)
         client = request.headers.get('CF-Connecting-IP') or 'shared'
@@ -258,10 +265,10 @@ class Harbor(DurableObject):
         while len(self.clients) > 4096: self.clients.popitem(last=False)
         if count > 120: return response({'error': 'Too many requests'}, 429, **{'Retry-After': '60'})
         focus = raw_focus in ('true', 'on', 'yes', '1')
-        key = (parts[3], scale, focus, int(now//30))
+        key = (harbor, scale, focus, int(now//30))
         if key not in self.cache:
             if len(self.cache) >= 96: self.cache.clear()
-            payload = snapshot(self.store, self.active[parts[3]], now, scale=scale, spotlight=focus)
+            payload = snapshot(self.store, self.active[harbor], now, scale=scale, spotlight=focus)
             self.enricher.enqueue(payload.get('focus'))
             self.cache[key] = encode_snapshot(payload)
         body = self.cache[key]
@@ -278,9 +285,9 @@ class Default(WorkerEntrypoint):
         if request.method not in ('GET', 'HEAD'): return response({'error': 'Method not allowed'}, 405)
         path = urlparse(request.url).path
         if path == '/':
-            return response({'name': 'Port of Call', 'catalog': '/api/v1/harbors', 'health': '/health',
+            return response({'name': 'Port of Call', 'catalog': '/api/v1/harbors', 'vessels': '/api/v1/vessels?harbors=', 'health': '/health',
                              'source': 'https://github.com/nikokoren/port_of_call', 'notice': 'AIS is incomplete and delayed. Not for navigation.'})
-        if path != '/health' and not path.startswith('/api/v1/harbors'): return response({'error': 'Not found'}, 404)
+        if path not in ('/health', '/api/v1/vessels') and not path.startswith('/api/v1/harbors'): return response({'error': 'Not found'}, 404)
         cache = getattr(caches, 'default')
         if path.endswith('/vessels'):
             cached = await cache.match(request.js_object)

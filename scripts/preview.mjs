@@ -17,7 +17,11 @@ http.createServer(async(req,res)=>{
   const fixture=u.searchParams.get('fixture')||'helsinki';
   if(!/^[a-z_-]+$/.test(fixture))throw new Error('fixture');
   const data=JSON.parse(await readFile('fixtures/'+fixture+'.json','utf8'));
-  let markup=(await render(layout,data,{ship_labels:u.searchParams.get('labels')||'off',port_facts:u.searchParams.get('facts')==='true'}))
+  // Fixtures are captured at the full observation box; optionally preview a nested framing.
+  const factor=Number(u.searchParams.get('frame'));
+  if(factor>0&&factor<=1&&data.viewport){const [w,s,e,n]=data.viewport,x=(w+e)/2,y=(s+n)/2;
+   data.viewport=[x-(e-w)*factor/2,y-(n-s)*factor/2,x+(e-w)*factor/2,y+(n-s)*factor/2];}
+  let markup=(await render(layout,data,{ship_labels:u.searchParams.get('labels')==='on',port_facts:u.searchParams.get('facts')==='true'}))
    .replaceAll('https://trmnl.com/js/maplibre-gl/5.24.0/','/assets/');
   let provenance='';
   if(!data.demo) {
@@ -40,6 +44,6 @@ http.createServer(async(req,res)=>{
    <link rel="stylesheet" href="/assets/plugins.css"><script src="/assets/plugins.js"></script>
    <style>html,body{margin:0;padding:0;background:white}.screen{isolation:isolate;position:relative!important;width:${width}px!important;height:${height}px!important;--screen-w:${w}px;--screen-h:${h}px;--device-ui-scale:${x?2:1};--ui-scale:${x?2:1};--content-scale:1;--color-depth:${x?4:device==='onebit'?1:2}}
    .preview-view{position:absolute;inset:0;width:100%;height:100%}</style></head>
-   <body class="trmnl">${provenance}<div class="screen screen--${x?'lg':'og'} screen--${x?'lg':'md'} screen--${x?'4':device==='onebit'?'1':'2'}bit ${dark?'screen--dark-mode':''} ${device==='portrait'?'screen--portrait':''}">${inner}</div></body></html>`);
+   <body class="trmnl">${provenance}<div class="screen screen--no-bleed screen--${x?'lg':'og'} screen--${x?'lg':'md'} screen--${x?'4':device==='onebit'?'1':'2'}bit ${dark?'screen--dark-mode':''} ${device==='portrait'?'screen--portrait':''}">${inner}</div></body></html>`);
  } catch(e) {res.statusCode=500;res.end(e.message);}
 }).listen(8787,'127.0.0.1',()=>console.log('Preview renderer listening on port 8787'));

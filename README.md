@@ -21,7 +21,7 @@ This is a browser preview with native TRMNL vector tiles and **genuine historica
 - Public JSON API, 30-second response cache, ETags and rate limiting; typical response below 15 KB.
 - Native `TRMNLMaps` / MapLibre, geographically anchored hulls, Hotspots-style outlined name/voyage labels and leader lines, decluttering and visible OpenStreetMap attribution.
 - Downstream-style full maps with a bottom-left information box in full, half-horizontal, half-vertical and quadrant layouts; OG and X landscape/portrait browser previews, including dark mode.
-- Harbor, framing, optional ship labels, **Spotlight a ship**, **Show port facts?** and Map-only display mode settings. Categories are retained internally but not exposed: type coverage is not sufficient to hide unknown vessels confidently.
+- Optional multi-select harbors (none cycles through every harbor, several cycle through those, one pins it), a single fixed framing tuned across all ports, **Show ship labels?**, **Spotlight a ship** and **Show port facts?** settings. The map runs edge to edge (`no_screen_padding: 'yes'`), with the harbor card and credits inset from the edge. Categories are retained internally but not exposed: type coverage is not sufficient to hide unknown vessels confidently.
 - An isolated synthetic demo endpoint, disabled by default. Production never loads fixtures.
 
 The Finnish catalog is deliberately limited, not the full reach of its feed: a further live check found reports around Hanko, Kotka, Oulu, Vaasa and Pori. Those candidate areas are not yet reviewed catalog entries.
@@ -45,7 +45,7 @@ No key is needed. The process reads exported variables; it **does not automatica
 
 ```sh
 curl -f http://127.0.0.1:8080/health
-curl -f 'http://127.0.0.1:8080/api/v1/harbors/helsinki/vessels?scale=wider'
+curl -f 'http://127.0.0.1:8080/api/v1/vessels?harbors=helsinki,turku'
 ```
 
 `/health` returns 503 until a successful fetch and when its last success is at least 60 minutes old. The snapshot endpoint still returns a deliberate `warming`, `empty`, `stale` or `unavailable` state. A successful HTTP fetch is distinct from the time of the latest vessel report. Configure `FRESH_SECONDS=1800`, `EXPIRE_SECONDS=3600` and `POLL_SECONDS=300` as needed; fresh must be shorter than expiry. Use a separate `DB_PATH` for each provider.
@@ -53,9 +53,9 @@ curl -f 'http://127.0.0.1:8080/api/v1/harbors/helsinki/vessels?scale=wider'
 ## Test as a private TRMNL plugin
 
 1. [Deploy the backend](docs/deployment.md) to a public HTTPS origin. Verify `/health` and all three harbor endpoints. A localhost address cannot be polled by hosted TRMNL.
-2. Replace **only** `https://YOUR-BACKEND.example` in `settings.yml` with your service origin. Keep `{{ harbor }}`, `{{ map_scale }}` and `{{ ship_spotlight }}` intact.
+2. Replace **only** `https://YOUR-BACKEND.example` in `settings.yml` with your service origin. Keep `{{ harbor | join: ',' }}` and `{{ ship_spotlight }}` intact, and keep the value quoted.
 3. Run `npm ci` then `npm run package`. Import `dist/port-of-call.zip` using TRMNL's private plugin import flow. The ZIP has the six export files at its root. If the UI requires manual setup, use polling/GET/15 minutes, framework **3.4.4**, paste the custom fields YAML and the five Liquid files into their corresponding tabs.
-4. Choose a harbor, Standard framing, names Off and Harbor Map. Confirm data loads and change the harbor. Enable **Spotlight a ship** to test the shared rotating subject, highlighted marker, facts card and deliberate overview fallback.
+4. Leave harbors empty and labels off. Confirm data loads and that each refresh shows the next harbor; then pick a single harbor and confirm it stays put. Enable **Spotlight a ship** to test the shared rotating subject, highlighted marker, facts card and deliberate overview fallback.
 5. Test all four layouts, light/dark, and your device. Keep framework-provided map attribution visible. MapLibre JS/CSS load separately, as the native docs require.
 
 The files follow the official CLI/export settings structure. The exact hosted import and physical-device capture remain a release gate; do not advertise them as tested. For a future community recipe, the maintainer fixes the hosted origin in settings before submission; ordinary users do not configure infrastructure.
@@ -107,7 +107,7 @@ Code is MIT licensed. Data and third-party frameworks retain their own licenses;
 
 ## Compact ship labels
 
-Turn **Show ship labels?** On for outlined name/voyage badges in both harbor overview and Ship Spotlight. The name is bold above a divided voyage row, with native canvas/inverse theme behavior. Ordinary labels use country codes to stay compact; Spotlight retains full country names. A supported previous port and destination become `Hanko, FI → Tilbury, GB`; destination alone becomes `To Tilbury, GB`. Missing voyage data leaves a name-only badge. The current harbor is never assumed to be a ship's origin. Long lines truncate inside the badge, and the full label text stays in its tooltip/API.
+Turn on **Show ship labels?** for outlined name/voyage badges in both harbor overview and Ship Spotlight. The name is bold above a divided voyage row, with native canvas/inverse theme behavior. Ordinary labels use country codes to stay compact; Spotlight retains full country names. A supported previous port and destination become `Hanko, FI → Tilbury, GB`; destination alone becomes `To Tilbury, GB`. Missing voyage data leaves a name-only badge. The current harbor is never assumed to be a ship's origin. Long lines truncate inside the badge, and the full label text stays in its tooltip/API.
 
 [Overview preview](docs/screenshots/labels-overview.png) · [Spotlight with context labels](docs/screenshots/labels-spotlight.png) · [Dark preview](docs/screenshots/labels-spotlight-dark.png). These use genuine **archived** AIS from 5 November 2026, not current traffic.
 
