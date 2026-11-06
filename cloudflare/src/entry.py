@@ -71,7 +71,8 @@ class Harbor(DurableObject):
         self.last_poll = float(self.store.state('positions_poll_at') or 0)
         self.last_checkpoint = float(self.store.state('checkpoint_at') or 0)
         self.retry_at, self.retry_delay = 0, 1
-        self.accepted = self.rejected = 0
+        self.accepted = self.rejected = self.received = 0
+        self.last_feed_error = self.close_code = None
         self.lock = asyncio.Lock()
         self.cache = {}
         self.clients = OrderedDict()
@@ -96,21 +97,31 @@ class Harbor(DurableObject):
         if loc:
             self.store.state('last_success', time.time())
             self.accepted += 1
+            self.last_feed_error = None
 
     def receive(self, event):
         self.last_message = time.time()
+        self.received += 1
         try:
             raw = event.data if isinstance(event.data, str) else str(TextDecoder.new().decode(event.data))
             if len(raw) > 256_000: raise ValueError('Oversized AIS frame')
             data = json.loads(raw)
             if data.get('error'):
+                # Only publish fixed categories, never upstream text or keys.
+                error = str(data['error']).lower()
+                self.last_feed_error = ('authentication_rejected' if 'key' in error else
+                    'connection_limit' if 'connection' in error else 'subscription_rejected')
                 self.disconnect()
                 return
             loc, static = providers.aisstream(data, self.last_message)
             self.ingest(loc, static)
-        except (ValueError, KeyError, TypeError): self.rejected += 1
+        except Exception as exc:
+            self.rejected += 1
+            self.last_feed_error = "frame:"+type(exc).__name__
 
     def disconnect(self, *args):
+        if args and getattr(args[0], 'type', None) == 'close':
+            self.close_code = int(args[0].code)
         socket, self.socket = self.socket, None
         self.connected = False
         if socket:
@@ -123,6 +134,7 @@ class Harbor(DurableObject):
     async def connect(self):
         if self.connecting or self.socket or time.time() < self.retry_at: return
         self.connecting = True
+        stage = 'upgrade'
         try:
             for callback in self.proxies: callback.destroy()
             self.proxies = []
@@ -131,8 +143,10 @@ class Harbor(DurableObject):
             socket = result.js_object.webSocket
             if not socket: raise ValueError('AISStream upgrade rejected')
             self.socket = socket
+            stage = 'compression'
             if 'permessage-deflate' not in (result.headers.get('Sec-WebSocket-Extensions') or ''):
                 raise ValueError('AISStream compression was not negotiated')
+            stage = 'subscribe'
             self.proxies = [create_proxy(self.receive), create_proxy(self.disconnect), create_proxy(self.disconnect)]
             for name, callback in zip(('message', 'close', 'error'), self.proxies): socket.addEventListener(name, callback)
             socket.accept()
@@ -141,7 +155,8 @@ class Harbor(DurableObject):
             self.connected, self.last_message, self.retry_delay = True, time.time(), 1
         except Exception as exc:
             self.disconnect()
-            print('aisstream_connect_failed', type(exc).__name__)
+            self.last_feed_error = stage+':'+type(exc).__name__
+            print('aisstream_connect_failed', stage, type(exc).__name__)
         finally: self.connecting = False
 
     async def poll(self, now):
@@ -218,7 +233,9 @@ class Harbor(DurableObject):
             ready = bool(last and now-last < TTL)
             return response(dict(status='ready' if ready else 'degraded', provider=self.provider,
                 feed_connected=self.connected, last_success_age_seconds=int(now-last) if last else None,
-                accepted=self.accepted, rejected=self.rejected,
+                accepted=self.accepted, rejected=self.rejected, received=self.received,
+                last_message_age_seconds=int(now-self.last_message) if self.last_message else None,
+                last_feed_error=self.last_feed_error, close_code=self.close_code,
                 checkpoint_age_seconds=int(now-self.last_checkpoint) if self.last_checkpoint else None),
                 200 if ready else 503, **{'Cache-Control': 'no-store'})
         if path == '/api/v1/harbors':
