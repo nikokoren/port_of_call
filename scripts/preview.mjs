@@ -31,9 +31,10 @@ http.createServer(async(req,res)=>{
   }
   const device=u.searchParams.get('device')||'og';
   const x=device==='x'||device==='portrait';
+  const portrait=device==='portrait'||device==='og-portrait';
   // TRMNL X is the framework's screen--v2: a 1040x780 CSS screen at UI scale 1,
   // rendered at 1.8x device pixels for the 1872x1404 panel.
-  const [w,h]=device==='portrait'?[780,1040]:x?[1040,780]:[800,480];
+  const [w,h]=device==='portrait'?[780,1040]:device==='og-portrait'?[480,800]:x?[1040,780]:[800,480];
   const dark=u.searchParams.get('dark')==='true';
   // Dimensions use the requested X panel; no assumption about evolving device aliases.
   const mashup=u.searchParams.get('mashup')==='true'&&layout!=='full';
@@ -46,6 +47,6 @@ http.createServer(async(req,res)=>{
    <link rel="stylesheet" href="/assets/plugins.css"><script src="/assets/plugins.js"></script>
    <style>html,body{margin:0;padding:0;background:white}.screen{isolation:isolate;position:relative!important;width:${width}px!important;height:${height}px!important;--screen-w:${w}px;--screen-h:${h}px;--device-ui-scale:1;--ui-scale:1;--content-scale:1;--color-depth:${x?4:device==='onebit'?1:2}}
    .preview-view{position:absolute;inset:0;width:100%;height:100%}</style></head>
-   <body class="trmnl">${provenance}<div class="screen screen--no-bleed screen--${x?'v2':'og'} screen--${x?'lg':'md'} screen--${x?'4':device==='onebit'?'1':'2'}bit ${dark?'screen--dark-mode':''} ${device==='portrait'?'screen--portrait':''}">${inner}</div></body></html>`);
+   <body class="trmnl">${provenance}<div class="screen screen--no-bleed screen--${x?'v2':'og'} screen--${x?'lg':'md'} screen--${x?'4':device==='onebit'?'1':'2'}bit ${dark?'screen--dark-mode':''} ${portrait?'screen--portrait':''}">${inner}</div></body></html>`);
  } catch(e) {res.statusCode=500;res.end(e.message);}
 }).listen(8787,'127.0.0.1',()=>console.log('Preview renderer listening on port 8787'));

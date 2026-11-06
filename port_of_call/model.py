@@ -120,11 +120,17 @@ def viewport(port, scale=DEFAULT_SCALE):
             round(x+(e-w)*factor/2, 6), round(y+(n-s)*factor/2, 6)]
 
 
-def select(vessels, bbox, limit=40):
-    """Deterministic round-robin over spatial cells, newest first per cell."""
+def select(vessels, bbox, limit=40, key=None):
+    """Deterministic round-robin over spatial cells.
+
+    Within a cell the highest key comes first (newest first by default), so
+    every part of the view stays represented while busy cells send their
+    most interesting ships.
+    """
     cells = {}
     w, s, e, n = bbox
-    for v in sorted(vessels, key=lambda v: (-epoch(v['reported_at']), v['mmsi'])):
+    order = (lambda v: (-key(v), -epoch(v['reported_at']), v['mmsi'])) if key else (lambda v: (-epoch(v['reported_at']), v['mmsi']))
+    for v in sorted(vessels, key=order):
         if not contains(bbox, v['position']): continue
         x, y = v['position']
         cell = (min(7, int((x-w)/(e-w)*8)), min(5, int((y-s)/(n-s)*6)))

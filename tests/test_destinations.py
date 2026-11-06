@@ -47,6 +47,10 @@ class Parsing(unittest.TestCase):
         self.assertEqual(parse('ASPP')['text'], 'ASPP')
         self.assertEqual(parse('NY')['text'], 'NY')
         self.assertEqual(parse('I.T.C. DEER PARK')['text'], 'I T C Deer Park')
+        # Seen in Hamburg: a trailing underscore and a bare qualifier.
+        self.assertEqual(parse('HAMBURG_')['code'], 'DEHAM')
+        self.assertEqual(parse('PORT'), dict(code=None, text=None))
+        self.assertEqual(parse('ANCHORAGE')['text'], 'Anchorage')
 
     def test_country_prefixes_and_major_codes(self):
         self.assertEqual(parse('US SAVANNAH')['code'], 'USSAV')

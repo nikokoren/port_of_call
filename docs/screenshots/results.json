@@ -42,7 +42,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.615453125
+      "inkFraction": 0.6154895833333334
     },
     "errors": []
   },
@@ -89,7 +89,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.31835416666666666
+      "inkFraction": 0.318375
     },
     "errors": []
   },
@@ -183,7 +183,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.4727395833333333
+      "inkFraction": 0.4728125
     },
     "errors": []
   },
@@ -230,7 +230,7 @@
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.5829427083333333
+      "inkFraction": 0.5824166666666667
     },
     "errors": []
   },
@@ -277,7 +277,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.4335104166666667
+      "inkFraction": 0.43363541666666666
     },
     "errors": []
   },
@@ -317,14 +317,14 @@
       "labelRoutes": 0,
       "labelContentsValid": true,
       "labelsOutside": 0,
-      "labels": 8,
-      "leaders": 2,
+      "labels": 14,
+      "leaders": 3,
       "textOverflow": 0
     },
     "pixels": {
       "width": 3370,
       "height": 2527,
-      "inkFraction": 0.6760196994125169
+      "inkFraction": 0.6733531861826987
     },
     "errors": []
   },
@@ -364,14 +364,14 @@
       "labelRoutes": 0,
       "labelContentsValid": true,
       "labelsOutside": 0,
-      "labels": 8,
-      "leaders": 4,
+      "labels": 9,
+      "leaders": 5,
       "textOverflow": 0
     },
     "pixels": {
       "width": 2527,
       "height": 3370,
-      "inkFraction": 0.27541284102024544
+      "inkFraction": 0.2750647898835015
     },
     "errors": []
   },
@@ -405,20 +405,20 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.01773577788447996,
+      "maxProjectionError": 0.019267033075167146,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
       "labelContentsValid": true,
       "labelsOutside": 0,
-      "labels": 4,
-      "leaders": 0,
+      "labels": 6,
+      "leaders": 1,
       "textOverflow": 0
     },
     "pixels": {
       "width": 3370,
       "height": 1264,
-      "inkFraction": 0.4994527757953649
+      "inkFraction": 0.49373215828419037
     },
     "errors": []
   },
@@ -458,14 +458,14 @@
       "labelRoutes": 0,
       "labelContentsValid": true,
       "labelsOutside": 0,
-      "labels": 4,
-      "leaders": 1,
+      "labels": 8,
+      "leaders": 4,
       "textOverflow": 0
     },
     "pixels": {
       "width": 1685,
       "height": 2527,
-      "inkFraction": 0.30326550406940356
+      "inkFraction": 0.30584934928293717
     },
     "errors": []
   },
@@ -499,7 +499,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.017373129957812063,
+      "maxProjectionError": 0.019472786034241973,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -512,7 +512,7 @@
     "pixels": {
       "width": 1685,
       "height": 1264,
-      "inkFraction": 0.3854247267400368
+      "inkFraction": 0.28552191713931563
     },
     "errors": []
   },
@@ -606,7 +606,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.32045572916666665
+      "inkFraction": 0.3204739583333333
     },
     "errors": []
   },
@@ -653,7 +653,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.3390625
+      "inkFraction": 0.3391875
     },
     "errors": []
   },
@@ -700,7 +700,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.6214166666666666
+      "inkFraction": 0.621453125
     },
     "errors": []
   },
@@ -747,7 +747,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.489609375
+      "inkFraction": 0.48968229166666666
     },
     "errors": []
   },
@@ -794,7 +794,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.4514375
+      "inkFraction": 0.4515625
     },
     "errors": []
   },
@@ -888,7 +888,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.6368619791666666
+      "inkFraction": 0.6368984375
     },
     "errors": []
   },
@@ -935,7 +935,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.42258854166666665
+      "inkFraction": 0.42262239583333333
     },
     "errors": []
   },
@@ -982,7 +982,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.5708020833333334
+      "inkFraction": 0.570875
     },
     "errors": []
   },
@@ -1029,7 +1029,7 @@
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.352109375
+      "inkFraction": 0.35184895833333335
     },
     "errors": []
   },
@@ -1076,7 +1076,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.437375
+      "inkFraction": 0.4373958333333333
     },
     "errors": []
   },
@@ -1264,7 +1264,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.32936458333333335
+      "inkFraction": 0.32948958333333334
     },
     "errors": []
   },
@@ -1311,7 +1311,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.49365625
+      "inkFraction": 0.4936744791666667
     },
     "errors": []
   },
@@ -1405,7 +1405,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.511140625
+      "inkFraction": 0.5111223958333333
     },
     "errors": []
   },
@@ -1452,7 +1452,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.41973958333333333
+      "inkFraction": 0.41977604166666665
     },
     "errors": []
   },
@@ -1546,7 +1546,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.42747135416666665
+      "inkFraction": 0.42750520833333333
     },
     "errors": []
   },
@@ -1640,7 +1640,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.55603125
+      "inkFraction": 0.5561041666666666
     },
     "errors": []
   },
@@ -1687,7 +1687,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.437375
+      "inkFraction": 0.4373958333333333
     },
     "errors": []
   },
@@ -1734,7 +1734,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3919869791666667
+      "inkFraction": 0.3920234375
     },
     "errors": []
   },
@@ -1828,7 +1828,7 @@
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.33544270833333334
+      "inkFraction": 0.3351822916666667
     },
     "errors": []
   },
@@ -1875,7 +1875,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.437375
+      "inkFraction": 0.4373958333333333
     },
     "errors": []
   },
@@ -1909,7 +1909,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.016081611459166197,
+      "maxProjectionError": 0.015614339469317194,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 1,
@@ -1922,7 +1922,7 @@
     "pixels": {
       "width": 1685,
       "height": 1264,
-      "inkFraction": 0.4487430980730947
+      "inkFraction": 0.46453630319648426
     },
     "errors": []
   },
@@ -1969,7 +1969,7 @@
     "pixels": {
       "width": 2527,
       "height": 3370,
-      "inkFraction": 0.7898270195244476
+      "inkFraction": 0.7896467703696223
     },
     "errors": []
   }

@@ -40,7 +40,10 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
     elif not all_vessels: status = 'empty'
     else: status = 'ok'
     if status == 'unavailable': all_vessels = []
-    vessels = select([v for v in all_vessels if not focus or v['mmsi'] != focus['mmsi']], box, 39 if focus else 40)
+    from .labels import interest, rank
+    scores = {v['mmsi']: interest(v, now, fresh) for v in all_vessels}
+    vessels = select([v for v in all_vessels if not focus or v['mmsi'] != focus['mmsi']], box, 39 if focus else 40,
+                     key=lambda v: scores[v['mmsi']])
     if focus: vessels.insert(0, subject[0])
     # Labels use cached metadata only. Read relevant calls once for the batch;
     # this never opens per-ship network requests or infers an origin from motion.
@@ -63,6 +66,8 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
         # 5 decimal places is ~1m; keep payload small without moving markers materially.
         v['position'] = [round(c, 5) for c in v['position']]
         markers.append(v)
+    # The Spotlight ship has its own card; the rest get a label order.
+    rank([m for m in markers if not focus or m['mmsi'] != focus['mmsi']], scores, port)
     vessels = markers
     zone = ZoneInfo(port['timezone'])
     def local(ts): return datetime.fromtimestamp(ts, zone).strftime('%H:%M %Z') if ts else None
