@@ -1,7 +1,7 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from .model import DEFAULT_SCALE, harbor_zoom, viewport, contains, select, epoch, iso, bearing
-from .spotlight import choose, focus_viewport, card
+from .spotlight import choose, focus_viewport, card, spotlight_areas
 from .display import focus_copy, label_voyage
 from .port_facts import port_fact
 
@@ -14,11 +14,20 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
     box = viewport(port, scale)
     harbor_vessels = store.vessels(now, ttl, port['bbox'])
     fetched = float(store.state('last_success') or 0)
-    subject = choose(store, port, harbor_vessels, now) if spotlight and fetched and now-fetched < fresh else None
+    subject = None
+    if spotlight and fetched and now-fetched < fresh:
+        if scale == 'harbor':
+            # Spotlight annotates the harbor view; it never moves the map. Pick
+            # a subject that is on screen, preferring the middle of the view.
+            visible, central = spotlight_areas(port, box)
+            subject = (choose(store, port, [v for v in harbor_vessels if central(v)], now)
+                       or choose(store, port, [v for v in harbor_vessels if visible(v)], now))
+        else:
+            subject = choose(store, port, harbor_vessels, now)
     focus = None
     if subject:
         vessel, selected_at, reason = subject
-        box = focus_viewport(port, vessel, scale)
+        if scale != 'harbor': box = focus_viewport(port, vessel, scale)
         focus = card(vessel, selected_at, reason, now)
         from .enrichment import enrich_card
         enrich_card(store, port, focus, now)
@@ -60,7 +69,7 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
     source = 'AISStream' if port['provider'] == 'aisstream' else 'Fintraffic / Digitraffic'
     if demo: source = 'Synthetic fixture — DEMO'
     # Fixed-zoom framing tells the map its zoom and centre; other scales fit the box.
-    camera = dict(zoom=harbor_zoom(port), center=list(focus['position'] if focus else port.get('focus') or port['center'])) if scale == 'harbor' else None
+    camera = dict(zoom=harbor_zoom(port), center=list(port.get('focus') or port['center'])) if scale == 'harbor' else None
     return dict(schema_version=1, display_mode='map', port=port, port_fact=port_fact(port['id'], now), viewport=box, camera=camera, source=source,
                 attribution={'label': 'Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS',
                     'url': 'https://www.digitraffic.fi/en/marine-traffic/',

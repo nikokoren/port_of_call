@@ -4,7 +4,7 @@ Implemented 5 November 2026. **Free data sources only**: existing AIS, CC0 Wikid
 
 ## Use it
 
-Turn on **Spotlight a ship** in the Harbor Map settings. The same harbor shares one subject across installations and framing choices. Labels can remain off: the featured name is always prioritized. Turn the switch off for the ordinary harbor overview. No suitable fresh candidate means an explicit overview fallback, never a frozen or invented ship.
+Turn on **Spotlight a ship** in the Harbor Map settings. The same harbor shares one subject across installations and framing choices. Labels can remain off: the featured name is always prioritized. Turn the switch off for the ordinary harbor overview. Spotlight never moves the map: it keeps each harbor's reviewed view and zoom, picks a subject that is visible in it (central ships first, never under the harbor card) and adds the large annotation. Context ships turn grey with a dark edge. A layout too small to show the subject and its card shows the plain overview instead. No suitable fresh candidate means an explicit overview fallback, never a frozen or invented ship.
 
 The **Port of Call harbor card stays at bottom left**, showing its name, country and the count of distinct vessels recently seen near it. Spotlight is a separate native inverse annotation: ship name, unlabeled type, flag/registry country, voyage and ETA, current speed, optional sourced highlights, then ship particulars. Countries accompany port names when known; missing origin/country components are omitted. Service-entry dates are not presented as build dates. Compact views show fewer supporting facts.
 
