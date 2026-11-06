@@ -62,6 +62,25 @@ def choose(store, port, vessels, now):
     return selected, now, reason
 
 
+def spotlight_areas(port, box):
+    """Where a Spotlight subject stays visible in a fixed harbor view.
+
+    The view never moves for Spotlight, so the subject must be on screen in
+    every layout: away from the edges and from the bottom-left harbor card.
+    Smaller layouts show the middle of the view, so central ships come first.
+    """
+    w, s, e, n = box
+    dx, dy = e-w, n-s
+    fx, fy = port.get('focus') or port['center']
+    safe = (w+dx*.06, s+dy*.08, e-dx*.06, n-dy*.08)
+    card = (w, s, w+dx*.5, s+dy*.34)
+    central = (fx-dx*.25, fy-dy*.17, fx+dx*.25, fy+dy*.17)
+    def visible(v):
+        p = v['position']
+        return contains(safe, p) and not contains(card, p)
+    return visible, lambda v: visible(v) and contains(central, v['position'])
+
+
 def focus_viewport(port, vessel, scale):
     box = viewport(port, scale)
     x, y = vessel['position']

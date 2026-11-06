@@ -251,3 +251,40 @@ class Endpoint(unittest.IsolatedAsyncioTestCase):
                 data=await (await c.get('/api/v1/harbors/helsinki/vessels?spotlight='+flag)).json();self.assertIsNone(data['focus'])
             self.assertEqual((await c.get('/api/v1/harbors/helsinki/vessels?spotlight=evil')).status,400)
         s.close()
+
+
+class FixedViewSpotlight(unittest.TestCase):
+    """Spotlight annotates the reviewed harbor view; it never moves the map."""
+    def setUp(self):
+        self.s = Store(':memory:'); self.s.state('last_success', NOW)
+        from port_of_call.model import viewport
+        self.box = viewport(PORT)
+    def tearDown(self): self.s.close()
+    def ship(self, i, fx, fy):
+        w, s, e, n = self.box
+        mid = str(230100000+i)
+        self.s.put(position(mid, w+(e-w)*fx, s+(n-s)*fy, NOW-30, NOW, speed=3),
+                   dict(mmsi=mid, name='SHIP '+str(i), type='cargo', updated_at=NOW-60,
+                        facts={'call_sign': 'C'+str(i), 'length_m': 300}, facts_source='AISStream'))
+        return mid
+
+    def test_view_and_camera_stay_on_the_harbor_focus(self):
+        self.ship(1, .5, .55)
+        data = snapshot(self.s, PORT, NOW, spotlight=True)
+        self.assertEqual(data['focus_mode'], 'ship')
+        self.assertEqual(data['viewport'], self.box)
+        self.assertEqual(data['camera'], {'zoom': PORT['zoom'], 'center': PORT['focus']})
+
+    def test_subject_is_visible_and_central_first(self):
+        hidden = self.ship(1, .2, .15)    # under the bottom-left harbor card
+        edge = self.ship(2, .9, .85)      # visible, but only in larger layouts
+        self.assertEqual(snapshot(self.s, PORT, NOW, spotlight=True)['focus']['mmsi'], edge)
+        central = self.ship(3, .55, .55)
+        self.s.db.execute('DELETE FROM focus_current')
+        self.assertEqual(snapshot(self.s, PORT, NOW+60, spotlight=True)['focus']['mmsi'], central)
+        self.assertNotEqual(hidden, snapshot(self.s, PORT, NOW+120, spotlight=True)['focus']['mmsi'])
+
+    def test_nothing_visible_falls_back_to_the_overview(self):
+        self.ship(1, .2, .15); self.ship(2, .99, .5)
+        data = snapshot(self.s, PORT, NOW, spotlight=True)
+        self.assertIsNone(data['focus']); self.assertEqual(data['viewport'], self.box)
