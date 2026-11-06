@@ -62,3 +62,22 @@ class EdgeStorage(unittest.TestCase):
         after = MemoryStore(body).vessels(NOW+30, 3600)
         self.assertEqual([v['reported_at'] for v in before], [v['reported_at'] for v in after])
         self.assertEqual(self.edge.data['positions']['230000001']['position'], [24.95, 60.15])
+
+    def test_area_filter_matches_sql_and_snapshots_only_load_their_harbor(self):
+        for store in (self.sql, self.edge):
+            self.seed(store)
+            # A ship in another harbor must not be loaded for a Helsinki snapshot.
+            store.put(position('244000001', 4.1, 51.95, NOW-30, NOW))
+        box = HARBORS['helsinki']['bbox']
+        for store in (self.sql, self.edge):
+            ids = sorted(v['mmsi'] for v in store.vessels(NOW, 3600, box))
+            self.assertEqual(ids, ['230000001', '230000002', '230000003', '230000004'])
+            self.assertEqual(len(store.vessels(NOW, 3600)), 5)
+        self.assertEqual(self.sql.vessels(NOW, 3600, box), self.edge.vessels(NOW, 3600, box))
+        seen = []
+        original = self.edge.vessels
+        def spy(now, ttl, bbox=None):
+            seen.append(bbox); return original(now, ttl, bbox)
+        self.edge.vessels = spy
+        snapshot(self.edge, HARBORS['helsinki'], NOW, spotlight=True)
+        self.assertTrue(seen and all(b == box for b in seen), seen)

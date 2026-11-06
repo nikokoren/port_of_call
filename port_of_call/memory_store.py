@@ -6,7 +6,7 @@ Report and per-field timestamps survive checkpoints without being refreshed.
 """
 import copy
 import json
-from .model import epoch, category
+from .model import epoch, category, contains
 from .facts import VOYAGE, VOYAGE_TTL, IDENTITY_TTL
 
 
@@ -35,9 +35,13 @@ class MemoryStore:
                 old.update({k: copy.deepcopy(v) for k, v in static.items() if v is not None and k not in ('facts', 'facts_source')})
                 self.data['metadata'][mid] = old
 
-    def vessels(self, now, ttl):
+    def vessels(self, now, ttl, bbox=None):
+        # Filter by area before copying: the edge collector holds every
+        # harbor's ships, and copying all of them per snapshot exceeded the
+        # Durable Object memory limit.
         result = []
         for mid, loc in self.data['positions'].items():
+            if bbox is not None and not contains(bbox, loc['position']): continue
             if not 0 <= now-epoch(loc['reported_at']) < ttl: continue
             meta = self.data['metadata'].get(mid, {})
             facts = {key: dict(value=copy.deepcopy(value), reported_at=self._iso(ts), source=source)

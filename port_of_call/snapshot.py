@@ -12,7 +12,7 @@ MESSAGES = {
 
 def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=False, spotlight=False):
     box = viewport(port, scale)
-    harbor_vessels = [v for v in store.vessels(now, ttl) if contains(port['bbox'], v['position'])]
+    harbor_vessels = store.vessels(now, ttl, port['bbox'])
     fetched = float(store.state('last_success') or 0)
     subject = choose(store, port, harbor_vessels, now) if spotlight and fetched and now-fetched < fresh else None
     focus = None
