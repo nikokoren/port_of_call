@@ -2,6 +2,7 @@
 import argparse
 from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
+import json
 import sys
 # Keep this standalone helper usable without activating the backend virtualenv.
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
@@ -10,9 +11,12 @@ from port_of_call.recipe import release_settings
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--provider',choices=['digitraffic','aisstream'],default='digitraffic')
-    parser.add_argument('--origin',help='Deployed HTTPS backend origin')
+    parser.add_argument('--provider',choices=['digitraffic','aisstream'],default='aisstream')
+    parser.add_argument('--origin',help='Deployed HTTPS backend origin (default: the profile release record)')
     args=parser.parse_args()
+    if not args.origin:
+        record=Path('deploy')/('world-release.json' if args.provider=='aisstream' else 'finland-release.json')
+        args.origin=json.loads(record.read_text()).get('origin') if record.exists() else None
     try: settings=release_settings(Path('settings.yml').read_text(),args.provider,origin=args.origin)
     except ValueError as exc: parser.error(str(exc))
     Path('dist').mkdir(exist_ok=True)

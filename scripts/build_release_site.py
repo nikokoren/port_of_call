@@ -45,7 +45,7 @@ def main():
 <h1>Port of Call</h1><p>Harbor maps with genuine vessel positions and an optional connected Ship Spotlight for TRMNL.</p>
 <aside><strong>'''+status+'''</strong><br>'''+html.escape(ports)+'''</aside>
 <p><a href="'''+package+'">'+download+'''</a></p>'''+alternative+api+'''
-<h2>Private plugin setup</h2><ol><li>Use a verified deployed backend URL. A configuration template still contains a placeholder.</li><li>Import the six-file ZIP into a TRMNL private plugin.</li><li>Select a harbor and framing; optionally enable ship labels, Spotlight a ship and rotating port facts.</li><li>Check every layout and dark mode on your device before sharing a recipe.</li></ol>
+<h2>Private plugin setup</h2><ol><li>Use a verified deployed backend URL. A configuration template still contains a placeholder.</li><li>Import the six-file ZIP into a TRMNL private plugin.</li><li>Optionally pick one or more harbors (none cycles through all of them); optionally enable ship labels, Spotlight a ship and rotating port facts.</li><li>Check every layout and dark mode on your device before sharing a recipe.</li></ol>
 <p><a href="'''+repo+'''/blob/main/docs/cloudflare.md">Deployment instructions</a> · <a href="'''+repo+'''/blob/main/docs/release-checklist.md">Release checklist</a> · <a href="'''+repo+'''/issues">Support and source code</a></p>
 <h2>Representative screen</h2><img src="archived-preview.png" width="800" height="480" alt="Archived Rauma harbor map with PLYCA Ship Spotlight">
 <p><small>Historical AIS capture from 5 November 2026, 09:28 Europe/Berlin. This image is a browser preview, not current traffic or a device photograph.</small></p>

@@ -85,9 +85,30 @@ def bearing(vessel):
     return None
 
 
-def viewport(port, scale='standard'):
+SCALES = {'closer': 0.48, 'standard': 0.76, 'wider': 1.0}
+# The recipe no longer offers a framing choice. Every harbor is shown at a fixed
+# map zoom around its curated harbor focus, so ships keep the same apparent
+# scale everywhere. The extent is what that zoom shows on an 800x480 screen.
+DEFAULT_SCALE = 'harbor'
+HARBOR_ZOOM = 11
+HARBOR_VIEW_PX = (800, 480)
+
+
+def harbor_view(port):
+    # MapLibre uses 512px tiles: 2**zoom * 512 px span 360 degrees of longitude.
+    lon, lat = port.get('focus') or port['center']
+    world = 512 * 2 ** HARBOR_ZOOM
+    def merc(y): return math.log(math.tan(math.pi/4 + math.radians(y)/2))
+    def unmerc(m): return math.degrees(2*math.atan(math.exp(m)) - math.pi/2)
+    dx = 360 * HARBOR_VIEW_PX[0] / 2 / world
+    dm = 2 * math.pi * HARBOR_VIEW_PX[1] / 2 / world
+    return [round(lon-dx, 6), round(unmerc(merc(lat)-dm), 6), round(lon+dx, 6), round(unmerc(merc(lat)+dm), 6)]
+
+
+def viewport(port, scale=DEFAULT_SCALE):
+    if scale == 'harbor': return harbor_view(port)
     # Wider is the subscribed/collected box. Standard and closer are nested.
-    factor = {'closer': 0.48, 'standard': 0.76, 'wider': 1.0}.get(scale, 0.76)
+    factor = SCALES.get(scale, SCALES['standard'])
     w, s, e, n = port['bbox']
     x, y = (w + e) / 2, (s + n) / 2
     return [round(x-(e-w)*factor/2, 6), round(y-(n-s)*factor/2, 6),

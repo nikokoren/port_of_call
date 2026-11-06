@@ -30,7 +30,7 @@ def check(origin, *, allow_degraded=False, all_framings=False):
     if status != 200 or not catalog.get('harbors'): raise ValueError('Harbor catalog unavailable')
     rows = []
     for port in catalog['harbors']:
-        for scale in (('closer', 'standard', 'wider') if all_framings else ('standard',)):
+        for scale in (('harbor', 'closer', 'standard', 'wider') if all_framings else ('harbor',)):
             for focus in (False, True):
                 url = origin+'/api/v1/harbors/'+port['id']+'/vessels?scale='+scale+'&spotlight='+str(focus).lower()
                 status, data, size, headers = get(url)
@@ -58,7 +58,14 @@ def check(origin, *, allow_degraded=False, all_framings=False):
                 rows.append(dict(port=port['id'], scale=scale, spotlight=focus, state=data['status'],
                                  total=data['total'], shown=data['shown'], focused=bool(subject),
                                  voyage_labels=sum(bool(v.get('voyage')) for v in data['vessels']), bytes=size))
+    # Recipe endpoint: one selected harbor is pinned; none rotates through the catalog.
+    ids = [h['id'] for h in catalog['harbors']]
+    status, data, _, _ = get(origin+'/api/v1/vessels?harbors='+ids[-1]+'&spotlight=false')
+    if status != 200 or data['port']['id'] != ids[-1]: errors.append('Selected harbor not pinned')
+    status, data, _, _ = get(origin+'/api/v1/vessels?harbors=&spotlight=false')
+    if status != 200 or data['port']['id'] not in ids: errors.append('Empty selection did not rotate within the catalog')
     for path, code in [('/api/v1/harbors/not-a-port/vessels', 404),
+                       ('/api/v1/vessels?harbors='+ids[0]+'&spotlight=maybe', 400),
                        ('/demo/api/v1/harbors/'+catalog['harbors'][0]['id']+'/vessels', 404),
                        ('/api/v1/harbors/'+catalog['harbors'][0]['id']+'/vessels?scale=bad', 400)]:
         if get(origin+path)[0] != code: errors.append('Invalid route accepted')

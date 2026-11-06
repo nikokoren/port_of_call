@@ -1,12 +1,12 @@
 {% assign opts = trmnl.plugin_settings.custom_fields_values %}
 <div class="layout layout--col h--full">
-  <section class="map stretch w--full poc poc--quadrant" data-focus="{{ focus.mmsi | escape }}" data-status="{{ status | default: 'unavailable' | escape }}" data-labels="{{ opts.ship_labels | escape }}" data-mode="{{ opts.display_mode | default: 'map' | escape }}" data-bbox="{{ viewport | join: ',' | escape }}" data-center="{{ port.center | join: ',' | escape }}" aria-label="Recent vessel positions">
-    <div class="absolute bottom--1 left--1 right--1 flex flex--row flex--bottom gap--small poc__corner">
-    <aside class="p--2 lg:p--3 bg--canvas outline flex flex--col flex--left gap--xsmall w--[45cqw] poc__box" data-poc-box>
+  <section class="map stretch w--full poc poc--quadrant" data-focus="{{ focus.mmsi | escape }}" data-status="{{ status | default: 'unavailable' | escape }}" data-labels="{% if opts.ship_labels == true or opts.ship_labels == 'true' or opts.ship_labels == 'on' %}on{% else %}off{% endif %}" data-bbox="{{ viewport | join: ',' | escape }}" data-zoom="{{ camera.zoom | escape }}" data-center="{% if camera.center %}{{ camera.center | join: ',' | escape }}{% else %}{{ port.center | join: ',' | escape }}{% endif %}" aria-label="Recent vessel positions">
+    <div class="absolute bottom--3 left--3 right--3 flex flex--row flex--bottom gap--small poc__corner">
+    <aside class="p--2 lg:p--3 bg--canvas outline flex flex--col flex--left gap--xsmall w--[45cqw] portrait:w--[60cqw] poc__box" data-poc-box>
       <span class="label label--small">Port of Call</span>
       {% if demo %}<span class="label label--small">DEMO · SYNTHETIC POSITIONS</span>{% endif %}
       <span class="w--full title title--small lg:title--large" data-clamp="3">{{ port.name | default: 'Harbor' | escape }}{% if port.country and port.country != port.name %}, {{ port.country | escape }}{% endif %}</span>
-      <span class="w--full label label--small" data-clamp="3">{{ total | default: 0 }} vessels seen near this port</span>
+      <span class="w--full label label--small" data-clamp="3">{{ total | default: 0 }} vessels near this port</span>
       {% if opts.port_facts == true or opts.port_facts == 'true' %}{% if port_fact.text %}<span class="w--full label label--small hidden lg:block" data-clamp="3" data-poc-port-fact>{{ port_fact.text | escape }}</span>{% endif %}{% endif %}
       <span hidden><strong data-poc-total>{{ total | default: 0 }}</strong><span data-poc-limited></span></span>
       <span class="w--full description poc__notice"{% if status == 'ok' %} hidden{% endif %}>{{ message | default: 'Vessel feed unavailable' | escape }}</span>

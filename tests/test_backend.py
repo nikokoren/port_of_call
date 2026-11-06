@@ -133,6 +133,44 @@ class Endpoints(unittest.IsolatedAsyncioTestCase):
         self.assertIn('max-age=30',r.headers['Cache-Control']);self.assertLess(len(await r.read()),15000)
         r2=await self.client.get('/api/v1/harbors/helsinki/vessels?scale=wider',headers={'If-None-Match':r.headers['ETag']})
         self.assertEqual(r2.status,304)
+    async def test_recipe_selection_endpoint_rotates(self):
+        from port_of_call.rotation import ROTATION_SECONDS
+        async def shown(query):
+            r=await self.client.get('/api/v1/vessels'+query)
+            self.assertEqual(r.status,200);return (await r.json())['port']['id']
+        slot=int(NOW//ROTATION_SECONDS)
+        everything=['helsinki','turku','rauma']
+        self.assertEqual(await shown(''),everything[slot%3])
+        self.assertEqual(await shown('?harbors='),everything[slot%3])
+        self.assertEqual(await shown('?harbors=turku'),'turku')
+        self.assertEqual(await shown('?harbors=rauma,turku'),['turku','rauma'][slot%2])
+        # Unknown or other-provider IDs are ignored rather than breaking a device.
+        self.assertEqual(await shown('?harbors=hamburg,rauma'),'rauma')
+        self.assertEqual(await shown('?harbors=hamburg'),everything[slot%3])
+        r=await self.client.get('/api/v1/vessels?harbors=turku&spotlight=maybe');self.assertEqual(r.status,400)
+        data=await (await self.client.get('/api/v1/vessels?harbors=helsinki')).json()
+        self.assertEqual(data['viewport'],m.viewport(PORT))
+    def test_fixed_harbor_zoom_view_is_centred_on_curated_focus(self):
+        import math
+        for h in m.HARBORS.values():
+            self.assertTrue(m.contains(h['bbox'],h['focus']),h['id'])
+            b=m.viewport(h)
+            self.assertAlmostEqual((b[0]+b[2])/2,h['focus'][0],places=5)
+            # 800 px at zoom 11 with 512 px tiles, independent of latitude in longitude.
+            self.assertAlmostEqual(b[2]-b[0],360*800/(512*2**11),places=5)
+            merc=lambda y:math.log(math.tan(math.pi/4+math.radians(y)/2))
+            self.assertAlmostEqual((merc(b[3])-merc(b[1]))/(2*math.pi)*512*2**11,480,places=2)
+        data=snapshot(self.s,PORT,NOW)
+        self.assertEqual(data['camera'],{'zoom':11,'center':PORT['focus']})
+        self.assertIsNone(snapshot(self.s,PORT,NOW,scale='wider')['camera'])
+    def test_rotation_steps_once_per_refresh(self):
+        from port_of_call.rotation import parse_selection,rotate,ROTATION_SECONDS
+        active={'a':{},'b':{},'c':{}}
+        self.assertEqual(parse_selection(' c , a,a ',active),['a','c'])
+        self.assertEqual(parse_selection('',active),['a','b','c'])
+        seen=[rotate(['a','b','c'],ROTATION_SECONDS*k+5) for k in range(6)]
+        self.assertEqual(seen,['a','b','c','a','b','c'])
+        self.assertEqual({rotate(['b'],t) for t in range(0,10*ROTATION_SECONDS,600)},{'b'})
     async def test_bad_inputs_demo_off(self):
         for url,status in [('/api/v1/harbors/bad/vessels',404),('/api/v1/harbors/hamburg/vessels',404),
                            ('/api/v1/harbors/helsinki/vessels?scale=evil',400),('/demo/api/v1/harbors/helsinki/vessels',404)]:

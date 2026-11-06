@@ -9,8 +9,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -29,7 +29,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.021335867629847242,
+      "maxProjectionError": 0.021335867615282885,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -42,7 +42,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.6048151041666666
+      "inkFraction": 0.615453125
     },
     "errors": []
   },
@@ -56,8 +56,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -89,22 +89,22 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3117916666666667
+      "inkFraction": 0.31835416666666666
     },
     "errors": []
   },
   {
     "name": "og-rauma",
     "ready": "true",
-    "markers": 5,
+    "markers": 3,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -123,20 +123,20 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.014464894864516211,
+      "maxProjectionError": 0.007232447419649033,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
       "labelContentsValid": true,
       "labelsOutside": 0,
-      "labels": 4,
-      "leaders": 1,
+      "labels": 2,
+      "leaders": 0,
       "textOverflow": 0
     },
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3583177083333333
+      "inkFraction": 0.40439322916666665
     },
     "errors": []
   },
@@ -150,8 +150,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -177,13 +177,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 4,
-      "leaders": 1,
+      "leaders": 2,
       "textOverflow": 0
     },
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.4578541666666667
+      "inkFraction": 0.47303125
     },
     "errors": []
   },
@@ -197,8 +197,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -217,7 +217,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.021335867606622417,
+      "maxProjectionError": 0.021335867599040145,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -230,7 +230,7 @@
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.574359375
+      "inkFraction": 0.581921875
     },
     "errors": []
   },
@@ -244,8 +244,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -277,22 +277,22 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.4181666666666667
+      "inkFraction": 0.4422083333333333
     },
     "errors": []
   },
   {
     "name": "x-landscape",
     "ready": "true",
-    "markers": 14,
+    "markers": 11,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -311,20 +311,20 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.019055253143048914,
+      "maxProjectionError": 0.020575118065965417,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 8,
-      "leaders": 1,
+      "leaders": 2,
       "textOverflow": 0
     },
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.6683285849952516
+      "inkFraction": 0.5493089037426644
     },
     "errors": []
   },
@@ -338,8 +338,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -371,7 +371,7 @@
     "pixels": {
       "width": 1404,
       "height": 1872,
-      "inkFraction": 0.2696435854822607
+      "inkFraction": 0.2711148854311248
     },
     "errors": []
   },
@@ -385,8 +385,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -405,7 +405,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.021335867644287194,
+      "maxProjectionError": 0.021335867623801064,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -418,7 +418,7 @@
     "pixels": {
       "width": 1872,
       "height": 702,
-      "inkFraction": 0.5041814291280103
+      "inkFraction": 0.5097112645189569
     },
     "errors": []
   },
@@ -432,8 +432,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -452,7 +452,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.01765220968440571,
+      "maxProjectionError": 0.017652209767141134,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -465,7 +465,7 @@
     "pixels": {
       "width": 936,
       "height": 1404,
-      "inkFraction": 0.31683438040275647
+      "inkFraction": 0.3195928300094967
     },
     "errors": []
   },
@@ -479,8 +479,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -512,7 +512,7 @@
     "pixels": {
       "width": 936,
       "height": 702,
-      "inkFraction": 0.30448109187425426
+      "inkFraction": 0.30656001168821684
     },
     "errors": []
   },
@@ -526,8 +526,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -546,7 +546,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.021335867629847242,
+      "maxProjectionError": 0.021335867615282885,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -559,7 +559,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.9797760416666667
+      "inkFraction": 0.9819505208333333
     },
     "errors": []
   },
@@ -573,8 +573,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -593,7 +593,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.021335867629847242,
+      "maxProjectionError": 0.021335867615282885,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -606,7 +606,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3142421875
+      "inkFraction": 0.32045572916666665
     },
     "errors": []
   },
@@ -620,8 +620,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -653,7 +653,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.33927083333333335
+      "inkFraction": 0.33459375
     },
     "errors": []
   },
@@ -667,8 +667,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -687,7 +687,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.021335867629847242,
+      "maxProjectionError": 0.021335867644411602,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -700,7 +700,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.6109114583333334
+      "inkFraction": 0.6214166666666666
     },
     "errors": []
   },
@@ -714,8 +714,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -747,7 +747,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.4743177083333333
+      "inkFraction": 0.48990104166666665
     },
     "errors": []
   },
@@ -761,8 +761,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -794,7 +794,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.3422604166666667
+      "inkFraction": 0.3385520833333333
     },
     "errors": []
   },
@@ -808,8 +808,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -841,7 +841,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.011622395833333334
+      "inkFraction": 0.011565104166666666
     },
     "errors": []
   },
@@ -855,8 +855,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -875,7 +875,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.02026934187850206,
+      "maxProjectionError": 0.020269341848969235,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -888,7 +888,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.628953125
+      "inkFraction": 0.6368619791666666
     },
     "errors": []
   },
@@ -902,8 +902,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -922,7 +922,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.015611910954896188,
+      "maxProjectionError": 0.015611910965006864,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -935,7 +935,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.4239375
+      "inkFraction": 0.4224322916666667
     },
     "errors": []
   },
@@ -949,8 +949,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -969,7 +969,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.014197703741195045,
+      "maxProjectionError": 0.014197703743881226,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -982,7 +982,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.5641927083333333
+      "inkFraction": 0.5709322916666667
     },
     "errors": []
   },
@@ -996,8 +996,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1029,7 +1029,7 @@
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.34002604166666667
+      "inkFraction": 0.34311458333333333
     },
     "errors": []
   },
@@ -1043,8 +1043,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1076,7 +1076,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.4210520833333333
+      "inkFraction": 0.4279791666666667
     },
     "errors": []
   },
@@ -1090,8 +1090,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1110,7 +1110,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.01775915060767664,
+      "maxProjectionError": 0.017759151028324104,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -1123,7 +1123,7 @@
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.29464198748386783
+      "inkFraction": 0.295004961404534
     },
     "errors": []
   },
@@ -1137,8 +1137,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1157,7 +1157,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.019413134613179464,
+      "maxProjectionError": 0.019413134597022458,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -1170,7 +1170,7 @@
     "pixels": {
       "width": 1404,
       "height": 1872,
-      "inkFraction": 0.7391754632673436
+      "inkFraction": 0.7411276846373
     },
     "errors": []
   },
@@ -1184,8 +1184,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1204,7 +1204,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.015510938902702488,
+      "maxProjectionError": 0.011646187612525387,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -1217,7 +1217,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.39090625
+      "inkFraction": 0.40077083333333335
     },
     "errors": []
   },
@@ -1231,8 +1231,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1264,7 +1264,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.3292083333333333
+      "inkFraction": 0.32478125
     },
     "errors": []
   },
@@ -1278,8 +1278,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1298,7 +1298,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.017651231584779555,
+      "maxProjectionError": 0.017651231630712753,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -1311,7 +1311,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.492328125
+      "inkFraction": 0.49365625
     },
     "errors": []
   },
@@ -1325,8 +1325,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1345,7 +1345,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.01710096258013836,
+      "maxProjectionError": 0.017100962627470358,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -1358,7 +1358,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.8894244791666667
+      "inkFraction": 0.8893697916666666
     },
     "errors": []
   },
@@ -1372,8 +1372,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1392,7 +1392,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.017651231584779555,
+      "maxProjectionError": 0.017651231630712753,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -1405,7 +1405,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.5123697916666666
+      "inkFraction": 0.511140625
     },
     "errors": []
   },
@@ -1419,8 +1419,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1452,7 +1452,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.4183151041666667
+      "inkFraction": 0.41973958333333333
     },
     "errors": []
   },
@@ -1466,8 +1466,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1499,7 +1499,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.9850520833333334
+      "inkFraction": 0.9871119791666667
     },
     "errors": []
   },
@@ -1513,8 +1513,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1533,20 +1533,20 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.015611910954896188,
+      "maxProjectionError": 0.015611910965006864,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 2,
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 2,
-      "leaders": 1,
+      "leaders": 3,
       "textOverflow": 0
     },
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.4201666666666667
+      "inkFraction": 0.4273151041666667
     },
     "errors": []
   },
@@ -1560,8 +1560,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1580,20 +1580,20 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.015611910954896188,
+      "maxProjectionError": 0.015611910965006864,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 2,
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 2,
-      "leaders": 1,
+      "leaders": 3,
       "textOverflow": 0
     },
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.8331588541666667
+      "inkFraction": 0.8345833333333333
     },
     "errors": []
   },
@@ -1607,8 +1607,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1627,7 +1627,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.014197703741195045,
+      "maxProjectionError": 0.014197703743881226,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 2,
@@ -1640,7 +1640,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.547921875
+      "inkFraction": 0.5561614583333333
     },
     "errors": []
   },
@@ -1654,8 +1654,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1687,7 +1687,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.4210520833333333
+      "inkFraction": 0.4279791666666667
     },
     "errors": []
   },
@@ -1701,8 +1701,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1721,7 +1721,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.015711675989931163,
+      "maxProjectionError": 0.01571167599850099,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 3,
@@ -1734,7 +1734,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.390515625
+      "inkFraction": 0.3919869791666667
     },
     "errors": []
   },
@@ -1748,8 +1748,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1768,7 +1768,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.015611911056030698,
+      "maxProjectionError": 0.015611911106611842,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 2,
@@ -1781,22 +1781,22 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.8311041666666666
+      "inkFraction": 0.832546875
     },
     "errors": []
   },
   {
     "name": "facts-half-vertical",
     "ready": "true",
-    "markers": 7,
+    "markers": 6,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1818,17 +1818,17 @@
       "maxProjectionError": 0.01927696096720236,
       "labelCollisions": 0,
       "leaderCollisions": 0,
-      "labelRoutes": 4,
+      "labelRoutes": 3,
       "labelContentsValid": true,
       "labelsOutside": 0,
-      "labels": 4,
-      "leaders": 4,
+      "labels": 3,
+      "leaders": 3,
       "textOverflow": 0
     },
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.3231041666666667
+      "inkFraction": 0.3293333333333333
     },
     "errors": []
   },
@@ -1842,8 +1842,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1875,7 +1875,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.4210520833333333
+      "inkFraction": 0.4279791666666667
     },
     "errors": []
   },
@@ -1889,8 +1889,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1909,7 +1909,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.015611910830390475,
+      "maxProjectionError": 0.01561191084463986,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 1,
@@ -1922,7 +1922,7 @@
     "pixels": {
       "width": 936,
       "height": 702,
-      "inkFraction": 0.46431593493559303
+      "inkFraction": 0.47011134244040226
     },
     "errors": []
   },
@@ -1936,8 +1936,8 @@
     "geometry": {
       "cardInside": true,
       "cardInset": {
-        "left": 4,
-        "bottom": 4
+        "left": 12,
+        "bottom": 12
       },
       "cardAtCorner": true,
       "attributionInside": true,
@@ -1956,7 +1956,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.01941313479056093,
+      "maxProjectionError": 0.019413134806717938,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 6,
@@ -1969,7 +1969,7 @@
     "pixels": {
       "width": 1404,
       "height": 1872,
-      "inkFraction": 0.7004620498210242
+      "inkFraction": 0.7027384365792485
     },
     "errors": []
   }

@@ -42,7 +42,7 @@ export function geometry(root=document.querySelector('.poc')) {
    Math.min(Math.abs(x-overlay[0]),Math.abs(x-overlay[2]),Math.abs(y-overlay[1]),Math.abs(y-overlay[3]))<.5;
  }
  const inset={left:card[0],bottom:m.height-card[3]};
- const edge=4*(parseFloat(getComputedStyle(root).getPropertyValue('--content-scale'))||1)+1;
+ const edge=12*(parseFloat(getComputedStyle(root).getPropertyValue('--content-scale'))||1)+1;
  return {cardInside:inside(card),cardInset:inset,cardAtCorner:inset.left>=-1&&inset.left<=edge&&inset.bottom>=-1&&inset.bottom<=edge,attributionInside:credits.length>0&&credits.every(inside),attributionClear:credits.length>0&&credits.every(c=>!hit(card,c)),
   attributionTight:[...root.querySelectorAll('.map__attribution')].every(n=>getComputedStyle(n).display==='inline')&&getComputedStyle(root.querySelector('[data-poc-sources]')).backgroundColor==='rgba(0, 0, 0, 0)',
   portFactVisible:!!root.querySelector('[data-poc-port-fact]')&&root.querySelector('[data-poc-port-fact]').getBoundingClientRect().height>0,

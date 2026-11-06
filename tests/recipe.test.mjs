@@ -6,21 +6,41 @@ import {render,engine,layouts} from '../scripts/render.mjs';
 const settings=YAML.parse(await readFile('settings.yml','utf8'));
 const fixture=JSON.parse(await readFile('fixtures/helsinki.json','utf8'));
 const fields=Object.fromEntries(settings.custom_fields.filter(f=>Object.hasOwn(f,'default')).map(f=>[f.keyname,f.default]));
-test('polling URL interpolates every harbor and framing value',async()=>{
- for(const harbor of ['helsinki','turku','rauma'])for(const map_scale of ['closer','standard','wider']){
-  const url=await engine.parseAndRender(settings.polling_url,{...fields,harbor,map_scale});
-  assert.equal(url,`https://YOUR-BACKEND.example/api/v1/harbors/${harbor}/vessels?scale=${map_scale}&spotlight=false`);
+test('polling URL sends an optional multi-harbor selection',async()=>{
+ const release=JSON.parse(await readFile('deploy/world-release.json','utf8'));
+ const base=release.origin+'/api/v1/vessels?harbors=';
+ // TRMNL stores a multi-select as a list; join also passes a plain string through.
+ for(const [harbor,expected] of [[[],''],[undefined,''],[null,''],[['turku'],'turku'],[['helsinki','rauma'],'helsinki,rauma'],['turku','turku']]){
+  const url=await engine.parseAndRender(settings.polling_url,{...fields,harbor});
+  assert.equal(url,`${base}${expected}&spotlight=false`);
  }
+ const harbor=settings.custom_fields.find(f=>f.keyname==='harbor');
+ assert.equal(harbor.field_type,'select');assert.equal(harbor.multiple,true);assert.equal(harbor.optional,true);
+ assert.ok(!Object.hasOwn(harbor,'default'));
+ for(const removed of ['map_scale','display_mode'])assert.ok(!settings.custom_fields.some(f=>f.keyname===removed));
+ assert.doesNotMatch(settings.polling_url,/scale=/);
+ const labels=settings.custom_fields.find(f=>f.keyname==='ship_labels');
+ assert.equal(labels.field_type,'boolean');assert.equal(labels.default,false);
+ assert.equal(settings.no_screen_padding,'yes');
  assert.ok(settings.description.length<=35,'TRMNL short description must be at most 35 characters');
  assert.equal(settings.framework_version,'3.4.4');assert.equal(settings.refresh_interval,15);
- assert.deepEqual(settings.custom_fields.find(f=>f.keyname==='display_mode').options,[{'Harbor Map':'map'}]);
+});
+for(const layout of layouts)test(`${layout}: boolean ship labels and inset corner`,async()=>{
+ for(const [value,expected] of [[true,'on'],['true','on'],['on','on'],[false,'off'],['false','off'],[undefined,'off']])
+  assert.ok((await render(layout,fixture,{ship_labels:value})).includes(`data-labels="${expected}"`));
+ const html=await render(layout,fixture);
+ assert.ok(!html.includes('data-mode'));
+ // Fixed harbor zoom: the payload camera drives zoom and centre; legacy payloads fall back to fitting.
+ assert.match(html,/data-zoom=""/);assert.ok(html.includes(`data-center="${fixture.port.center.join(',')}"`));
+ const fixed=await render(layout,{...fixture,camera:{zoom:11,center:[24.96,60.16]}});
+ assert.ok(fixed.includes('data-zoom="11"'));assert.ok(fixed.includes('data-center="24.96,60.16"'));assert.match(html,/class="absolute bottom--3 left--3 right--3 [^"]*poc__corner"/);
 });
 for(const layout of layouts){
  test(`${layout}: fields, markers, escaping and fallback states`,async()=>{
   const data=structuredClone(fixture);data.port.name='<script>bad()</script>';
   data.vessels[0].name='" onmouseover="bad()';
   data.vessels[0].voyage='To <script>bad()</script> \" onmouseover=\"bad()';
-  const html=await render(layout,data,{ship_labels:'on'});
+  const html=await render(layout,data,{ship_labels:true});
   assert.ok(html.includes('data-labels="on"'));assert.ok(html.includes('&lt;script&gt;'));
   assert.match(html,/(&quot;|&#34;) onmouseover=(&quot;|&#34;)/);assert.ok(!html.includes('<script>bad()'));
   assert.ok(html.includes('data-poc-box'));assert.ok(!html.includes('poc__header'));
@@ -45,11 +65,12 @@ test('Spotlight setting is a native off-by-default boolean',async()=>{
 for(const layout of layouts)test(`${layout}: ordered ship copy and map-level source credits`,async()=>{
  const data=JSON.parse(await readFile('fixtures/rauma-spotlight.json','utf8'));
  data.focus.name='<script>danger()</script>';
- const html=await render(layout,data,{ship_labels:'off',ship_spotlight:true});
+ const html=await render(layout,data,{ship_labels:false,ship_spotlight:true});
  const harbor=html.match(/<aside[^>]*data-poc-box[^>]*>([\s\S]*?)<\/aside>/)[1];
  const overlay=html.match(/<aside[^>]*data-poc-spotlight[^>]*>([\s\S]*?)<\/aside>/)[1];
  assert.ok(harbor.includes('Port of Call'));assert.ok(harbor.includes('Rauma, Finland'));
- assert.ok(harbor.includes('vessels seen near this port'));
+ assert.ok(harbor.includes(layout==='full'?'vessels seen near this port':'vessels near this port'));
+ if(layout!=='full')assert.ok(!harbor.includes('vessels seen'));
  for(const removed of ['Archive','Fetched','Updated','Report ','CC BY','Fintraffic'])assert.ok(!harbor.includes(removed));
  assert.ok(html.includes('map__attribution'));assert.ok(html.includes('data-poc-sources'));assert.ok(html.includes('CC BY 4.0'));assert.ok(html.includes('OpenStreetMap'));
  assert.ok(overlay.includes('&lt;script&gt;'));assert.ok(!overlay.includes('<script>danger()'));
@@ -88,7 +109,7 @@ for(const layout of layouts)test(`${layout}: port facts are opt-in, escaped and 
  const on=await render(layout,data,{port_facts:true});
  const harbor=on.match(/<aside[^>]*data-poc-box[^>]*>([\s\S]*?)<\/aside>/)[1];
  assert.ok(harbor.includes('&lt;script&gt;bad()&lt;/script&gt;'));
- assert.ok(harbor.indexOf('data-poc-port-fact')>harbor.indexOf('vessels seen'));
+ assert.ok(harbor.indexOf('data-poc-port-fact')>harbor.indexOf('vessels '));
  if(layout==='quadrant'||layout==='half_horizontal')assert.ok(harbor.includes('hidden lg:block'));
  assert.ok(!on.includes('source_url'));
  assert.ok((await render(layout,data,{port_facts:'true'})).includes('data-poc-port-fact'));

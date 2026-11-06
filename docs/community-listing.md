@@ -4,11 +4,11 @@
 
 **Short description:** Real vessel positions around your chosen harbor, with an optional Ship Spotlight.
 
-**Description:** A quiet harbor map using TRMNL's native mapping framework. Choose a supported port and framing, show vessel names if desired, or spotlight one ship with available voyage, flag, speed and ship facts. The shared backend handles data collection; individual users need no AIS account or API key.
+**Description:** A quiet harbor map using TRMNL's native mapping framework. Pick one port, several to cycle through, or none to tour every port; show vessel names if desired, or spotlight one ship with available voyage, flag, speed and ship facts. The shared backend handles data collection; individual users need no AIS account or API key.
 
 **Initial coverage:** Helsinki, Turku and Rauma, Finland. Replace this line with the deployment's verified catalog only after an approved AISStream deployment; do not advertise all fifteen candidates or worldwide completeness.
 
-**Settings:** Harbor, Closer/Standard/Wider framing, vessel names, Spotlight a ship. Harbor Map is the initial display mode. Other future modes are not advertised as implemented.
+**Settings:** Harbors (optional, multi-select), ship labels, Spotlight a ship, port facts. The map framing is fixed per harbor.
 
 **Sources:** Fintraffic / digitraffic.fi (CC BY 4.0), optional Wikidata structured data (CC0), OpenStreetMap map data (ODbL) through TRMNL's framework. An AISStream listing must use its approved source terms and correct attribution instead of claiming Fintraffic is its position source.
 

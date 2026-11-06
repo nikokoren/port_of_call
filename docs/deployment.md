@@ -58,7 +58,7 @@ For AISStream, run the private coverage workflow and promotion steps in [major-p
 - Empty map: check `status`, viewport, latest observation and fresh/expiry thresholds. "No reports" is not proof of no ships. Wait for a successful poll; check the source's area coverage.
 - Blank base map: check native JS/CSS and tile host access. The recipe displays a diagnostic on load failure. Canonical asset URLs were blocked from this cloud's research client, so production renderer access remains a private-test check.
 - Names missing: static metadata may not be known or may be expired; valid positions still render. Names are optional in every layout, with smaller label budgets in compact views. A name is omitted if it would cover a ship, the information box, another name or attribution. Leader lines can place a name farther from its ship without moving the ship.
-- Too few markers: compare `total`, `shown`, `omitted` and the screen's decluttering notice; try Closer framing. Markers are never displaced to make room.
+- Too few markers: compare `total`, `shown`, `omitted` and the screen's decluttering notice. Markers are never displaced to make room.
 - 429: use the cached endpoint/edge cache and do not forward untrusted IP headers. Standard refresh is 15 minutes, not one backend poll per device.
 
 ## Test Ship Spotlight
