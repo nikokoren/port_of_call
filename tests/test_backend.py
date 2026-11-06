@@ -156,12 +156,17 @@ class Endpoints(unittest.IsolatedAsyncioTestCase):
             self.assertTrue(m.contains(h['bbox'],h['focus']),h['id'])
             b=m.viewport(h)
             self.assertAlmostEqual((b[0]+b[2])/2,h['focus'][0],places=5)
-            # 800 px at zoom 11 with 512 px tiles, independent of latitude in longitude.
-            self.assertAlmostEqual(b[2]-b[0],360*800/(512*2**11),places=5)
+            # 800x480 px at the port's own zoom with 512 px tiles.
+            z=h['zoom'];self.assertTrue(9<=z<=13,h['id'])
+            self.assertAlmostEqual(b[2]-b[0],360*800/(512*2**z),places=5)
             merc=lambda y:math.log(math.tan(math.pi/4+math.radians(y)/2))
-            self.assertAlmostEqual((merc(b[3])-merc(b[1]))/(2*math.pi)*512*2**11,480,places=2)
+            self.assertAlmostEqual((merc(b[3])-merc(b[1]))/(2*math.pi)*512*2**z,480,places=1)
         data=snapshot(self.s,PORT,NOW)
-        self.assertEqual(data['camera'],{'zoom':11,'center':PORT['focus']})
+        self.assertEqual(data['camera'],{'zoom':PORT['zoom'],'center':PORT['focus']})
+        # Reviewed per-port views: a zoom-10 harbor covers twice the width of a zoom-11 one.
+        wide,close=m.viewport(m.HARBORS['rotterdam']),m.viewport(m.HARBORS['charleston'])
+        self.assertAlmostEqual((wide[2]-wide[0])/(close[2]-close[0]),4,places=3)
+        self.assertEqual(m.harbor_zoom({}),11)
         self.assertIsNone(snapshot(self.s,PORT,NOW,scale='wider')['camera'])
     def test_rotation_steps_once_per_refresh(self):
         from port_of_call.rotation import parse_selection,rotate,ROTATION_SECONDS
