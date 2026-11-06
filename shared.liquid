@@ -28,9 +28,12 @@
 .poc[data-focus]:not([data-focus=""]):not([data-spotlight-fallback="true"]) .poc__ship:not(.poc__ship--featured) path { stroke:var(--poc-context-edge); stroke-width:2.6; }
 .poc[data-focus]:not([data-focus=""]):not([data-spotlight-fallback="true"]) .poc__ship--stale:not(.poc__ship--featured) path { fill:var(--poc-paper); stroke:var(--poc-context-edge); stroke-width:1.8; }
 .screen--1bit .poc[data-focus]:not([data-focus=""]):not([data-spotlight-fallback="true"]) .poc__ship:not(.poc__ship--featured) path { fill:var(--poc-paper); stroke:var(--poc-ink); stroke-width:1.1; }
-/* Wake: an ink line with a paper halo behind ships under way. */
-.poc__ship .poc__wake-halo { stroke:var(--poc-paper); stroke-width:4; stroke-linecap:round; }
-.poc__ship .poc__wake { stroke:currentColor; stroke-width:1.9; stroke-linecap:round; }
+/* Speed marks: ink lines over a paper halo, so they read on water and land. */
+.poc__ship .poc__mark-halo { fill:none; stroke:var(--poc-paper); stroke-width:4; stroke-linecap:round; stroke-linejoin:round; }
+.poc__ship .poc__mark { fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+/* Fill variant: stopped ships are outlined, old reports dashed. */
+.poc__ship--idle path { fill:var(--poc-paper); stroke:currentColor; stroke-width:1.8; }
+.poc__ship--dashed path { fill:var(--poc-paper); stroke:currentColor; stroke-width:1.6; stroke-dasharray:2.4 1.8; }
 .poc__ship--featured { z-index:4; }
 .poc__ship--featured path { stroke-width:3; }
 .poc__ship--stale path { fill:var(--poc-paper); stroke:currentColor; stroke-width:1.8; }
@@ -204,6 +207,15 @@
         if(length>=150)return 1.3;if(length>=40)return 1;if(length>0)return .8;
         return type==='other'||type==='fishing'?.8:1;
       }
+      function restingAngle(id){var n=0;String(id||'').split('').forEach(function(c){n=(n*31+c.charCodeAt(0))%3600;});return n%360;}
+      // Speed marks in the hull's 18x22 box (bow at the top), drawn as ink over a paper halo.
+      function quad(a,c,b){var p=[];for(var t=0;t<=1.001;t+=.25)p.push([(1-t)*(1-t)*a[0]+2*(1-t)*t*c[0]+t*t*b[0],(1-t)*(1-t)*a[1]+2*(1-t)*t*c[1]+t*t*b[1]].map(function(n){return n.toFixed(2);}).join(','));return p.join(' ');}
+      function speedMarks(style,fast){
+        var lines=style==='bowwave'?[quad([3,7],[9,-5],[15,7])].concat(fast?[quad([0,11],[9,-10],[18,11])]:[])
+          :fast?['6,20 1,30','12,20 17,30']:['6,20 3,26','12,20 15,26'];
+        return lines.map(function(l){return '<polyline class="poc__mark-halo" points="'+l+'"/>';}).join('')+
+          lines.map(function(l){return '<polyline class="poc__mark" points="'+l+'"/>';}).join('');
+      }
       function featuredIcon(point) {
         var r=20*scale();return [point.x-r,point.y-r,point.x+r,point.y+r];
       }
@@ -281,25 +293,28 @@
           if(!coord.every(Number.isFinite))return;
           var featured=!!hl&&v.dataset.featured==='true',factor=(featured?1.5:(hl ? 0.75 : 1))*sizeOf(Number(v.dataset.length),v.dataset.type);
           var pt=map.project(coord),bearing=v.dataset.bearing===''?null:Number(v.dataset.bearing);
+          // Without a reported direction a ship still shows its own hull, turned to
+          // a fixed angle from its id: moored ships look scattered and never spin.
+          var heading=bearing!==null?bearing:restingAngle(v.dataset.id);
           // Rotation-aware icon bounds; do not move markers to make room for names.
-          var angle=(bearing||0)*Math.PI/180;
+          var angle=heading*Math.PI/180;
           var iw=(Math.abs(Math.cos(angle))*16+Math.abs(Math.sin(angle))*20)*unit*factor;
           var ih=(Math.abs(Math.sin(angle))*16+Math.abs(Math.cos(angle))*20)*unit*factor;
           var ib=[pt.x-iw/2,pt.y-ih/2,pt.x+iw/2,pt.y+ih/2];
           if(ib[0]<2||ib[1]<2||ib[2]>W-2||ib[3]>H-2||reserved.some(function(b){return PortOfCallLabels.overlaps(ib,b);})||
              shown.some(function(s){return Math.hypot(s.x-pt.x,s.y-pt.y)<size;}))return;
+          var speed=Number(v.dataset.speed),stale=v.dataset.stale==='true',moving=!stale&&speed>=1;
+          var style=window.__pocSpeedStyle||'vwake';
           var glyph=document.createElement('div');
-          glyph.className='poc__ship'+(featured?' poc__ship--featured':'')+(v.dataset.stale==='true'?' poc__ship--stale':'');
+          glyph.className='poc__ship'+(featured?' poc__ship--featured':'')+(stale?' poc__ship--stale':'')+
+            (style==='fill'?(stale?' poc__ship--dashed':!moving?' poc__ship--idle':''):'');
           glyph.style.left=pt.x+'px';glyph.style.top=pt.y+'px';glyph.style.width=(16*unit*factor)+'px';glyph.style.height=(20*unit*factor)+'px';
           glyph.dataset.featured=String(featured);glyph.dataset.id=v.dataset.id;glyph.dataset.lon=coord[0];glyph.dataset.lat=coord[1];
           glyph.title=v.dataset.name||v.dataset.id;
-          var speed=Number(v.dataset.speed),stale=v.dataset.stale==='true';
-          // A wake only where the direction is known and the report is fresh.
-          var wake=bearing!==null&&!stale&&speed>=1?(speed>8?12:6):0;
-          glyph.innerHTML='<svg viewBox="0 0 18 22" aria-hidden="true">'+
-            (wake?'<line class="poc__wake-halo" x1="9" y1="21.5" x2="9" y2="'+(21.5+wake)+'"/><line class="poc__wake" x1="9" y1="21.5" x2="9" y2="'+(21.5+wake)+'"/>':'')+
-            '<path d="'+(bearing===null?'M9 4 L15 11 L9 18 L3 11 Z':HULLS[hullOf(v.dataset.type)])+'"/></svg>';
-          glyph.querySelector('svg').style.transform='rotate('+(bearing||0)+'deg)';
+          // Speed marks need a real direction: they show where the ship is going.
+          var marks=moving&&bearing!==null&&style!=='fill'?speedMarks(style,speed>8):'';
+          glyph.innerHTML='<svg viewBox="0 0 18 22" aria-hidden="true">'+marks+'<path d="'+HULLS[hullOf(v.dataset.type)]+'"/></svg>';
+          glyph.querySelector('svg').style.transform='rotate('+heading+'deg)';
           el.appendChild(glyph);shown.push({x:pt.x,y:pt.y,box:ib,data:v.dataset,featured:featured});
         });
         var annotation=null,featured=shown.find(function(s){return s.featured;});
