@@ -111,6 +111,8 @@ def create_app(config=None, *, store=None, collect=True, clock=time.time):
             else:
                 payload = snapshot(store, port, clock(), config.fresh, config.ttl, scale, spotlight=spotlight)
                 if collect: enricher.enqueue(payload.get('focus'))
+            ports = payload.pop('unresolved_ports', [])
+            if collect and not demo: enricher.enqueue_ports(ports)
             body = encode_snapshot(payload).encode()
             cache[key] = body
         body = cache[key]

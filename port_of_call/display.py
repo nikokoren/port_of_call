@@ -19,6 +19,13 @@ def place(name, country=None):
     return f'{name}, {country}' if country else name
 
 
+def destination_text(raw):
+    """Unresolved destination as shown: tidied text or the code, None for junk."""
+    from .destinations import parse
+    parsed = parse(raw)
+    return parsed['text'] or parsed['code']
+
+
 def destination_activity(destination):
     # This exact free-text declaration is an activity, not a named destination.
     value = (destination or {}).get('value')
@@ -41,7 +48,7 @@ def label_voyage(context):
     destination = context.get('destination') or {}
     resolved = context.get('destination_port') or {}
     start = location(origin, origin.get('value'))
-    end = location(resolved, resolved.get('name') or destination.get('value')) if destination.get('value') else None
+    end = location(resolved, resolved.get('name') or destination_text(destination.get('value'))) if destination.get('value') else None
     return start+' → '+end if start and end else 'To '+end if end else 'From '+start if start else None
 
 
@@ -52,7 +59,7 @@ def focus_copy(focus):
     destination = focus.get('destination') or {}
     resolved = focus.get('destination_port') or {}
     start = place(origin.get('value'), origin.get('country'))
-    end = place(resolved.get('name') or destination.get('value'), resolved.get('country')) if destination.get('value') else None
+    end = place(resolved.get('name') or destination_text(destination.get('value')), resolved.get('country')) if destination.get('value') else None
     journey = dict(label='Voyage', value=start+' → '+end) if start and end else (
         dict(label='Destination', value=end) if end else dict(label='Previous port', value=start) if start else None)
     activity = destination_activity(destination)

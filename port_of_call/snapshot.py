@@ -46,10 +46,14 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
     # this never opens per-ship network requests or infers an origin from motion.
     from .enrichment import enrich_card
     calls = store.recent_calls(now)
-    markers = []
+    from .enrichment import port_key
+    markers, unresolved = [], set()
     for v in vessels:
         context = focus if focus and focus['mmsi'] == v['mmsi'] else card(v, now, '', now)
         if context is not focus: enrich_card(store, port, context, now, calls=calls)
+        if context.get('destination') and not context.get('destination_port'):
+            code = port_key(context['destination'].get('value'))
+            if code: unresolved.add(code)
         voyage = label_voyage(context)
         # Keep the rich facts/provenance in the store, not every overview marker.
         v = {k: val for k, val in v.items() if k != 'facts'}
@@ -81,4 +85,6 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
                 status=status, message=MESSAGES[status], demo=demo,
                 focus_requested=bool(spotlight), focus_mode='ship' if focus else 'harbor', focus=focus,
                 focus_message='No suitable fresh ship · showing harbor' if spotlight and not focus else '',
-                total=len(all_vessels), shown=len(vessels), omitted=len(all_vessels)-len(vessels), vessels=vessels)
+                total=len(all_vessels), shown=len(vessels), omitted=len(all_vessels)-len(vessels), vessels=vessels,
+                # Internal: destination codes to look up. Callers pop it before encoding.
+                unresolved_ports=sorted(unresolved))

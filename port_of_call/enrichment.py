@@ -10,6 +10,7 @@ import re
 import time
 from datetime import datetime, timezone
 from .facts import imo, text, radio_mid
+from .destinations import parse as parse_destination
 from .model import HARBORS, epoch, iso, mmsi
 
 log = logging.getLogger('port_of_call.enrichment')
@@ -25,8 +26,12 @@ PORT_CODES = {'helsinki': 'FIHEL', 'turku': 'FITKU', 'rauma': 'FIRAU', 'rotterda
 # These factual aliases are deliberately small and exact. Composite harbor areas
 # do not imply that both component ports share a UN/LOCODE.
 LOCAL_COUNTRIES = {code[:2]: HARBORS[key]['country'] for key, code in PORT_CODES.items()}
-LOCAL_PORTS = {code: dict(code=code, name=HARBORS[key]['name'], country=HARBORS[key]['country'], position=HARBORS[key]['center'])
+# As a destination, a catalog harbor is named by its port, not its map area
+# ("To Seattle", not "To Seattle — Elliott Bay").
+PORT_NAMES = {'USSEA': 'Seattle', 'USHOU': 'Houston', 'USNYC': 'New York', 'GBFXT': 'Felixstowe'}
+LOCAL_PORTS = {code: dict(code=code, name=PORT_NAMES.get(code, HARBORS[key]['name']), country=HARBORS[key]['country'], position=HARBORS[key]['center'])
                for key, code in PORT_CODES.items() if key not in ('shanghai-yangshan', 'busan-new-port')}
+LOCAL_PORTS['GBHRW'] = dict(code='GBHRW', name='Harwich', country=HARBORS['felixstowe']['country'])
 LOCAL_PORTS.update(USLAX=dict(code='USLAX', name='Los Angeles', country=LOCAL_COUNTRIES['US'], position=[-118.25, 33.74]),
                    USLGB=dict(code='USLGB', name='Long Beach', country=LOCAL_COUNTRIES['US'], position=[-118.21, 33.75]))
 # Reviewed exact CC0 reference: Q1792 explicitly has UN/LOCODE PLGDN.
@@ -38,15 +43,11 @@ LOCAL_COUNTRIES['PL'] = 'Poland'
 LOCAL_PORTS['LVMRX'] = dict(code='LVMRX', name='Mērsrags', country='Latvia',
     source='UNECE UN/LOCODE', url='https://service.unece.org/trade/locode/lv.htm')
 LOCAL_COUNTRIES['LV'] = 'Latvia'
-ALIASES = {k: v for code, v in LOCAL_PORTS.items() for k in (code, v['name'].upper())}
-ALIASES.update({name.upper(): LOCAL_PORTS[code] for name, code in
-                [('Helsinki', 'FIHEL'), ('Turku', 'FITKU'), ('Rauma', 'FIRAU'), ('Rotterdam', 'NLRTM'),
-                 ('Antwerp', 'BEANR'), ('Hamburg', 'DEHAM'), ('Singapore', 'SGSIN'), ('Seattle', 'USSEA')]})
 
 
 def port_key(raw):
-    key = re.sub(r'\s+', '', raw.upper()) if isinstance(raw, str) else ''
-    return key if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{3}', key) else None
+    """Compact UN/LOCODE named by an AIS destination or port-call field, or None."""
+    return parse_destination(raw)['code'] if isinstance(raw, str) else None
 
 
 def locode_id(key):
@@ -65,9 +66,9 @@ def save_cache(store, key, payload, now, ttl):
 
 def resolve_port(store, raw, now):
     if not raw: return None
-    local = ALIASES.get(raw.strip().upper()) or LOCAL_PORTS.get(port_key(raw))
-    if local: return {**local, 'source': local.get('source','Reviewed harbor catalog')}
     key = port_key(raw)
+    local = LOCAL_PORTS.get(key) if key else None
+    if local: return {**local, 'source': local.get('source','Reviewed harbor catalog')}
     hit = cached(store, 'port:'+locode_id(key), now) if key else None
     if hit and hit[1]:
         result = dict(hit[1])
@@ -192,6 +193,14 @@ class Enricher:
             token = kind+':'+key
             if token not in self.pending and not cached(self.store, token, self.clock()) and not self.queue.full():
                 self.queue.put_nowait((kind, key)); self.pending.add(token)
+
+    def enqueue_ports(self, codes):
+        # Destinations of every displayed ship, not only the Spotlight subject,
+        # so ordinary labels also gain port names once looked up (cached 30 days).
+        for code in codes:
+            token = 'port:'+locode_id(code)
+            if code not in LOCAL_PORTS and token not in self.pending and not cached(self.store, token, self.clock()) and not self.queue.full():
+                self.queue.put_nowait(('port', locode_id(code))); self.pending.add(token)
 
     async def request(self, session, **params):
         # Hard, persisted shared budget. This API has no paid fallback or billing account.
