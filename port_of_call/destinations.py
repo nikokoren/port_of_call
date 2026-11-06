@@ -69,7 +69,7 @@ def _pronounceable(word):
 
 def _normalize(raw):
     text = raw.upper().replace('\\', '/')
-    text = re.sub(r'[.,;:]', ' ', text)
+    text = re.sub(r'[.,;:_]', ' ', text)
     return ' '.join(text.split())
 
 
@@ -133,4 +133,7 @@ def parse(raw):
         code = _code(m.group(1))
         word = ' ' not in m.group(1) and _pronounceable(words[0]) and code[:2] not in MAJOR
         return dict(code=_code(m.group(1)), text=_tidy(words) if word else None)
+    # A lone qualifier ("PORT", "PILOT") says nothing about where. Anchorage
+    # and City can be places (Anchorage, Alaska), so those stay.
+    if all(w in QUALIFIERS - {'ANCHORAGE', 'CITY'} for w in words): return dict(code=None, text=None)
     return dict(code=None, text=_tidy(words))

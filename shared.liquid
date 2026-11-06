@@ -6,7 +6,10 @@
 .poc { --poc-paper:#fff; --poc-ink:#000; --poc-context:#888; --poc-context-edge:#000; overflow:hidden; }
 .poc__corner { z-index:7; }
 .poc__box { flex-shrink:0; }
-.poc__credits { flex:1; min-width:0; }
+.poc__credits { flex:1 1 0; min-width:min-content; }
+/* Credits sit beside the harbor card when their longest word fits there, and
+   move to a line above it when not, so no word is ever cut. */
+.poc .poc__corner { flex-wrap:wrap-reverse; align-items:flex-start; justify-content:flex-start; }
 .poc .poc__attribution { position:static; white-space:normal; }
 .poc__attribution a { color:inherit; text-decoration:none; pointer-events:auto; }
 .poc__spotlight { z-index:6; left:8px; top:8px; }
@@ -132,7 +135,6 @@
     document.querySelectorAll('.poc:not([data-started])').forEach(function (el) {
       el.dataset.started='true';
       var notice=el.querySelector('.poc__notice'),box=el.querySelector('[data-poc-box]'),spotlight=el.querySelector('[data-poc-spotlight]');
-      var full=el.classList.contains('poc--full'),quad=el.classList.contains('poc--quadrant');
       var done=false,deadline;
       function failure(text) {
         if(done)return;
@@ -157,6 +159,33 @@
         return {x:point.x,y:point.y,icon:icon,width:spotlight.offsetWidth,height:spotlight.offsetHeight,
           W:el.clientWidth,H:el.clientHeight,scale:scale(),ships:ships||[],
           fixed:blockers().map(function(b){return [b[0]-pad,b[1]-pad,b[2]+pad,b[3]+pad];})};
+      }
+      // A ship name is often one long word ("VAGABOND"), which line clamping
+      // cannot wrap. Step the title down until its longest word fits the card;
+      // if even the smallest title is too wide, widen the card for it.
+      var TITLES=['title--large','title--base','title--small'];
+      function fitTitle() {
+        var t=spotlight&&spotlight.querySelector('[data-poc-title]');if(!t)return;
+        var text=t.getAttribute('data-clamp-original')||t.dataset.pocName||t.textContent;t.dataset.pocName=text;
+        var cs=getComputedStyle(spotlight),pad=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight)+parseFloat(cs.borderLeftWidth)+parseFloat(cs.borderRightWidth);
+        if(!t.dataset.pocMaxWidth)t.dataset.pocMaxWidth=String(parseFloat(cs.maxWidth)||spotlight.offsetWidth);
+        var avail=Number(t.dataset.pocMaxWidth)-pad;
+        var probe=document.createElement('span');probe.setAttribute('aria-hidden','true');
+        probe.style.cssText='position:absolute;left:0;top:0;visibility:hidden;white-space:nowrap';
+        spotlight.appendChild(probe);
+        probe.className=t.className;probe.textContent='M';
+        var current=parseFloat(getComputedStyle(probe).fontSize),words=text.split(/\s+/).filter(Boolean);
+        function widest(cls){probe.className='title '+cls;return Math.max.apply(null,words.map(function(w){probe.textContent=w;return probe.offsetWidth;}).concat([0]));}
+        var options=TITLES.filter(function(c){probe.className='title '+c;probe.textContent='M';return parseFloat(getComputedStyle(probe).fontSize)<=current+.1;});
+        if(!options.length)options=['title--small'];
+        var chosen=options[options.length-1],need=0;
+        for(var i=0;i<options.length;i++){var w=widest(options[i]);if(w<=avail){chosen=options[i];need=0;break;}need=w;}
+        spotlight.removeChild(probe);
+        TITLES.concat(['title--small','lg:title--large','lg:title--base','lg:title--small']).forEach(function(c){t.classList.remove(c);});
+        t.classList.add(chosen);
+        // Widening is a last resort, bounded by the map with an 8px margin each side.
+        spotlight.style.maxWidth=need?Math.min(need+pad+2,el.clientWidth-16)+'px':'';
+        if(need)spotlight.style.minWidth=Math.min(need+pad+2,el.clientWidth-16)+'px';else spotlight.style.minWidth='';
       }
       function featuredIcon(point) {
         var r=20*scale();return [point.x-r,point.y-r,point.x+r,point.y+r];
@@ -223,6 +252,7 @@
         // overview: this layout cannot show the Spotlight subject and card
         // without moving the harbor view, so draw the plain overview instead.
         var hl=overview?null:spotlight;el.dataset.spotlightFallback=overview?'true':'';
+        if(spotlight)fitTitle();
         el.querySelectorAll('.poc__ship,.poc__label,.poc__lines').forEach(function(n){n.remove();});
         var W=el.clientWidth,H=el.clientHeight,unit=scale(),size=(hl?11:16)*unit;
         // The pending class clips the card but keeps innerText for native
@@ -272,8 +302,12 @@
         var boxes=shown.map(function(s){return s.box;}).concat(reserved),lines=annotation?[annotation.line]:[];
         var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
         svg.setAttribute('class','poc__lines');svg.setAttribute('viewBox','0 0 '+W+' '+H);el.appendChild(svg);
-        var placed=0,limit=full?8:quad?2:4;
-        shown.sort(function(a,b){return (b.featured-a.featured)||b.data.reported.localeCompare(a.data.reported)||a.data.id.localeCompare(b.data.id);}).forEach(function(s){
+        // One label per 48,000 px² of map (8 on a full OG screen, 16 on a full
+        // TRMNL X), at most 16. The backend ranks ships by interest; ships it
+        // did not rank go last, newest first.
+        var placed=0,limit=Math.max(2,Math.min(16,Math.round(W*H/(unit*unit)/48000)));
+        function rankOf(s){var r=Number(s.data.rank);return s.data.rank&&Number.isFinite(r)?r:Infinity;}
+        shown.sort(function(a,b){return (b.featured-a.featured)||(rankOf(a)-rankOf(b))||b.data.reported.localeCompare(a.data.reported)||a.data.id.localeCompare(b.data.id);}).forEach(function(s){
           if(s.featured||!s.data.name||placed>=limit)return;
           var label=document.createElement('div');
           label.className='poc__label bg--canvas outline p--1 flex flex--col flex--left gap--none';

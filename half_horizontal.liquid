@@ -14,25 +14,25 @@
     </aside>
     <div class="poc__credits text--right label label--small block" data-poc-sources>
       <span class="map__attribution poc__attribution inline">{% if demo %}DEMO · synthetic data{% elsif attribution %}<a href="{{ attribution.url | escape }}">Fintraffic / digitraffic.fi</a> · <a href="{{ attribution.license | escape }}">CC BY 4.0</a>{% else %}{{ source | default: 'Source unavailable' | escape }}{% endif %}</span>
-      <span class="map__attribution poc__attribution inline"><a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a></span>
+      <span class="map__attribution poc__attribution inline"><a href="https://www.openstreetmap.org/copyright">©&nbsp;OpenStreetMap contributors</a></span>
     </div>
     </div>
     {% if focus %}
     {% assign copy = focus.presentation %}
     <aside class="poc__spotlight poc__spotlight--pending absolute z--2 p--2 inverse outline flex flex--col flex--left gap--none w--auto w--min-[30cqw] w--max-[42cqw]" data-poc-spotlight data-id="{{ focus.mmsi | escape }}" aria-label="Ship Spotlight">
-      <span class="w--full title title--small lg:title--large" data-clamp="1" data-clamp-lg="2">{{ focus.name | escape }}</span>
+      <span class="w--full title title--small lg:title--large" data-clamp="1" data-clamp-lg="2" data-poc-title>{{ focus.name | escape }}</span>
       {% if copy.vessel_type %}<span class="w--full label label--small" data-clamp="1" data-clamp-lg="2">{{ copy.vessel_type | escape }}</span>{% endif %}
       {% if copy.flag %}<span class="w--full label label--small" data-clamp="2">{{ copy.flag | escape }}</span>{% endif %}
       {% if copy.journey %}<span class="w--full label label--small" data-clamp="3"><span><strong>{{ copy.journey.label | escape }}:</strong> {{ copy.journey.value | escape }}</span></span>{% endif %}
       {% if copy.eta %}<span class="w--full label label--small" data-clamp="2"><span><strong>ETA:</strong> {{ copy.eta | escape }}</span></span>{% endif %}
-      {% if copy.speed %}<span class="w--full label label--small" data-clamp="1" data-clamp-lg="2"><span><strong>Current speed:</strong> {{ copy.speed | escape }}</span></span>{% endif %}
+      {% if copy.speed %}<span class="w--full label label--small" data-clamp="2"><span><strong>Current speed:</strong> {{ copy.speed | escape | replace: ' ', '&nbsp;' }}</span></span>{% endif %}
       {% if copy.measurements.size > 0 %}<div class="w--full flex flex--col flex--left gap--none" data-poc-details>
 
-        {% if copy.measurements.size > 0 %}<span class="w--full label label--small" data-clamp="2" data-poc-measurements><span>{% for fact in copy.measurements %}<strong>{{ fact.label | escape }}:</strong> {{ fact.value | escape }}{% unless forloop.last %} · {% endunless %}{% endfor %}</span></span>{% endif %}
+        {% if copy.measurements.size > 0 %}<span class="w--full label label--small" data-clamp="2" data-poc-measurements><span>{% for fact in copy.measurements %}<strong>{{ fact.label | escape }}:</strong>&nbsp;{{ fact.value | escape | replace: ' ', '&nbsp;' }}{% unless forloop.last %}&nbsp;· {% endunless %}{% endfor %}</span></span>{% endif %}
       </div>{% endif %}
     </aside>
     {% endif %}
 
-    <ul class="poc__data" hidden>{% for v in vessels %}<li data-featured="{% if focus.mmsi == v.mmsi %}true{% else %}false{% endif %}" data-id="{{ v.mmsi | escape }}" data-lon="{{ v.position[0] }}" data-lat="{{ v.position[1] }}" data-bearing="{{ v.bearing_deg }}" data-stale="{{ v.stale }}" data-name="{{ v.name | escape }}" data-voyage="{{ v.voyage | escape }}" data-reported="{{ v.reported_at | escape }}"></li>{% endfor %}</ul>
+    <ul class="poc__data" hidden>{% for v in vessels %}<li data-featured="{% if focus.mmsi == v.mmsi %}true{% else %}false{% endif %}" data-id="{{ v.mmsi | escape }}" data-lon="{{ v.position[0] }}" data-lat="{{ v.position[1] }}" data-bearing="{{ v.bearing_deg }}" data-stale="{{ v.stale }}" data-name="{{ v.name | escape }}" data-voyage="{{ v.voyage | escape }}" data-reported="{{ v.reported_at | escape }}" data-rank="{{ v.label_rank }}"></li>{% endfor %}</ul>
   </section>
 </div>

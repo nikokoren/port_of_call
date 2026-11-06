@@ -6,8 +6,8 @@
       {
         "cardInside": true,
         "cardInset": {
-          "left": 4,
-          "bottom": 4
+          "left": 12,
+          "bottom": 12
         },
         "cardAtCorner": true,
         "attributionInside": true,
@@ -26,7 +26,7 @@
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.016382473490037165,
+        "maxProjectionError": 0.016382473494311555,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelRoutes": 0,
@@ -39,8 +39,8 @@
       {
         "cardInside": true,
         "cardInset": {
-          "left": 4,
-          "bottom": 4
+          "left": 12,
+          "bottom": 12
         },
         "cardAtCorner": true,
         "attributionInside": true,
@@ -59,7 +59,7 @@
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.016382473490037165,
+        "maxProjectionError": 0.016382473494311555,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelRoutes": 0,
@@ -72,8 +72,8 @@
       {
         "cardInside": true,
         "cardInset": {
-          "left": 4,
-          "bottom": 4
+          "left": 12,
+          "bottom": 12
         },
         "cardAtCorner": true,
         "attributionInside": true,
@@ -92,7 +92,7 @@
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.016382473490037165,
+        "maxProjectionError": 0.016382473494311555,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelRoutes": 0,
@@ -105,8 +105,8 @@
       {
         "cardInside": true,
         "cardInset": {
-          "left": 4,
-          "bottom": 4
+          "left": 12,
+          "bottom": 12
         },
         "cardAtCorner": true,
         "attributionInside": true,
@@ -125,7 +125,7 @@
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.016382473490037165,
+        "maxProjectionError": 0.016382473494311555,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelRoutes": 0,
@@ -140,7 +140,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.39534375
+      "inkFraction": 0.4101666666666667
     },
     "errors": []
   },
@@ -151,8 +151,8 @@
       {
         "cardInside": true,
         "cardInset": {
-          "left": 4,
-          "bottom": 4
+          "left": 11.999999152289496,
+          "bottom": 11.999986436631957
         },
         "cardAtCorner": true,
         "attributionInside": true,
@@ -171,21 +171,21 @@
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.020575118085407462,
+        "maxProjectionError": 0.020171376204273107,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelRoutes": 0,
         "labelContentsValid": true,
         "labelsOutside": 0,
-        "labels": 4,
-        "leaders": 1,
+        "labels": 7,
+        "leaders": 2,
         "textOverflow": 0
       },
       {
         "cardInside": true,
         "cardInset": {
-          "left": 4,
-          "bottom": 4
+          "left": 11.999986436631945,
+          "bottom": 11.999986436631957
         },
         "cardAtCorner": true,
         "attributionInside": true,
@@ -204,14 +204,14 @@
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.020575118085407462,
+        "maxProjectionError": 0.02016500451136114,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelRoutes": 0,
         "labelContentsValid": true,
         "labelsOutside": 0,
-        "labels": 4,
-        "leaders": 1,
+        "labels": 7,
+        "leaders": 2,
         "textOverflow": 0
       }
     ],
@@ -219,7 +219,7 @@
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.5409376750188716
+      "inkFraction": 0.5072377912922784
     },
     "errors": []
   },
@@ -230,8 +230,8 @@
       {
         "cardInside": true,
         "cardInset": {
-          "left": 4,
-          "bottom": 4
+          "left": 12,
+          "bottom": 12
         },
         "cardAtCorner": true,
         "attributionInside": true,
@@ -250,7 +250,7 @@
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.011646187236527515,
+        "maxProjectionError": 0.011646187604949886,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelRoutes": 0,
@@ -263,8 +263,8 @@
       {
         "cardInside": true,
         "cardInset": {
-          "left": 4,
-          "bottom": 4
+          "left": 12,
+          "bottom": 12
         },
         "cardAtCorner": true,
         "attributionInside": true,
@@ -283,7 +283,7 @@
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.011646187236527515,
+        "maxProjectionError": 0.011646187604949886,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelRoutes": 0,
@@ -296,8 +296,8 @@
       {
         "cardInside": true,
         "cardInset": {
-          "left": 4,
-          "bottom": 4
+          "left": 12,
+          "bottom": 12
         },
         "cardAtCorner": true,
         "attributionInside": true,
@@ -316,7 +316,7 @@
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.011646187236527515,
+        "maxProjectionError": 0.011646187604949886,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelRoutes": 0,
@@ -329,8 +329,8 @@
       {
         "cardInside": true,
         "cardInset": {
-          "left": 4,
-          "bottom": 4
+          "left": 12,
+          "bottom": 12
         },
         "cardAtCorner": true,
         "attributionInside": true,
@@ -349,7 +349,7 @@
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.011646187236527515,
+        "maxProjectionError": 0.011646187604949886,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelRoutes": 0,
@@ -364,7 +364,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.4065729166666667
+      "inkFraction": 0.41610416666666666
     },
     "errors": []
   },
@@ -375,8 +375,8 @@
       {
         "cardInside": true,
         "cardInset": {
-          "left": 4,
-          "bottom": 4
+          "left": 11.999999152289496,
+          "bottom": 11.999986436631957
         },
         "cardAtCorner": true,
         "attributionInside": true,
@@ -389,27 +389,27 @@
         "spotlightVisible": true,
         "spotlightInverted": true,
         "spotlightTextConsistent": true,
-        "spotlightConnectorWidth": 6,
+        "spotlightConnectorWidth": 3,
         "spotlightSurface": "rgb(0, 0, 0)",
         "spotlightTextColor": "rgb(255, 255, 255)",
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.017759151326808314,
+        "maxProjectionError": 0.019937040325445993,
         "labelCollisions": 0,
         "leaderCollisions": 0,
-        "labelRoutes": 4,
+        "labelRoutes": 5,
         "labelContentsValid": true,
         "labelsOutside": 0,
-        "labels": 4,
+        "labels": 5,
         "leaders": 4,
         "textOverflow": 0
       },
       {
         "cardInside": true,
         "cardInset": {
-          "left": 4,
-          "bottom": 4
+          "left": 11.999986436631945,
+          "bottom": 11.999986436631957
         },
         "cardAtCorner": true,
         "attributionInside": true,
@@ -422,19 +422,19 @@
         "spotlightVisible": true,
         "spotlightInverted": true,
         "spotlightTextConsistent": true,
-        "spotlightConnectorWidth": 6,
+        "spotlightConnectorWidth": 3,
         "spotlightSurface": "rgb(0, 0, 0)",
         "spotlightTextColor": "rgb(255, 255, 255)",
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.017759151326808314,
+        "maxProjectionError": 0.0199546042500516,
         "labelCollisions": 0,
         "leaderCollisions": 0,
-        "labelRoutes": 4,
+        "labelRoutes": 5,
         "labelContentsValid": true,
         "labelsOutside": 0,
-        "labels": 4,
+        "labels": 5,
         "leaders": 4,
         "textOverflow": 0
       }
@@ -443,7 +443,7 @@
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.316734695741106
+      "inkFraction": 0.3293200745123822
     },
     "errors": []
   }

@@ -63,8 +63,10 @@ test('TRMNL review: contact, Spotlight clamp, no inline style or opacity, short 
   assert.doesNotMatch(source,/style="/,layout+': inline style');
   assert.doesNotMatch(source,/opacity/,layout+': opacity');
   const html=await render(layout,data,{port_facts:true});
-  assert.match(html,/<span class="w--full title [^"]*" data-clamp="1" data-clamp-lg="2">/);
+  assert.match(html,/<span class="w--full title [^"]*" data-clamp="1" data-clamp-lg="2" data-poc-title>/);
   assert.match(html,/class="poc__spotlight poc__spotlight--pending /);
+  // A unit never wraps away from its number ("8\nm" on narrow cards).
+  assert.ok(html.includes('205&nbsp;m'),layout+': measurement unit kept with value');
   assert.ok(html.includes('Seattle, USA'));assert.ok(!html.includes('Elliott Bay'));
   // Larger count on large screens where the card has room; compact views keep it small.
   if(layout==='full'||layout==='half_vertical')assert.match(html,/label--small lg:label--large" data-clamp="3">\d+ vessels/);
@@ -83,7 +85,8 @@ test('Spotlight setting is a native off-by-default boolean',async()=>{
 for(const layout of layouts)test(`${layout}: ordered ship copy and map-level source credits`,async()=>{
  const data=JSON.parse(await readFile('fixtures/rauma-spotlight.json','utf8'));
  data.focus.name='<script>danger()</script>';
- const html=await render(layout,data,{ship_labels:false,ship_spotlight:true});
+ // Values keep their units on one line (&nbsp;); compare the text as read.
+ const html=(await render(layout,data,{ship_labels:false,ship_spotlight:true})).replaceAll('&nbsp;',' ');
  const harbor=html.match(/<aside[^>]*data-poc-box[^>]*>([\s\S]*?)<\/aside>/)[1];
  const overlay=html.match(/<aside[^>]*data-poc-spotlight[^>]*>([\s\S]*?)<\/aside>/)[1];
  assert.ok(harbor.includes('Port of Call'));assert.ok(harbor.includes('Rauma, Finland'));
@@ -116,7 +119,7 @@ for(const layout of layouts)test(`${layout}: absent measurements do not become e
  let html=await render(layout,data);
  let overlay=html.match(/<aside[^>]*data-poc-spotlight[^>]*>([\s\S]*?)<\/aside>/)[1];
  assert.ok(!overlay.includes('data-poc-measurements'));assert.ok(!overlay.includes('Current speed:'));
- data.focus.presentation.speed='0 knots';html=await render(layout,data);
+ data.focus.presentation.speed='0 knots';html=(await render(layout,data)).replaceAll('&nbsp;',' ');
  assert.ok(html.includes('0 knots'));assert.ok(!html.includes('data-poc-measurements'));
 });
 

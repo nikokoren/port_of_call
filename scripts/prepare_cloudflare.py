@@ -5,7 +5,7 @@ import json
 
 ROOT = Path(__file__).resolve().parents[1]
 MODULES = ('__init__.py', 'model.py', 'facts.py', 'providers.py', 'catalog.py',
-           'snapshot.py', 'spotlight.py', 'display.py', 'enrichment.py',
+           'snapshot.py', 'spotlight.py', 'labels.py', 'display.py', 'enrichment.py',
            'memory_store.py', 'payload.py', 'port_facts.py', 'rotation.py', 'destinations.py', 'harbors.json')
 
 
