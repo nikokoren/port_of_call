@@ -35,7 +35,8 @@ await mkdir('docs/screenshots',{recursive:true});
 const results=[];
 try {
  for(const [name,layout,device,fixture,dark=false,blockTiles=false,labels=fixture.endsWith('-spotlight')?'off':'on',facts=false] of cases.filter(c=>!process.env.CASE_PREFIX||c[0].startsWith(process.env.CASE_PREFIX))){
-  const page=await browser.newPage({viewport:{width:device==='portrait'?1404:device==='x'?1872:800,height:device==='portrait'?1872:device==='x'?1404:480},deviceScaleFactor:1});
+  // X: 1040x780 CSS at 1.8x, i.e. the real 1872x1404 panel.
+  const page=await browser.newPage({viewport:{width:device==='portrait'?780:device==='x'?1040:800,height:device==='portrait'?1040:device==='x'?780:480},deviceScaleFactor:device==='x'||device==='portrait'?1.8:1});
   const errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   if(blockTiles)await page.route(/^https:\/\/maps\.trmnl\.com\//,r=>r.abort());

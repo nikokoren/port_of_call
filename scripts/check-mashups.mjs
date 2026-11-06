@@ -3,7 +3,7 @@ import {geometry} from './visual-geometry.mjs';
 import {previewPixels} from './preview-pixels.mjs';
 import {writeFile} from 'node:fs/promises';
 const browser=await chromium.launch({args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
-const cases=[['og-mashup-quadrants','quadrant','og',4,800,480],['x-mashup-halves','half_vertical','x',2,1872,1404],['spotlight-mashup-quadrants','quadrant','og',4,800,480,'rauma-spotlight'],['spotlight-mashup-halves','half_vertical','x',2,1872,1404,'turku-spotlight']];
+const cases=[['og-mashup-quadrants','quadrant','og',4,800,480],['x-mashup-halves','half_vertical','x',2,1040,780],['spotlight-mashup-quadrants','quadrant','og',4,800,480,'rauma-spotlight'],['spotlight-mashup-halves','half_vertical','x',2,1040,780,'turku-spotlight']];
 const results=[];
 try{
  for(const [name,layout,device,copies,width,height,fixture='helsinki'] of cases){
