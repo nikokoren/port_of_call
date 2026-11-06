@@ -364,7 +364,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.4161666666666667
+      "inkFraction": 0.416125
     },
     "errors": []
   },
@@ -398,10 +398,10 @@
         "maxProjectionError": 0.019930633867326252,
         "labelCollisions": 0,
         "leaderCollisions": 0,
-        "labelRoutes": 5,
+        "labelRoutes": 4,
         "labelContentsValid": true,
         "labelsOutside": 0,
-        "labels": 5,
+        "labels": 4,
         "leaders": 4,
         "textOverflow": 0
       },
@@ -431,10 +431,10 @@
         "maxProjectionError": 0.019942352234240332,
         "labelCollisions": 0,
         "leaderCollisions": 0,
-        "labelRoutes": 5,
+        "labelRoutes": 4,
         "labelContentsValid": true,
         "labelsOutside": 0,
-        "labels": 5,
+        "labels": 4,
         "leaders": 4,
         "textOverflow": 0
       }
@@ -443,7 +443,7 @@
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.32711788053668395
+      "inkFraction": 0.32628387756592886
     },
     "errors": []
   }

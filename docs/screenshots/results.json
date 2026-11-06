@@ -895,7 +895,7 @@
   {
     "name": "spotlight-full",
     "ready": "true",
-    "markers": 4,
+    "markers": 3,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -935,14 +935,14 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.4188151041666667
+      "inkFraction": 0.41872135416666667
     },
     "errors": []
   },
   {
     "name": "spotlight-half-horizontal",
     "ready": "true",
-    "markers": 7,
+    "markers": 5,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -969,7 +969,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.014197703743881226,
+      "maxProjectionError": 0.013699583033476005,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -982,14 +982,14 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.57015625
+      "inkFraction": 0.5701145833333333
     },
     "errors": []
   },
   {
     "name": "spotlight-half-vertical",
     "ready": "true",
-    "markers": 7,
+    "markers": 5,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -1016,7 +1016,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.01927696096720236,
+      "maxProjectionError": 0.009172263723453268,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -1029,14 +1029,14 @@
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.35096875
+      "inkFraction": 0.35805729166666667
     },
     "errors": []
   },
   {
     "name": "spotlight-quadrant",
     "ready": "true",
-    "markers": 2,
+    "markers": 1,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -1076,14 +1076,14 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.43745833333333334
+      "inkFraction": 0.4374166666666667
     },
     "errors": []
   },
   {
     "name": "spotlight-x",
     "ready": "true",
-    "markers": 10,
+    "markers": 9,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -1110,7 +1110,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.019942893229423574,
+      "maxProjectionError": 0.019930633632530198,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -1123,14 +1123,14 @@
     "pixels": {
       "width": 3370,
       "height": 2527,
-      "inkFraction": 0.30317132828948834
+      "inkFraction": 0.30312600179192317
     },
     "errors": []
   },
   {
     "name": "spotlight-portrait",
     "ready": "true",
-    "markers": 14,
+    "markers": 12,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -1157,7 +1157,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.019426188276894955,
+      "maxProjectionError": 0.019419747155534146,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -1170,14 +1170,14 @@
     "pixels": {
       "width": 2527,
       "height": 3370,
-      "inkFraction": 0.8787967106584202
+      "inkFraction": 0.8786972507013278
     },
     "errors": []
   },
   {
     "name": "spotlight-layout-test",
     "ready": "true",
-    "markers": 2,
+    "markers": 1,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -1204,7 +1204,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.015510938902702488,
+      "maxProjectionError": 0.00736569567328694,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -1217,7 +1217,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.41080208333333335
+      "inkFraction": 0.41061458333333334
     },
     "errors": []
   },
@@ -1311,14 +1311,14 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.493796875
+      "inkFraction": 0.49442447916666665
     },
     "errors": []
   },
   {
     "name": "spotlight-dark",
     "ready": "true",
-    "markers": 7,
+    "markers": 5,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -1358,7 +1358,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.8890703125
+      "inkFraction": 0.8887291666666667
     },
     "errors": []
   },
@@ -1405,7 +1405,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.511671875
+      "inkFraction": 0.5110442708333334
     },
     "errors": []
   },
@@ -1506,7 +1506,7 @@
   {
     "name": "labels-spotlight",
     "ready": "true",
-    "markers": 4,
+    "markers": 3,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -1546,14 +1546,14 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.4236979166666667
+      "inkFraction": 0.42389583333333336
     },
     "errors": []
   },
   {
     "name": "labels-spotlight-dark",
     "ready": "true",
-    "markers": 4,
+    "markers": 3,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -1600,7 +1600,7 @@
   {
     "name": "labels-spotlight-half-horizontal",
     "ready": "true",
-    "markers": 7,
+    "markers": 5,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -1627,27 +1627,27 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.014197703743881226,
+      "maxProjectionError": 0.013699583033476005,
       "labelCollisions": 0,
       "leaderCollisions": 0,
-      "labelRoutes": 2,
+      "labelRoutes": 1,
       "labelContentsValid": true,
       "labelsOutside": 0,
-      "labels": 2,
-      "leaders": 3,
+      "labels": 1,
+      "leaders": 2,
       "textOverflow": 0
     },
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.5551458333333333
+      "inkFraction": 0.5690364583333334
     },
     "errors": []
   },
   {
     "name": "labels-spotlight-quadrant",
     "ready": "true",
-    "markers": 2,
+    "markers": 1,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -1687,7 +1687,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.43745833333333334
+      "inkFraction": 0.4374166666666667
     },
     "errors": []
   },
@@ -1741,7 +1741,7 @@
   {
     "name": "facts-full-dark",
     "ready": "true",
-    "markers": 4,
+    "markers": 3,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -1788,7 +1788,7 @@
   {
     "name": "facts-half-vertical",
     "ready": "true",
-    "markers": 7,
+    "markers": 5,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -1815,27 +1815,27 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.01927696096720236,
+      "maxProjectionError": 0.009172263723453268,
       "labelCollisions": 0,
       "leaderCollisions": 0,
-      "labelRoutes": 4,
+      "labelRoutes": 2,
       "labelContentsValid": true,
       "labelsOutside": 0,
-      "labels": 4,
-      "leaders": 4,
+      "labels": 2,
+      "leaders": 2,
       "textOverflow": 0
     },
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.33421354166666667
+      "inkFraction": 0.339953125
     },
     "errors": []
   },
   {
     "name": "facts-quadrant",
     "ready": "true",
-    "markers": 2,
+    "markers": 1,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -1875,14 +1875,14 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.43745833333333334
+      "inkFraction": 0.4374166666666667
     },
     "errors": []
   },
   {
     "name": "facts-x-quadrant",
     "ready": "true",
-    "markers": 4,
+    "markers": 3,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -1909,7 +1909,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.015614339469317194,
+      "maxProjectionError": 0.01561074457770564,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 1,
@@ -1922,14 +1922,14 @@
     "pixels": {
       "width": 1685,
       "height": 1264,
-      "inkFraction": 0.4538031025804755
+      "inkFraction": 0.46194972392292377
     },
     "errors": []
   },
   {
     "name": "facts-portrait",
     "ready": "true",
-    "markers": 14,
+    "markers": 12,
     "attribution": true,
     "overflow": false,
     "text": "Vessel feed unavailable",
@@ -1956,20 +1956,20 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.01941330769544519,
+      "maxProjectionError": 0.019419747252270428,
       "labelCollisions": 0,
       "leaderCollisions": 0,
-      "labelRoutes": 6,
+      "labelRoutes": 5,
       "labelContentsValid": true,
       "labelsOutside": 0,
-      "labels": 7,
-      "leaders": 4,
+      "labels": 6,
+      "leaders": 3,
       "textOverflow": 0
     },
     "pixels": {
       "width": 2527,
       "height": 3370,
-      "inkFraction": 0.7821218672168474
+      "inkFraction": 0.7859361037295722
     },
     "errors": []
   }
