@@ -30,7 +30,7 @@ def check(origin, *, allow_degraded=False, all_framings=False):
     if status != 200 or not catalog.get('harbors'): raise ValueError('Harbor catalog unavailable')
     rows = []
     for port in catalog['harbors']:
-        for scale in (('closer', 'standard', 'wider') if all_framings else ('standard',)):
+        for scale in (('harbor', 'closer', 'standard', 'wider') if all_framings else ('harbor',)):
             for focus in (False, True):
                 url = origin+'/api/v1/harbors/'+port['id']+'/vessels?scale='+scale+'&spotlight='+str(focus).lower()
                 status, data, size, headers = get(url)

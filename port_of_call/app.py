@@ -131,7 +131,7 @@ def create_app(config=None, *, store=None, collect=True, clock=time.time):
         if mid not in HARBORS or (not demo and mid not in active): raise web.HTTPNotFound()
         if demo and not config.demo: raise web.HTTPNotFound()
         scale = request.query.get('scale', DEFAULT_SCALE)
-        if scale not in ('closer','standard','wider'): raise web.HTTPBadRequest(reason='Unknown scale')
+        if scale not in ('harbor','closer','standard','wider'): raise web.HTTPBadRequest(reason='Unknown scale')
         return respond(request, mid, scale, spotlight_flag(request), demo)
 
     app.router.add_get('/health', health)

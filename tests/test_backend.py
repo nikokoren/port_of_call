@@ -150,6 +150,19 @@ class Endpoints(unittest.IsolatedAsyncioTestCase):
         r=await self.client.get('/api/v1/vessels?harbors=turku&spotlight=maybe');self.assertEqual(r.status,400)
         data=await (await self.client.get('/api/v1/vessels?harbors=helsinki')).json()
         self.assertEqual(data['viewport'],m.viewport(PORT))
+    def test_fixed_harbor_zoom_view_is_centred_on_curated_focus(self):
+        import math
+        for h in m.HARBORS.values():
+            self.assertTrue(m.contains(h['bbox'],h['focus']),h['id'])
+            b=m.viewport(h)
+            self.assertAlmostEqual((b[0]+b[2])/2,h['focus'][0],places=5)
+            # 800 px at zoom 11 with 512 px tiles, independent of latitude in longitude.
+            self.assertAlmostEqual(b[2]-b[0],360*800/(512*2**11),places=5)
+            merc=lambda y:math.log(math.tan(math.pi/4+math.radians(y)/2))
+            self.assertAlmostEqual((merc(b[3])-merc(b[1]))/(2*math.pi)*512*2**11,480,places=2)
+        data=snapshot(self.s,PORT,NOW)
+        self.assertEqual(data['camera'],{'zoom':11,'center':PORT['focus']})
+        self.assertIsNone(snapshot(self.s,PORT,NOW,scale='wider')['camera'])
     def test_rotation_steps_once_per_refresh(self):
         from port_of_call.rotation import parse_selection,rotate,ROTATION_SECONDS
         active={'a':{},'b':{},'c':{}}

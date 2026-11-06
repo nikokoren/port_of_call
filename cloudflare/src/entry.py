@@ -255,7 +255,7 @@ class Harbor(DurableObject):
         else:
             return response({'error': 'Not found'}, 404)
         raw_focus = query.get('spotlight', ['false'])[0].lower()
-        if scale not in ('closer', 'standard', 'wider') or raw_focus not in ('', 'true', 'false', 'on', 'off', 'yes', 'no', '1', '0'):
+        if scale not in ('harbor', 'closer', 'standard', 'wider') or raw_focus not in ('', 'true', 'false', 'on', 'off', 'yes', 'no', '1', '0'):
             return response({'error': 'Unknown scale or spotlight value'}, 400)
         client = request.headers.get('CF-Connecting-IP') or 'shared'
         minute = int(now//60)

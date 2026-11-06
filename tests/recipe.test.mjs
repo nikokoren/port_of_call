@@ -28,7 +28,11 @@ for(const layout of layouts)test(`${layout}: boolean ship labels and inset corne
  for(const [value,expected] of [[true,'on'],['true','on'],['on','on'],[false,'off'],['false','off'],[undefined,'off']])
   assert.ok((await render(layout,fixture,{ship_labels:value})).includes(`data-labels="${expected}"`));
  const html=await render(layout,fixture);
- assert.ok(!html.includes('data-mode'));assert.match(html,/class="absolute bottom--3 left--3 right--3 [^"]*poc__corner"/);
+ assert.ok(!html.includes('data-mode'));
+ // Fixed harbor zoom: the payload camera drives zoom and centre; legacy payloads fall back to fitting.
+ assert.match(html,/data-zoom=""/);assert.ok(html.includes(`data-center="${fixture.port.center.join(',')}"`));
+ const fixed=await render(layout,{...fixture,camera:{zoom:11,center:[24.96,60.16]}});
+ assert.ok(fixed.includes('data-zoom="11"'));assert.ok(fixed.includes('data-center="24.96,60.16"'));assert.match(html,/class="absolute bottom--3 left--3 right--3 [^"]*poc__corner"/);
 });
 for(const layout of layouts){
  test(`${layout}: fields, markers, escaping and fallback states`,async()=>{

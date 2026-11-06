@@ -170,7 +170,14 @@
         var above={top:g,right:g,bottom:H-r[1]+g,left:g};
         var pad=(W-r[2])*H>=W*r[1]?beside:above;
         if(W-pad.left-pad.right<40 || H-pad.top-pad.bottom<40)pad={top:g,right:g,bottom:g,left:g};
-        TRMNLMaps.fit(map,[[bounds[0],bounds[1]],[bounds[2],bounds[3]]],{padding:pad,maxZoom:14});
+        var zoom=Number(el.dataset.zoom);
+        if(el.dataset.zoom&&Number.isFinite(zoom)){
+          // Fixed harbor zoom: same apparent ship scale at every port. Larger
+          // UI scales (TRMNL X) show the same geography at proportionally more pixels.
+          var center=el.dataset.center.split(',').map(Number);
+          map.jumpTo({center:center,zoom:zoom+Math.log2(scale())});
+          map.easeTo({center:center,offset:[(pad.left-pad.right)/2,(pad.top-pad.bottom)/2],duration:0});
+        } else TRMNLMaps.fit(map,[[bounds[0],bounds[1]],[bounds[2],bounds[3]]],{padding:pad,maxZoom:14});
         var featured=el.querySelector('.poc__data li[data-featured="true"]');
         if(featured){
           var coordinate=[Number(featured.dataset.lon),Number(featured.dataset.lat)];
