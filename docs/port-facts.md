@@ -2,7 +2,7 @@
 
 **Show port facts?** is off by default. When enabled, one short blurb appears below the vessel count. Selection advances on the hour (UTC), shared across installations; a normal device refresh picks up the change. These are static geography/history/port facts, separate from live traffic.
 
-The collection covers every verified Finnish and AISStream harbor: three facts per Finnish port and two per major-port area, 35 in total. All are original factual summaries. The [source module](../port_of_call/port_facts.py) retains a reference URL for every text. API `port_fact` contains `id`, `text` and `source_url`; no extra upstream requests are made for rotation. Adding facts means editing that reviewed collection, with its source, rather than accepting unverified generated claims.
+The collection covers every verified Finnish and AISStream harbor: four facts per port, 64 in total, reviewed by the maintainer. Each figure was checked against the linked source; claims the sources did not support were reworded or replaced before review. All are original factual summaries. The [source module](../port_of_call/port_facts.py) retains a reference URL for every text. API `port_fact` contains `id`, `text` and `source_url`; no extra upstream requests are made for rotation. Adding facts means editing that reviewed collection, with its source, rather than accepting unverified generated claims.
 
 All four layouts use native labels and clamping. The smallest OG half-horizontal and quadrant layouts omit the blurb using native responsive visibility; larger X versions have room. The port card remains at the bottom-left. Under the shared 15 KB response budget, optional blurbs are removed before voyage labels or vessel positions.
 
