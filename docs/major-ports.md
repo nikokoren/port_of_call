@@ -59,7 +59,7 @@ The one-connection design follows previously observed AISStream documentation. *
 python scripts/package_recipe.py --provider aisstream --origin https://harbor.example.com
 ```
 
-This writes `dist/port-of-call-aisstream.zip`; it does not overwrite the Finnish `settings.yml`. The current AISStream archive contains exactly the 13 data-verified areas. With no data-verified entries the command refuses to generate an archive. Building this private-test code package does not publish a service or approve community distribution. The normal `npm run package` still builds the verified Finnish profile. Each deployment serves one provider, preserving attribution and persistence boundaries.
+This writes `dist/port-of-call-aisstream.zip`. The checked-in `settings.yml` is this world profile, already carrying the deployed world origin and the 13 data-verified areas; a test keeps it in sync with the catalog. With no data-verified entries the command refuses to generate an archive. Building this private-test code package does not publish a service or approve community distribution. `npm run package` builds the world profile; `--provider digitraffic` builds the Finnish one. Each deployment serves one provider, preserving attribution and persistence boundaries.
 
 Provider keys remain shared server infrastructure: ordinary recipe users choose a harbor and never provide their own AIS key. A single continuously connected subscription serves all installations, independent of screen refresh frequency. Do not substitute periodic brief GitHub Actions samples for the production collector; events have no guaranteed replay and Actions jobs are not durable services.
 

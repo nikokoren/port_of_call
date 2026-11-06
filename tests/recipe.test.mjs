@@ -7,7 +7,8 @@ const settings=YAML.parse(await readFile('settings.yml','utf8'));
 const fixture=JSON.parse(await readFile('fixtures/helsinki.json','utf8'));
 const fields=Object.fromEntries(settings.custom_fields.filter(f=>Object.hasOwn(f,'default')).map(f=>[f.keyname,f.default]));
 test('polling URL sends an optional multi-harbor selection',async()=>{
- const base='https://YOUR-BACKEND.example/api/v1/vessels?harbors=';
+ const release=JSON.parse(await readFile('deploy/world-release.json','utf8'));
+ const base=release.origin+'/api/v1/vessels?harbors=';
  // TRMNL stores a multi-select as a list; join also passes a plain string through.
  for(const [harbor,expected] of [[[],''],[undefined,''],[null,''],[['turku'],'turku'],[['helsinki','rauma'],'helsinki,rauma'],['turku','turku']]){
   const url=await engine.parseAndRender(settings.polling_url,{...fields,harbor});

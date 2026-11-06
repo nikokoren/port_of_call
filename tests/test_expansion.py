@@ -120,8 +120,27 @@ class Expansion(unittest.TestCase):
         description=next(line.split(': ',1)[1] for line in out.splitlines() if line.startswith('description: '))
         self.assertLessEqual(len(description),35)
         self.assertIn('Wikidata',out);self.assertIn('CC0',out)
+        # Placeholder origins are never left in the shipped template.
+        self.assertNotIn('YOUR-BACKEND',text)
         for origin in ('http://example.com','https://secret@example.com','https://example.com?key=secret'):
             with self.assertRaises(ValueError):release_settings(text,origin=origin)
+
+
+class ShippedSettings(unittest.TestCase):
+    def test_settings_is_the_current_world_release(self):
+        text=Path('settings.yml').read_text()
+        world=json.loads(Path('deploy/world-release.json').read_text())
+        # Packaging the template for its own profile changes nothing: menu, credit and origin are in sync.
+        self.assertEqual(release_settings(text,'aisstream',origin=world['origin']),text)
+        self.assertIn('polling_url: "'+world['origin']+'/api/v1/vessels?harbors=',text)
+        for h in verified_harbors('aisstream').values():self.assertIn(': "'+h['id']+'"',text)
+        self.assertIn('"Singapore": "singapore"',text)
+    def test_finnish_profile_gets_its_own_ports_credit_and_origin(self):
+        finland=json.loads(Path('deploy/finland-release.json').read_text())
+        out=release_settings(Path('settings.yml').read_text(),'digitraffic',origin=finland['origin'])
+        self.assertIn('polling_url: "'+finland['origin']+'/api/v1/vessels?harbors=',out)
+        self.assertIn('"Helsinki, Finland": "helsinki"',out);self.assertNotIn('rotterdam',out)
+        self.assertIn('Fintraffic / digitraffic.fi, CC BY 4.0',out);self.assertNotIn('AISStream',out)
 
 
 class BatchedPersistence(unittest.TestCase):

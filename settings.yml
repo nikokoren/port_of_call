@@ -2,8 +2,9 @@
 name: Port of Call
 strategy: polling
 polling_verb: get
-# Replace this origin with your deployed HTTPS service before importing.
-polling_url: "https://YOUR-BACKEND.example/api/v1/vessels?harbors={{ harbor | join: ',' }}&spotlight={{ ship_spotlight }}"
+# World profile (AISStream backend). The Finnish profile is packaged with
+# `python scripts/package_recipe.py --provider digitraffic`.
+polling_url: "https://port-of-call-world.5g5wqr7kzx-466.workers.dev/api/v1/vessels?harbors={{ harbor | join: ',' }}&spotlight={{ ship_spotlight }}"
 polling_headers: ''
 refresh_interval: 15
 framework_version: '3.4.4'
@@ -15,7 +16,7 @@ custom_fields:
   - keyname: author_bio
     field_type: author_bio
     name: Port of Call
-    description: See who's coming and going. Observed AIS positions, not port schedules. Source Fintraffic / digitraffic.fi, CC BY 4.0; filtered and normalized. Optional vessel reference facts from <a href="https://www.wikidata.org/">Wikidata</a> (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>). Not for navigation.
+    description: See who's coming and going. Observed AIS positions from AISStream; coverage varies. See the maintainer's source and license notes. Optional vessel reference facts from <a href="https://www.wikidata.org/">Wikidata</a> (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>). Not for navigation.
   - keyname: harbor
     field_type: select
     name: Which harbors?
@@ -23,9 +24,19 @@ custom_fields:
     multiple: true
     optional: true
     options:
-      - Helsinki, Finland: helsinki
-      - Turku, Finland: turku
-      - Rauma, Finland: rauma
+      - "Rotterdam, Netherlands": "rotterdam"
+      - "Antwerp, Belgium": "antwerp"
+      - "Hamburg, Germany": "hamburg"
+      - "Bremerhaven, Germany": "bremerhaven"
+      - "Felixstowe / Harwich, UK": "felixstowe"
+      - "Southampton, UK": "southampton"
+      - "Los Angeles / Long Beach, USA": "los-angeles-long-beach"
+      - "New York / New Jersey, USA": "new-york-new-jersey"
+      - "Savannah, USA": "savannah"
+      - "Houston — Ship Channel, USA": "houston"
+      - "Seattle — Elliott Bay, USA": "seattle"
+      - "Charleston, USA": "charleston"
+      - "Singapore": "singapore"
   - keyname: ship_labels
     field_type: boolean
     name: Show ship labels?

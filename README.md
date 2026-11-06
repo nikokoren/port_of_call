@@ -52,9 +52,9 @@ curl -f 'http://127.0.0.1:8080/api/v1/vessels?harbors=helsinki,turku'
 
 ## Test as a private TRMNL plugin
 
-1. [Deploy the backend](docs/deployment.md) to a public HTTPS origin. Verify `/health` and all three harbor endpoints. A localhost address cannot be polled by hosted TRMNL.
-2. Replace **only** `https://YOUR-BACKEND.example` in `settings.yml` with your service origin. Keep `{{ harbor | join: ',' }}` and `{{ ship_spotlight }}` intact, and keep the value quoted.
-3. Run `npm ci` then `npm run package`. Import `dist/port-of-call.zip` using TRMNL's private plugin import flow. The ZIP has the six export files at its root. If the UI requires manual setup, use polling/GET/15 minutes, framework **3.4.4**, paste the custom fields YAML and the five Liquid files into their corresponding tabs.
+1. `settings.yml` is the ready-to-import **world profile**: the 13 verified AISStream harbors and the deployed world backend (`deploy/world-release.json`). Keep `{{ harbor | join: ',' }}` and `{{ ship_spotlight }}` intact, and keep the polling URL quoted. To use your own deployment, verify its `/health` and harbor endpoints, then pass `--origin` when packaging. A localhost address cannot be polled by hosted TRMNL.
+2. For the **Finnish profile** (Helsinki, Turku, Rauma on Fintraffic open data), run `python scripts/package_recipe.py --provider digitraffic`; it swaps in the Finnish harbors, source credit and backend from `deploy/finland-release.json`.
+3. Run `npm ci` then `npm run package`. Import `dist/port-of-call-aisstream.zip` (or the Finnish `dist/port-of-call.zip`) using TRMNL's private plugin import flow. The ZIP has the six export files at its root. If the UI requires manual setup, use polling/GET/15 minutes, framework **3.4.4**, paste the custom fields YAML and the five Liquid files into their corresponding tabs.
 4. Leave harbors empty and labels off. Confirm data loads and that each refresh shows the next harbor; then pick a single harbor and confirm it stays put. Enable **Spotlight a ship** to test the shared rotating subject, highlighted marker, facts card and deliberate overview fallback.
 5. Test all four layouts, light/dark, and your device. Keep framework-provided map attribution visible. MapLibre JS/CSS load separately, as the native docs require.
 
