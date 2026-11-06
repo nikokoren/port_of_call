@@ -28,6 +28,9 @@
 .poc[data-focus]:not([data-focus=""]):not([data-spotlight-fallback="true"]) .poc__ship:not(.poc__ship--featured) path { stroke:var(--poc-context-edge); stroke-width:2.6; }
 .poc[data-focus]:not([data-focus=""]):not([data-spotlight-fallback="true"]) .poc__ship--stale:not(.poc__ship--featured) path { fill:var(--poc-paper); stroke:var(--poc-context-edge); stroke-width:1.8; }
 .screen--1bit .poc[data-focus]:not([data-focus=""]):not([data-spotlight-fallback="true"]) .poc__ship:not(.poc__ship--featured) path { fill:var(--poc-paper); stroke:var(--poc-ink); stroke-width:1.1; }
+/* Wake: an ink line with a paper halo behind ships under way. */
+.poc__ship .poc__wake-halo { stroke:var(--poc-paper); stroke-width:4; stroke-linecap:round; }
+.poc__ship .poc__wake { stroke:currentColor; stroke-width:1.9; stroke-linecap:round; }
 .poc__ship--featured { z-index:4; }
 .poc__ship--featured path { stroke-width:3; }
 .poc__ship--stale path { fill:var(--poc-paper); stroke:currentColor; stroke-width:1.8; }
@@ -187,6 +190,20 @@
         spotlight.style.maxWidth=need?Math.min(need+pad+2,el.clientWidth-16)+'px':'';
         if(need)spotlight.style.minWidth=Math.min(need+pad+2,el.clientWidth-16)+'px';else spotlight.style.minWidth='';
       }
+      // Hull outlines (bow up, 18x22 box): long and blunt for cargo ships and
+      // tankers, round for passenger ships, a split stern for fishing boats,
+      // slim for tugs, pilots and leisure craft; the classic hull when unknown.
+      var HULLS={freighter:'M9 1 L13.5 6 L13.5 21 L4.5 21 L4.5 6 Z',
+        passenger:'M9 1 C13 4 15 8 15 13 L15 19 Q15 21 13 21 L5 21 Q3 21 3 19 L3 13 C3 8 5 4 9 1 Z',
+        fishing:'M9 3 L14 11 L13.5 20 L9 17 L4.5 20 L4 11 Z',
+        small:'M9 2 L12.5 9 L12 20 L6 20 L5.5 9 Z',
+        ship:'M9 1 L15 10 L13 20 L5 20 L3 10 Z'};
+      function hullOf(type){return type==='cargo'||type==='tanker'?'freighter':type==='passenger'?'passenger':type==='fishing'?'fishing':type==='other'?'small':'ship';}
+      // Three sizes by reported length; without one, small craft types stay small.
+      function sizeOf(length,type){
+        if(length>=150)return 1.3;if(length>=40)return 1;if(length>0)return .8;
+        return type==='other'||type==='fishing'?.8:1;
+      }
       function featuredIcon(point) {
         var r=20*scale();return [point.x-r,point.y-r,point.x+r,point.y+r];
       }
@@ -262,7 +279,7 @@
         el.querySelectorAll('.poc__data li').forEach(function (v) {
           var coord=[Number(v.dataset.lon),Number(v.dataset.lat)];
           if(!coord.every(Number.isFinite))return;
-          var featured=!!hl&&v.dataset.featured==='true',factor=featured?1.5:(hl ? 0.75 : 1);
+          var featured=!!hl&&v.dataset.featured==='true',factor=(featured?1.5:(hl ? 0.75 : 1))*sizeOf(Number(v.dataset.length),v.dataset.type);
           var pt=map.project(coord),bearing=v.dataset.bearing===''?null:Number(v.dataset.bearing);
           // Rotation-aware icon bounds; do not move markers to make room for names.
           var angle=(bearing||0)*Math.PI/180;
@@ -276,8 +293,12 @@
           glyph.style.left=pt.x+'px';glyph.style.top=pt.y+'px';glyph.style.width=(16*unit*factor)+'px';glyph.style.height=(20*unit*factor)+'px';
           glyph.dataset.featured=String(featured);glyph.dataset.id=v.dataset.id;glyph.dataset.lon=coord[0];glyph.dataset.lat=coord[1];
           glyph.title=v.dataset.name||v.dataset.id;
-          glyph.innerHTML='<svg viewBox="0 0 18 22" aria-hidden="true"><path d="'+
-            (bearing===null?'M9 4 L15 11 L9 18 L3 11 Z':'M9 1 L15 10 L13 20 L5 20 L3 10 Z')+'"/></svg>';
+          var speed=Number(v.dataset.speed),stale=v.dataset.stale==='true';
+          // A wake only where the direction is known and the report is fresh.
+          var wake=bearing!==null&&!stale&&speed>=1?(speed>8?12:6):0;
+          glyph.innerHTML='<svg viewBox="0 0 18 22" aria-hidden="true">'+
+            (wake?'<line class="poc__wake-halo" x1="9" y1="21.5" x2="9" y2="'+(21.5+wake)+'"/><line class="poc__wake" x1="9" y1="21.5" x2="9" y2="'+(21.5+wake)+'"/>':'')+
+            '<path d="'+(bearing===null?'M9 4 L15 11 L9 18 L3 11 Z':HULLS[hullOf(v.dataset.type)])+'"/></svg>';
           glyph.querySelector('svg').style.transform='rotate('+(bearing||0)+'deg)';
           el.appendChild(glyph);shown.push({x:pt.x,y:pt.y,box:ib,data:v.dataset,featured:featured});
         });
