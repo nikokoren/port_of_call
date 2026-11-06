@@ -62,7 +62,12 @@ class Harbor(DurableObject):
         self.sql = self.ctx.storage.sql
         self.sql.exec('CREATE TABLE IF NOT EXISTS checkpoint(provider TEXT, part INTEGER, payload TEXT, PRIMARY KEY(provider, part))')
         rows = self.sql.exec('SELECT payload FROM checkpoint WHERE provider=? ORDER BY part', self.provider).raw().toArray()
-        self.store = EdgeStore(self.sql, self.provider, ''.join(row[0] for row in rows) if rows else None)
+        payload = ''.join(row[0] for row in rows) if rows else None
+        # Release the SQL rows before parsing: a full world checkpoint is several
+        # MB, and holding every copy at once pushed restarts past the memory limit.
+        del rows
+        self.store = EdgeStore(self.sql, self.provider, payload)
+        del payload
         self.enricher = Enricher(self.store, self.provider)
         self.session = FetchSession()
         self.socket = None

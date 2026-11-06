@@ -1,7 +1,7 @@
 import json
 import sqlite3
 from pathlib import Path
-from .model import epoch, iso, category
+from .model import epoch, iso, category, contains
 from .facts import VOYAGE, VOYAGE_TTL, IDENTITY_TTL
 
 
@@ -58,7 +58,7 @@ class Store:
         self.db.execute('DELETE FROM port_calls WHERE ts<?', (now-7*86400,))
         self.db.commit()
 
-    def vessels(self, now, ttl):
+    def vessels(self, now, ttl, bbox=None):
         rows = self.db.execute('''SELECT p.payload,m.payload FROM positions p
             LEFT JOIN metadata m ON p.mmsi=m.mmsi WHERE p.ts>? AND p.ts<=?''', (now-ttl, now))
         facts = {}
@@ -69,6 +69,7 @@ class Store:
         result = []
         for p, m in rows:
             vessel = json.loads(p)
+            if bbox is not None and not contains(bbox, vessel['position']): continue
             # Metadata expires independently and never refreshes a position.
             meta = json.loads(m) if m else {}
             recent = now-meta.get('updated_at', 0) < 7*86400
