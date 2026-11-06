@@ -74,6 +74,23 @@ test('TRMNL review: contact, Spotlight clamp, no inline style or opacity, short 
  assert.doesNotMatch(await readFile('shared.liquid','utf8'),/opacity/);
 });
 
+test('ship markers carry type, speed and length for their icons',async()=>{
+ const data=JSON.parse(await readFile('fixtures/rauma-spotlight.json','utf8'));
+ data.vessels=data.vessels.slice(0,2);
+ Object.assign(data.vessels[0],{type:'cargo',speed_knots:12.5,length_m:229});
+ Object.assign(data.vessels[1],{type:null,speed_knots:null});delete data.vessels[1].length_m;
+ for(const layout of layouts){
+  const html=await render(layout,data);
+  assert.match(html,/data-type="cargo" data-speed="12.5" data-length="229"/,layout);
+  assert.match(html,/data-type="" data-speed="" data-length=""/,layout+': missing values stay empty');
+ }
+ const shared=await readFile('shared.liquid','utf8');
+ // Motion shows as fill: outlined when stopped, dashed when old; no speed marks.
+ assert.match(shared,/poc__ship--stopped path \{ fill:var\(--poc-paper\)/);
+ assert.match(shared,/poc__ship--stale path \{[^}]*stroke-dasharray/);
+ assert.doesNotMatch(shared,/poc__wake|speedMarks|__pocSpeedStyle/);
+});
+
 test('Spotlight setting is a native off-by-default boolean',async()=>{
  assert.match(settings.custom_fields.find(f=>f.keyname==='author_bio').description,/Wikidata.*CC0/);
  assert.doesNotMatch(settings.description,/reported/i);

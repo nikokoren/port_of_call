@@ -68,6 +68,21 @@ class Snapshot(unittest.TestCase):
         if data['focus']: self.assertNotIn('label_rank', data['vessels'][0])
 
 
+class Icons(unittest.TestCase):
+    def test_markers_carry_reported_length_for_icon_size(self):
+        store = MemoryStore(); store.state('last_success', NOW)
+        port = HARBORS['helsinki']; x, y = port['focus']
+        store.put(position('230400001', x, y, NOW-30, NOW, speed=4),
+                  dict(mmsi='230400001', name='LONG ONE', updated_at=NOW-60, type='cargo',
+                       facts={'length_m': 229.4}, facts_source='AIS'))
+        store.put(position('230400002', x+.002, y, NOW-30, NOW, speed=0),
+                  dict(mmsi='230400002', name='NO SIZE', updated_at=NOW-60, type='other'))
+        markers = {v['mmsi']: v for v in snapshot(store, port, NOW)['vessels']}
+        self.assertEqual(markers['230400001']['length_m'], 229)
+        self.assertNotIn('length_m', markers['230400002'])
+        self.assertEqual(markers['230400001']['type'], 'cargo')
+
+
 class Bundle(unittest.TestCase):
     def test_cloudflare_bundle_lists_every_module_the_snapshot_imports(self):
         from scripts.prepare_cloudflare import MODULES
