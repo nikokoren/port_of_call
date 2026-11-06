@@ -275,6 +275,7 @@ class Harbor(DurableObject):
             if len(self.cache) >= 96: self.cache.clear()
             payload = snapshot(self.store, self.active[harbor], now, scale=scale, spotlight=focus)
             self.enricher.enqueue(payload.get('focus'))
+            self.enricher.enqueue_ports(payload.pop('unresolved_ports', []))
             self.cache[key] = encode_snapshot(payload)
         body = self.cache[key]
         etag = '"'+hashlib.sha256(body.encode()).hexdigest()[:24]+'"'

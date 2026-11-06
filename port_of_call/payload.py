@@ -3,6 +3,7 @@ import json
 
 
 def encode_snapshot(payload):
+    payload.pop('unresolved_ports', None)  # internal lookup hints, never published
     def encode(): return json.dumps(payload, ensure_ascii=True, separators=(',', ':'))
     body = encode()
     if len(body) >= 15_000 and payload.pop('port_fact', None) is not None:
