@@ -1,6 +1,6 @@
 # AISStream public-use permission request — draft, not sent
 
-Use AISStream's official account/support channel to obtain current terms or written confirmation. The connection-limit table and a working API key do not establish these reuse terms. This text has not been sent to anyone.
+The bounded display-proxy scope now follows the current FAQ (see data-source-evaluation.md, 6 November). This optional draft seeks more explicit written reuse terms; it has not been sent. Use AISStream’s official account/support channel if broader clarification is needed. The connection-limit table and a working API key do not establish these reuse terms. This text has not been sent to anyone.
 
 > We are building Port of Call, a free, publicly distributed TRMNL community recipe. A single shared server subscribes to AISStream for thirteen reviewed harbor areas, primarily in the US and Europe. Users do not receive an API key or open their own connections.
 >

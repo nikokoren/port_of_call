@@ -9,12 +9,20 @@ def place(name, country=None):
     return f'{name}, {country}' if country else name
 
 
+def destination_activity(destination):
+    # This exact free-text declaration is an activity, not a named destination.
+    value = (destination or {}).get('value')
+    return 'Fairway works' if isinstance(value, str) and ' '.join(value.upper().split()) == 'FAIRWAY WORKS' else None
+
+
 def label_voyage(context):
     """Compact route, preserving the distinction between origin and destination.
 
     Country codes come from resolved UN/LOCODEs, never from a ship's position.
     Raw/ambiguous destination text is retained without guessing an origin.
     """
+    activity = destination_activity(context.get('destination'))
+    if activity: return 'Activity: '+activity
     def location(port, name):
         code = port.get('code') or ''
         country = code[:2] if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{3}', code) and port.get('country') else port.get('country')
@@ -37,12 +45,13 @@ def focus_copy(focus):
     end = place(resolved.get('name') or destination.get('value'), resolved.get('country')) if destination.get('value') else None
     journey = dict(label='Voyage', value=start+' → '+end) if start and end else (
         dict(label='Destination', value=end) if end else dict(label='Previous port', value=start) if start else None)
+    activity = destination_activity(destination)
+    if activity: journey = dict(label='Activity', value=activity)
     flag = focus.get('flag') or {}
     method = flag.get('method')
     flag_text = None
     if flag.get('value'):
         flag_text = ('Registry: ' if method=='registry_reference' else 'Flag: ')+flag['value']
-        if flag.get('inferred'): flag_text += ' (AIS)'
     highlights = []
     if reference.get('In service'): highlights.append('In service since '+reference['In service'])
     if reference.get('Operator'): highlights.append('Operator: '+reference['Operator'])

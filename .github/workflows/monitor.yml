@@ -29,11 +29,26 @@ jobs:
         if: steps.release.outputs.origin != ''
         env:
           SERVICE_ORIGIN: ${{ steps.release.outputs.origin }}
-        run: python scripts/check_service.py "$SERVICE_ORIGIN" --all-framings
+        run: |
+          python - <<'PYTHON'
+          import json, pathlib, subprocess, sys
+          origins = {}
+          for name in ('release', 'finland-release', 'world-release'):
+              path = pathlib.Path('deploy')/(name+'.json')
+              if path.exists():
+                  r = json.loads(path.read_text())
+                  if r.get('origin'): origins[r['origin']] = r['provider']
+          failed = False
+          for origin, provider in origins.items():
+              result = subprocess.run([sys.executable, 'scripts/check_service.py', origin,
+                  '--all-framings', '--output', 'var/release-check-'+provider+'.json'])
+              failed = failed or result.returncode != 0
+          sys.exit(1 if failed else 0)
+          PYTHON
       - uses: actions/upload-artifact@v4
         if: always() && steps.release.outputs.origin != ''
         with:
           name: aggregate-health-${{ github.run_id }}
-          path: var/release-check.json
+          path: var/release-check-*.json
           if-no-files-found: warn
           retention-days: 30

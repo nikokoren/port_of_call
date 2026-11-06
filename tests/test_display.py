@@ -15,7 +15,7 @@ class Copy(unittest.TestCase):
     def test_reported_story_and_country_labels(self):
         result=focus_copy(self.base())
         self.assertEqual(result['vessel_type'],'Cargo vessel')
-        self.assertEqual(result['flag'],'Flag: Netherlands (AIS)')
+        self.assertEqual(result['flag'],'Flag: Netherlands')
         self.assertEqual(result['journey']['value'],'Hanko, Finland → Tilbury, United Kingdom')
         self.assertEqual(result['eta'],'10 Nov 04:00 UTC');self.assertEqual(result['speed'],'12 knots')
     def test_missing_origin_and_country_are_omitted(self):

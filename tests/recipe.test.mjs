@@ -64,6 +64,7 @@ for(const layout of layouts)test(`${layout}: ordered ship copy and map-level sou
   assert.ok(overlay.indexOf('Length')>overlay.indexOf('Shipyard country'));
  }
  assert.ok(!overlay.includes('Position '));
+ assert.doesNotMatch(overlay,/\bAIS\b/);
  assert.doesNotMatch(overlay,/reported|draught/i);
  assert.doesNotMatch(harbor,/reported/i);
  assert.doesNotMatch(html,/Wikidata|CC0/);
@@ -78,4 +79,17 @@ for(const layout of layouts)test(`${layout}: absent measurements do not become e
  assert.ok(!overlay.includes('data-poc-measurements'));assert.ok(!overlay.includes('Current speed:'));
  data.focus.presentation.speed='0 knots';html=await render(layout,data);
  assert.ok(html.includes('0 knots'));assert.ok(!html.includes('data-poc-measurements'));
+});
+
+for(const layout of layouts)test(`${layout}: port facts are opt-in, escaped and below the count`,async()=>{
+ const data=JSON.parse(await readFile('fixtures/rauma-spotlight.json','utf8'));
+ data.port_fact={text:'<script>bad()</script>',source_url:'https://example.invalid'};
+ const off=await render(layout,data,{port_facts:false});assert.ok(!off.includes('data-poc-port-fact'));
+ const on=await render(layout,data,{port_facts:true});
+ const harbor=on.match(/<aside[^>]*data-poc-box[^>]*>([\s\S]*?)<\/aside>/)[1];
+ assert.ok(harbor.includes('&lt;script&gt;bad()&lt;/script&gt;'));
+ assert.ok(harbor.indexOf('data-poc-port-fact')>harbor.indexOf('vessels seen'));
+ if(layout==='quadrant'||layout==='half_horizontal')assert.ok(harbor.includes('hidden lg:block'));
+ assert.ok(!on.includes('source_url'));
+ assert.ok((await render(layout,data,{port_facts:'true'})).includes('data-poc-port-fact'));
 });

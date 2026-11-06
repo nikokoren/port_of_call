@@ -12,6 +12,8 @@
         "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
+        "attributionTight": true,
+        "portFactVisible": false,
         "spotlightInside": true,
         "spotlightClear": true,
         "spotlightConnected": true,
@@ -43,6 +45,8 @@
         "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
+        "attributionTight": true,
+        "portFactVisible": false,
         "spotlightInside": true,
         "spotlightClear": true,
         "spotlightConnected": true,
@@ -74,6 +78,8 @@
         "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
+        "attributionTight": true,
+        "portFactVisible": false,
         "spotlightInside": true,
         "spotlightClear": true,
         "spotlightConnected": true,
@@ -105,6 +111,8 @@
         "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
+        "attributionTight": true,
+        "portFactVisible": false,
         "spotlightInside": true,
         "spotlightClear": true,
         "spotlightConnected": true,
@@ -132,7 +140,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.34689583333333335
+      "inkFraction": 0.39534375
     },
     "errors": []
   },
@@ -149,6 +157,8 @@
         "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
+        "attributionTight": true,
+        "portFactVisible": false,
         "spotlightInside": true,
         "spotlightClear": true,
         "spotlightConnected": true,
@@ -180,6 +190,8 @@
         "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
+        "attributionTight": true,
+        "portFactVisible": false,
         "spotlightInside": true,
         "spotlightClear": true,
         "spotlightConnected": true,
@@ -207,7 +219,7 @@
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.5386350354299072
+      "inkFraction": 0.5409376750188716
     },
     "errors": []
   },
@@ -224,6 +236,8 @@
         "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
+        "attributionTight": true,
+        "portFactVisible": false,
         "spotlightInside": true,
         "spotlightClear": true,
         "spotlightConnected": true,
@@ -255,6 +269,8 @@
         "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
+        "attributionTight": true,
+        "portFactVisible": false,
         "spotlightInside": true,
         "spotlightClear": true,
         "spotlightConnected": true,
@@ -286,6 +302,8 @@
         "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
+        "attributionTight": true,
+        "portFactVisible": false,
         "spotlightInside": true,
         "spotlightClear": true,
         "spotlightConnected": true,
@@ -317,6 +335,8 @@
         "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
+        "attributionTight": true,
+        "portFactVisible": false,
         "spotlightInside": true,
         "spotlightClear": true,
         "spotlightConnected": true,
@@ -344,7 +364,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.40378125
+      "inkFraction": 0.4065729166666667
     },
     "errors": []
   },
@@ -361,6 +381,8 @@
         "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
+        "attributionTight": true,
+        "portFactVisible": false,
         "spotlightInside": true,
         "spotlightClear": true,
         "spotlightConnected": true,
@@ -392,6 +414,8 @@
         "cardAtCorner": true,
         "attributionInside": true,
         "attributionClear": true,
+        "attributionTight": true,
+        "portFactVisible": false,
         "spotlightInside": true,
         "spotlightClear": true,
         "spotlightConnected": true,
@@ -419,7 +443,7 @@
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.31651173691771983
+      "inkFraction": 0.316734695741106
     },
     "errors": []
   }

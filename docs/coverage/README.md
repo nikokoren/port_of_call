@@ -54,7 +54,7 @@ The cold-start sample observed **833 distinct current per-area observations** ac
 | Shanghai — Yangshan | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | Busan — New Port | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
-These are availability counts, not validation of crew-entered voyage claims, a complete port census or an uptime guarantee. Unknown identifiers, sentinel dimensions/draught and malformed ETAs are excluded. No port-call event is inferred. Public-display/cache rights remain unconfirmed. [Machine-readable follow-up](aisstream-spotlight-2026-11-05.json).
+These are availability counts, not validation of crew-entered voyage claims, a complete port census or an uptime guarantee. Unknown identifiers, sentinel dimensions/draught and malformed ETAs are excluded. No port-call event is inferred. The limited display-proxy scope was subsequently reviewed against the current AISStream FAQ on 6 November; [scope and unresolved broader terms](../data-source-evaluation.md#6-november-current-aisstream-display-proxy-guidance). [Machine-readable follow-up](aisstream-spotlight-2026-11-05.json).
 
 ## Native Cloudflare runtime · 5 November 2026
 

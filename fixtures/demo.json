@@ -26,9 +26,9 @@
     25.25,
     60.25
   ],
-  "source": "Synthetic fixture \u2014 DEMO",
+  "source": "Synthetic fixture — DEMO",
   "attribution": {
-    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
+    "label": "Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS",
     "url": "https://www.digitraffic.fi/en/marine-traffic/",
     "license": "https://creativecommons.org/licenses/by/4.0/"
   },
@@ -645,5 +645,10 @@
       "bearing_deg": 335.0,
       "stale": false
     }
-  ]
+  ],
+  "port_fact": {
+    "id": "helsinki:2",
+    "text": "Vuosaari has a passenger terminal as well as cargo operations.",
+    "source_url": "https://www.portofhelsinki.fi/en/"
+  }
 }

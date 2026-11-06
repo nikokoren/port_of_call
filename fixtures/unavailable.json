@@ -28,7 +28,7 @@
   ],
   "source": "Fintraffic / Digitraffic",
   "attribution": {
-    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
+    "label": "Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS",
     "url": "https://www.digitraffic.fi/en/marine-traffic/",
     "license": "https://creativecommons.org/licenses/by/4.0/"
   },
@@ -45,5 +45,10 @@
   "shown": 0,
   "omitted": 0,
   "vessels": [],
-  "fixture_note": "STATE TEST based on historical AIS capture, not a real outage or current traffic."
+  "fixture_note": "STATE TEST based on historical AIS capture, not a real outage or current traffic.",
+  "port_fact": {
+    "id": "helsinki:2",
+    "text": "Vuosaari has a passenger terminal as well as cargo operations.",
+    "source_url": "https://www.portofhelsinki.fi/en/"
+  }
 }

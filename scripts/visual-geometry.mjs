@@ -5,7 +5,7 @@ export function geometry(root=document.querySelector('.poc')) {
  const hit=(a,b)=>a[0]<b[2]-.5&&b[0]<a[2]-.5&&a[1]<b[3]-.5&&b[1]<a[3]-.5;
  const inside=b=>b[0]>=-1&&b[1]>=-1&&b[2]<=m.width+1&&b[3]<=m.height+1;
  const card=rect(root.querySelector('[data-poc-box]'));
- const attribution=root.querySelector('.map__attribution'),credit=attribution?rect(attribution):null;
+ const credits=[...root.querySelectorAll('.map__attribution')].flatMap(n=>[...n.getClientRects()].map(r=>[r.left-m.left,r.top-m.top,r.right-m.left,r.bottom-m.top]));
  const nodes=[...root.querySelectorAll('.poc__ship')];
  const ships=nodes.map(n=>({id:n.dataset.id,box:rect(n.querySelector('svg'))}));
  let maxProjectionError=0;
@@ -14,7 +14,7 @@ export function geometry(root=document.querySelector('.poc')) {
   maxProjectionError=Math.max(maxProjectionError,Math.hypot((r[0]+r[2])/2-p.x,(r[1]+r[3])/2-p.y));
  });
  const labels=[...root.querySelectorAll('.poc__label')].map(rect);
- const fixed=[card,...(credit?[credit]:[])];
+ const fixed=[card,...credits];
  const overlayNode=root.querySelector('[data-poc-spotlight]');
  const overlay=overlayNode&&Number(getComputedStyle(overlayNode).opacity)>0?rect(overlayNode):null;
  const reserved=fixed.concat(overlay?[overlay]:[]);
@@ -43,7 +43,9 @@ export function geometry(root=document.querySelector('.poc')) {
  }
  const inset={left:card[0],bottom:m.height-card[3]};
  const edge=4*(parseFloat(getComputedStyle(root).getPropertyValue('--content-scale'))||1)+1;
- return {cardInside:inside(card),cardInset:inset,cardAtCorner:inset.left>=-1&&inset.left<=edge&&inset.bottom>=-1&&inset.bottom<=edge,attributionInside:!!credit&&inside(credit),attributionClear:!!credit&&!hit(card,credit),
+ return {cardInside:inside(card),cardInset:inset,cardAtCorner:inset.left>=-1&&inset.left<=edge&&inset.bottom>=-1&&inset.bottom<=edge,attributionInside:credits.length>0&&credits.every(inside),attributionClear:credits.length>0&&credits.every(c=>!hit(card,c)),
+  attributionTight:[...root.querySelectorAll('.map__attribution')].every(n=>getComputedStyle(n).display==='inline')&&getComputedStyle(root.querySelector('[data-poc-sources]')).backgroundColor==='rgba(0, 0, 0, 0)',
+  portFactVisible:!!root.querySelector('[data-poc-port-fact]')&&root.querySelector('[data-poc-port-fact]').getBoundingClientRect().height>0,
   spotlightInside:!overlay||inside(overlay),spotlightClear:!overlay||(!fixed.some(b=>hit(overlay,b))&&(!featured||!hit(overlay,featured.box))),
   spotlightConnected,spotlightVisible:!!overlay,
   spotlightInverted:!root.dataset.focus||!!(overlay&&overlayNode.classList.contains('inverse')&&getComputedStyle(overlayNode).backgroundColor!==getComputedStyle(overlayNode.querySelector('.title')).color),

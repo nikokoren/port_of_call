@@ -28,7 +28,7 @@
   ],
   "source": "Fintraffic / Digitraffic",
   "attribution": {
-    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
+    "label": "Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS",
     "url": "https://www.digitraffic.fi/en/marine-traffic/",
     "license": "https://creativecommons.org/licenses/by/4.0/"
   },
@@ -64,7 +64,7 @@
       "type": "cargo",
       "bearing_deg": 262.0,
       "stale": false,
-      "voyage": "Hanko, FI \u2192 Tilbury, GB"
+      "voyage": "Hanko, FI → Tilbury, GB"
     },
     {
       "mmsi": "352005218",
@@ -149,7 +149,7 @@
       "type": "other",
       "bearing_deg": 178.0,
       "stale": false,
-      "voyage": "To FAIRWAY WORKS"
+      "voyage": "Activity: Fairway works"
     },
     {
       "mmsi": "245266000",
@@ -166,7 +166,7 @@
       "type": "cargo",
       "bearing_deg": 86.0,
       "stale": false,
-      "voyage": "GBFOY, GB \u2192 Rauma, FI"
+      "voyage": "GBFOY, GB → Rauma, FI"
     },
     {
       "mmsi": "255806245",
@@ -183,7 +183,7 @@
       "type": "cargo",
       "bearing_deg": 145.0,
       "stale": false,
-      "voyage": "LVMRX \u2192 Rauma, FI"
+      "voyage": "Mērsrags, LV → Rauma, FI"
     },
     {
       "mmsi": "230111580",
@@ -216,7 +216,7 @@
       "type": "tanker",
       "bearing_deg": 249.0,
       "stale": false,
-      "voyage": "SEOSK \u2192 Rauma, FI"
+      "voyage": "SEOSK → Rauma, FI"
     },
     {
       "mmsi": "230991780",
@@ -357,5 +357,10 @@
   ],
   "fixture_note": "Overview presentation of genuine historical AIS snapshot; NOT current traffic. Original positions, observation scope and timestamps retained.",
   "reference_enriched_at": "2026-11-05T12:26:42Z",
-  "label_note": "Voyage labels derived from matching archived MMSI/report-time/position records and cached reference facts. No observation timestamps or positions changed."
+  "label_note": "Voyage labels derived from matching archived MMSI/report-time/position records and cached reference facts. No observation timestamps or positions changed.",
+  "port_fact": {
+    "id": "rauma:2",
+    "text": "Old Rauma is known for its historic wooden buildings.",
+    "source_url": "https://en.wikipedia.org/wiki/Old_Rauma"
+  }
 }

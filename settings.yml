@@ -51,3 +51,8 @@ custom_fields:
     options:
       - Harbor Map: map
     default: map
+  - keyname: port_facts
+    field_type: boolean
+    name: Show port facts?
+    description: Rotate a short port fact hourly beneath the vessel count. Omitted in the smallest half and quadrant views.
+    default: false

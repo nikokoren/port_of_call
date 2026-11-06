@@ -1,6 +1,6 @@
 import json
 import unittest
-from port_of_call.display import label_voyage
+from port_of_call.display import label_voyage, focus_copy
 from port_of_call.model import HARBORS, position
 from port_of_call.store import Store
 from port_of_call.snapshot import snapshot
@@ -10,6 +10,13 @@ NOW = 1793867309.0
 
 
 class VoyageLabels(unittest.TestCase):
+    def test_fairway_work_is_an_activity_not_a_port_route(self):
+        context=dict(destination=dict(value='FAIRWAY WORKS'),origin=dict(value='Rauma'),
+                     destination_port=dict(name='Old cached port'))
+        self.assertEqual(label_voyage(context),'Activity: Fairway works')
+        self.assertEqual(focus_copy(context)['journey'],dict(label='Activity',value='Fairway works'))
+        self.assertEqual(context['destination']['value'],'FAIRWAY WORKS')
+
     def test_known_voyage_uses_resolved_places_and_country_codes(self):
         context = dict(origin=dict(value='Port of Hanko',country='Finland',code='FIHKO'),
                        destination=dict(value='GBTIL'), destination_port=dict(name='Port of Tilbury',country='United Kingdom',code='GBTIL'))

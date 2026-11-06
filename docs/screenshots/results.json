@@ -15,6 +15,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -40,7 +42,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.6027916666666666
+      "inkFraction": 0.6048151041666666
     },
     "errors": []
   },
@@ -60,6 +62,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -85,7 +89,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3099296875
+      "inkFraction": 0.3117916666666667
     },
     "errors": []
   },
@@ -105,6 +109,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -130,7 +136,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3585
+      "inkFraction": 0.3583177083333333
     },
     "errors": []
   },
@@ -150,6 +156,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -175,7 +183,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.4609270833333333
+      "inkFraction": 0.4578541666666667
     },
     "errors": []
   },
@@ -195,6 +203,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -220,7 +230,7 @@
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.5509635416666666
+      "inkFraction": 0.574359375
     },
     "errors": []
   },
@@ -240,6 +250,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -265,7 +277,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.38990625
+      "inkFraction": 0.4181666666666667
     },
     "errors": []
   },
@@ -285,6 +297,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -310,7 +324,7 @@
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.6650386106849782
+      "inkFraction": 0.6683285849952516
     },
     "errors": []
   },
@@ -330,6 +344,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -355,7 +371,7 @@
     "pixels": {
       "width": 1404,
       "height": 1872,
-      "inkFraction": 0.2691797854725205
+      "inkFraction": 0.2696435854822607
     },
     "errors": []
   },
@@ -375,6 +391,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -400,7 +418,7 @@
     "pixels": {
       "width": 1872,
       "height": 702,
-      "inkFraction": 0.5029608627365038
+      "inkFraction": 0.5041814291280103
     },
     "errors": []
   },
@@ -420,6 +438,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -445,7 +465,7 @@
     "pixels": {
       "width": 936,
       "height": 1404,
-      "inkFraction": 0.3162979095137215
+      "inkFraction": 0.31683438040275647
     },
     "errors": []
   },
@@ -465,6 +485,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -490,7 +512,7 @@
     "pixels": {
       "width": 936,
       "height": 702,
-      "inkFraction": 0.3043943433900699
+      "inkFraction": 0.30448109187425426
     },
     "errors": []
   },
@@ -510,6 +532,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -555,6 +579,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -580,7 +606,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3132317708333333
+      "inkFraction": 0.3142421875
     },
     "errors": []
   },
@@ -600,6 +626,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -625,7 +653,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.3110104166666667
+      "inkFraction": 0.33927083333333335
     },
     "errors": []
   },
@@ -645,6 +673,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -670,7 +700,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.6088880208333334
+      "inkFraction": 0.6109114583333334
     },
     "errors": []
   },
@@ -690,6 +720,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -715,7 +747,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.477296875
+      "inkFraction": 0.4743177083333333
     },
     "errors": []
   },
@@ -735,6 +767,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -760,7 +794,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.314
+      "inkFraction": 0.3422604166666667
     },
     "errors": []
   },
@@ -780,6 +814,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -825,6 +861,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -850,7 +888,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.6240182291666667
+      "inkFraction": 0.628953125
     },
     "errors": []
   },
@@ -870,6 +908,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -895,7 +935,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.421984375
+      "inkFraction": 0.4239375
     },
     "errors": []
   },
@@ -915,6 +955,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -940,7 +982,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.5670520833333333
+      "inkFraction": 0.5641927083333333
     },
     "errors": []
   },
@@ -960,6 +1002,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -985,7 +1029,7 @@
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.337921875
+      "inkFraction": 0.34002604166666667
     },
     "errors": []
   },
@@ -1005,6 +1049,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1030,7 +1076,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.4186875
+      "inkFraction": 0.4210520833333333
     },
     "errors": []
   },
@@ -1050,6 +1096,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1075,7 +1123,7 @@
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.2944441400637982
+      "inkFraction": 0.29464198748386783
     },
     "errors": []
   },
@@ -1095,6 +1143,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1120,7 +1170,7 @@
     "pixels": {
       "width": 1404,
       "height": 1872,
-      "inkFraction": 0.7396411656561229
+      "inkFraction": 0.7391754632673436
     },
     "errors": []
   },
@@ -1140,6 +1190,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1165,7 +1217,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.3803125
+      "inkFraction": 0.39090625
     },
     "errors": []
   },
@@ -1185,6 +1237,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1210,7 +1264,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.30094791666666665
+      "inkFraction": 0.3292083333333333
     },
     "errors": []
   },
@@ -1230,6 +1284,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1255,7 +1311,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.49115625
+      "inkFraction": 0.492328125
     },
     "errors": []
   },
@@ -1275,6 +1331,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1300,7 +1358,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.8895833333333333
+      "inkFraction": 0.8894244791666667
     },
     "errors": []
   },
@@ -1320,6 +1378,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1345,7 +1405,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.5135390625
+      "inkFraction": 0.5123697916666666
     },
     "errors": []
   },
@@ -1365,6 +1425,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1390,7 +1452,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.418828125
+      "inkFraction": 0.4183151041666667
     },
     "errors": []
   },
@@ -1410,6 +1472,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1435,7 +1499,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.9855130208333334
+      "inkFraction": 0.9850520833333334
     },
     "errors": []
   },
@@ -1455,6 +1519,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1480,7 +1546,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.4196640625
+      "inkFraction": 0.4201666666666667
     },
     "errors": []
   },
@@ -1500,6 +1566,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1525,7 +1593,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.8337786458333334
+      "inkFraction": 0.8331588541666667
     },
     "errors": []
   },
@@ -1545,6 +1613,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1570,7 +1640,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.55078125
+      "inkFraction": 0.547921875
     },
     "errors": []
   },
@@ -1590,6 +1660,8 @@
       "cardAtCorner": true,
       "attributionInside": true,
       "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1615,7 +1687,289 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.4186875
+      "inkFraction": 0.4210520833333333
+    },
+    "errors": []
+  },
+  {
+    "name": "facts-full",
+    "ready": "true",
+    "markers": 3,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 4,
+        "bottom": 4
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.015711675989931163,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 3,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 3,
+      "leaders": 1,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.390515625
+    },
+    "errors": []
+  },
+  {
+    "name": "facts-full-dark",
+    "ready": "true",
+    "markers": 4,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 4,
+        "bottom": 4
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": true,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 3,
+      "spotlightSurface": "rgb(255, 255, 255)",
+      "spotlightTextColor": "rgb(0, 0, 0)",
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.015611911056030698,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 2,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 2,
+      "leaders": 3,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.8311041666666666
+    },
+    "errors": []
+  },
+  {
+    "name": "facts-half-vertical",
+    "ready": "true",
+    "markers": 7,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 4,
+        "bottom": 4
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": true,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 3,
+      "spotlightSurface": "rgb(0, 0, 0)",
+      "spotlightTextColor": "rgb(255, 255, 255)",
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.01927696096720236,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 4,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 4,
+      "leaders": 4,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 400,
+      "height": 480,
+      "inkFraction": 0.3231041666666667
+    },
+    "errors": []
+  },
+  {
+    "name": "facts-quadrant",
+    "ready": "true",
+    "markers": 2,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 4,
+        "bottom": 4
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": true,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 3,
+      "spotlightSurface": "rgb(0, 0, 0)",
+      "spotlightTextColor": "rgb(255, 255, 255)",
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.011646187612525387,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 0,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 0,
+      "leaders": 1,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 400,
+      "height": 240,
+      "inkFraction": 0.4210520833333333
+    },
+    "errors": []
+  },
+  {
+    "name": "facts-x-quadrant",
+    "ready": "true",
+    "markers": 2,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 4,
+        "bottom": 4
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": true,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 6,
+      "spotlightSurface": "rgb(0, 0, 0)",
+      "spotlightTextColor": "rgb(255, 255, 255)",
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.015611910830390475,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 1,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 1,
+      "leaders": 1,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 936,
+      "height": 702,
+      "inkFraction": 0.46431593493559303
+    },
+    "errors": []
+  },
+  {
+    "name": "facts-portrait",
+    "ready": "true",
+    "markers": 11,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 4,
+        "bottom": 4
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": true,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 6,
+      "spotlightSurface": "rgb(0, 0, 0)",
+      "spotlightTextColor": "rgb(255, 255, 255)",
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.01941313479056093,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 6,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 7,
+      "leaders": 5,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 1404,
+      "height": 1872,
+      "inkFraction": 0.7004620498210242
     },
     "errors": []
   }

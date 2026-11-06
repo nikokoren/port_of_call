@@ -28,7 +28,7 @@
   ],
   "source": "Fintraffic / Digitraffic",
   "attribution": {
-    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
+    "label": "Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS",
     "url": "https://www.digitraffic.fi/en/marine-traffic/",
     "license": "https://creativecommons.org/licenses/by/4.0/"
   },
@@ -650,5 +650,10 @@
   "focus_requested": true,
   "focus_mode": "harbor",
   "focus": null,
-  "focus_message": "No suitable fresh ship \u00b7 showing harbor"
+  "focus_message": "No suitable fresh ship · showing harbor",
+  "port_fact": {
+    "id": "helsinki:2",
+    "text": "Vuosaari has a passenger terminal as well as cargo operations.",
+    "source_url": "https://www.portofhelsinki.fi/en/"
+  }
 }

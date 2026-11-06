@@ -17,7 +17,7 @@ http.createServer(async(req,res)=>{
   const fixture=u.searchParams.get('fixture')||'helsinki';
   if(!/^[a-z_-]+$/.test(fixture))throw new Error('fixture');
   const data=JSON.parse(await readFile('fixtures/'+fixture+'.json','utf8'));
-  let markup=(await render(layout,data,{ship_labels:u.searchParams.get('labels')||'off'}))
+  let markup=(await render(layout,data,{ship_labels:u.searchParams.get('labels')||'off',port_facts:u.searchParams.get('facts')==='true'}))
    .replaceAll('https://trmnl.com/js/maplibre-gl/5.24.0/','/assets/');
   let provenance='';
   if(!data.demo) {

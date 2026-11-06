@@ -1,6 +1,6 @@
 # Data-source evaluation
 
-Evidence checked **4 November 2026**. These results establish a Finnish private-test implementation, not guaranteed worldwide coverage or an upstream SLA.
+Initial evidence checked **4 November 2026**; current AISStream proxy guidance reviewed **6 November 2026** (see final section). These results establish a Finnish private-test implementation, not guaranteed worldwide coverage or an upstream SLA.
 
 ## Queries and concrete results
 
@@ -71,3 +71,15 @@ AISHub's accessible https://www.aishub.net/api documentation says every station 
 The user-provided repository secret worked in [run 41894534520](https://github.com/nikokoren/port_of_call/actions/runs/41894534520). The compressed subscription was confirmed and remained connected for **900 seconds, 19:11:43–19:26:43 UTC (20:11:43–20:26:43 Europe/Berlin)** on 4 November 2026. It received **12,380 messages**, with **4 validation rejects**, and recorded **2,833 distinct per-area vessel observations** in 13 areas. All retained positions were under 30 minutes old at the end of the run. [Full counts and limitations](coverage/README.md), [machine-readable evidence](coverage/aisstream-2026-11-04.json).
 
 All six European areas, all six US areas and Singapore had fresh reports. Shanghai/Yangshan and Busan New Port had no reports in this window; this does not establish that the harbors are empty or permanently unsupported. They remain excluded from the first AISStream profile. The 13 positive entries reference this evidence and are marked data-verified. The public-display/cache rights gate remains independent and false by default; the supplied Limits table is not represented as an explicit redistribution license.
+
+## 6 November: current AISStream display-proxy guidance
+
+The current official [homepage FAQ](https://aisstream.io/) and [documentation](https://aisstream.io/documentation) now return HTTP 200. Asked whether clients can connect directly, the FAQ says:
+
+> No. Direct browser connections are not permitted. Connect from your own server and proxy only the information your clients need. This protects the API key and reduces load on the stream service.
+
+The site describes the global stream as free. This explicit application guidance is the basis for the limited server-side display profile recorded in `deploy/aisstream-rights.json`: one collector, bounded temporary latest values, normalized per-screen snapshots, source attribution, no raw relay, bulk export or historical replay. The earlier deployment gate is reviewed for this scope; an API key or the Limits table alone was never the permission basis.
+
+This is **not an open-data licence**. `/terms` and `/terms-of-service` return 404, and the linked privacy policy concerns personal/account information rather than vessel-data reuse. No separate general caching, archival redistribution or resale licence was found. Official licensing issues [68](https://github.com/aisstream/issues/issues/68) and [290](https://github.com/aisstream/issues/issues/290) still have no provider clarification. Do not expand the scope to raw datasets or archives on the strength of the FAQ. This is an engineering interpretation of the provider’s published proxy guidance, not written bespoke permission.
+
+The already data-verified 13 areas can therefore use the bounded display proxy. Their actual Cloudflare WebSocket operation, cold-start completeness, multi-day reliability and shared free-account capacity still need deployment evidence. The Finnish open-data service stays available independently. Earlier “unconfirmed” statements above record the historical research result, superseded only for this narrow display-proxy scope.

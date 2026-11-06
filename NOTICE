@@ -19,7 +19,11 @@ These assets are loaded from the host or fetched into ignored local preview cach
 their original licenses remain applicable. No tile archive is redistributed.
 
 AISStream: aggregate evaluation counts are included in docs/coverage; no vessel-record
-dataset is bundled. Public redistribution and caching rights remain unconfirmed. Synthetic demo data is not observed traffic.
+dataset is bundled. The limited latest-value display proxy follows AISStream’s published
+server-side proxy guidance (https://aisstream.io/, checked 6 November 2026). No general
+open-data, archival redistribution or resale licence is claimed. Scope and unresolved
+terms: deploy/aisstream-rights.json and docs/data-source-evaluation.md.
+Synthetic demo data is not observed traffic.
 
 Optional vessel reference facts and exact UN/LOCODE resolutions: Wikidata,
 CC0 structured data: https://www.wikidata.org/wiki/Wikidata:Licensing
@@ -36,3 +40,7 @@ references and identified shipyard countries. Inferences are labeled and retain
 provenance. Reported nationality codes from relevant Finnish Portnet calls retain
 Fintraffic CC BY 4.0 attribution. AIS ETA year inference is a separate derived
 heuristic; original yearless reported values and timestamps are preserved.
+
+Curated port blurbs are original factual summaries; per-fact reference URLs are
+retained in port_of_call/port_facts.py and API metadata. Exact LVMRX resolution
+(Mērsrags, Latvia) follows UNECE UN/LOCODE, checked against its published CSV mirror.

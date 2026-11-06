@@ -28,7 +28,7 @@
   ],
   "source": "Fintraffic / Digitraffic",
   "attribution": {
-    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
+    "label": "Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS",
     "url": "https://www.digitraffic.fi/en/marine-traffic/",
     "license": "https://creativecommons.org/licenses/by/4.0/"
   },
@@ -64,7 +64,7 @@
       },
       {
         "label": "Length / beam",
-        "value": "54 \u00d7 12 m",
+        "value": "54 × 12 m",
         "reported_at": "2026-11-05T08:28:13Z",
         "source": "Fintraffic / Digitraffic"
       },
@@ -157,7 +157,7 @@
     "eta_estimate": null,
     "presentation": {
       "vessel_type": "Passenger vessel",
-      "flag": "Flag: Finland (AIS)",
+      "flag": "Flag: Finland",
       "journey": {
         "label": "Destination",
         "value": "Turku, Finland"
@@ -593,5 +593,10 @@
   ],
   "fixture_note": "Genuine historical AIS observations; NOT current traffic. Free reference facts retrieved at reference_enriched_at; position/report times unchanged.",
   "reference_enriched_at": "2026-11-05T12:26:42Z",
-  "label_note": "Voyage labels derived from matching archived MMSI/report-time/position records and cached reference facts. No observation timestamps or positions changed."
+  "label_note": "Voyage labels derived from matching archived MMSI/report-time/position records and cached reference facts. No observation timestamps or positions changed.",
+  "port_fact": {
+    "id": "turku:2",
+    "text": "Ferries link Turku with Stockholm across the Baltic Sea.",
+    "source_url": "https://www.portofturku.fi/en/"
+  }
 }

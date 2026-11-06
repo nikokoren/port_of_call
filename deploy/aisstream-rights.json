@@ -1,6 +1,16 @@
 {
-  "confirmed": false,
-  "reference": null,
-  "scope": "Shared server-side AIS cache and public TRMNL recipe displays",
-  "note": "Connection limits do not establish data reuse rights. Record current terms or written provider permission before enabling."
+  "confirmed": true,
+  "reference": "https://aisstream.io/",
+  "checked_at": "2026-11-06",
+  "scope": "One server-side connection, bounded latest-value cache, and normalized per-screen public display snapshots; source attribution retained.",
+  "published_guidance": "No. Direct browser connections are not permitted. Connect from your own server and proxy only the information your clients need. This protects the API key and reduces load on the stream service.",
+  "interpretation": "The limited display proxy follows the published application guidance. Temporary latest-value caching implements that proxy; the guidance does not grant an open data licence, archival redistribution or resale rights.",
+  "restrictions": [
+    "No API key in clients",
+    "No raw WebSocket relay or bulk dataset export",
+    "No public historical tracks or replay",
+    "No claim to an open-data licence",
+    "Respect connection and subscription limits"
+  ],
+  "unresolved": "No separate data licence or general caching/redistribution terms were found. Broader licensing questions remain unanswered in official issues 68 and 290."
 }

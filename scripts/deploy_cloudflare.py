@@ -39,9 +39,11 @@ def main():
     subdomain = (data.get('result') or {}).get('subdomain')
     if not subdomain or not re.fullmatch('[a-z0-9-]+', subdomain):
         raise ValueError('Create your free workers.dev subdomain in Cloudflare Workers settings first')
-    origin = 'https://port-of-call.'+subdomain+'.workers.dev'
+    # Keep the original Finnish deployment available for existing installations.
+    worker_name = 'port-of-call-world' if args.provider == 'aisstream' else 'port-of-call'
+    origin = 'https://'+worker_name+'.'+subdomain+'.workers.dev'
     command = ['uv', 'run', 'pywrangler', 'deploy', '--strict', '--durable-objects-code-update-mode', 'immediate',
-               '--var', 'PROVIDER:'+args.provider, '--var', 'AISSTREAM_RIGHTS_CONFIRMED:'+str(args.provider=='aisstream').lower()]
+               '--name', worker_name, '--var', 'PROVIDER:'+args.provider, '--var', 'AISSTREAM_RIGHTS_CONFIRMED:'+str(args.provider=='aisstream').lower()]
     with tempfile.TemporaryDirectory(prefix='poc-secrets-') as tmp:
         secrets = Path(tmp)/'secrets.json'
         if args.provider == 'aisstream':
@@ -70,6 +72,7 @@ def main():
     if not report['passed']: raise ValueError('Live validation failed; production recipe metadata was not promoted')
     revision = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
     release = dict(provider=args.provider, origin=origin, status='private-beta', revision=revision, verified_at=report['checked_at'])
+    (ROOT/'deploy'/('finland-release.json' if args.provider=='digitraffic' else 'world-release.json')).write_text(json.dumps(release, indent=2)+'\n')
     (ROOT/'deploy/release.json').write_text(json.dumps(release, indent=2)+'\n')
     result_path.write_text(json.dumps(release, indent=2)+'\n')
     subprocess.run(['python', 'scripts/package_recipe.py', '--provider', args.provider, '--origin', origin], cwd=ROOT, check=True)

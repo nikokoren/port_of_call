@@ -5,6 +5,8 @@ import json
 def encode_snapshot(payload):
     def encode(): return json.dumps(payload, ensure_ascii=True, separators=(',', ':'))
     body = encode()
+    if len(body) >= 15_000 and payload.pop('port_fact', None) is not None:
+        body = encode()
     for vessel in reversed(payload['vessels']):
         if len(body) < 15_000: break
         if vessel.pop('voyage', None) is not None: body = encode()

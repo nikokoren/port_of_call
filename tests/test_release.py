@@ -22,10 +22,14 @@ class DeploymentGates(unittest.TestCase):
             self.assertEqual(data['errors'], ['ConnectionError'])
 
     def test_public_ais_requires_reviewed_permission_before_any_deploy(self):
-        with patch.dict(os.environ, {'CLOUDFLARE_ACCOUNT_ID': 'a'*32, 'CLOUDFLARE_API_TOKEN': 'test-only',
-                                     'AISSTREAM_API_KEY': 'test-only'}, clear=True):
-            with self.assertRaisesRegex(ValueError, 'public use remains blocked'):
-                deploy_cloudflare.deployment_config('aisstream')
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d);(root/'deploy').mkdir()
+            (root/'deploy/aisstream-rights.json').write_text(json.dumps(dict(confirmed=False)))
+            with patch.object(deploy_cloudflare, 'ROOT', root), patch.dict(os.environ, {
+                    'CLOUDFLARE_ACCOUNT_ID': 'a'*32, 'CLOUDFLARE_API_TOKEN': 'test-only',
+                    'AISSTREAM_API_KEY': 'test-only'}, clear=True):
+                with self.assertRaisesRegex(ValueError, 'public use remains blocked'):
+                    deploy_cloudflare.deployment_config('aisstream')
 
     def test_finnish_deployment_requires_host_credentials_but_no_ais_key(self):
         with patch.dict(os.environ, {}, clear=True):

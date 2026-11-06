@@ -35,6 +35,9 @@ LOCAL_PORTS['PLGDN'] = dict(code='PLGDN', name='Gdańsk', country='Poland',
     source='Reviewed Wikidata port reference', url='https://www.wikidata.org/wiki/Q1792',
     license='https://creativecommons.org/publicdomain/zero/1.0/')
 LOCAL_COUNTRIES['PL'] = 'Poland'
+LOCAL_PORTS['LVMRX'] = dict(code='LVMRX', name='Mērsrags', country='Latvia',
+    source='UNECE UN/LOCODE', url='https://service.unece.org/trade/locode/lv.htm')
+LOCAL_COUNTRIES['LV'] = 'Latvia'
 ALIASES = {k: v for code, v in LOCAL_PORTS.items() for k in (code, v['name'].upper())}
 ALIASES.update({name.upper(): LOCAL_PORTS[code] for name, code in
                 [('Helsinki', 'FIHEL'), ('Turku', 'FITKU'), ('Rauma', 'FIRAU'), ('Rotterdam', 'NLRTM'),

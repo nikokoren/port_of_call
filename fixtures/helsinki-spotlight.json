@@ -28,7 +28,7 @@
   ],
   "source": "Fintraffic / Digitraffic",
   "attribution": {
-    "label": "Fintraffic / digitraffic.fi \u00b7 CC BY 4.0 \u00b7 filtered AIS",
+    "label": "Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS",
     "url": "https://www.digitraffic.fi/en/marine-traffic/",
     "license": "https://creativecommons.org/licenses/by/4.0/"
   },
@@ -64,7 +64,7 @@
       },
       {
         "label": "Length / beam",
-        "value": "158 \u00d7 24 m",
+        "value": "158 × 24 m",
         "reported_at": "2026-11-05T08:26:06Z",
         "source": "Fintraffic / Digitraffic"
       },
@@ -100,7 +100,7 @@
     "origin": null,
     "destination_port": {
       "code": "PLGDN",
-      "name": "Gda\u0144sk",
+      "name": "Gdańsk",
       "country": "Poland",
       "source": "Reviewed Wikidata port reference",
       "url": "https://www.wikidata.org/wiki/Q1792",
@@ -155,10 +155,10 @@
     },
     "presentation": {
       "vessel_type": "Cargo vessel",
-      "flag": "Flag: Portugal (AIS)",
+      "flag": "Flag: Portugal",
       "journey": {
         "label": "Destination",
-        "value": "Gda\u0144sk, Poland"
+        "value": "Gdańsk, Poland"
       },
       "eta": "07 Nov 09:00 UTC",
       "speed": "12 knots",
@@ -198,7 +198,7 @@
       "type": "cargo",
       "bearing_deg": 203.0,
       "stale": false,
-      "voyage": "To Gda\u0144sk, PL"
+      "voyage": "To Gdańsk, PL"
     },
     {
       "mmsi": "230940680",
@@ -384,7 +384,7 @@
       "type": "cargo",
       "bearing_deg": 315.0,
       "stale": false,
-      "voyage": "To FAIRWAY WORKS"
+      "voyage": "Activity: Fairway works"
     },
     {
       "mmsi": "230091080",
@@ -467,7 +467,7 @@
       "type": "cargo",
       "bearing_deg": 323.0,
       "stale": false,
-      "voyage": "FIPOR, FI \u2192 Helsinki, FI"
+      "voyage": "FIPOR, FI → Helsinki, FI"
     },
     {
       "mmsi": "230955000",
@@ -523,5 +523,10 @@
   ],
   "fixture_note": "Genuine historical AIS observations; NOT current traffic. Free reference facts retrieved at reference_enriched_at; position/report times unchanged.",
   "reference_enriched_at": "2026-11-05T12:26:42Z",
-  "label_note": "Voyage labels derived from matching archived MMSI/report-time/position records and cached reference facts. No observation timestamps or positions changed."
+  "label_note": "Voyage labels derived from matching archived MMSI/report-time/position records and cached reference facts. No observation timestamps or positions changed.",
+  "port_fact": {
+    "id": "helsinki:2",
+    "text": "Vuosaari has a passenger terminal as well as cargo operations.",
+    "source_url": "https://www.portofhelsinki.fi/en/"
+  }
 }
