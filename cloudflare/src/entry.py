@@ -149,6 +149,9 @@ class Harbor(DurableObject):
             stage = 'subscribe'
             self.proxies = [create_proxy(self.receive), create_proxy(self.disconnect), create_proxy(self.disconnect)]
             for name, callback in zip(('message', 'close', 'error'), self.proxies): socket.addEventListener(name, callback)
+            # Explicitly request ArrayBuffer frames: current Workers runtimes
+            # can default to Blob, which TextDecoder.decode cannot consume.
+            socket.binaryType = 'arraybuffer'
             socket.accept()
             # No await between accepting and sending the subscription.
             socket.send(json.dumps(subscription(str(self.env.AISSTREAM_API_KEY), stream_harbors())))
