@@ -58,9 +58,12 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
             code = port_key(context['destination'].get('value'))
             if code: unresolved.add(code)
         voyage = label_voyage(context)
+        # Length sizes the map icon; the rest of the facts stay in the store.
+        length = context.get('dimensions', {}).get('length_m') if context.get('dimensions') else None
         # Keep the rich facts/provenance in the store, not every overview marker.
         v = {k: val for k, val in v.items() if k != 'facts'}
         if voyage: v['voyage'] = voyage
+        if isinstance(length, (int, float)) and not isinstance(length, bool) and length > 0: v['length_m'] = round(length)
         v['bearing_deg'] = bearing(v)
         v['stale'] = now-epoch(v['reported_at']) >= fresh
         # 5 decimal places is ~1m; keep payload small without moving markers materially.
