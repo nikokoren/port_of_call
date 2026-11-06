@@ -140,7 +140,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.4077109375
+      "inkFraction": 0.40763802083333334
     },
     "errors": []
   },
@@ -171,7 +171,7 @@
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.020160199362880285,
+        "maxProjectionError": 0.01680319360163443,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelRoutes": 0,
@@ -204,7 +204,7 @@
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.02015382413637617,
+        "maxProjectionError": 0.0168104050595069,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelRoutes": 0,
@@ -219,7 +219,7 @@
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.5072773607762924
+      "inkFraction": 0.507120604743468
     },
     "errors": []
   },
@@ -364,7 +364,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.416125
+      "inkFraction": 0.4161666666666667
     },
     "errors": []
   },
@@ -395,7 +395,7 @@
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.019942893082375963,
+        "maxProjectionError": 0.019930633867326252,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelRoutes": 5,
@@ -428,7 +428,7 @@
         "spotlightTextVisible": true,
         "occludedBySpotlight": 0,
         "hiddenShips": 0,
-        "maxProjectionError": 0.0199546042500516,
+        "maxProjectionError": 0.019942352234240332,
         "labelCollisions": 0,
         "leaderCollisions": 0,
         "labelRoutes": 5,
@@ -443,7 +443,7 @@
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.32822658704068963
+      "inkFraction": 0.32711788053668395
     },
     "errors": []
   }

@@ -3,7 +3,7 @@
   <section class="map stretch w--full poc poc--quadrant" data-focus="{{ focus.mmsi | escape }}" data-status="{{ status | default: 'unavailable' | escape }}" data-labels="{% if opts.ship_labels == true or opts.ship_labels == 'true' or opts.ship_labels == 'on' %}on{% else %}off{% endif %}" data-bbox="{{ viewport | join: ',' | escape }}" data-zoom="{{ camera.zoom | escape }}" data-center="{% if camera.center %}{{ camera.center | join: ',' | escape }}{% else %}{{ port.center | join: ',' | escape }}{% endif %}" aria-label="Recent vessel positions">
     <div class="absolute bottom--3 left--3 right--3 flex flex--row flex--bottom gap--small poc__corner">
     <aside class="p--2 lg:p--3 bg--canvas outline flex flex--col flex--left gap--xsmall w--[45cqw] portrait:w--[60cqw] poc__box" data-poc-box>
-      <span class="label label--small">Port of Call</span>
+      <span class="label label--small lg:label--base">Port of Call</span>
       {% if demo %}<span class="label label--small">DEMO · SYNTHETIC POSITIONS</span>{% endif %}
       <span class="w--full title title--small lg:title--large" data-clamp="3">{{ port.name | default: 'Harbor' | split: ' — ' | first | escape }}{% if port.country and port.country != port.name %}, {{ port.country | escape }}{% endif %}</span>
       <span class="w--full label label--small" data-clamp="3">{{ total | default: 0 }} vessels near this port</span>

@@ -22,7 +22,8 @@
 .poc__box [hidden] { display:none; }
 .poc__ship { position:absolute; transform:translate(-50%,-50%); z-index:3; color:var(--poc-ink); }
 .poc__ship svg { width:100%; height:100%; display:block; overflow:visible; }
-.poc__ship path { fill:currentColor; stroke:var(--poc-paper); stroke-width:2; paint-order:stroke; }
+/* Ships under way are solid ink; only the Spotlight ship keeps a paper outline. */
+.poc__ship path { fill:currentColor; stroke:currentColor; stroke-width:1; stroke-linejoin:round; paint-order:stroke; }
 .poc[data-focus]:not([data-focus=""]):not([data-spotlight-fallback="true"]) .poc__ship:not(.poc__ship--featured) { color:var(--poc-context); }
 /* Grey context ships keep a dark edge so they stay legible on grey water. */
 .poc[data-focus]:not([data-focus=""]):not([data-spotlight-fallback="true"]) .poc__ship:not(.poc__ship--featured) path { stroke:var(--poc-context-edge); stroke-width:2.6; }
@@ -31,7 +32,7 @@
 /* Motion by fill: stopped ships are outlined; old reports (below) are dashed. */
 .poc__ship--stopped path { fill:var(--poc-paper); stroke:currentColor; stroke-width:1.8; }
 .poc__ship--featured { z-index:4; }
-.poc__ship--featured path { stroke-width:3; }
+.poc__ship--featured path { stroke:var(--poc-paper); stroke-width:3; }
 .poc__ship--stale path { fill:var(--poc-paper); stroke:currentColor; stroke-width:1.6; stroke-dasharray:2.4 1.8; }
 .poc__label { position:absolute; z-index:4; pointer-events:none; }
 /* Bound overlay text before measuring it; type/paint/spacing use native roles. */
