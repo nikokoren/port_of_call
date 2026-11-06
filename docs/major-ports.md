@@ -1,6 +1,6 @@
 # Major harbor collection: 13 data-verified areas from 15 candidates
 
-The next collection prioritizes the US and Europe: **six European areas, six US areas and three Asian hubs**. This is a curated set of major, recognizable harbors, not a claim that these are the world's fifteen largest by tonnage or containers. The existing Finnish profile remains separate and usable. The [completed real-data check](coverage/README.md) found fresh reports in all six European areas, all six US areas and Singapore. Those 13 are data-verified in the registry; Shanghai/Yangshan and Busan New Port remain unverified after zero reports in this window. The limited display-proxy scope is now reviewed against the current official FAQ; see [source evaluation](data-source-evaluation.md#6-november-current-aisstream-display-proxy-guidance).
+The major-port collection prioritizes the US and Europe: **six European areas, six US areas and three Asian hubs**. This is a curated set of major, recognizable harbors, not a claim that these are the world's fifteen largest by tonnage or containers. The existing Finnish profile remains separate and usable. The [completed real-data check](coverage/README.md) found fresh reports in all six European areas, all six US areas and Singapore. Those 13 are data-verified in the registry; Shanghai/Yangshan and Busan New Port remain unverified after zero reports in this window. The limited display-proxy scope is now reviewed against the current official FAQ; see [source evaluation](data-source-evaluation.md#6-november-current-aisstream-display-proxy-guidance).
 
 | Region | Candidate area | Stable ID |
 |---|---|---|
@@ -72,3 +72,7 @@ node scripts/harbor-frames.mjs
 ```
 
 Output stays in ignored `var/major-frames/`; it is not a traffic snapshot. `MAP_RELAY=true` selects the existing TLS-verifying relay when required by the cloud runtime. Production stream writes are committed in batches about every five seconds so disk synchronization does not stall continuous message consumption. API reads on the same connection see the current reports and feed timestamp between commits.
+
+## Cloudflare private beta
+
+The 13-area AISStream profile is deployed separately at https://port-of-call-world.5g5wqr7kzx-466.workers.dev. [Deployment 42139590332](https://github.com/nikokoren/port_of_call/actions/runs/42139590332) passed genuine feed readiness and all 78 scale/Spotlight probes on 6 November 2026. Pages now offers it as the primary ZIP, plus a Finnish alternative. Initial probes ran immediately after cold start: Felixstowe, Savannah and Singapore had no positions yet and static/voyage completeness was low. Empty means no current observations in that scope, not an empty harbor. The earlier 900-second study remains the longer coverage evidence. Multi-day uptime and shared free-account capacity still require monitoring.

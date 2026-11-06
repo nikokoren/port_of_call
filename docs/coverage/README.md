@@ -59,3 +59,7 @@ These are availability counts, not validation of crew-entered voyage claims, a c
 ## Native Cloudflare runtime · 5 November 2026
 
 [Run 42104240937](https://github.com/nikokoren/port_of_call/actions/runs/42104240937) used the actual Python workerd runtime on a GitHub runner, with genuine credential-free Digitraffic collection. All eighteen harbor/framing/Spotlight responses and error routes passed; SQLite checkpoints and subject selection survived a native runtime restart. Standard Spotlight scopes contained 42, 25 and 18 vessels in Helsinki, Turku and Rauma at 21:33 Europe/Berlin. [Aggregate-only evidence](cloudflare-native-2026-11-05.json). No vessel names, MMSIs or coordinates are included. This is not a public Cloudflare deployment, native AISStream validation, device validation or a multi-day free-quota study.
+
+## Cloudflare world deployment, 6 November 2026
+
+[Initial real deployment report](cloudflare-world-2026-11-06.json) passed 78 configurations immediately after cold start. It preserves three scopes without observations and low static/voyage completeness at that moment. The [follow-up monitor](cloudflare-world-monitor-2026-11-06.json) also passed 78 configurations, with recent observations in all thirteen areas and eligible standard-scope Spotlight subjects in nine. Counts represent near-port scopes at these check times, not complete port censuses. Both reports contain only aggregate status/counts and response sizes, without vessel identifiers or positions.

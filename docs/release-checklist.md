@@ -55,3 +55,14 @@ The current deployment status is machine-readable in `deploy/release.json`; the 
 First public monitor: [run 42119977676](https://github.com/nikokoren/port_of_call/actions/runs/42119977676), successful. The six-file ZIP contains the live polling origin and the matching Finnish dropdown. The [public setup/download site](https://nikokoren.github.io/port_of_call/) is live and its ZIP contains the verified Cloudflare polling origin.
 
 Outlined ordinary labels now include supported cached voyage information in both overview and Spotlight. Tests cover country-code presentation, unknown/cleared destinations, genuine previous-port requirements, optional-detail pruning before marker removal, escaped Liquid attributes, whole-badge collision protection and native theme paint. The existing all-layout/dark/mashup checks include explicit context-label examples.
+
+## 6 November private-beta update
+
+- [x] Finnish update passed 18 real configurations in [42138405569](https://github.com/nikokoren/port_of_call/actions/runs/42138405569); current copy and port facts verified in the deployed response and downloaded ZIP.
+- [x] Fixed native binary WebSocket decoding, then deployed the separate 13-area world Worker. [42139590332](https://github.com/nikokoren/port_of_call/actions/runs/42139590332) passed readiness and all 78 configurations; aggregate [cold-start evidence](coverage/cloudflare-world-2026-11-06.json) preserves empty scopes and limited metadata rather than claiming complete coverage.
+- [x] Primary download uses the world profile; Finnish alternative and original backend are retained. Both origins are included in monitoring.
+- [x] Scoped AISStream FAQ interpretation, broader unresolved terms and free-account limits documented. No paid service or plan upgrade added.
+
+Physical TRMNL import/device validation, multi-day reliability/capacity and community submission remain open.
+
+[Dual-service monitor 42140005579](https://github.com/nikokoren/port_of_call/actions/runs/42140005579) passed all 96 configurations. All thirteen world areas then had observations; initial missing scopes filled naturally as messages arrived. [Aggregate follow-up evidence](coverage/cloudflare-world-monitor-2026-11-06.json). Both public ZIPs were downloaded and checked for the correct backend, port menu, six root files and import description length.
