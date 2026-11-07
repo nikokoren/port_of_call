@@ -15,6 +15,7 @@ from port_of_call.memory_store import MemoryStore
 from port_of_call.model import DEFAULT_SCALE, contains
 from port_of_call.rotation import parse_selection, rotate
 from port_of_call.snapshot import snapshot
+from port_of_call.spotlight import lookups_worth_making
 from port_of_call.payload import encode_snapshot
 from transport import FetchSession
 
@@ -222,6 +223,8 @@ class Harbor(DurableObject):
             for port in self.active.values():
                 if self.store.current_focus(port['id']):
                     self.enricher.enqueue(snapshot(self.store, port, time.time(), spotlight=True).get('focus'))
+                # Look up the likeliest next subject so Spotlight can prefer known ships.
+                self.enricher.prefetch(port['id'], lookups_worth_making(self.store, port, self.store.vessels(now, TTL, port['bbox']), now))
             if not self.enricher.queue.empty():
                 kind, key = self.enricher.queue.get_nowait()
                 try: await self.enricher.refresh(self.session, kind, key)
