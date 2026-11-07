@@ -12,7 +12,8 @@ class PortFacts(unittest.TestCase):
         for port in HARBORS.values():
             if not port.get('verified'): continue
             facts=FACTS[port['id']]
-            self.assertEqual(len(facts),4)
+            # Reviewed collections: at least a working day of hourly facts, at most half a day.
+            self.assertTrue(8 <= len(facts) <= 12, port['id'])
             self.assertEqual(len(facts),len({text for text,url in facts}))
             for text,url in facts:
                 self.assertLessEqual(len(text),100)
