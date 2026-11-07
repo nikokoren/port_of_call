@@ -9,7 +9,7 @@ from workers import DurableObject, WorkerEntrypoint, Response, Request, fetch
 from js import TextDecoder, caches
 from pyodide.ffi import create_proxy
 from port_of_call import providers
-from port_of_call.catalog import verified_harbors, stream_harbors, subscription
+from port_of_call.catalog import FORWARDED, verified_harbors, stream_harbors, subscription
 from port_of_call.enrichment import Enricher, HEADERS
 from port_of_call.memory_store import MemoryStore
 from port_of_call.model import DEFAULT_SCALE, contains
@@ -57,6 +57,12 @@ class Harbor(DurableObject):
         super().__init__(ctx, env)
         self.provider = str(env.PROVIDER)
         self.active = verified_harbors(self.provider)
+        # Harbors this backend serves by asking another backend (the world
+        # backend forwards the Finnish ports to the Finnish Worker), only when
+        # the service binding is configured.
+        partner = FORWARDED.get(self.provider)
+        self.partner = getattr(env, 'FINLAND', None) if partner else None
+        self.forwarded = verified_harbors(partner) if partner and self.partner is not None else {}
         self.allowed = bool(self.active) and (self.provider == 'digitraffic' or (
             str(env.AISSTREAM_RIGHTS_CONFIRMED) == 'true' and bool(getattr(env, 'AISSTREAM_API_KEY', ''))))
         self.sql = self.ctx.storage.sql
@@ -226,6 +232,19 @@ class Harbor(DurableObject):
 
     async def alarm(self): await self.tick()
 
+    async def forward(self, harbor, scale, focus):
+        """The partner backend's snapshot for one of its harbors, or None."""
+        url = ('https://partner.internal/api/v1/harbors/'+harbor+'/vessels?scale='+scale+
+               '&spotlight='+('true' if focus else 'false'))
+        try:
+            result = await self.partner.fetch(url)
+            if result.status != 200: return None
+            body = await result.text()
+            return body if json.loads(body).get('port', {}).get('id') == harbor else None
+        except Exception as exc:
+            print('partner_unavailable', type(exc).__name__)
+            return None
+
     async def fetch(self, request):
         if not self.allowed: return response({'error': 'Provider configuration or public-use permission missing'}, 503)
         now = time.time()
@@ -248,14 +267,17 @@ class Harbor(DurableObject):
                 checkpoint_age_seconds=int(now-self.last_checkpoint) if self.last_checkpoint else None),
                 200 if ready else 503, **{'Cache-Control': 'no-store'})
         if path == '/api/v1/harbors':
-            return response({'harbors': list(self.active.values())}, **{'Cache-Control': 'public, max-age=3600'})
+            return response({'harbors': list(self.active.values()), 'forwarded': list(self.forwarded)},
+                            **{'Cache-Control': 'public, max-age=3600'})
         parts = path.strip('/').split('/')
         query = parse_qs(urlparse(request.url).query, keep_blank_values=True)
         if path == '/api/v1/vessels':
             # Recipe endpoint: zero, one or several harbors; several rotate per refresh.
-            harbor = rotate(parse_selection(query.get('harbors', [''])[0], self.active), now)
+            chosen = parse_selection(query.get('harbors', [''])[0], {**self.active, **self.forwarded})
+            harbor = rotate(chosen, now)
             scale = DEFAULT_SCALE
-        elif len(parts) == 5 and parts[:3] == ['api', 'v1', 'harbors'] and parts[4] == 'vessels' and parts[3] in self.active:
+        elif len(parts) == 5 and parts[:3] == ['api', 'v1', 'harbors'] and parts[4] == 'vessels' and (parts[3] in self.active or parts[3] in self.forwarded):
+            chosen = [parts[3]]
             harbor, scale = parts[3], query.get('scale', [DEFAULT_SCALE])[0]
         else:
             return response({'error': 'Not found'}, 404)
@@ -270,6 +292,15 @@ class Harbor(DurableObject):
         while len(self.clients) > 4096: self.clients.popitem(last=False)
         if count > 120: return response({'error': 'Too many requests'}, 429, **{'Retry-After': '60'})
         focus = raw_focus in ('true', 'on', 'yes', '1')
+        if harbor in self.forwarded:
+            body = await self.forward(harbor, scale, focus)
+            if body is not None:
+                return response(body, **{'Cache-Control': 'public, max-age=30'})
+            # The partner is unavailable: keep rotating through this backend's
+            # own harbors when the selection has any, else report the outage.
+            own = [k for k in chosen if k in self.active]
+            if not own: return response({'error': 'Harbor feed unavailable'}, 503, **{'Cache-Control': 'no-store'})
+            harbor = rotate(own, now)
         key = (harbor, scale, focus, int(now//30))
         if key not in self.cache:
             if len(self.cache) >= 96: self.cache.clear()

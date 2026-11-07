@@ -64,6 +64,10 @@ def check(origin, *, allow_degraded=False, all_framings=False):
     if status != 200 or data['port']['id'] != ids[-1]: errors.append('Selected harbor not pinned')
     status, data, _, _ = get(origin+'/api/v1/vessels?harbors=&spotlight=false')
     if status != 200 or data['port']['id'] not in ids: errors.append('Empty selection did not rotate within the catalog')
+    # Harbors this backend forwards to its partner backend (world -> Finnish).
+    for harbor in catalog.get('forwarded', []):
+        status, data, _, _ = get(origin+'/api/v1/vessels?harbors='+harbor+'&spotlight=false')
+        if status != 200 or data.get('port', {}).get('id') != harbor: errors.append('Forwarded harbor unavailable: '+harbor)
     for path, code in [('/api/v1/harbors/not-a-port/vessels', 404),
                        ('/api/v1/vessels?harbors='+ids[0]+'&spotlight=maybe', 400),
                        ('/demo/api/v1/harbors/'+catalog['harbors'][0]['id']+'/vessels', 404),
