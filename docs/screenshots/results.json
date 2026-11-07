@@ -36,13 +36,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 8,
-      "leaders": 3,
+      "leaders": 8,
       "textOverflow": 0
     },
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.6171953125
+      "inkFraction": 0.6171484375
     },
     "errors": []
   },
@@ -83,13 +83,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 5,
-      "leaders": 0,
+      "leaders": 5,
       "textOverflow": 0
     },
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3151171875
+      "inkFraction": 0.3154765625
     },
     "errors": []
   },
@@ -130,13 +130,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 2,
-      "leaders": 0,
+      "leaders": 2,
       "textOverflow": 0
     },
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.40051302083333334
+      "inkFraction": 0.400640625
     },
     "errors": []
   },
@@ -177,13 +177,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 4,
-      "leaders": 2,
+      "leaders": 4,
       "textOverflow": 0
     },
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.4754479166666667
+      "inkFraction": 0.4760260416666667
     },
     "errors": []
   },
@@ -224,13 +224,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 4,
-      "leaders": 1,
+      "leaders": 4,
       "textOverflow": 0
     },
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.5817760416666666
+      "inkFraction": 0.5815677083333334
     },
     "errors": []
   },
@@ -271,13 +271,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 2,
-      "leaders": 1,
+      "leaders": 2,
       "textOverflow": 0
     },
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.4310104166666667
+      "inkFraction": 0.43196875
     },
     "errors": []
   },
@@ -318,13 +318,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 14,
-      "leaders": 3,
+      "leaders": 14,
       "textOverflow": 0
     },
     "pixels": {
       "width": 3370,
       "height": 2527,
-      "inkFraction": 0.6740874519580224
+      "inkFraction": 0.6741609607338666
     },
     "errors": []
   },
@@ -365,13 +365,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 10,
-      "leaders": 6,
+      "leaders": 10,
       "textOverflow": 0
     },
     "pixels": {
       "width": 2527,
       "height": 3370,
-      "inkFraction": 0.27447671967674925
+      "inkFraction": 0.274594028410085
     },
     "errors": []
   },
@@ -412,13 +412,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 7,
-      "leaders": 2,
+      "leaders": 7,
       "textOverflow": 0
     },
     "pixels": {
       "width": 3370,
       "height": 1264,
-      "inkFraction": 0.49389437704240696
+      "inkFraction": 0.49432351725951246
     },
     "errors": []
   },
@@ -459,13 +459,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 8,
-      "leaders": 4,
+      "leaders": 8,
       "textOverflow": 0
     },
     "pixels": {
       "width": 1685,
       "height": 2527,
-      "inkFraction": 0.3040412212790292
+      "inkFraction": 0.30456729047356795
     },
     "errors": []
   },
@@ -506,13 +506,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 2,
-      "leaders": 0,
+      "leaders": 2,
       "textOverflow": 0
     },
     "pixels": {
       "width": 1685,
       "height": 1264,
-      "inkFraction": 0.2777471547158472
+      "inkFraction": 0.277858900199076
     },
     "errors": []
   },
@@ -553,7 +553,7 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 8,
-      "leaders": 3,
+      "leaders": 8,
       "textOverflow": 0
     },
     "pixels": {
@@ -600,13 +600,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 8,
-      "leaders": 3,
+      "leaders": 8,
       "textOverflow": 0
     },
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3203828125
+      "inkFraction": 0.3204921875
     },
     "errors": []
   },
@@ -694,13 +694,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 8,
-      "leaders": 3,
+      "leaders": 8,
       "textOverflow": 0
     },
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.6257682291666666
+      "inkFraction": 0.62565625
     },
     "errors": []
   },
@@ -882,13 +882,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 8,
-      "leaders": 2,
+      "leaders": 8,
       "textOverflow": 0
     },
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.6427239583333333
+      "inkFraction": 0.6424453125
     },
     "errors": []
   },
@@ -935,7 +935,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.41872135416666667
+      "inkFraction": 0.4184791666666667
     },
     "errors": []
   },
@@ -982,7 +982,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.5701145833333333
+      "inkFraction": 0.5703177083333333
     },
     "errors": []
   },
@@ -1029,7 +1029,7 @@
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.35805729166666667
+      "inkFraction": 0.35755729166666667
     },
     "errors": []
   },
@@ -1076,7 +1076,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.4374166666666667
+      "inkFraction": 0.43696875
     },
     "errors": []
   },
@@ -1123,7 +1123,7 @@
     "pixels": {
       "width": 3370,
       "height": 2527,
-      "inkFraction": 0.30312600179192317
+      "inkFraction": 0.30303898900773724
     },
     "errors": []
   },
@@ -1170,7 +1170,7 @@
     "pixels": {
       "width": 2527,
       "height": 3370,
-      "inkFraction": 0.8786972507013278
+      "inkFraction": 0.8777439851385452
     },
     "errors": []
   },
@@ -1217,7 +1217,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.41061458333333334
+      "inkFraction": 0.4100416666666667
     },
     "errors": []
   },
@@ -1258,13 +1258,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 2,
-      "leaders": 0,
+      "leaders": 2,
       "textOverflow": 0
     },
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.32645833333333335
+      "inkFraction": 0.32765625
     },
     "errors": []
   },
@@ -1311,7 +1311,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.49442447916666665
+      "inkFraction": 0.4942552083333333
     },
     "errors": []
   },
@@ -1358,7 +1358,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.8887291666666667
+      "inkFraction": 0.8892213541666667
     },
     "errors": []
   },
@@ -1405,7 +1405,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.5110442708333334
+      "inkFraction": 0.5110130208333333
     },
     "errors": []
   },
@@ -1446,13 +1446,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 3,
-      "leaders": 1,
+      "leaders": 3,
       "textOverflow": 0
     },
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.415640625
+      "inkFraction": 0.41584375
     },
     "errors": []
   },
@@ -1493,7 +1493,7 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 3,
-      "leaders": 1,
+      "leaders": 3,
       "textOverflow": 0
     },
     "pixels": {
@@ -1546,7 +1546,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.42389583333333336
+      "inkFraction": 0.41640625
     },
     "errors": []
   },
@@ -1593,7 +1593,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.8344895833333333
+      "inkFraction": 0.8340989583333334
     },
     "errors": []
   },
@@ -1633,14 +1633,14 @@
       "labelRoutes": 1,
       "labelContentsValid": true,
       "labelsOutside": 0,
-      "labels": 1,
-      "leaders": 2,
+      "labels": 2,
+      "leaders": 3,
       "textOverflow": 0
     },
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.5690364583333334
+      "inkFraction": 0.5700260416666667
     },
     "errors": []
   },
@@ -1687,7 +1687,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.4374166666666667
+      "inkFraction": 0.43696875
     },
     "errors": []
   },
@@ -1728,13 +1728,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 3,
-      "leaders": 1,
+      "leaders": 3,
       "textOverflow": 0
     },
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.386734375
+      "inkFraction": 0.3869375
     },
     "errors": []
   },
@@ -1781,7 +1781,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.832453125
+      "inkFraction": 0.8328046875
     },
     "errors": []
   },
@@ -1822,13 +1822,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 2,
-      "leaders": 2,
+      "leaders": 3,
       "textOverflow": 0
     },
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.339953125
+      "inkFraction": 0.34029166666666666
     },
     "errors": []
   },
@@ -1875,7 +1875,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.4374166666666667
+      "inkFraction": 0.43696875
     },
     "errors": []
   },
@@ -1916,13 +1916,13 @@
       "labelContentsValid": true,
       "labelsOutside": 0,
       "labels": 1,
-      "leaders": 1,
+      "leaders": 2,
       "textOverflow": 0
     },
     "pixels": {
       "width": 1685,
       "height": 1264,
-      "inkFraction": 0.46194972392292377
+      "inkFraction": 0.4628394621192202
     },
     "errors": []
   },
@@ -1959,17 +1959,17 @@
       "maxProjectionError": 0.019419747252270428,
       "labelCollisions": 0,
       "leaderCollisions": 0,
-      "labelRoutes": 5,
+      "labelRoutes": 6,
       "labelContentsValid": true,
       "labelsOutside": 0,
-      "labels": 6,
-      "leaders": 3,
+      "labels": 7,
+      "leaders": 8,
       "textOverflow": 0
     },
     "pixels": {
       "width": 2527,
       "height": 3370,
-      "inkFraction": 0.7859361037295722
+      "inkFraction": 0.7805261631354663
     },
     "errors": []
   }

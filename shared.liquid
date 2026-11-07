@@ -62,7 +62,7 @@
     });
   }
   function plan(o) {
-    var x=o.x,y=o.y,ib=o.icon,g=3*o.scale;
+    var x=o.x,y=o.y,ib=o.icon;
     var boxes=o.boxes, lines=o.lines||[], tw=o.width, th=o.height;
     function fits(b) {
       return b[0]>=2 && b[1]>=2 && b[2]<=o.W-2 && b[3]<=o.H-2 &&
@@ -73,10 +73,14 @@
       if(anchor==='end')return [ex-tw,ey-th/2,ex,ey+th/2];
       return vertical<0?[ex-tw/2,ey-th,ex+tw/2,ey]:[ex-tw/2,ey,ex+tw/2,ey+th];
     }
-    var near=[['start',ib[2]+g,y,0],['end',ib[0]-g,y,0],['middle',x,ib[1]-g,-1],['middle',x,ib[3]+g,1]];
+    // Beside, then above or below the ship, a short leader apart so every
+    // label has a visible connector to its ship.
+    var lead=10*o.scale,own=boxes.filter(function(b){return b!==ib;});
+    var near=[['start',ib[2]+lead,y,0,ib[2],y],['end',ib[0]-lead,y,0,ib[0],y],
+              ['middle',x,ib[1]-lead,-1,x,ib[1]],['middle',x,ib[3]+lead,1,x,ib[3]]];
     for(var n=0;n<near.length;n++) {
-      var a=near[n],r=rect(a[0],a[1],a[2],a[3]);
-      if(fits(r))return {rect:r,line:null};
+      var a=near[n],r=rect(a[0],a[1],a[2],a[3]),leader=[a[4],a[5],a[1],a[2]];
+      if(fits(r)&&!lineHits(leader,own))return {rect:r,line:leader};
     }
     var steps=[.015,.025,.035,.05,.065,.08,.10];
     for(var si=0;si<steps.length;si++)for(var ai=0;ai<ANGLES.length;ai++) {
@@ -275,7 +279,7 @@
         el.querySelectorAll('.poc__data li').forEach(function (v) {
           var coord=[Number(v.dataset.lon),Number(v.dataset.lat)];
           if(!coord.every(Number.isFinite))return;
-          var featured=!!hl&&v.dataset.featured==='true',factor=(featured?1.5:1)*sizeOf(Number(v.dataset.length),v.dataset.type);
+          var featured=!!hl&&v.dataset.featured==='true',factor=sizeOf(Number(v.dataset.length),v.dataset.type);
           var pt=map.project(coord),bearing=v.dataset.bearing===''?null:Number(v.dataset.bearing);
           // Without a reported direction a ship still shows its own hull, turned to
           // a fixed angle from its id: moored ships look scattered and never spin.

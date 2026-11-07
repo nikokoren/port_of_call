@@ -33,7 +33,7 @@
         "labelContentsValid": true,
         "labelsOutside": 0,
         "labels": 2,
-        "leaders": 1,
+        "leaders": 2,
         "textOverflow": 0
       },
       {
@@ -66,7 +66,7 @@
         "labelContentsValid": true,
         "labelsOutside": 0,
         "labels": 2,
-        "leaders": 1,
+        "leaders": 2,
         "textOverflow": 0
       },
       {
@@ -99,7 +99,7 @@
         "labelContentsValid": true,
         "labelsOutside": 0,
         "labels": 2,
-        "leaders": 1,
+        "leaders": 2,
         "textOverflow": 0
       },
       {
@@ -132,7 +132,7 @@
         "labelContentsValid": true,
         "labelsOutside": 0,
         "labels": 2,
-        "leaders": 1,
+        "leaders": 2,
         "textOverflow": 0
       }
     ],
@@ -140,7 +140,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.40763802083333334
+      "inkFraction": 0.4084244791666667
     },
     "errors": []
   },
@@ -178,7 +178,7 @@
         "labelContentsValid": true,
         "labelsOutside": 0,
         "labels": 7,
-        "leaders": 3,
+        "leaders": 7,
         "textOverflow": 0
       },
       {
@@ -211,7 +211,7 @@
         "labelContentsValid": true,
         "labelsOutside": 0,
         "labels": 7,
-        "leaders": 3,
+        "leaders": 7,
         "textOverflow": 0
       }
     ],
@@ -219,7 +219,7 @@
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.507120604743468
+      "inkFraction": 0.506818506952054
     },
     "errors": []
   },
@@ -364,7 +364,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.416125
+      "inkFraction": 0.4156770833333333
     },
     "errors": []
   },
@@ -398,10 +398,10 @@
         "maxProjectionError": 0.019930633867326252,
         "labelCollisions": 0,
         "leaderCollisions": 0,
-        "labelRoutes": 4,
+        "labelRoutes": 3,
         "labelContentsValid": true,
         "labelsOutside": 0,
-        "labels": 4,
+        "labels": 3,
         "leaders": 4,
         "textOverflow": 0
       },
@@ -431,10 +431,10 @@
         "maxProjectionError": 0.019942352234240332,
         "labelCollisions": 0,
         "leaderCollisions": 0,
-        "labelRoutes": 4,
+        "labelRoutes": 3,
         "labelContentsValid": true,
         "labelsOutside": 0,
-        "labels": 4,
+        "labels": 3,
         "leaders": 4,
         "textOverflow": 0
       }
@@ -443,7 +443,7 @@
     "pixels": {
       "width": 1872,
       "height": 1404,
-      "inkFraction": 0.32628387756592886
+      "inkFraction": 0.32394471229941313
     },
     "errors": []
   }

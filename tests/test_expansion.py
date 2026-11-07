@@ -108,12 +108,19 @@ class Expansion(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'cannot be packaged'):release_settings(text,'aisstream',registry=empty)
         registry=empty;registry['hamburg']['verified']=True
         out=release_settings(text,'aisstream',registry=registry,origin='https://harbor.example.com')
-        self.assertIn('"Hamburg, Germany": "hamburg"',out);self.assertNotIn('helsinki',out)
+        # The world menu adds the Finnish ports it forwards, after its own;
+        # the Finnish profile never lists world ports.
+        self.assertIn('"Hamburg, Germany": "hamburg"',out);self.assertIn('"Helsinki, Finland": "helsinki"',out)
+        self.assertLess(out.index('hamburg'),out.index('helsinki'))
+        finnish=release_settings(text,'digitraffic',registry=registry)
+        self.assertIn('"Rauma, Finland": "rauma"',finnish);self.assertNotIn('hamburg',finnish)
         # Harbor selection is optional and multi-select: no default, header and help text preserved.
         field=out.split('  - keyname: harbor\n',1)[1].split('  - keyname:',1)[0]
         self.assertIn('multiple: true',field);self.assertIn('optional: true',field);self.assertNotIn('default:',field)
         self.assertNotIn('map_scale',out);self.assertNotIn('display_mode',out)
-        self.assertNotIn('Rotterdam, Netherlands',out);self.assertNotIn('Fintraffic',out)
+        self.assertNotIn('Rotterdam, Netherlands',out)
+        # Forwarded Finnish ports are credited to their own source.
+        self.assertIn('Finnish ports from Fintraffic / digitraffic.fi, CC BY 4.0',out)
         self.assertIn("""polling_url: "https://harbor.example.com/api/v1/vessels?harbors={{ harbor | join: ',' }}&spotlight={{ ship_spotlight }}"\n""",out)
         self.assertIn("framework_version: '3.4.4'",out)
         self.assertIn('refresh_interval: 15',out)

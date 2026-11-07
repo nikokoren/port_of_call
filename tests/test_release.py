@@ -56,3 +56,23 @@ class DeploymentGates(unittest.TestCase):
         for errors in (['Invalid route accepted'], ['rotterdam: stale', 'Selected harbor not pinned'],
                        ['rotterdam: unavailable'], []):
             self.assertFalse(deploy_cloudflare.only_catching_up(dict(passed=not errors, errors=errors)))
+
+
+class FinnishPortsInWorldRotation(unittest.TestCase):
+    def test_world_serves_its_own_harbors_then_the_finnish_ones(self):
+        from port_of_call.catalog import served_harbors, verified_harbors
+        world, finnish = served_harbors('aisstream'), verified_harbors('digitraffic')
+        self.assertEqual(list(world)[-len(finnish):], list(finnish))
+        self.assertTrue(set(verified_harbors('aisstream')) < set(world))
+        self.assertEqual(served_harbors('digitraffic'), finnish)
+
+    def test_world_deploy_config_binds_the_finnish_worker(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); (root/'cloudflare').mkdir()
+            base = json.loads((Path(__file__).resolve().parents[1]/'cloudflare/wrangler.jsonc').read_text())
+            (root/'cloudflare/wrangler.jsonc').write_text(json.dumps(base))
+            with patch.object(deploy_cloudflare, 'ROOT', root):
+                config = json.loads(deploy_cloudflare.world_config().read_text())
+        self.assertEqual(config['services'], [{'binding': 'FINLAND', 'service': 'port-of-call'}])
+        self.assertEqual(config['durable_objects'], base['durable_objects'])
+        self.assertNotIn('services', base)

@@ -176,6 +176,7 @@ class Enricher:
         self.queue = asyncio.Queue(maxsize=128)
         self.pending = set()
         self.last_request = 0
+        self.prefetched = {}
 
     def enqueue(self, focus):
         if not focus: return
@@ -193,6 +194,24 @@ class Enricher:
             token = kind+':'+key
             if token not in self.pending and not cached(self.store, token, self.clock()) and not self.queue.full():
                 self.queue.put_nowait((kind, key)); self.pending.add(token)
+
+    def prefetch(self, port_id, imos, *, window=3*3600, reserve=250):
+        """Look up likely Spotlight subjects ahead of time, once per port per window.
+
+        Only while today's shared budget has more than `reserve` requests left,
+        so Spotlight cards and destination names always keep their share.
+        """
+        now = self.clock()
+        slot = int(now//window)
+        if self.prefetched.get(port_id) == slot: return
+        state = json.loads(self.store.state('wikidata_daily_budget') or '{}')
+        used = state.get('count', 0) if state.get('day') == datetime.fromtimestamp(now, timezone.utc).date().isoformat() else 0
+        if 500-used <= reserve: return
+        self.prefetched[port_id] = slot
+        for number in imos:
+            token = 'ship:'+number
+            if token not in self.pending and not cached(self.store, token, now) and not self.queue.full():
+                self.queue.put_nowait(('ship', number)); self.pending.add(token)
 
     def enqueue_ports(self, codes):
         # Destinations of every displayed ship, not only the Spotlight subject,

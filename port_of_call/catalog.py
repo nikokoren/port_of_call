@@ -10,6 +10,18 @@ def verified_harbors(provider, registry=None):
     return {k: h for k, h in registry.items() if h['provider']==provider and h.get('verified') is True}
 
 
+# The world backend also serves the Finnish ports, fetched from the Finnish
+# backend (official Digitraffic feed) over a Cloudflare service binding.
+FORWARDED = {'aisstream': 'digitraffic'}
+
+
+def served_harbors(provider, registry=None):
+    """Harbors a backend offers: its own, then any it forwards, in catalog order."""
+    own = verified_harbors(provider, registry)
+    partner = FORWARDED.get(provider)
+    return {**own, **(verified_harbors(partner, registry) if partner else {})}
+
+
 def stream_harbors(ids=None, *, candidates=False):
     available = {k: h for k, h in HARBORS.items()
                  if h['provider']=='aisstream' and (candidates or h.get('verified') is True)}

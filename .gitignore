@@ -18,3 +18,4 @@ cloudflare/python_modules/
 .dev.vars
 .dev.vars.*
 site/
+cloudflare/wrangler.world.jsonc

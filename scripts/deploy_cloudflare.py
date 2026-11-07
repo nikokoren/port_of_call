@@ -29,6 +29,18 @@ def deployment_config(provider):
 # The checked-in settings.yml is the world profile, so only a world deploy may
 # move the primary release (site download and hourly monitor).
 PRIMARY_PROVIDER = 'aisstream'
+# The world Worker serves the Finnish ports through a service binding to the
+# Finnish Worker (a direct workers.dev fetch between them is refused).
+FINNISH_WORKER = 'port-of-call'
+
+
+def world_config():
+    """The shared Worker config plus the FINLAND service binding, as a temporary file."""
+    config = json.loads((ROOT/'cloudflare/wrangler.jsonc').read_text())
+    config['services'] = [{'binding': 'FINLAND', 'service': FINNISH_WORKER}]
+    path = ROOT/'cloudflare/wrangler.world.jsonc'
+    path.write_text(json.dumps(config, indent=2)+'\n')
+    return path
 FRESHNESS = ('warming', 'stale')
 
 
@@ -64,10 +76,12 @@ def main():
     with tempfile.TemporaryDirectory(prefix='poc-secrets-') as tmp:
         secrets = Path(tmp)/'secrets.json'
         if args.provider == 'aisstream':
+            command += ['--config', world_config().name]
             secrets.write_text(json.dumps({'AISSTREAM_API_KEY': os.environ['AISSTREAM_API_KEY']}))
             secrets.chmod(0o600)
             command += ['--secrets-file', str(secrets)]
-        result = subprocess.run(command, cwd=ROOT/'cloudflare', text=True, capture_output=True)
+        try: result = subprocess.run(command, cwd=ROOT/'cloudflare', text=True, capture_output=True)
+        finally: (ROOT/'cloudflare/wrangler.world.jsonc').unlink(missing_ok=True)
         log = result.stdout+result.stderr
         for key in ('CLOUDFLARE_API_TOKEN', 'AISSTREAM_API_KEY'):
             if os.environ.get(key): log = log.replace(os.environ[key], '[redacted]')

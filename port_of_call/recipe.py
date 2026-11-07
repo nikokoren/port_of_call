@@ -2,12 +2,12 @@
 import json
 import re
 from urllib.parse import urlsplit
-from .catalog import verified_harbors
+from .catalog import served_harbors, verified_harbors
 
 
 FACTS = 'Optional vessel reference facts from <a href="https://www.wikidata.org/">Wikidata</a> (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>). Not for navigation.'
 BIOS = {
-    'aisstream': "See who's coming and going. Observed AIS positions from AISStream; coverage varies. See the maintainer's source and license notes. "+FACTS,
+    'aisstream': "See who's coming and going. Observed AIS positions from AISStream; coverage varies. Finnish ports from Fintraffic / digitraffic.fi, CC BY 4.0. See the maintainer's source and license notes. "+FACTS,
     'digitraffic': "See who's coming and going. Observed AIS positions, not port schedules. Source Fintraffic / digitraffic.fi, CC BY 4.0; filtered and normalized. "+FACTS,
 }
 
@@ -19,8 +19,9 @@ COMMENTS = {
 
 
 def release_settings(text, provider='digitraffic', *, origin=None, registry=None):
-    harbors=list(verified_harbors(provider,registry).values())
-    if not harbors: raise ValueError('No verified harbors for '+provider+'; candidate ports cannot be packaged')
+    if not verified_harbors(provider,registry): raise ValueError('No verified harbors for '+provider+'; candidate ports cannot be packaged')
+    # The menu lists every harbor the backend serves, including forwarded ones.
+    harbors=list(served_harbors(provider,registry).values())
     # Keep the hand-written field header (name, help text, multiple/optional)
     # and replace only its options with the verified catalog.
     def label(h): return h['name'] if h['country']==h['name'] else h['name']+', '+h['country']

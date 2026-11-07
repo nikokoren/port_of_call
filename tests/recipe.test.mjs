@@ -92,6 +92,8 @@ test('ship markers carry type, speed and length for their icons',async()=>{
  // Ships under way are solid ink; only the Spotlight ship has a paper outline.
  assert.match(shared,/\.poc__ship path \{ fill:currentColor; stroke:currentColor;/);
  assert.match(shared,/\.poc__ship--featured path \{ stroke:var\(--poc-paper\)/);
+ // The Spotlight ship keeps the normal size; only its paper outline sets it apart.
+ assert.doesNotMatch(shared,/featured\?1\.5/);
  // Spotlight does not restyle or shrink the other ships.
  assert.doesNotMatch(shared,/poc-context|0\.75/);
  // "Port of Call" one step up: always on full; on large screens only elsewhere,
