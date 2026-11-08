@@ -60,10 +60,13 @@ def check(origin, *, allow_degraded=False, all_framings=False):
                                  voyage_labels=sum(bool(v.get('voyage')) for v in data['vessels']), bytes=size))
     # Recipe endpoint: one selected harbor is pinned; none rotates through the catalog.
     ids = [h['id'] for h in catalog['harbors']]
+    # The rotation also includes harbors forwarded to a partner backend (the
+    # world backend serves the Finnish ports), so any of those is valid too.
+    rotation = ids + list(catalog.get('forwarded', []))
     status, data, _, _ = get(origin+'/api/v1/vessels?harbors='+ids[-1]+'&spotlight=false')
     if status != 200 or data['port']['id'] != ids[-1]: errors.append('Selected harbor not pinned')
     status, data, _, _ = get(origin+'/api/v1/vessels?harbors=&spotlight=false')
-    if status != 200 or data['port']['id'] not in ids: errors.append('Empty selection did not rotate within the catalog')
+    if status != 200 or data['port']['id'] not in rotation: errors.append('Empty selection did not rotate within the catalog')
     # Harbors this backend forwards to its partner backend (world -> Finnish).
     for harbor in catalog.get('forwarded', []):
         status, data, _, _ = get(origin+'/api/v1/vessels?harbors='+harbor+'&spotlight=false')
