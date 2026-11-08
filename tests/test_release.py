@@ -76,3 +76,32 @@ class FinnishPortsInWorldRotation(unittest.TestCase):
         self.assertEqual(config['services'], [{'binding': 'FINLAND', 'service': 'port-of-call'}])
         self.assertEqual(config['durable_objects'], base['durable_objects'])
         self.assertNotIn('services', base)
+
+
+class MonitorRotationCheck(unittest.TestCase):
+    """The hourly monitor must accept a rotation that lands on a forwarded harbor."""
+
+    def fake_service(self, rotation_lands_on):
+        from datetime import datetime, timezone
+        now = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+        def port(i): return dict(id=i, provider='aisstream')
+        def snapshot(i): return dict(schema_version=1, demo=False, port=port(i), status='ok', shown=1, total=1,
+                                     vessels=[dict(mmsi='211000001', position=[9.9, 53.5], reported_at=now)])
+        def get(url):
+            path = url.split('example.test', 1)[1]
+            if path == '/health': return 200, dict(status='ready', provider='aisstream'), 10, {}
+            if path == '/api/v1/harbors': return 200, dict(harbors=[port('hamburg')], forwarded=['helsinki']), 10, {}
+            if path.startswith('/api/v1/harbors/hamburg/vessels?scale=bad'): return 400, {}, 0, {}
+            if path.startswith('/api/v1/harbors/hamburg/vessels'): return 200, snapshot('hamburg'), 100, {}
+            if path.startswith('/api/v1/vessels?harbors=&'): return 200, snapshot(rotation_lands_on), 100, {}
+            if path.startswith('/api/v1/vessels?harbors=hamburg&spotlight=maybe'): return 400, {}, 0, {}
+            for harbor in ('hamburg', 'helsinki'):
+                if path.startswith('/api/v1/vessels?harbors='+harbor+'&'): return 200, snapshot(harbor), 100, {}
+            return 404, {}, 0, {}
+        return get
+
+    def test_empty_selection_may_land_on_a_forwarded_harbor(self):
+        for landed, ok in (('hamburg', True), ('helsinki', True), ('rotterdam', False)):
+            with patch.object(check_service, 'get', self.fake_service(landed)):
+                report = check_service.check('https://example.test')
+            self.assertEqual(report['passed'], ok, (landed, report['errors']))
