@@ -63,3 +63,7 @@ class Terms(unittest.TestCase):
             ref=resolve_port(MemoryStore(),code,NOW)
             self.assertEqual(ref['name'],name);self.assertEqual(ref['country'],country)
             self.assertTrue(ref['url'].endswith('/'+qid));self.assertNotIn('position',ref)
+
+    def test_reviewed_place_words_are_not_mistaken_for_foreign_codes(self):
+        self.assertEqual(resolve_port(MemoryStore(),'DELFT',NOW)['name'],'Delft')
+        self.assertEqual(resolve_port(MemoryStore(),'KEHL',NOW)['name'],'Kehl')
