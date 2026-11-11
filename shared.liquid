@@ -233,7 +233,7 @@
         var r=20*scale();return [point.x-r,point.y-r,point.x+r,point.y+r];
       }
       function drawLandmarks(map,ships,fixed,boxes,lines){
-        if(el.dataset.landmarks==='off'||el.clientWidth<300||el.clientHeight<260)return;
+        if(el.clientWidth<300||el.clientHeight<260)return;
         var unit=scale(),W=el.clientWidth,H=el.clientHeight,placed=0;
         var obstacles=ships.map(function(s){return s.box;}).concat(fixed,boxes||[]),leaders=lines||[];
         el.querySelectorAll('.poc__landmark-data li').forEach(function(n){

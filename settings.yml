@@ -50,11 +50,6 @@ custom_fields:
     name: Show map legend
     description: Turn on the vessel legend to learn what the different vessel shapes mean. Full-screen maps only.
     default: false
-  - keyname: map_landmarks
-    field_type: boolean
-    name: Show harbor landmarks
-    description: Add a few named docks, bridges, locks or islands when space permits. Vessel labels take priority.
-    default: true
   - keyname: ship_spotlight
     field_type: boolean
     name: Spotlight a ship

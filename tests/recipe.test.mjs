@@ -193,12 +193,11 @@ test('vessel legend is optional and appears only on full-screen maps',async()=>{
  }
 });
 
-test('harbor landmarks default on, can be disabled and escape their names',async()=>{
- const field=settings.custom_fields.find(f=>f.keyname==='map_landmarks');
- assert.equal(field.field_type,'boolean');assert.equal(field.default,true);
+test('harbor landmarks are built in, ignore retired settings and escape their names',async()=>{
+ assert.ok(!settings.custom_fields.some(f=>f.keyname==='map_landmarks'));
  const data={...fixture,landmarks:[{name:'<unsafe>',position:[24.9,60.1]}]};
  for(const layout of layouts){
-  const on=await render(layout,data);assert.ok(on.includes('data-landmarks="on"'));assert.ok(on.includes('data-name="&lt;unsafe&gt;"'));
-  assert.ok((await render(layout,data,{map_landmarks:false})).includes('data-landmarks="off"'));
+  const on=await render(layout,data);assert.ok(!on.includes('data-landmarks='));assert.ok(on.includes('data-name="&lt;unsafe&gt;"'));
+  assert.equal(await render(layout,data,{map_landmarks:false}),on);
  }
 });
