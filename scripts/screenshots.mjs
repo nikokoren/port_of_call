@@ -38,7 +38,8 @@ const cases=[
  ['legend-portrait','full','portrait','helsinki-spotlight',false,false,'on',true,true],
  ['legend-og-portrait','full','og-portrait','rauma-spotlight',false,false,'on',true,true],
  ['legend-seattle','full','onebit','seattle-legend',false,false,'on',true,true],
- ['legend-seattle-x','full','x','seattle-legend',false,false,'on',true,true]
+ ['legend-seattle-x','full','x','seattle-legend',false,false,'on',true,true],
+ ['observed-trail','full','og','observed-trail',false,false,'on',true,true]
 ];
 await mkdir('docs/screenshots',{recursive:true});
 const results=[];
@@ -64,6 +65,7 @@ try {
    overflow:document.querySelector('.poc').scrollHeight>document.querySelector('.poc').clientHeight+Math.max(1,parseFloat(getComputedStyle(document.querySelector('.screen')).getPropertyValue('--ui-scale'))||1),
    text:document.querySelector('.poc__notice').innerText}));
   const positions=await page.evaluate(geometry);
+  if(name==='observed-trail'&&positions.trailSegments<1)throw new Error('Observed trail not visible');
   if(!blockTiles&&(!positions.mapCountMatches||!positions.landmarksClear))throw new Error(name+': map context '+JSON.stringify(positions));
   if(positions.legendVisible!==legend||!positions.legendInside||!positions.legendClear||!positions.legendIconsValid||!positions.legendDocked||!positions.legendCompact)throw new Error(name+': legend '+JSON.stringify(positions));
   if(facts&&positions.portFactVisible!==(layout!=='quadrant'||device==='x'))throw new Error(name+': unexpected port-fact visibility');

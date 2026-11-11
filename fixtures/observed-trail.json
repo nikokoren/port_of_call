@@ -1,0 +1,963 @@
+{
+  "schema_version": 1,
+  "display_mode": "map",
+  "port": {
+    "id": "hamburg",
+    "name": "Hamburg",
+    "country": "Germany",
+    "timezone": "Europe/Berlin",
+    "center": [
+      9.975,
+      53.525
+    ],
+    "focus": [
+      9.93597,
+      53.53024
+    ],
+    "zoom": 11,
+    "bbox": [
+      9.75,
+      53.42,
+      10.2,
+      53.63
+    ],
+    "default_zoom": 10,
+    "provider": "aisstream",
+    "verified": true,
+    "collection": "major15",
+    "region": "europe",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 282
+  },
+  "port_fact": {
+    "id": "hamburg:10",
+    "text": "The tide makes the Elbe at Hamburg rise and fall by about 3.6 metres twice a day.",
+    "source_url": "https://www.hafen-hamburg.de/en/portofhamburg/tide/"
+  },
+  "landmarks": [
+    {
+      "name": "Landungsbrücken",
+      "position": [
+        9.966667,
+        53.546111
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q458970"
+    },
+    {
+      "name": "Köhlbrand Bridge",
+      "position": [
+        9.938494,
+        53.521834
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q520613"
+    }
+  ],
+  "viewport": [
+    9.798641,
+    53.481235,
+    10.073299,
+    53.579189
+  ],
+  "camera": {
+    "zoom": 11,
+    "center": [
+      9.93597,
+      53.53024
+    ]
+  },
+  "source": "AISStream",
+  "attribution": null,
+  "snapshot_at": "2026-11-11T22:41:40Z",
+  "fetched_at": "2026-11-11T22:41:40Z",
+  "latest_report_at": "2026-11-11T22:41:33Z",
+  "fetched_local": "23:41 CET",
+  "latest_report_local": "23:41 CET",
+  "latest_report_age_minutes": 0,
+  "status": "ok",
+  "message": "",
+  "demo": false,
+  "focus_requested": true,
+  "focus_mode": "ship",
+  "focus": {
+    "mmsi": "211437190",
+    "imo": null,
+    "name": "NEUENFELDE",
+    "position": [
+      9.969031666666666,
+      53.544713333333334
+    ],
+    "reported_at": "2026-11-11T22:41:16Z",
+    "selected_at": "2026-11-11T22:34:11Z",
+    "selected_until": "2026-11-11T23:34:11Z",
+    "reason": "Reported voyage details",
+    "facts": [
+      {
+        "label": "Type",
+        "value": "Passenger vessel",
+        "reported_at": "2026-11-11T22:41:33Z",
+        "source": "AISStream"
+      },
+      {
+        "label": "Length / beam",
+        "value": "27 × 7 m",
+        "reported_at": "2026-11-11T22:41:33Z",
+        "source": "AISStream"
+      },
+      {
+        "label": "Speed",
+        "value": "10 kn",
+        "reported_at": "2026-11-11T22:41:16Z",
+        "source": "AIS position report"
+      },
+      {
+        "label": "Reported status",
+        "value": "Under way using engine",
+        "reported_at": "2026-11-11T22:41:16Z",
+        "source": "AIS position report"
+      },
+      {
+        "label": "Call sign",
+        "value": "DG8422",
+        "reported_at": "2026-11-11T22:41:33Z",
+        "source": "AISStream"
+      },
+      {
+        "label": "MMSI",
+        "value": "211437190",
+        "reported_at": "2026-11-11T22:41:16Z",
+        "source": "AIS position report"
+      }
+    ],
+    "dimensions": {
+      "length_m": 27,
+      "beam_m": 7
+    },
+    "destination": {
+      "value": "HAMBURG",
+      "reported_at": "2026-11-11T22:41:33Z",
+      "source": "AISStream"
+    },
+    "eta": null,
+    "origin": null,
+    "destination_port": {
+      "code": "DEHAM",
+      "name": "Hamburg",
+      "country": "Germany",
+      "position": [
+        9.975,
+        53.525
+      ],
+      "source": "Reviewed harbor catalog"
+    },
+    "enrichment": null,
+    "eta_estimate": null,
+    "flag": null,
+    "built_in": null,
+    "destination_term": null,
+    "presentation": {
+      "vessel_type": "Passenger vessel",
+      "flag": null,
+      "journey": {
+        "label": "Destination",
+        "value": "Hamburg, Germany"
+      },
+      "eta": null,
+      "speed": "10 knots",
+      "highlights": [],
+      "details": [],
+      "measurements": [
+        {
+          "label": "Length",
+          "value": "27 m"
+        },
+        {
+          "label": "Width",
+          "value": "7 m"
+        }
+      ]
+    },
+    "trail": [
+      {
+        "position": [
+          9.95044,
+          53.54346
+        ],
+        "reported_at": "2026-11-11T22:37:16Z"
+      },
+      {
+        "position": [
+          9.96836,
+          53.54459
+        ],
+        "reported_at": "2026-11-11T22:41:07Z"
+      },
+      {
+        "position": [
+          9.96903,
+          53.54471
+        ],
+        "reported_at": "2026-11-11T22:41:16Z"
+      }
+    ],
+    "reported_local": "23:41 CET",
+    "voyage_age_minutes": 0
+  },
+  "focus_message": "",
+  "total": 301,
+  "shown": 40,
+  "omitted": 261,
+  "vessels": [
+    {
+      "mmsi": "211437190",
+      "position": [
+        9.96903,
+        53.54471
+      ],
+      "reported_at": "2026-11-11T22:41:16Z",
+      "heading_deg": 76.0,
+      "course_deg": 73.6,
+      "speed_knots": 10.0,
+      "navigation_status": 0,
+      "name": "NEUENFELDE",
+      "type": "passenger",
+      "voyage": "To Hamburg, DE",
+      "length_m": 27,
+      "bearing_deg": 76.0,
+      "stale": false
+    },
+    {
+      "mmsi": "210855000",
+      "position": [
+        9.86718,
+        53.54291
+      ],
+      "reported_at": "2026-11-11T22:39:47Z",
+      "heading_deg": 102.0,
+      "course_deg": 102.0,
+      "speed_knots": 9.0,
+      "navigation_status": 0,
+      "name": "KEY OCEAN",
+      "type": "tanker",
+      "voyage": "To Hamburg, DE",
+      "length_m": 109,
+      "bearing_deg": 102.0,
+      "stale": false,
+      "label_rank": 1
+    },
+    {
+      "mmsi": "311001911",
+      "position": [
+        9.89123,
+        53.51955
+      ],
+      "reported_at": "2026-11-11T22:38:50Z",
+      "heading_deg": 231.0,
+      "course_deg": 131.3,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "WILSON HIRTSHALS",
+      "type": "cargo",
+      "voyage": "To Hamburg, DE",
+      "length_m": 90,
+      "bearing_deg": 231.0,
+      "stale": false,
+      "label_rank": 37
+    },
+    {
+      "mmsi": "304688000",
+      "position": [
+        9.87983,
+        53.54275
+      ],
+      "reported_at": "2026-11-11T22:41:00Z",
+      "heading_deg": 278.0,
+      "course_deg": 277.5,
+      "speed_knots": 7.4,
+      "navigation_status": 0,
+      "name": "ARCTIC TRADER",
+      "type": "cargo",
+      "voyage": "To Zeebrugge, BE",
+      "length_m": 117,
+      "bearing_deg": 278.0,
+      "stale": false,
+      "label_rank": 2
+    },
+    {
+      "mmsi": "211300550",
+      "position": [
+        9.93053,
+        53.51305
+      ],
+      "reported_at": "2026-11-11T22:14:13Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "LILLYAN",
+      "type": "cargo",
+      "voyage": "To Hamburg, DE",
+      "length_m": 15,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 39
+    },
+    {
+      "mmsi": "636018700",
+      "position": [
+        9.92353,
+        53.52631
+      ],
+      "reported_at": "2026-11-11T22:37:58Z",
+      "heading_deg": 304.0,
+      "course_deg": 8.1,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "HOUSTON EXPRESS",
+      "type": "cargo",
+      "voyage": "To Hamburg, DE",
+      "length_m": 368,
+      "bearing_deg": 304.0,
+      "stale": false,
+      "label_rank": 23
+    },
+    {
+      "mmsi": "211437160",
+      "position": [
+        9.90394,
+        53.54261
+      ],
+      "reported_at": "2026-11-11T22:28:49Z",
+      "heading_deg": 261.0,
+      "course_deg": 264.0,
+      "speed_knots": 12.6,
+      "navigation_status": 0,
+      "name": "ALTONA",
+      "type": "passenger",
+      "voyage": "To Hamburg, DE",
+      "length_m": 25,
+      "bearing_deg": 261.0,
+      "stale": false,
+      "label_rank": 3
+    },
+    {
+      "mmsi": "211239490",
+      "position": [
+        9.95306,
+        53.49428
+      ],
+      "reported_at": "2026-11-11T22:39:33Z",
+      "heading_deg": 265.0,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "LIFT 100-TK9",
+      "type": "other",
+      "length_m": 33,
+      "bearing_deg": 265.0,
+      "stale": false,
+      "label_rank": 15
+    },
+    {
+      "mmsi": "636093140",
+      "position": [
+        9.93785,
+        53.50257
+      ],
+      "reported_at": "2026-11-11T22:40:44Z",
+      "heading_deg": 357.0,
+      "course_deg": 342.4,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "AL MANAMAH",
+      "type": "cargo",
+      "voyage": "To CASGB",
+      "length_m": 307,
+      "bearing_deg": 357.0,
+      "stale": false,
+      "label_rank": 5
+    },
+    {
+      "mmsi": "218050010",
+      "position": [
+        9.94095,
+        53.5207
+      ],
+      "reported_at": "2026-11-11T22:41:28Z",
+      "heading_deg": null,
+      "course_deg": 0.0,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "FABIAN DEYMANN",
+      "type": "tanker",
+      "voyage": "To Holborn Hamburg",
+      "length_m": 85,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 8
+    },
+    {
+      "mmsi": "211472760",
+      "position": [
+        9.95852,
+        53.54435
+      ],
+      "reported_at": "2026-11-11T22:39:59Z",
+      "heading_deg": 257.0,
+      "course_deg": 260.1,
+      "speed_knots": 12.1,
+      "navigation_status": null,
+      "name": "HARBURG",
+      "type": "passenger",
+      "voyage": "To Hamburg, DE",
+      "length_m": 30,
+      "bearing_deg": 257.0,
+      "stale": false,
+      "label_rank": 9
+    },
+    {
+      "mmsi": "211184520",
+      "position": [
+        9.97721,
+        53.49643
+      ],
+      "reported_at": "2026-11-11T22:17:47Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "STOER",
+      "type": "cargo",
+      "voyage": "To Hamburg, DE",
+      "length_m": 98,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 32
+    },
+    {
+      "mmsi": "211319650",
+      "position": [
+        9.9772,
+        53.49764
+      ],
+      "reported_at": "2026-11-11T22:27:47Z",
+      "heading_deg": null,
+      "course_deg": 296.3,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "HOLSTEIN",
+      "type": "tanker",
+      "voyage": "To Hamburg, DE",
+      "length_m": 86,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 24
+    },
+    {
+      "mmsi": "211471880",
+      "position": [
+        9.97196,
+        53.52645
+      ],
+      "reported_at": "2026-11-11T22:21:00Z",
+      "heading_deg": null,
+      "course_deg": 192.9,
+      "speed_knots": 0.1,
+      "navigation_status": 5,
+      "name": "TMS ANTONIA",
+      "type": "tanker",
+      "voyage": "To Hamburg, DE",
+      "length_m": 100,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 22
+    },
+    {
+      "mmsi": "211643790",
+      "position": [
+        9.98292,
+        53.53952
+      ],
+      "reported_at": "2026-11-11T22:41:12Z",
+      "heading_deg": 308.0,
+      "course_deg": 300.9,
+      "speed_knots": 11.3,
+      "navigation_status": null,
+      "name": "REIHERSTIEG",
+      "type": "passenger",
+      "length_m": 28,
+      "bearing_deg": 308.0,
+      "stale": false,
+      "label_rank": 6
+    },
+    {
+      "mmsi": "211155250",
+      "position": [
+        9.99453,
+        53.55298
+      ],
+      "reported_at": "2026-11-11T22:31:22Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "ALSTERSCHWAN",
+      "type": "passenger",
+      "length_m": 26,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 16
+    },
+    {
+      "mmsi": "211888200",
+      "position": [
+        10.00791,
+        53.5261
+      ],
+      "reported_at": "2026-11-11T22:17:44Z",
+      "heading_deg": 308.0,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "MICHAEL DEYMANN",
+      "type": "tanker",
+      "voyage": "To Hamburg, DE",
+      "length_m": 110,
+      "bearing_deg": 308.0,
+      "stale": false,
+      "label_rank": 20
+    },
+    {
+      "mmsi": "211497790",
+      "position": [
+        10.00919,
+        53.53493
+      ],
+      "reported_at": "2026-11-11T22:30:57Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "BCF GLUECKAUF",
+      "type": "other",
+      "voyage": "To HH Magdeburg HH",
+      "length_m": 186,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 7
+    },
+    {
+      "mmsi": "211506980",
+      "position": [
+        10.05832,
+        53.51106
+      ],
+      "reported_at": "2026-11-11T22:30:53Z",
+      "heading_deg": null,
+      "course_deg": 246.6,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "ORCA",
+      "type": "cargo",
+      "voyage": "To Hamburg, DE",
+      "length_m": 95,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 34
+    },
+    {
+      "mmsi": "211471970",
+      "position": [
+        10.05307,
+        53.5297
+      ],
+      "reported_at": "2026-11-11T22:37:59Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "FIDUCIA",
+      "type": "cargo",
+      "voyage": "To Kehl, DE",
+      "length_m": 86,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 13
+    },
+    {
+      "mmsi": "211307810",
+      "position": [
+        10.04184,
+        53.54178
+      ],
+      "reported_at": "2026-11-11T22:40:17Z",
+      "heading_deg": 0.0,
+      "course_deg": 0.0,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "BRUECKENKIEKER",
+      "type": "other",
+      "voyage": "To Hamburg, DE",
+      "length_m": 21,
+      "bearing_deg": 0.0,
+      "stale": false,
+      "label_rank": 27
+    },
+    {
+      "mmsi": "211258420",
+      "position": [
+        9.8563,
+        53.53967
+      ],
+      "reported_at": "2026-11-11T22:30:29Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": null,
+      "name": "TOMEA",
+      "type": "other",
+      "length_m": 11,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 17
+    },
+    {
+      "mmsi": "211888330",
+      "position": [
+        9.88939,
+        53.52507
+      ],
+      "reported_at": "2026-11-11T22:40:37Z",
+      "heading_deg": 247.0,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "DANIEL DEYMANN",
+      "type": "tanker",
+      "voyage": "To Kohlfleethafen",
+      "bearing_deg": 247.0,
+      "stale": false,
+      "label_rank": 10
+    },
+    {
+      "mmsi": "211437290",
+      "position": [
+        9.87823,
+        53.53741
+      ],
+      "reported_at": "2026-11-11T22:39:17Z",
+      "heading_deg": 161.0,
+      "course_deg": 132.6,
+      "speed_knots": 6.2,
+      "navigation_status": 0,
+      "name": "ELBMEILE",
+      "type": "passenger",
+      "voyage": "To Hamburg, DE",
+      "length_m": 30,
+      "bearing_deg": 161.0,
+      "stale": false,
+      "label_rank": 14
+    },
+    {
+      "mmsi": "211397620",
+      "position": [
+        9.93023,
+        53.51313
+      ],
+      "reported_at": "2026-11-11T22:12:14Z",
+      "heading_deg": null,
+      "course_deg": 41.6,
+      "speed_knots": 0.0,
+      "navigation_status": 1,
+      "name": "HT02 LIAS",
+      "type": null,
+      "voyage": "To Hamburg, DE",
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 19
+    },
+    {
+      "mmsi": "636023678",
+      "position": [
+        9.92279,
+        53.52889
+      ],
+      "reported_at": "2026-11-11T22:32:07Z",
+      "heading_deg": 305.0,
+      "course_deg": 76.0,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "MSC MARIE",
+      "type": "cargo",
+      "voyage": "To Hamburg, DE",
+      "length_m": 366,
+      "bearing_deg": 305.0,
+      "stale": false,
+      "label_rank": 25
+    },
+    {
+      "mmsi": "440488000",
+      "position": [
+        9.91089,
+        53.53362
+      ],
+      "reported_at": "2026-11-11T22:41:33Z",
+      "heading_deg": 304.0,
+      "course_deg": 1.8,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "HMM LE HAVRE",
+      "type": "cargo",
+      "voyage": "To DEHAMCNTA0",
+      "length_m": 400,
+      "bearing_deg": 304.0,
+      "stale": false,
+      "label_rank": 4
+    },
+    {
+      "mmsi": "255806352",
+      "position": [
+        9.93742,
+        53.50632
+      ],
+      "reported_at": "2026-11-11T22:24:36Z",
+      "heading_deg": 355.0,
+      "course_deg": 189.5,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "FINE SCHEPERS",
+      "type": "cargo",
+      "voyage": "To Hamburg, DE",
+      "length_m": 141,
+      "bearing_deg": 355.0,
+      "stale": false,
+      "label_rank": 30
+    },
+    {
+      "mmsi": "211664180",
+      "position": [
+        9.9544,
+        53.52251
+      ],
+      "reported_at": "2026-11-11T22:18:07Z",
+      "heading_deg": 181.0,
+      "course_deg": 201.9,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "LINA",
+      "type": "tanker",
+      "voyage": "To Hamburg, DE",
+      "length_m": 85,
+      "bearing_deg": 181.0,
+      "stale": false,
+      "label_rank": 26
+    },
+    {
+      "mmsi": "563327500",
+      "position": [
+        9.95294,
+        53.53097
+      ],
+      "reported_at": "2026-11-11T22:24:07Z",
+      "heading_deg": 344.0,
+      "course_deg": 17.5,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "EVER GENTLE",
+      "type": "cargo",
+      "voyage": "To Hamburg, DE",
+      "length_m": 400,
+      "bearing_deg": 344.0,
+      "stale": false,
+      "label_rank": 21
+    },
+    {
+      "mmsi": "304491000",
+      "position": [
+        9.97891,
+        53.49498
+      ],
+      "reported_at": "2026-11-11T22:17:55Z",
+      "heading_deg": 344.0,
+      "course_deg": 344.0,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "NORMAN",
+      "type": "cargo",
+      "voyage": "To Hamburg, DE",
+      "length_m": 90,
+      "bearing_deg": 344.0,
+      "stale": false,
+      "label_rank": 36
+    },
+    {
+      "mmsi": "211711370",
+      "position": [
+        9.9986,
+        53.52944
+      ],
+      "reported_at": "2026-11-11T22:14:12Z",
+      "heading_deg": null,
+      "course_deg": 53.2,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "BLEICHEN",
+      "type": "cargo",
+      "voyage": "To Hamburg, DE",
+      "length_m": 93,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 35
+    },
+    {
+      "mmsi": "211696830",
+      "position": [
+        9.9841,
+        53.53473
+      ],
+      "reported_at": "2026-11-11T22:38:44Z",
+      "heading_deg": null,
+      "course_deg": 44.0,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "WALSRODE",
+      "type": "tanker",
+      "voyage": "To Hamburg, DE",
+      "length_m": 67,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 29
+    },
+    {
+      "mmsi": "211375630",
+      "position": [
+        9.99449,
+        53.55275
+      ],
+      "reported_at": "2026-11-11T21:51:05Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.1,
+      "navigation_status": 5,
+      "name": "FLEETENKIEKER",
+      "type": "passenger",
+      "length_m": 26,
+      "bearing_deg": null,
+      "stale": true,
+      "label_rank": 28
+    },
+    {
+      "mmsi": "211518790",
+      "position": [
+        10.0351,
+        53.52492
+      ],
+      "reported_at": "2026-11-11T22:37:58Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "SCH 2414",
+      "type": "cargo",
+      "voyage": "To Hamburg, DE",
+      "length_m": 82,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 38
+    },
+    {
+      "mmsi": "211765800",
+      "position": [
+        10.02661,
+        53.54053
+      ],
+      "reported_at": "2026-11-11T22:39:38Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "DAVID",
+      "type": "other",
+      "length_m": 11,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 18
+    },
+    {
+      "mmsi": "211438200",
+      "position": [
+        10.05527,
+        53.52916
+      ],
+      "reported_at": "2026-11-11T22:31:46Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "AVALON",
+      "type": "cargo",
+      "voyage": "To Middle OF Nowhere",
+      "length_m": 86,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 11
+    },
+    {
+      "mmsi": "211796530",
+      "position": [
+        10.04101,
+        53.54201
+      ],
+      "reported_at": "2026-11-11T22:31:36Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "FLEETENKIEKER",
+      "type": "other",
+      "voyage": "To Schaartoor",
+      "length_m": 10,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 12
+    },
+    {
+      "mmsi": "211163700",
+      "position": [
+        9.88971,
+        53.52496
+      ],
+      "reported_at": "2026-11-11T22:18:58Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "LENA MARIE",
+      "type": "tanker",
+      "voyage": "To Hamburg, DE",
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 33
+    },
+    {
+      "mmsi": "211372620",
+      "position": [
+        9.86937,
+        53.53816
+      ],
+      "reported_at": "2026-11-11T22:29:06Z",
+      "heading_deg": 332.0,
+      "course_deg": 50.9,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "KATHI",
+      "type": "tanker",
+      "voyage": "To Hamburg, DE",
+      "length_m": 43,
+      "bearing_deg": 332.0,
+      "stale": false,
+      "label_rank": 31
+    }
+  ]
+}

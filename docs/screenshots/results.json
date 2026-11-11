@@ -974,7 +974,7 @@
     "markers": 0,
     "attribution": true,
     "overflow": false,
-    "text": "Map tiles unavailable · check network access",
+    "text": "Map tiles unavailable \u00b7 check network access",
     "geometry": {
       "cardInside": true,
       "cardInset": {
@@ -2903,6 +2903,63 @@
       "width": 3370,
       "height": 2527,
       "inkFraction": 0.4836513429442731
+    },
+    "errors": []
+  },
+  {
+    "name": "observed-trail",
+    "ready": "true",
+    "markers": 32,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 2,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": true,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 3,
+      "spotlightSurface": "rgb(0, 0, 0)",
+      "spotlightTextColor": "rgb(255, 255, 255)",
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.020948330319655487,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 7,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 8,
+      "leaders": 9,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.2852161458333333
     },
     "errors": []
   }
