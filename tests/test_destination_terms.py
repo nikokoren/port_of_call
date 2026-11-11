@@ -16,8 +16,8 @@ class Terms(unittest.TestCase):
             self.assertEqual(term['text'],'Southworth ↔ Seattle, USA')
             self.assertTrue(term['inferred']);self.assertFalse(term['direction_known'])
             context=dict(destination=dict(value=raw),origin=dict(value='A previous port'))
-            self.assertEqual(label_voyage(context),'Likely route: Southworth ↔ Seattle, USA')
-            self.assertEqual(focus_copy(context)['journey']['label'],'Likely route')
+            self.assertEqual(label_voyage(context),'Route: Southworth ↔ Seattle, USA')
+            self.assertEqual(focus_copy(context)['journey']['label'],'Route')
             self.assertEqual(context['destination']['value'],raw)
 
     def test_known_routes_and_activities_render_as_notes_not_destination_ports(self):
@@ -53,7 +53,7 @@ class Terms(unittest.TestCase):
                 dict(mmsi=mid,name='TEST SHIP',updated_at=NOW,facts=dict(destination=raw,length_m=50)))
         data=snapshot(store,port,NOW)
         self.assertEqual(data['unresolved_ports'],[])
-        self.assertTrue(any(v.get('voyage','').startswith('Likely route:') for v in data['vessels']))
+        self.assertTrue(any(v.get('voyage','').startswith('Route:') for v in data['vessels']))
         e=Enricher(store,'aisstream',clock=lambda:NOW)
         e.enqueue(dict(destination=dict(value='TRIAL')))
         self.assertEqual(e.queue.qsize(),0)

@@ -7,7 +7,8 @@ WESER = 'https://www.weserfaehre.de/'
 AIS = 'https://www.navcen.uscg.gov/ais-class-a-static-and-voyage-related-data'
 
 # Sources verify the endpoints/service. The private WSFSW token itself has no
-# published operator definition, so that exact expansion is explicitly inferred.
+# published operator definition, so that exact expansion is inferred in metadata.
+# Keep the on-screen route label concise; it never claims a current direction.
 ROUTES = {
     'WSFSWUSSEAWSFSW': ('Southworth ↔ Seattle, USA', KITSAP, True),
     'USSEAWSFSWUSSEA': ('Seattle ↔ Southworth, USA', KITSAP, True),
@@ -42,7 +43,7 @@ def describe(raw):
     route = ROUTES.get(key) or (ROUTES.get(compact) if compact in ('WSFSWUSSEAWSFSW', 'USSEAWSFSWUSSEA') else None)
     if route:
         text, source, inferred = route
-        return dict(kind='route', label='Likely route' if inferred else 'Route', text=text,
+        return dict(kind='route', label='Route', text=text,
                     source_url=source, inferred=inferred, direction_known=False)
     if key in ACTIVITIES:
         return dict(kind='activity', label='Activity', text=ACTIVITIES[key], source_url=AIS, inferred=False)
