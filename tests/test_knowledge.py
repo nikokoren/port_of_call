@@ -133,7 +133,7 @@ class Knowledge(unittest.TestCase):
         self.assertEqual(changed[0]['name'], 'MOVING RICH')
 
     def test_opaque_destination_does_not_earn_named_place_points(self):
-        for i, destination in enumerate(['WSFSWUSSEAWSFSW', 'FIHEL']):
+        for i, destination in enumerate(['WSFUNKNOWNUSSEAOTHER', 'FIHEL']):
             add(self.store, str(230100001+i), destination, dict(destination=destination, length_m=100), x=i*.002)
         ships = self.store.vessels(NOW, 3600)
         self.assertLess(knowledge(self.store, ships[0], NOW), knowledge(self.store, ships[1], NOW))

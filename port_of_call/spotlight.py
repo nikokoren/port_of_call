@@ -45,7 +45,7 @@ def knowledge(store, vessel, now, *, port=None, calls=None):
         destination = value(vessel, 'destination')
         label = parse(destination)['text'] if destination else None
         # Opaque run-together strings are not as informative as named places.
-        readable = bool(focus.get('destination_port') or
+        readable = bool(focus.get('destination_port') or focus.get('destination_term') or
                         (label and not re.fullmatch(r'[A-Z0-9_-]{4,}', label)))
         origin = focus.get('origin') or {}
         readable = readable or bool(origin.get('value') and origin['value'] != origin.get('code'))

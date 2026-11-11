@@ -85,3 +85,7 @@ All Spotlight facts use the same native small-label size, with bold field labels
 The one-hour hold is a maximum on identity, not position: every snapshot rechecks fresh positions and safe visibility. A ship leaving the view is replaced on the next snapshot without waiting for the hour. The 15-minute device refresh can still show an earlier position until the next screen update.
 
 Overview markers may remain visible for up to 60 minutes, while Spotlight requires a position younger than 15 minutes. A fresh screen rendering does not refresh the underlying AIS report. For example, a 36.6-knot report from 25 minutes ago can remain on the map but cannot become the highlighted subject.
+
+## Reviewed route and activity terms
+
+[Destination-term review](destination-terms.md) covers sampled labels in all sixteen harbors. Exact reviewed route strings receive route captions, activities receive activity captions, and inferred local ferry shorthand is explicitly marked “Likely route”. Source URLs, inference flags and raw destination values remain in the API; route captions never create actual previous-port records or infer a current sailing direction. Both ordinary labels and Spotlight share the same dictionary.

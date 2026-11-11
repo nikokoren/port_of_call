@@ -13,6 +13,7 @@ import time
 from datetime import datetime, timezone
 from .facts import imo, text, radio_mid
 from .destinations import parse as parse_destination
+from .destination_terms import describe as describe_destination, PORT_REFERENCES
 from .port_reference import lookup as reference_port, COUNTRIES as REFERENCE_COUNTRIES
 from .model import HARBORS, epoch, iso, mmsi
 
@@ -51,6 +52,11 @@ LOCAL_PORTS['GBIMM'] = dict(code='GBIMM', name='Immingham', country=LOCAL_COUNTR
     source='Reviewed Wikidata port reference', url='https://www.wikidata.org/wiki/Q6005218',
     license='https://creativecommons.org/publicdomain/zero/1.0/')
 
+for _code, (_name, _country, _qid) in PORT_REFERENCES.items():
+    LOCAL_PORTS[_code] = dict(code=_code, name=_name, country=_country,
+        source='Reviewed Wikidata port reference', url='https://www.wikidata.org/wiki/'+_qid,
+        license='https://creativecommons.org/publicdomain/zero/1.0/')
+
 
 def port_key(raw):
     """Compact UN/LOCODE named by an AIS destination or port-call field, or None."""
@@ -85,7 +91,7 @@ class EnrichmentBudgetExhausted(ValueError):
 
 
 def resolve_port(store, raw, now):
-    if not raw: return None
+    if not raw or describe_destination(raw): return None
     key = port_key(raw)
     local = LOCAL_PORTS.get(key) if key else None
     if local: return {**local, 'source': local.get('source','Reviewed harbor catalog')}
@@ -101,6 +107,7 @@ def resolve_port(store, raw, now):
 
 def enrich_card(store, port, focus, now, *, calls=None):
     destination = focus.get('destination')
+    focus['destination_term'] = describe_destination(destination['value']) if destination else None
     focus['destination_port'] = resolve_port(store, destination['value'], now) if destination else None
     hit = cached(store, 'ship:'+focus['imo'], now) if focus.get('imo') else None
     if hit and hit[1]: focus['enrichment'] = {**hit[1], 'fetched_at': iso(hit[0])}
@@ -237,6 +244,7 @@ class Enricher:
         if focus.get('imo'): keys.append(('ship', focus['imo']))
         for raw in [focus.get('destination', {}).get('value') if focus.get('destination') else None,
                     focus.get('origin', {}).get('code') if focus.get('origin') else None]:
+            if describe_destination(raw): continue
             code = port_key(raw)
             if code and not resolve_port(self.store, code, self.clock()): keys.append(('port', locode_id(code)))
         flag_code = focus.get('flag_reported_country_code') or (focus.get('flag', {}).get('code') if focus.get('flag') else None)

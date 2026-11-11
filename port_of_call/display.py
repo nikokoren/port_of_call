@@ -1,6 +1,7 @@
 """Human-readable Spotlight copy; inference/provenance stays in the source fields."""
 import re
 from datetime import datetime, timezone
+from .destination_terms import describe as describe_destination
 
 
 # Short forms for on-screen text; reference sources may supply the long names.
@@ -27,9 +28,8 @@ def destination_text(raw):
 
 
 def destination_activity(destination):
-    # This exact free-text declaration is an activity, not a named destination.
-    value = (destination or {}).get('value')
-    return 'Fairway works' if isinstance(value, str) and ' '.join(value.upper().split()) == 'FAIRWAY WORKS' else None
+    term = describe_destination((destination or {}).get('value'))
+    return term['text'] if term and term['kind'] == 'activity' else None
 
 
 def label_voyage(context):
@@ -38,8 +38,8 @@ def label_voyage(context):
     Country codes come from resolved UN/LOCODEs, never from a ship's position.
     Raw/ambiguous destination text is retained without guessing an origin.
     """
-    activity = destination_activity(context.get('destination'))
-    if activity: return 'Activity: '+activity
+    term = describe_destination((context.get('destination') or {}).get('value'))
+    if term: return term['label']+': '+term['text']
     def location(port, name):
         code = port.get('code') or ''
         country = code[:2] if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{3}', code) and port.get('country') else port.get('country')
@@ -62,8 +62,8 @@ def focus_copy(focus):
     end = place(resolved.get('name') or destination_text(destination.get('value')), resolved.get('country')) if destination.get('value') else None
     journey = dict(label='Voyage', value=start+' → '+end) if start and end else (
         dict(label='Destination', value=end) if end else dict(label='Previous port', value=start) if start else None)
-    activity = destination_activity(destination)
-    if activity: journey = dict(label='Activity', value=activity)
+    term = describe_destination(destination.get('value'))
+    if term: journey = dict(label=term['label'], value=term['text'])
     flag = focus.get('flag') or {}
     method = flag.get('method')
     flag_text = None

@@ -53,7 +53,7 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
     for v in vessels:
         context = focus if focus and focus['mmsi'] == v['mmsi'] else card(v, now, '', now)
         if context is not focus: enrich_card(store, port, context, now, calls=calls)
-        if context.get('destination') and not context.get('destination_port'):
+        if context.get('destination') and not context.get('destination_port') and not context.get('destination_term'):
             code = port_key(context['destination'].get('value'))
             if code: unresolved.add(code)
         voyage = label_voyage(context)

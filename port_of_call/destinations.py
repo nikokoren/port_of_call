@@ -41,6 +41,8 @@ NAMES = {
     'CHARLESTON': 'USCHS',
     'SINGAPORE': 'SGSIN', 'SGP': 'SGSIN', 'SPORE': 'SGSIN',
     'LA/LB': 'USLAX', 'LALB': 'USLAX',
+    'SOUTHAMTON': 'GBSOU', 'BREMERHAFEN': 'DEBRV',
+    'BRUNSBUETTEL': 'DEBRB', 'BRUNSBUTTEL': 'DEBRB', 'BRUNSBÜTTEL': 'DEBRB',
     'GDANSK': 'PLGDN', 'GDAŃSK': 'PLGDN', 'MERSRAGS': 'LVMRX', 'MĒRSRAGS': 'LVMRX',
 }
 # Trailing words that qualify a port name without changing the port.
