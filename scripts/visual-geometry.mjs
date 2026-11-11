@@ -28,7 +28,29 @@ export function geometry(root=document.querySelector('.poc')) {
  const reserved=fixed.concat(overlay?[overlay]:[]);
  const landmarks=[...root.querySelectorAll('.poc__landmark')].map(rect);
  const visibleShips=ships.filter(s=>!overlay||!hit(s.box,overlay)).length;
- const expectedCount=visibleShips<Number(root.querySelector('[data-poc-total]').textContent)?' · '+visibleShips+' on map':'';
+ const expectedCount=window.PortOfCallLabels.countCopy(Number(root.querySelector('[data-poc-total]').textContent),visibleShips);
+ const countNode=root.querySelector('[data-poc-count]');
+ function countRange(start,end){
+  const walker=document.createTreeWalker(countNode,NodeFilter.SHOW_TEXT),range=document.createRange();
+  let node,offset=0,started=false;
+  while((node=walker.nextNode())){
+   const next=offset+node.textContent.length;
+   if(!started&&start<next){range.setStart(node,start-offset);started=true;}
+   if(started&&end<=next){range.setEnd(node,end-offset);return range;}
+   offset=next;
+  }
+  return null;
+ }
+ let countSuffixTogether=true,countDividerSpaced=true;
+ if(countNode){
+  const text=countNode.textContent,index=text.indexOf('·');
+  if(index>=0){
+   const suffix=countRange(index,text.length),rects=suffix?[...suffix.getClientRects()].filter(r=>r.width&&r.height).map(local):[];
+   countSuffixTogether=rects.length>0&&Math.max(...rects.map(r=>r[1]))-Math.min(...rects.map(r=>r[1]))<=2;
+   const before=countRange(index-2,index-1)?.getBoundingClientRect(),dot=countRange(index,index+1)?.getBoundingClientRect();
+   countDividerSpaced=text[index-1]===' '&&!!before&&!!dot&&(Math.abs(before.top-dot.top)/k>2||(dot.left-before.right)/k>.5);
+  }
+ }
  let labelCollisions=0,leaderCollisions=0;
  labels.forEach((r,i)=>{if(ships.some(s=>hit(r,s.box))||reserved.some(b=>hit(r,b))||labels.slice(0,i).some(b=>hit(r,b)))labelCollisions++;});
  root.querySelectorAll('.poc__leader').forEach(l=>{
@@ -58,8 +80,12 @@ export function geometry(root=document.querySelector('.poc')) {
   attributionTight:[...root.querySelectorAll('.map__attribution')].every(n=>getComputedStyle(n).display==='inline')&&getComputedStyle(root.querySelector('[data-poc-sources]')).backgroundColor==='rgba(0, 0, 0, 0)',
   portFactVisible:!!root.querySelector('[data-poc-port-fact]')&&root.querySelector('[data-poc-port-fact]').getBoundingClientRect().height>0,
   legendVisible:!!legend,legendInside:!legend||inside(legend),
-  mapCountMatches:root.querySelector('[data-poc-limited]')?.textContent===expectedCount,
+  mapCountMatches:countNode?.textContent===expectedCount,countSuffixTogether,countDividerSpaced,
   landmarks:landmarks.length,landmarksClear:landmarks.every(r=>inside(r)&&!reserved.concat(labels,ships.map(s=>s.box)).some(b=>hit(r,b))),
+  landmarkPinsExact:[...root.querySelectorAll('.poc__landmark-svg')].every(svg=>{
+   const p=map.project([Number(svg.dataset.lon),Number(svg.dataset.lat)]),start=svg.querySelector('.poc__landmark-ink')?.getAttribute('d').match(/^M([\d.-]+) ([\d.-]+)/);
+   return start&&svg.querySelector('circle')&&Math.hypot(Number(start[1])-p.x,Number(start[2])-p.y)<.01;
+  }),
   trailSegments:root.querySelectorAll('.poc__trail-ink').length,
   legendClear:!legend||![card,...credits].some(b=>hit(legend,b)),
   // Beside the port card, credits must stay at the bottom edge. On portrait

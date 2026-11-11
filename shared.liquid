@@ -45,6 +45,8 @@
 .poc__landmark-svg { position:absolute; inset:0; width:100%; height:100%; z-index:2; color:var(--poc-ink); pointer-events:none; }
 .poc__landmark-svg path { fill:none; stroke:currentColor; stroke-width:1; }
 .poc__landmark-svg .poc__landmark-halo { stroke:var(--poc-paper); stroke-width:3; }
+.poc__landmark-svg .poc__landmark-ink { fill:var(--poc-paper); }
+.poc__landmark-svg circle { fill:currentColor; }
 .poc__lines { position:absolute; inset:0; width:100%; height:100%; z-index:2; color:var(--poc-ink); pointer-events:none; }
 .poc__lines line { vector-effect:non-scaling-stroke; stroke-linecap:round; }
 .poc__leader-halo { stroke:var(--poc-paper); stroke-width:3px; }
@@ -56,7 +58,7 @@
 </style>
 <script data-poc-label-engine>
 (function () {
-  if (window.PortOfCallLabels) return;
+  if (window.PortOfCallLabels&&window.PortOfCallLabels.countCopy) return;
   // Adapted from nikokoren/hotspots HSMap.placeLabels: four adjacent placements,
   // then seven distances along sixteen directions. Only labels move, never ships.
   var ANGLES = [0,180,-45,-135,45,135,-90,90,-22.5,-157.5,22.5,157.5,-67.5,-112.5,67.5,112.5];
@@ -66,6 +68,11 @@
     var choices=[text,short];
     if(text.indexOf(' → ')>=0)choices.push('To '+text.split(' → ').slice(-1)[0]);
     return choices.filter(function(v,i,a){return a.indexOf(v)===i;});
+  }
+  function countCopy(total,visible) {
+    // One text run inside the native inline-flex label. Keep the suffix together
+    // while permitting a line break before its divider in narrow layouts.
+    return total+' vessels in area'+(visible<total?' ·\u00a0'+visible+'\u00a0on\u00a0map':'');
   }
   function lineHits(line, boxes) {
     // Exact segment/rectangle clipping also catches narrow obstacles between samples.
@@ -145,7 +152,7 @@
     });});
     return best;
   }
-  window.PortOfCallLabels={plan:plan,spotlight:spotlight,overlaps:overlaps,lineHits:lineHits,voyageChoices:voyageChoices};
+  window.PortOfCallLabels={plan:plan,spotlight:spotlight,overlaps:overlaps,lineHits:lineHits,voyageChoices:voyageChoices,countCopy:countCopy};
 })();
 
 </script>
@@ -238,19 +245,24 @@
         var obstacles=ships.map(function(s){return s.box;}).concat(fixed,boxes||[]),leaders=lines||[];
         el.querySelectorAll('.poc__landmark-data li').forEach(function(n){
           if(placed>=(W*H/(unit*unit)>=300000?2:1))return;
-          var coord=[Number(n.dataset.lon),Number(n.dataset.lat)],p=map.project(coord),r=4*unit,ib=[p.x-r,p.y-r,p.x+r,p.y+r];
+          var coord=[Number(n.dataset.lon),Number(n.dataset.lat)],p=map.project(coord),r=6*unit,ib=[p.x-r,p.y-16*unit,p.x+r,p.y+unit];
           if(ib[0]<8||ib[1]<8||ib[2]>W-8||ib[3]>H-8||obstacles.some(function(b){return PortOfCallLabels.overlaps(ib,b);}))return;
           var node=document.createElement('span');node.className='poc__landmark bg--canvas label label--small';node.textContent=n.dataset.name;
           node.setAttribute('aria-label',n.dataset.name+' landmark');node.dataset.lon=coord[0];node.dataset.lat=coord[1];el.appendChild(node);
-          var plan=PortOfCallLabels.plan({x:p.x,y:p.y,icon:ib,width:node.offsetWidth+4,height:node.offsetHeight+2,W:W,H:H,boxes:obstacles.concat([ib]),lines:leaders,scale:unit});
+          var plan=PortOfCallLabels.plan({x:p.x,y:p.y-8*unit,icon:ib,width:node.offsetWidth+4,height:node.offsetHeight+2,W:W,H:H,boxes:obstacles.concat([ib]),lines:leaders,scale:unit});
           if(!plan||Math.hypot(plan.line[2]-plan.line[0],plan.line[3]-plan.line[1])>48*unit){node.remove();return;}
           node.style.left=(plan.rect[0]+2)+'px';node.style.top=(plan.rect[1]+1)+'px';
           obstacles.push(ib,plan.rect);leaders.push(plan.line);placed++;
-          var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','poc__landmark-svg');svg.setAttribute('viewBox','0 0 '+W+' '+H);
+          var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','poc__landmark-svg');svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.setAttribute('aria-hidden','true');svg.dataset.lon=coord[0];svg.dataset.lat=coord[1];
+          // A hollow map pin distinguishes fixed landmarks from vessel hulls.
+          // Its tip, rather than the centre of its bounding box, is the coordinate.
+          var pin='M'+p.x+' '+p.y+'C'+(p.x-2*unit)+' '+(p.y-4*unit)+' '+(p.x-5*unit)+' '+(p.y-7*unit)+' '+(p.x-5*unit)+' '+(p.y-10*unit)+
+            'a'+(5*unit)+' '+(5*unit)+' 0 1 1 '+(10*unit)+' 0C'+(p.x+5*unit)+' '+(p.y-7*unit)+' '+(p.x+2*unit)+' '+(p.y-4*unit)+' '+p.x+' '+p.y+'Z';
           ['poc__landmark-halo','poc__landmark-ink'].forEach(function(cls){
             var path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('class',cls);
-            path.setAttribute('d','M'+(p.x-r)+' '+p.y+'h'+(2*r)+'M'+p.x+' '+(p.y-r)+'v'+(2*r)+'M'+plan.line[0]+' '+plan.line[1]+'L'+plan.line[2]+' '+plan.line[3]);svg.appendChild(path);
+            path.setAttribute('d',pin+'M'+plan.line[0]+' '+plan.line[1]+'L'+plan.line[2]+' '+plan.line[3]);svg.appendChild(path);
           });el.appendChild(svg);
+          var centre=document.createElementNS('http://www.w3.org/2000/svg','circle');centre.setAttribute('cx',p.x);centre.setAttribute('cy',p.y-10*unit);centre.setAttribute('r',1.7*unit);svg.appendChild(centre);
         });
       }
       function line(svg,points,id) {
@@ -364,8 +376,13 @@
         // Each draw retries, so final sizes can win.
         if(hl&&!annotation&&el.dataset.zoom)return draw(map,true);
         var visible=shown.filter(function(s){return !annotation||!PortOfCallLabels.overlaps(s.box,annotation.rect);}).length;
-        var count=el.querySelector('[data-poc-limited]'),total=Number(el.querySelector('[data-poc-total]').textContent)||0;
-        count.textContent=visible<total?' · '+visible+' on map':'';
+        var count=el.querySelector('[data-poc-count]'),total=Number(el.querySelector('[data-poc-total]').textContent)||0;
+        // Upgrade the previous nested count markup when Shared is pasted first.
+        if(!count){
+          var legacy=el.querySelector('[data-poc-limited]');
+          if(legacy&&!legacy.closest('[hidden]')){count=legacy.closest('.label');if(count)count.setAttribute('data-poc-count','');}
+        }
+        if(count)count.textContent=PortOfCallLabels.countCopy(total,visible);
         if(annotation){
           var fixes=Array.from(el.querySelectorAll('.poc__trail-data li')).map(function(n){return {at:Date.parse(n.dataset.at),p:map.project([Number(n.dataset.lon),Number(n.dataset.lat)])};});
           if(fixes.length>1){

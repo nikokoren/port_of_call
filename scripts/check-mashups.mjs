@@ -17,7 +17,7 @@ try{
   await page.waitForFunction(n=>document.querySelectorAll('.poc[data-map-ready="true"]').length===n,copies,{timeout:35000});
   await page.waitForFunction(()=>window.TRMNL_PLUGINS_READY===true,{timeout:25000});
   const positions=await page.evaluate(`[...document.querySelectorAll('.poc')].map(${geometry.toString()})`);
-  if(positions.some(p=>!p.mapCountMatches||!p.landmarksClear))throw new Error(name+': map context');
+  if(positions.some(p=>!p.mapCountMatches||!p.countSuffixTogether||!p.countDividerSpaced||!p.landmarksClear||!p.landmarkPinsExact))throw new Error(name+': map context');
   if(errors.length||positions.length!==copies||positions.some(p=>!p.labelContentsValid||!p.spotlightTextConsistent||!p.spotlightInverted||!p.spotlightTextVisible||!p.spotlightInside||!p.spotlightClear||!p.spotlightConnected||!p.cardInside||!p.cardAtCorner||!p.attributionInside||!p.attributionClear||!p.attributionTight||p.hiddenShips||p.maxProjectionError>1||p.labelCollisions||p.leaderCollisions||p.labelsOutside||p.textOverflow))throw new Error(name+': '+JSON.stringify({positions,errors}));
   const isolated=await page.evaluate(()=>{
    const maps=[...document.querySelectorAll('.poc')].map(e=>e.__portOfCallMap);

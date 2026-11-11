@@ -20,8 +20,11 @@
       "legendVisible": true,
       "legendInside": true,
       "mapCountMatches": true,
-      "landmarks": 1,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 0,
       "landmarksClear": true,
+      "landmarkPinsExact": true,
       "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
@@ -52,7 +55,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.386921875
+      "inkFraction": 0.3888359375
     },
     "errors": []
   },
@@ -77,8 +80,11 @@
       "legendVisible": true,
       "legendInside": true,
       "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
       "landmarks": 0,
       "landmarksClear": true,
+      "landmarkPinsExact": true,
       "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
@@ -134,8 +140,11 @@
       "legendVisible": true,
       "legendInside": true,
       "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
       "landmarks": 0,
       "landmarksClear": true,
+      "landmarkPinsExact": true,
       "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
@@ -191,8 +200,11 @@
       "legendVisible": true,
       "legendInside": true,
       "mapCountMatches": true,
-      "landmarks": 1,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 0,
       "landmarksClear": true,
+      "landmarkPinsExact": true,
       "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
@@ -223,7 +235,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.2036640625
+      "inkFraction": 0.20411197916666668
     },
     "errors": []
   },
@@ -248,8 +260,11 @@
       "legendVisible": true,
       "legendInside": true,
       "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
       "landmarks": 0,
       "landmarksClear": true,
+      "landmarkPinsExact": true,
       "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
@@ -280,7 +295,7 @@
     "pixels": {
       "width": 3370,
       "height": 2527,
-      "inkFraction": 0.2902734737828485
+      "inkFraction": 0.29027006842422315
     },
     "errors": []
   },
@@ -305,8 +320,11 @@
       "legendVisible": true,
       "legendInside": true,
       "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
       "landmarks": 0,
       "landmarksClear": true,
+      "landmarkPinsExact": true,
       "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
@@ -337,7 +355,7 @@
     "pixels": {
       "width": 2527,
       "height": 3370,
-      "inkFraction": 0.7738124398924846
+      "inkFraction": 0.7738172543650239
     },
     "errors": []
   },
@@ -362,8 +380,11 @@
       "legendVisible": true,
       "legendInside": true,
       "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
       "landmarks": 0,
       "landmarksClear": true,
+      "landmarkPinsExact": true,
       "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
@@ -419,8 +440,11 @@
       "legendVisible": true,
       "legendInside": true,
       "mapCountMatches": true,
-      "landmarks": 2,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 1,
       "landmarksClear": true,
+      "landmarkPinsExact": true,
       "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
@@ -451,7 +475,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.274015625
+      "inkFraction": 0.2749609375
     },
     "errors": []
   },
@@ -476,8 +500,11 @@
       "legendVisible": true,
       "legendInside": true,
       "mapCountMatches": true,
-      "landmarks": 2,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 1,
       "landmarksClear": true,
+      "landmarkPinsExact": true,
       "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
@@ -508,7 +535,7 @@
     "pixels": {
       "width": 3370,
       "height": 2527,
-      "inkFraction": 0.4836513429442731
+      "inkFraction": 0.48505059306081855
     },
     "errors": []
   }

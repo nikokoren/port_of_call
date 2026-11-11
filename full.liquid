@@ -8,7 +8,7 @@
       <span class="label label--base">Port of Call</span>
       {% if demo %}<span class="label label--small">DEMO · SYNTHETIC POSITIONS</span>{% endif %}
       <span class="w--full title title--large lg:title--xlarge" data-clamp="3">{{ port.name | default: 'Harbor' | split: ' — ' | first | escape }}{% if port.country and port.country != port.name %}, {{ port.country | escape }}{% endif %}</span>
-      <span class="w--full label label--small lg:label--large">{{ total | default: 0 }} vessels in area<span data-poc-limited></span></span>
+      <span class="w--full label label--small lg:label--large" data-poc-count>{{ total | default: 0 }} vessels in area</span>
       {% if opts.port_facts == true or opts.port_facts == 'true' %}{% if port_fact.text %}<span class="w--full label label--small lg:label--large" data-clamp="3" data-poc-port-fact>{{ port_fact.text | escape }}</span>{% endif %}{% endif %}
       <span hidden><strong data-poc-total>{{ total | default: 0 }}</strong></span>
       <span class="w--full description poc__notice"{% if status == 'ok' %} hidden{% endif %}>{{ message | default: 'Vessel feed unavailable' | escape }}</span>

@@ -39,7 +39,11 @@ const cases=[
  ['legend-og-portrait','full','og-portrait','rauma-spotlight',false,false,'on',true,true],
  ['legend-seattle','full','onebit','seattle-legend',false,false,'on',true,true],
  ['legend-seattle-x','full','x','seattle-legend',false,false,'on',true,true],
- ['observed-trail','full','og','observed-trail',false,false,'on',true,true]
+ ['observed-trail','full','og','observed-trail',false,false,'on',true,true],
+ ['count-og-portrait-half','half_vertical','og-portrait','seattle-legend',false,false,'off',false,false],
+ ['count-og-portrait-quadrant','quadrant','og-portrait','seattle-legend',false,false,'off',false,false],
+ ['count-x-portrait-half','half_vertical','portrait','seattle-legend',false,false,'off',false,false],
+ ['count-x-portrait-quadrant','quadrant','portrait','seattle-legend',false,false,'off',false,false]
 ];
 await mkdir('docs/screenshots',{recursive:true});
 const results=[];
@@ -66,7 +70,7 @@ try {
    text:document.querySelector('.poc__notice').innerText}));
   const positions=await page.evaluate(geometry);
   if(name==='observed-trail'&&positions.trailSegments<1)throw new Error('Observed trail not visible');
-  if(!blockTiles&&(!positions.mapCountMatches||!positions.landmarksClear))throw new Error(name+': map context '+JSON.stringify(positions));
+  if(!blockTiles&&(!positions.mapCountMatches||!positions.countSuffixTogether||!positions.countDividerSpaced||!positions.landmarksClear||!positions.landmarkPinsExact))throw new Error(name+': map context '+JSON.stringify(positions));
   if(positions.legendVisible!==legend||!positions.legendInside||!positions.legendClear||!positions.legendIconsValid||!positions.legendDocked||!positions.legendCompact)throw new Error(name+': legend '+JSON.stringify(positions));
   if(facts&&positions.portFactVisible!==(layout!=='quadrant'||device==='x'))throw new Error(name+': unexpected port-fact visibility');
   if(name.startsWith('labels-')&&layout==='full'&&(positions.labels<1||positions.labelRoutes<1))throw new Error(name+': voyage labels absent');

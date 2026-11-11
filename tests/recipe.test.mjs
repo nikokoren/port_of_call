@@ -69,7 +69,7 @@ test('TRMNL review: contact, Spotlight clamp, no inline style or opacity, short 
   assert.ok(html.includes('205&nbsp;m'),layout+': measurement unit kept with value');
   assert.ok(html.includes('Seattle, USA'));assert.ok(!html.includes('Elliott Bay'));
   // Larger count on large screens where the card has room; compact views keep it small.
-  if(layout==='full'||layout==='half_vertical')assert.match(html,/label--small lg:label--large">\d+ vessels/);
+ if(layout==='full'||layout==='half_vertical')assert.match(html,/label--small lg:label--large" data-poc-count>\d+ vessels/);
  }
  assert.doesNotMatch(await readFile('shared.liquid','utf8'),/opacity/);
 });

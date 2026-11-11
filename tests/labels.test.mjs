@@ -5,6 +5,11 @@ import vm from 'node:vm';
 const source=await readFile('shared.liquid','utf8');
 const window={};vm.runInNewContext(source.match(/<script data-poc-label-engine>([\s\S]*?)<\/script>/)[1],{window});
 const labels=window.PortOfCallLabels;
+test('count text separates its divider and keeps the shown count together',()=>{
+ assert.equal(labels.countCopy(322,19),'322 vessels in area ·\u00a019\u00a0on\u00a0map');
+ assert.equal(labels.countCopy(19,19),'19 vessels in area');
+ assert.equal(labels.countCopy(0,0),'0 vessels in area');
+});
 test('voyage shortening preserves the destination and bidirectional meaning',()=>{
  const direct=labels.voyageChoices('Hanko, FI → Tilbury, GB');
  assert.ok(direct.includes('Hanko, FI → Tilbury, GB'));assert.ok(direct.includes('To Tilbury, GB'));
