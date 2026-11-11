@@ -17,6 +17,9 @@ http.createServer(async(req,res)=>{
   const fixture=u.searchParams.get('fixture')||'helsinki';
   if(!/^[a-z_-]+$/.test(fixture))throw new Error('fixture');
   const data=JSON.parse(await readFile('fixtures/'+fixture+'.json','utf8'));
+  // Current, independently sourced reference context may accompany archived
+  // observations; this never changes their vessel positions or timestamps.
+  if(!data.landmarks)data.landmarks=JSON.parse(await readFile('docs/landmark-sources.json','utf8')).landmarks[data.port?.id]||[];
   // Fixtures are captured at the full observation box; optionally preview a nested framing.
   const factor=Number(u.searchParams.get('frame'));
   if(factor>0&&factor<=1&&data.viewport){const [w,s,e,n]=data.viewport,x=(w+e)/2,y=(s+n)/2;

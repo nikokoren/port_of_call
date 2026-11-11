@@ -5,6 +5,12 @@ import vm from 'node:vm';
 const source=await readFile('shared.liquid','utf8');
 const window={};vm.runInNewContext(source.match(/<script data-poc-label-engine>([\s\S]*?)<\/script>/)[1],{window});
 const labels=window.PortOfCallLabels;
+test('voyage shortening preserves the destination and bidirectional meaning',()=>{
+ const direct=labels.voyageChoices('Hanko, FI → Tilbury, GB');
+ assert.ok(direct.includes('Hanko, FI → Tilbury, GB'));assert.ok(direct.includes('To Tilbury, GB'));
+ const route=labels.voyageChoices('Route: Southworth ↔ Seattle, USA');
+ assert.ok(route.includes('Southworth ↔ Seattle, USA'));assert.ok(route.every(s=>!s.startsWith('To ')));
+});
 function opts(extra={}){const icon=[90,90,110,110];return {x:100,y:100,icon,width:60,height:16,W:300,H:200,boxes:[icon],lines:[],scale:1,...extra};}
 test('every label, even one beside its ship, has a visible leader to it',()=>{
  const o=opts(),p=labels.plan(o);assert.ok(p);assert.ok(!labels.overlaps(p.rect,o.icon));

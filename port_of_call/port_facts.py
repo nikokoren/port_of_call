@@ -211,9 +211,9 @@ FACTS = {
 }
 
 
-def port_fact(port_id, now):
+def port_fact(port_id, now, cycle_seconds=3600):
     collection = FACTS.get(port_id)
     if not collection: return None
-    index = int(now//3600) % len(collection)
+    index = int(now//max(3600, cycle_seconds)) % len(collection)
     text, source = collection[index]
     return dict(id=f'{port_id}:{index}', text=text, source_url=source)

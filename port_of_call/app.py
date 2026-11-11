@@ -92,15 +92,19 @@ def create_app(config=None, *, store=None, collect=True, clock=time.time):
         return web.json_response({'harbors':list(active.values())},
                                  headers={'Cache-Control':'public, max-age=3600'})
 
+    async def destination_review(request):
+        from .destination_review import report
+        return web.json_response(report(store,clock()),headers={'Cache-Control':'public, max-age=1800'})
+
     def spotlight_flag(request):
         raw_focus = request.query.get('spotlight', '').lower()
         if raw_focus not in ('', 'true', 'false', 'on', 'off', 'yes', 'no', '1', '0'):
             raise web.HTTPBadRequest(reason='Unknown spotlight value')
         return raw_focus in ('true', 'on', 'yes', '1')
 
-    def respond(request, mid, scale, spotlight, demo=False):
+    def respond(request, mid, scale, spotlight, demo=False, fact_period=3600):
         port = HARBORS[mid]
-        key = (mid, scale, demo, spotlight, int(clock()//30))
+        key = (mid, scale, demo, spotlight, fact_period, int(clock()//30))
         if key not in cache:
             if len(cache) >= 64: cache.clear()
             if demo:
@@ -109,7 +113,7 @@ def create_app(config=None, *, store=None, collect=True, clock=time.time):
                 payload = snapshot(ds, port, clock(), config.fresh, config.ttl, scale, True, spotlight)
                 ds.close()
             else:
-                payload = snapshot(store, port, clock(), config.fresh, config.ttl, scale, spotlight=spotlight)
+                payload = snapshot(store, port, clock(), config.fresh, config.ttl, scale, spotlight=spotlight, fact_period=fact_period)
                 if collect: enricher.enqueue(payload.get('focus'))
             ports = payload.pop('unresolved_ports', [])
             if collect and not demo: enricher.enqueue_ports(ports)
@@ -123,8 +127,9 @@ def create_app(config=None, *, store=None, collect=True, clock=time.time):
 
     async def selection(request):
         # Recipe endpoint: zero, one or several harbors; several rotate per refresh.
-        mid = rotate(parse_selection(request.query.get('harbors', ''), active), clock())
-        return respond(request, mid, DEFAULT_SCALE, spotlight_flag(request))
+        chosen = parse_selection(request.query.get('harbors', ''), active)
+        mid = rotate(chosen, clock())
+        return respond(request, mid, DEFAULT_SCALE, spotlight_flag(request), fact_period=max(3600,len(chosen)*900))
 
     async def vessels(request):
         # Single-harbor endpoint, kept for existing installations and the API.
@@ -138,6 +143,7 @@ def create_app(config=None, *, store=None, collect=True, clock=time.time):
 
     app.router.add_get('/health', health)
     app.router.add_get('/api/v1/harbors', harbors)
+    app.router.add_get('/api/v1/destination-review', destination_review)
     app.router.add_get('/api/v1/vessels', selection)
     app.router.add_get('/api/v1/harbors/{port}/vessels', vessels)
     app.router.add_get('/demo/api/v1/harbors/{port}/vessels', vessels)

@@ -17,6 +17,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -42,7 +52,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.6171484375
+      "inkFraction": 0.6169583333333334
     },
     "errors": []
   },
@@ -64,6 +74,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -89,7 +109,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3154765625
+      "inkFraction": 0.31536197916666664
     },
     "errors": []
   },
@@ -111,6 +131,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -136,7 +166,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.400640625
+      "inkFraction": 0.3987161458333333
     },
     "errors": []
   },
@@ -158,6 +188,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -183,7 +223,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.4760260416666667
+      "inkFraction": 0.4760729166666667
     },
     "errors": []
   },
@@ -205,6 +245,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -230,7 +280,7 @@
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.5815677083333334
+      "inkFraction": 0.581578125
     },
     "errors": []
   },
@@ -252,6 +302,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -277,7 +337,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.43196875
+      "inkFraction": 0.4405625
     },
     "errors": []
   },
@@ -299,6 +359,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -324,7 +394,7 @@
     "pixels": {
       "width": 3370,
       "height": 2527,
-      "inkFraction": 0.6741609607338666
+      "inkFraction": 0.6742093403115785
     },
     "errors": []
   },
@@ -346,6 +416,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -371,7 +451,7 @@
     "pixels": {
       "width": 2527,
       "height": 3370,
-      "inkFraction": 0.274594028410085
+      "inkFraction": 0.2750231035968807
     },
     "errors": []
   },
@@ -393,6 +473,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -418,7 +508,7 @@
     "pixels": {
       "width": 3370,
       "height": 1264,
-      "inkFraction": 0.49432351725951246
+      "inkFraction": 0.49406246478608723
     },
     "errors": []
   },
@@ -440,6 +530,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -465,7 +565,7 @@
     "pixels": {
       "width": 1685,
       "height": 2527,
-      "inkFraction": 0.30456729047356795
+      "inkFraction": 0.3042056179023226
     },
     "errors": []
   },
@@ -487,6 +587,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -512,7 +622,7 @@
     "pixels": {
       "width": 1685,
       "height": 1264,
-      "inkFraction": 0.277858900199076
+      "inkFraction": 0.27331912256319724
     },
     "errors": []
   },
@@ -534,6 +644,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -559,7 +679,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.9823541666666666
+      "inkFraction": 0.9822005208333333
     },
     "errors": []
   },
@@ -581,6 +701,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -606,7 +736,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3204921875
+      "inkFraction": 0.32034114583333334
     },
     "errors": []
   },
@@ -628,6 +758,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -653,7 +793,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.3391875
+      "inkFraction": 0.33780208333333334
     },
     "errors": []
   },
@@ -675,6 +815,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -700,7 +850,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.62565625
+      "inkFraction": 0.62546875
     },
     "errors": []
   },
@@ -722,6 +872,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -747,7 +907,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.48968229166666666
+      "inkFraction": 0.48918229166666666
     },
     "errors": []
   },
@@ -769,6 +929,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -794,7 +964,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.4515625
+      "inkFraction": 0.4505625
     },
     "errors": []
   },
@@ -816,6 +986,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": false,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -841,7 +1021,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.0124609375
+      "inkFraction": 0.0121015625
     },
     "errors": []
   },
@@ -863,6 +1043,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 2,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -888,7 +1078,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.6424453125
+      "inkFraction": 0.6397135416666667
     },
     "errors": []
   },
@@ -910,6 +1100,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -935,7 +1135,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.4184791666666667
+      "inkFraction": 0.41840625
     },
     "errors": []
   },
@@ -957,6 +1157,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -982,7 +1192,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.5703177083333333
+      "inkFraction": 0.5701041666666666
     },
     "errors": []
   },
@@ -1004,6 +1214,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1029,7 +1249,7 @@
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.35755729166666667
+      "inkFraction": 0.3575729166666667
     },
     "errors": []
   },
@@ -1051,6 +1271,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1076,7 +1306,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.43696875
+      "inkFraction": 0.42783333333333334
     },
     "errors": []
   },
@@ -1098,6 +1328,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1123,7 +1363,7 @@
     "pixels": {
       "width": 3370,
       "height": 2527,
-      "inkFraction": 0.30303898900773724
+      "inkFraction": 0.30327607242375815
     },
     "errors": []
   },
@@ -1145,6 +1385,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1170,7 +1420,7 @@
     "pixels": {
       "width": 2527,
       "height": 3370,
-      "inkFraction": 0.8777439851385452
+      "inkFraction": 0.8786934930642238
     },
     "errors": []
   },
@@ -1192,6 +1442,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1204,7 +1464,7 @@
       "spotlightTextVisible": true,
       "occludedBySpotlight": 0,
       "hiddenShips": 0,
-      "maxProjectionError": 0.00736569567328694,
+      "maxProjectionError": 0.011646187612525387,
       "labelCollisions": 0,
       "leaderCollisions": 0,
       "labelRoutes": 0,
@@ -1217,7 +1477,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.4100416666666667
+      "inkFraction": 0.4
     },
     "errors": []
   },
@@ -1239,6 +1499,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1264,7 +1534,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.32765625
+      "inkFraction": 0.32216666666666666
     },
     "errors": []
   },
@@ -1286,6 +1556,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1311,7 +1591,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.4942552083333333
+      "inkFraction": 0.49413541666666666
     },
     "errors": []
   },
@@ -1333,6 +1613,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1358,7 +1648,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.8892213541666667
+      "inkFraction": 0.8891223958333333
     },
     "errors": []
   },
@@ -1380,6 +1670,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1405,7 +1705,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.5110130208333333
+      "inkFraction": 0.5109322916666666
     },
     "errors": []
   },
@@ -1427,6 +1727,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1452,7 +1762,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.41584375
+      "inkFraction": 0.41385677083333333
     },
     "errors": []
   },
@@ -1474,6 +1784,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1499,7 +1819,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.9878307291666667
+      "inkFraction": 0.9876901041666667
     },
     "errors": []
   },
@@ -1521,6 +1841,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1546,7 +1876,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.41640625
+      "inkFraction": 0.41633333333333333
     },
     "errors": []
   },
@@ -1568,6 +1898,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1593,7 +1933,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.8340989583333334
+      "inkFraction": 0.8340572916666666
     },
     "errors": []
   },
@@ -1615,6 +1955,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1640,7 +1990,7 @@
     "pixels": {
       "width": 800,
       "height": 240,
-      "inkFraction": 0.5700260416666667
+      "inkFraction": 0.5698125
     },
     "errors": []
   },
@@ -1662,6 +2012,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1687,7 +2047,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.43696875
+      "inkFraction": 0.42783333333333334
     },
     "errors": []
   },
@@ -1709,6 +2069,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": true,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1734,7 +2104,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3869375
+      "inkFraction": 0.3849505208333333
     },
     "errors": []
   },
@@ -1756,6 +2126,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": true,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1781,7 +2161,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.8328046875
+      "inkFraction": 0.8327630208333333
     },
     "errors": []
   },
@@ -1803,6 +2183,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": true,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1828,7 +2218,7 @@
     "pixels": {
       "width": 400,
       "height": 480,
-      "inkFraction": 0.34029166666666666
+      "inkFraction": 0.3403072916666667
     },
     "errors": []
   },
@@ -1850,6 +2240,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1875,7 +2275,7 @@
     "pixels": {
       "width": 400,
       "height": 240,
-      "inkFraction": 0.43696875
+      "inkFraction": 0.42783333333333334
     },
     "errors": []
   },
@@ -1897,6 +2297,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": true,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1922,7 +2332,7 @@
     "pixels": {
       "width": 1685,
       "height": 1264,
-      "inkFraction": 0.4628394621192202
+      "inkFraction": 0.4626464898771739
     },
     "errors": []
   },
@@ -1944,6 +2354,16 @@
       "attributionClear": true,
       "attributionTight": true,
       "portFactVisible": true,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
       "spotlightConnected": true,
@@ -1969,7 +2389,520 @@
     "pixels": {
       "width": 2527,
       "height": 3370,
-      "inkFraction": 0.7805261631354663
+      "inkFraction": 0.7800364960503712
+    },
+    "errors": []
+  },
+  {
+    "name": "legend-overview",
+    "ready": "true",
+    "markers": 3,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.015711676032780307,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 3,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 3,
+      "leaders": 3,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.386921875
+    },
+    "errors": []
+  },
+  {
+    "name": "legend-spotlight",
+    "ready": "true",
+    "markers": 3,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": true,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 3,
+      "spotlightSurface": "rgb(0, 0, 0)",
+      "spotlightTextColor": "rgb(255, 255, 255)",
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.01561191116727588,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 2,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 2,
+      "leaders": 3,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.39802604166666666
+    },
+    "errors": []
+  },
+  {
+    "name": "legend-dark",
+    "ready": "true",
+    "markers": 3,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": true,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 3,
+      "spotlightSurface": "rgb(255, 255, 255)",
+      "spotlightTextColor": "rgb(0, 0, 0)",
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.01561191116727588,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 2,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 2,
+      "leaders": 3,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.8305598958333333
+    },
+    "errors": []
+  },
+  {
+    "name": "legend-one-bit",
+    "ready": "true",
+    "markers": 3,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.015711676032780307,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 3,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 3,
+      "leaders": 3,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.2036640625
+    },
+    "errors": []
+  },
+  {
+    "name": "legend-x",
+    "ready": "true",
+    "markers": 9,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 11.999999152289496,
+        "bottom": 12.000054253472285
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": true,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 3,
+      "spotlightSurface": "rgb(0, 0, 0)",
+      "spotlightTextColor": "rgb(255, 255, 255)",
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.019930633687798894,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 6,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 6,
+      "leaders": 7,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 3370,
+      "height": 2527,
+      "inkFraction": 0.2902734737828485
+    },
+    "errors": []
+  },
+  {
+    "name": "legend-portrait",
+    "ready": "true",
+    "markers": 12,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 11.999999152289496,
+        "bottom": 12.000054253472172
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": true,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 3,
+      "spotlightSurface": "rgb(0, 0, 0)",
+      "spotlightTextColor": "rgb(255, 255, 255)",
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.019419747252270428,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 6,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 7,
+      "leaders": 8,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 2527,
+      "height": 3370,
+      "inkFraction": 0.7738124398924846
+    },
+    "errors": []
+  },
+  {
+    "name": "legend-og-portrait",
+    "ready": "true",
+    "markers": 6,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": true,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 3,
+      "spotlightSurface": "rgb(0, 0, 0)",
+      "spotlightTextColor": "rgb(255, 255, 255)",
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.01772394713632297,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 3,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 3,
+      "leaders": 4,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 480,
+      "height": 800,
+      "inkFraction": 0.4213385416666667
+    },
+    "errors": []
+  },
+  {
+    "name": "legend-seattle",
+    "ready": "true",
+    "markers": 19,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 2,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.018628968584270492,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 3,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 8,
+      "leaders": 8,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.274015625
+    },
+    "errors": []
+  },
+  {
+    "name": "legend-seattle-x",
+    "ready": "true",
+    "markers": 28,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 11.999999152289496,
+        "bottom": 12.000054253472285
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 2,
+      "landmarksClear": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.018632819984675322,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 10,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 16,
+      "leaders": 16,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 3370,
+      "height": 2527,
+      "inkFraction": 0.4836513429442731
     },
     "errors": []
   }

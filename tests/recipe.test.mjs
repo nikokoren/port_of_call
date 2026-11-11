@@ -69,7 +69,7 @@ test('TRMNL review: contact, Spotlight clamp, no inline style or opacity, short 
   assert.ok(html.includes('205&nbsp;m'),layout+': measurement unit kept with value');
   assert.ok(html.includes('Seattle, USA'));assert.ok(!html.includes('Elliott Bay'));
   // Larger count on large screens where the card has room; compact views keep it small.
-  if(layout==='full'||layout==='half_vertical')assert.match(html,/label--small lg:label--large" data-clamp="3">\d+ vessels/);
+  if(layout==='full'||layout==='half_vertical')assert.match(html,/label--small lg:label--large">\d+ vessels/);
  }
  assert.doesNotMatch(await readFile('shared.liquid','utf8'),/opacity/);
 });
@@ -120,7 +120,7 @@ for(const layout of layouts)test(`${layout}: ordered ship copy and map-level sou
  const harbor=html.match(/<aside[^>]*data-poc-box[^>]*>([\s\S]*?)<\/aside>/)[1];
  const overlay=html.match(/<aside[^>]*data-poc-spotlight[^>]*>([\s\S]*?)<\/aside>/)[1];
  assert.ok(harbor.includes('Port of Call'));assert.ok(harbor.includes('Rauma, Finland'));
- assert.ok(harbor.includes(layout==='full'?'vessels seen near this port':'vessels near this port'));
+ assert.ok(harbor.includes('vessels in area'));
  if(layout!=='full')assert.ok(!harbor.includes('vessels seen'));
  for(const removed of ['Archive','Fetched','Updated','Report ','CC BY','Fintraffic'])assert.ok(!harbor.includes(removed));
  assert.ok(html.includes('map__attribution'));assert.ok(html.includes('data-poc-sources'));assert.ok(html.includes('CC BY 4.0'));assert.ok(html.includes('OpenStreetMap'));
@@ -190,5 +190,15 @@ test('vessel legend is optional and appears only on full-screen maps',async()=>{
     for(const name of ['Cargo/tanker','Passenger','Fishing','Other','Unknown'])assert.ok(legend[1].includes(name));
    }
   }
+ }
+});
+
+test('harbor landmarks default on, can be disabled and escape their names',async()=>{
+ const field=settings.custom_fields.find(f=>f.keyname==='map_landmarks');
+ assert.equal(field.field_type,'boolean');assert.equal(field.default,true);
+ const data={...fixture,landmarks:[{name:'<unsafe>',position:[24.9,60.1]}]};
+ for(const layout of layouts){
+  const on=await render(layout,data);assert.ok(on.includes('data-landmarks="on"'));assert.ok(on.includes('data-name="&lt;unsafe&gt;"'));
+  assert.ok((await render(layout,data,{map_landmarks:false})).includes('data-landmarks="off"'));
  }
 });

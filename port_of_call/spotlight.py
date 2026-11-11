@@ -24,7 +24,7 @@ def ship_record(store, vessel, now):
     """(looked_up, record) for the ship's cached Wikidata entry, by IMO number."""
     from .enrichment import cached
     number = value(vessel, 'imo')
-    hit = cached(store, 'ship:'+number, now) if number else None
+    hit = cached(store, 'ship:'+number, now) if number else cached(store, 'ship_mmsi:'+vessel['mmsi'], now)
     return (hit is not None, hit[1] if hit else None)
 
 

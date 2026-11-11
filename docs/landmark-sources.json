@@ -1,0 +1,278 @@
+{
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "retrieved_on": "2026-11-11",
+  "landmarks": {
+    "helsinki": [
+      {
+        "name": "South Harbour",
+        "position": [
+          24.957534,
+          60.162058
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q3059225"
+      },
+      {
+        "name": "Suomenlinna",
+        "position": [
+          24.984444,
+          60.143611
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q1292442"
+      }
+    ],
+    "turku": [
+      {
+        "name": "Turku Castle",
+        "position": [
+          22.227639,
+          60.435282
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q136893"
+      },
+      {
+        "name": "Ruissalo",
+        "position": [
+          22.166667,
+          60.433333
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q2097015"
+      }
+    ],
+    "rauma": [
+      {
+        "name": "Port of Rauma",
+        "position": [
+          21.427806,
+          61.126389
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q18661881"
+      },
+      {
+        "name": "Kuuskajaskari",
+        "position": [
+          21.366667,
+          61.136667
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q11873838"
+      }
+    ],
+    "rotterdam": [
+      {
+        "name": "Maeslantkering",
+        "position": [
+          4.163786,
+          51.955272
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q1647536"
+      },
+      {
+        "name": "Benelux Tunnel",
+        "position": [
+          4.37194,
+          51.90056
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q2164875"
+      }
+    ],
+    "antwerp": [
+      {
+        "name": "Berendrecht Lock",
+        "position": [
+          4.28556,
+          51.34389
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q3220834"
+      }
+    ],
+    "hamburg": [
+      {
+        "name": "Landungsbrücken",
+        "position": [
+          9.966667,
+          53.546111
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q458970"
+      },
+      {
+        "name": "Köhlbrand Bridge",
+        "position": [
+          9.938494,
+          53.521834
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q520613"
+      }
+    ],
+    "bremerhaven": [
+      {
+        "name": "Kaiserschleuse",
+        "position": [
+          8.55917,
+          53.5581
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q1721729"
+      },
+      {
+        "name": "Kaiserschleuse lighthouse",
+        "position": [
+          8.559953,
+          53.553612
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q1321463"
+      }
+    ],
+    "felixstowe": [
+      {
+        "name": "Landguard Fort",
+        "position": [
+          1.32208,
+          51.9376
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q6484546"
+      },
+      {
+        "name": "Harwich lighthouse",
+        "position": [
+          1.28858,
+          51.9445
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q17532999"
+      }
+    ],
+    "southampton": [
+      {
+        "name": "Hythe Pier",
+        "position": [
+          -1.3935,
+          50.8746
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q5962460"
+      },
+      {
+        "name": "Southampton Water",
+        "position": [
+          -1.3475,
+          50.856111
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q502233"
+      }
+    ],
+    "los-angeles-long-beach": [
+      {
+        "name": "Vincent Thomas Bridge",
+        "position": [
+          -118.271667,
+          33.749444
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q496944"
+      },
+      {
+        "name": "Gateway Bridge",
+        "position": [
+          -118.2213,
+          33.76488
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q104864023"
+      }
+    ],
+    "new-york-new-jersey": [
+      {
+        "name": "Statue of Liberty",
+        "position": [
+          -74.044425,
+          40.689209
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q9202"
+      },
+      {
+        "name": "Verrazzano Bridge",
+        "position": [
+          -74.045556,
+          40.606389
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q125673"
+      }
+    ],
+    "savannah": [
+      {
+        "name": "Talmadge Bridge",
+        "position": [
+          -81.0988,
+          32.0891
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q3514553"
+      },
+      {
+        "name": "Fort James Jackson",
+        "position": [
+          -81.036111,
+          32.081944
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q1438578"
+      }
+    ],
+    "houston": [
+      {
+        "name": "Fred Hartman Bridge",
+        "position": [
+          -95.01742,
+          29.70347
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q4115158"
+      },
+      {
+        "name": "San Jacinto Monument",
+        "position": [
+          -95.0803,
+          29.7489
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q1111991"
+      }
+    ],
+    "seattle": [
+      {
+        "name": "Colman Dock",
+        "position": [
+          -122.339,
+          47.6027
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q5147721"
+      },
+      {
+        "name": "Smith Cove",
+        "position": [
+          -122.386311,
+          47.629651
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q7545112"
+      }
+    ],
+    "charleston": [
+      {
+        "name": "Fort Sumter",
+        "position": [
+          -79.874444,
+          32.7525
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q737517"
+      },
+      {
+        "name": "Ravenel Bridge",
+        "position": [
+          -79.915,
+          32.802778
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q4800088"
+      }
+    ],
+    "singapore": [
+      {
+        "name": "Cruise terminal",
+        "position": [
+          103.8622,
+          1.27084
+        ],
+        "source_url": "https://www.wikidata.org/wiki/Q6763789"
+      }
+    ]
+  }
+}

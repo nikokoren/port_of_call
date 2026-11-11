@@ -26,6 +26,9 @@ export function geometry(root=document.querySelector('.poc')) {
  const overlayNode=root.querySelector('[data-poc-spotlight]');
  const overlay=overlayNode&&!overlayNode.classList.contains('poc__spotlight--pending')&&!overlayNode.hidden?rect(overlayNode):null;
  const reserved=fixed.concat(overlay?[overlay]:[]);
+ const landmarks=[...root.querySelectorAll('.poc__landmark')].map(rect);
+ const visibleShips=ships.filter(s=>!overlay||!hit(s.box,overlay)).length;
+ const expectedCount=visibleShips<Number(root.querySelector('[data-poc-total]').textContent)?' · '+visibleShips+' on map':'';
  let labelCollisions=0,leaderCollisions=0;
  labels.forEach((r,i)=>{if(ships.some(s=>hit(r,s.box))||reserved.some(b=>hit(r,b))||labels.slice(0,i).some(b=>hit(r,b)))labelCollisions++;});
  root.querySelectorAll('.poc__leader').forEach(l=>{
@@ -55,6 +58,9 @@ export function geometry(root=document.querySelector('.poc')) {
   attributionTight:[...root.querySelectorAll('.map__attribution')].every(n=>getComputedStyle(n).display==='inline')&&getComputedStyle(root.querySelector('[data-poc-sources]')).backgroundColor==='rgba(0, 0, 0, 0)',
   portFactVisible:!!root.querySelector('[data-poc-port-fact]')&&root.querySelector('[data-poc-port-fact]').getBoundingClientRect().height>0,
   legendVisible:!!legend,legendInside:!legend||inside(legend),
+  mapCountMatches:root.querySelector('[data-poc-limited]')?.textContent===expectedCount,
+  landmarks:landmarks.length,landmarksClear:landmarks.every(r=>inside(r)&&!reserved.concat(labels,ships.map(s=>s.box)).some(b=>hit(r,b))),
+  trailSegments:root.querySelectorAll('.poc__trail-ink').length,
   legendClear:!legend||![card,...credits].some(b=>hit(legend,b)),
   // Beside the port card, credits must stay at the bottom edge. On portrait
   // screens the complete key/credit group may wrap immediately above the card.
@@ -73,8 +79,8 @@ export function geometry(root=document.querySelector('.poc')) {
   hiddenShips:ships.filter(s=>fixed.some(b=>hit(s.box,b))).length,
   maxProjectionError,labelCollisions,leaderCollisions,
   labelRoutes:root.querySelectorAll('.poc__label-route').length,
-  labelContentsValid:[...root.querySelectorAll('.poc__label')].every(n=>{const v=[...root.querySelectorAll('.poc__data li')].find(v=>v.dataset.id===n.dataset.id);return v&&n.querySelector('.font--bold')?.textContent===v.dataset.name&&(!n.querySelector('.poc__label-route')||n.querySelector('.poc__label-route').textContent===v.dataset.voyage)&&getComputedStyle(n).backgroundColor===getComputedStyle(root.querySelector('[data-poc-box]')).backgroundColor;}),
+  labelContentsValid:[...root.querySelectorAll('.poc__label')].every(n=>{const v=[...root.querySelectorAll('.poc__data li')].find(v=>v.dataset.id===n.dataset.id);return v&&n.querySelector('.font--bold')?.textContent===v.dataset.name&&(!n.querySelector('.poc__label-route')||window.PortOfCallLabels.voyageChoices(v.dataset.voyage).includes(n.querySelector('.poc__label-route').textContent))&&getComputedStyle(n).backgroundColor===getComputedStyle(root.querySelector('[data-poc-box]')).backgroundColor;}),
   labelsOutside:labels.filter(b=>!inside(b)).length,labels:labels.length,
   leaders:root.querySelectorAll('.poc__leader').length,
-  textOverflow:[...root.querySelectorAll('[data-poc-box] > span,[data-poc-spotlight] > span,[data-poc-details] > span,[data-poc-highlights] > span,[data-poc-legend] > span')].filter(n=>n.offsetWidth&&n.scrollWidth>n.clientWidth+2).length};
+  textOverflow:[...root.querySelectorAll('[data-poc-box] > span,[data-poc-spotlight] > span,[data-poc-details] > span,[data-poc-highlights] > span,[data-poc-legend] > span,.poc__label-route')].filter(n=>n.offsetWidth&&n.scrollWidth>n.clientWidth+2).length};
 }

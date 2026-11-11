@@ -97,11 +97,11 @@ class Lookups(unittest.TestCase):
             store.put(position(mid, x+i*.001, y, NOW-30, NOW, speed=2),
                       dict(mmsi=mid, name='S'+str(i), updated_at=NOW-60, facts={'destination': dest}, facts_source='AIS'))
         data = snapshot(store, port, NOW)
-        self.assertEqual(data['unresolved_ports'], ['CNSHA', 'GBFAW'])
+        self.assertEqual(data['unresolved_ports'], ['GBFAW', 'CNSHA'])  # frequent visible terms first
         enricher = Enricher(store, 'aisstream', clock=lambda: NOW)
         enricher.enqueue_ports(data['unresolved_ports']); enricher.enqueue_ports(['GBFAW', 'BEANR'])
         queued = [enricher.queue.get_nowait() for _ in range(enricher.queue.qsize())]
-        self.assertEqual(queued, [('port', 'CN SHA'), ('port', 'GB FAW')])
+        self.assertEqual(queued, [('port', 'GB FAW'), ('port', 'CN SHA')])
         self.assertNotIn('unresolved_ports', encode_snapshot(data))
         self.assertEqual(port_key('SGSIN AEBA - P28'), 'SGSIN')
 

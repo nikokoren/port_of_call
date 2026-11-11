@@ -23,6 +23,10 @@ ROUTES = {
     'TURKU-AIRISTO-TURKU': ('Turku ↔ Airisto, Finland', 'https://www.portofturku.fi/en/', False),
 }
 ACTIVITIES = {
+    'LOCAL SHIFT': 'Harbor movements', 'LOCAL SHIFTS': 'Harbor movements',
+    'BERTH SHIFT': 'Changing berth', 'SHIFTING': 'Harbor movements',
+    'BUNKERING': 'Refueling', 'STAND BY': 'Standby', 'STANDBY': 'Standby',
+    'AT ANCHOR': 'At anchor', 'ANCHORAGE': 'Anchorage',
     'FAIRWAY WORKS': 'Fairway works', 'FAIRWAY WORK': 'Fairway works',
     'ASSISTANCE': 'Assistance', 'TOWAGE': 'Towage', 'PATROL': 'Patrol',
     'HYDROGRAPHIC SURVEY': 'Hydrographic survey', 'SURVEY OPS WESER': 'Survey operations on the Weser',

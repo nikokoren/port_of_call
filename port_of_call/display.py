@@ -70,7 +70,14 @@ def focus_copy(focus):
     if flag.get('value'):
         flag_text = ('Registry: ' if method=='registry_reference' else 'Flag: ')+short_country(flag['value'])
     highlights = []
-    if reference.get('In service'): highlights.append('In service since '+reference['In service'])
+    for key in ('Notable event', 'Former role', 'Former name', 'Capacity'):
+        if reference.get(key): highlights.append(key+': '+reference[key])
+    if reference.get('In service'):
+        service = str(reference['In service'])
+        try: year = datetime.fromisoformat(focus['reported_at'].replace('Z','+00:00')).year
+        except (KeyError,ValueError,TypeError): year = datetime.now(timezone.utc).year
+        age = year-int(service) if re.fullmatch(r'\d{4}',service) else 0
+        highlights.append('In service since '+service+(f' · about {age} years' if age>0 else ''))
     if reference.get('Operator'): highlights.append('Operator: '+reference['Operator'])
     if reference.get('Class'): highlights.append('Class: '+reference['Class'])
     details = []

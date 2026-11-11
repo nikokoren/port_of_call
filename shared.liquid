@@ -36,6 +36,15 @@
 /* Bound overlay text before measuring it; type/paint/spacing use native roles. */
 .poc__label .label { display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .poc__label-route { border-top:1px solid currentColor; }
+.poc__label .poc__label-route--wrap { white-space:normal; overflow:visible; text-overflow:clip; overflow-wrap:break-word; }
+.poc__trail { position:absolute; inset:0; width:100%; height:100%; z-index:2; color:var(--poc-ink); pointer-events:none; }
+.poc__trail line { stroke:currentColor; stroke-width:1.5; stroke-linecap:round; }
+.poc__trail .poc__trail-halo { stroke:var(--poc-paper); stroke-width:4; }
+.poc__trail circle { fill:currentColor; stroke:var(--poc-paper); stroke-width:1; }
+.poc__landmark { position:absolute; z-index:2; pointer-events:none; }
+.poc__landmark-svg { position:absolute; inset:0; width:100%; height:100%; z-index:2; color:var(--poc-ink); pointer-events:none; }
+.poc__landmark-svg path { fill:none; stroke:currentColor; stroke-width:1; }
+.poc__landmark-svg .poc__landmark-halo { stroke:var(--poc-paper); stroke-width:3; }
 .poc__lines { position:absolute; inset:0; width:100%; height:100%; z-index:2; color:var(--poc-ink); pointer-events:none; }
 .poc__lines line { vector-effect:non-scaling-stroke; stroke-linecap:round; }
 .poc__leader-halo { stroke:var(--poc-paper); stroke-width:3px; }
@@ -52,6 +61,12 @@
   // then seven distances along sixteen directions. Only labels move, never ships.
   var ANGLES = [0,180,-45,-135,45,135,-90,90,-22.5,-157.5,22.5,157.5,-67.5,-112.5,67.5,112.5];
   function overlaps(a,b) {return a[0]<b[2] && b[0]<a[2] && a[1]<b[3] && b[1]<a[3];}
+  function voyageChoices(text) {
+    var short=text.replace(/^(?:Route|Activity|Destination note): /,'');
+    var choices=[text,short];
+    if(text.indexOf(' → ')>=0)choices.push('To '+text.split(' → ').slice(-1)[0]);
+    return choices.filter(function(v,i,a){return a.indexOf(v)===i;});
+  }
   function lineHits(line, boxes) {
     // Exact segment/rectangle clipping also catches narrow obstacles between samples.
     return boxes.some(function (b) {
@@ -130,7 +145,7 @@
     });});
     return best;
   }
-  window.PortOfCallLabels={plan:plan,spotlight:spotlight,overlaps:overlaps,lineHits:lineHits};
+  window.PortOfCallLabels={plan:plan,spotlight:spotlight,overlaps:overlaps,lineHits:lineHits,voyageChoices:voyageChoices};
 })();
 
 </script>
@@ -217,6 +232,27 @@
       function featuredIcon(point) {
         var r=20*scale();return [point.x-r,point.y-r,point.x+r,point.y+r];
       }
+      function drawLandmarks(map,ships,fixed,boxes,lines){
+        if(el.dataset.landmarks==='off'||el.clientWidth<300||el.clientHeight<260)return;
+        var unit=scale(),W=el.clientWidth,H=el.clientHeight,placed=0;
+        var obstacles=ships.map(function(s){return s.box;}).concat(fixed,boxes||[]),leaders=lines||[];
+        el.querySelectorAll('.poc__landmark-data li').forEach(function(n){
+          if(placed>=(W*H/(unit*unit)>=300000?2:1))return;
+          var coord=[Number(n.dataset.lon),Number(n.dataset.lat)],p=map.project(coord),r=4*unit,ib=[p.x-r,p.y-r,p.x+r,p.y+r];
+          if(ib[0]<8||ib[1]<8||ib[2]>W-8||ib[3]>H-8||obstacles.some(function(b){return PortOfCallLabels.overlaps(ib,b);}))return;
+          var node=document.createElement('span');node.className='poc__landmark bg--canvas label label--small';node.textContent=n.dataset.name;
+          node.setAttribute('aria-label',n.dataset.name+' landmark');node.dataset.lon=coord[0];node.dataset.lat=coord[1];el.appendChild(node);
+          var plan=PortOfCallLabels.plan({x:p.x,y:p.y,icon:ib,width:node.offsetWidth+4,height:node.offsetHeight+2,W:W,H:H,boxes:obstacles.concat([ib]),lines:leaders,scale:unit});
+          if(!plan||Math.hypot(plan.line[2]-plan.line[0],plan.line[3]-plan.line[1])>48*unit){node.remove();return;}
+          node.style.left=(plan.rect[0]+2)+'px';node.style.top=(plan.rect[1]+1)+'px';
+          obstacles.push(ib,plan.rect);leaders.push(plan.line);placed++;
+          var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','poc__landmark-svg');svg.setAttribute('viewBox','0 0 '+W+' '+H);
+          ['poc__landmark-halo','poc__landmark-ink'].forEach(function(cls){
+            var path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('class',cls);
+            path.setAttribute('d','M'+(p.x-r)+' '+p.y+'h'+(2*r)+'M'+p.x+' '+(p.y-r)+'v'+(2*r)+'M'+plan.line[0]+' '+plan.line[1]+'L'+plan.line[2]+' '+plan.line[3]);svg.appendChild(path);
+          });el.appendChild(svg);
+        });
+      }
       function line(svg,points,id) {
         ['poc__leader-halo','poc__leader'].forEach(function(cls){
           var l=document.createElementNS('http://www.w3.org/2000/svg','line');l.setAttribute('class',cls);l.dataset.id=id;
@@ -280,7 +316,7 @@
         // without moving the harbor view, so draw the plain overview instead.
         var hl=overview?null:spotlight;el.dataset.spotlightFallback=overview?'true':'';
         if(spotlight)fitTitle();
-        el.querySelectorAll('.poc__ship,.poc__label,.poc__lines').forEach(function(n){n.remove();});
+        el.querySelectorAll('.poc__ship,.poc__label,.poc__lines,.poc__trail,.poc__landmark,.poc__landmark-svg').forEach(function(n){n.remove();});
         var W=el.clientWidth,H=el.clientHeight,unit=scale(),size=16*unit;
         // The pending class clips the card but keeps innerText for native
         // data-clamp measurement; visibility:hidden would cache empty text.
@@ -329,8 +365,24 @@
         if(hl&&!annotation&&el.dataset.zoom)return draw(map,true);
         var visible=shown.filter(function(s){return !annotation||!PortOfCallLabels.overlaps(s.box,annotation.rect);}).length;
         var count=el.querySelector('[data-poc-limited]'),total=Number(el.querySelector('[data-poc-total]').textContent)||0;
-        count.textContent=visible<total?' · '+visible+' shown':'';
-        if(el.dataset.labels!=='on')return;
+        count.textContent=visible<total?' · '+visible+' on map':'';
+        if(annotation){
+          var fixes=Array.from(el.querySelectorAll('.poc__trail-data li')).map(function(n){return {at:Date.parse(n.dataset.at),p:map.project([Number(n.dataset.lon),Number(n.dataset.lat)])};});
+          if(fixes.length>1){
+            var trace=document.createElementNS('http://www.w3.org/2000/svg','svg');trace.setAttribute('class','poc__trail');trace.setAttribute('viewBox','0 0 '+W+' '+H);
+            for(var ti=1;ti<fixes.length;ti++){
+              var a=fixes[ti-1],b=fixes[ti],points=[a.p.x,a.p.y,b.p.x,b.p.y];
+              if(b.at-a.at>360000||b.at<=a.at||PortOfCallLabels.lineHits(points,reserved))continue;
+              ['poc__trail-halo','poc__trail-ink'].forEach(function(cls){
+                var segment=document.createElementNS('http://www.w3.org/2000/svg','line');segment.setAttribute('class',cls);
+                ['x1','y1','x2','y2'].forEach(function(k,i){segment.setAttribute(k,points[i]);});trace.appendChild(segment);
+              });
+              var dot=document.createElementNS('http://www.w3.org/2000/svg','circle');dot.setAttribute('cx',a.p.x);dot.setAttribute('cy',a.p.y);dot.setAttribute('r',2*unit);trace.appendChild(dot);
+            }
+            el.appendChild(trace);
+          }
+        }
+        if(el.dataset.labels!=='on'){drawLandmarks(map,shown,reserved);return;}
         var boxes=shown.map(function(s){return s.box;}).concat(reserved),lines=annotation?[annotation.line]:[];
         var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
         svg.setAttribute('class','poc__lines');svg.setAttribute('viewBox','0 0 '+W+' '+H);el.appendChild(svg);
@@ -353,6 +405,13 @@
           }
           label.title=s.data.name+(s.data.voyage?' · '+s.data.voyage:'');
           el.appendChild(label);
+          if(route&&route.scrollWidth>route.clientWidth+1){
+            var singleHeight=route.offsetHeight,choices=PortOfCallLabels.voyageChoices(s.data.voyage);
+            route.classList.add('poc__label-route--wrap');
+            for(var vi=0;vi<choices.length;vi++){
+              route.textContent=choices[vi];if(route.offsetHeight<=singleHeight*2+2)break;
+            }
+          }
           // Reserve the box, stroke and the existing native font-pass safety margin.
           var result=PortOfCallLabels.plan({x:s.x,y:s.y,icon:s.box,width:Math.ceil(label.offsetWidth*1.08)+4,
             height:label.offsetHeight+4,W:W,H:H,boxes:boxes,lines:lines,scale:unit});
@@ -367,6 +426,7 @@
             });
           }
         });
+        drawLandmarks(map,shown,reserved,boxes,lines);
       }
       setDeadline();
       function start() {
@@ -409,7 +469,7 @@
                 }
               });
             });
-            map.on('remove',function(){el.querySelectorAll('.poc__ship,.poc__label,.poc__lines').forEach(function(n){n.remove();});});
+            map.on('remove',function(){el.querySelectorAll('.poc__ship,.poc__label,.poc__lines,.poc__trail,.poc__landmark,.poc__landmark-svg').forEach(function(n){n.remove();});});
             return map;
           });
         }catch(_){failure('Map unavailable · renderer could not start');}

@@ -13,7 +13,7 @@ from .facts import VOYAGE, VOYAGE_TTL, IDENTITY_TTL
 class MemoryStore:
     def __init__(self, payload=None):
         self.data = json.loads(payload) if payload else {}
-        for key in ('positions', 'metadata', 'facts', 'states', 'current', 'history', 'references', 'calls'):
+        for key in ('positions', 'metadata', 'facts', 'states', 'current', 'history', 'references', 'calls', 'tracks'):
             self.data.setdefault(key, {})
 
     def put(self, loc=None, static=None):
@@ -21,6 +21,8 @@ class MemoryStore:
             old = self.data['positions'].get(loc['mmsi'])
             if not old or epoch(loc['reported_at']) > epoch(old['reported_at']):
                 self.data['positions'][loc['mmsi']] = copy.deepcopy(loc)
+                from .movement import append
+                self.data['tracks'][loc['mmsi']] = append(self.data['tracks'].get(loc['mmsi'], []), loc)
         if static and static.get('mmsi'):
             mid, ts = static['mmsi'], static['updated_at']
             fields = self.data['facts'].setdefault(mid, {})
@@ -65,6 +67,9 @@ class MemoryStore:
         return self.data['states'].get(key)
 
     def current_focus(self, port): return self.data['current'].get(port)
+    def movement(self, loc, now):
+        from .movement import trail
+        return trail(self.data['tracks'].get(loc['mmsi'], []), loc, now)
     def focus_history(self, port): return copy.deepcopy(self.data['history'].get(port, {}))
 
     def save_focus(self, port, mid, now, reason, category):
@@ -89,6 +94,9 @@ class MemoryStore:
     def close(self): pass
 
     def prune(self, now, ttl):
+        from .movement import WINDOW, VESSELS
+        tracks = {mid: [p for p in points if 0 <= now-p[0] <= WINDOW] for mid, points in self.data['tracks'].items()}
+        self.data['tracks'] = dict(sorted(((mid,p) for mid,p in tracks.items() if p), key=lambda row: row[1][-1][0], reverse=True)[:VESSELS])
         self.data['positions'] = dict(sorted(
             [(mid, v) for mid, v in self.data['positions'].items() if 0 <= now-epoch(v['reported_at']) < ttl],
             key=lambda row: row[1]['reported_at'], reverse=True)[:5000])
@@ -112,6 +120,8 @@ class MemoryStore:
         # Bound the number of SQL rows/checkpoint. Discard oldest metadata first,
         # never extend freshness or invent a replacement for an evicted fact.
         while len(body) > 8_000_000:
+            if self.data['tracks']:
+                self.data['tracks'] = {}; body = encode(); continue
             metadata = self.data['metadata']
             if not metadata: raise ValueError('Checkpoint exceeds bounded storage budget')
             remove = sorted(metadata, key=lambda mid: metadata[mid]['updated_at'])[:max(1, len(metadata)//4)]

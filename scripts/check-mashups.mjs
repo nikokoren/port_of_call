@@ -2,7 +2,7 @@ import {chromium} from 'playwright';
 import {geometry} from './visual-geometry.mjs';
 import {previewPixels} from './preview-pixels.mjs';
 import {writeFile} from 'node:fs/promises';
-const browser=await chromium.launch({args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const browser=await chromium.launch({executablePath:process.env.PLAYWRIGHT_EXECUTABLE_PATH,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 const cases=[['og-mashup-quadrants','quadrant','og',4,800,480],['x-mashup-halves','half_vertical','x',2,1040,780],['spotlight-mashup-quadrants','quadrant','og',4,800,480,'rauma-spotlight'],['spotlight-mashup-halves','half_vertical','x',2,1040,780,'turku-spotlight']];
 const results=[];
 try{
@@ -17,6 +17,7 @@ try{
   await page.waitForFunction(n=>document.querySelectorAll('.poc[data-map-ready="true"]').length===n,copies,{timeout:35000});
   await page.waitForFunction(()=>window.TRMNL_PLUGINS_READY===true,{timeout:25000});
   const positions=await page.evaluate(`[...document.querySelectorAll('.poc')].map(${geometry.toString()})`);
+  if(positions.some(p=>!p.mapCountMatches||!p.landmarksClear))throw new Error(name+': map context');
   if(errors.length||positions.length!==copies||positions.some(p=>!p.labelContentsValid||!p.spotlightTextConsistent||!p.spotlightInverted||!p.spotlightTextVisible||!p.spotlightInside||!p.spotlightClear||!p.spotlightConnected||!p.cardInside||!p.cardAtCorner||!p.attributionInside||!p.attributionClear||!p.attributionTight||p.hiddenShips||p.maxProjectionError>1||p.labelCollisions||p.leaderCollisions||p.labelsOutside||p.textOverflow))throw new Error(name+': '+JSON.stringify({positions,errors}));
   const isolated=await page.evaluate(()=>{
    const maps=[...document.querySelectorAll('.poc')].map(e=>e.__portOfCallMap);

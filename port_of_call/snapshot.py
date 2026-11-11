@@ -10,7 +10,7 @@ MESSAGES = {
     'stale': 'Latest positions may be outdated', 'unavailable': 'Vessel feed unavailable', 'ok': ''}
 
 
-def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=False, spotlight=False):
+def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=False, spotlight=False, fact_period=3600):
     box = viewport(port, scale)
     harbor_vessels = store.vessels(now, ttl, port['bbox'])
     fetched = float(store.state('last_success') or 0)
@@ -31,6 +31,7 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
         from .enrichment import enrich_card
         enrich_card(store, port, focus, now)
         focus['presentation'] = focus_copy(focus)
+        focus['trail'] = store.movement(vessel, now)
     all_vessels = [v for v in harbor_vessels if contains(box, v['position'])]
     latest = max((epoch(v['reported_at']) for v in all_vessels), default=None)
     if not fetched: status = 'warming'
@@ -49,13 +50,14 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
     from .enrichment import enrich_card
     calls = store.recent_calls(now)
     from .enrichment import port_key
-    markers, unresolved = [], set()
+    markers, unresolved, reviews = [], {}, []
     for v in vessels:
         context = focus if focus and focus['mmsi'] == v['mmsi'] else card(v, now, '', now)
         if context is not focus: enrich_card(store, port, context, now, calls=calls)
+        reviews.append(context)
         if context.get('destination') and not context.get('destination_port') and not context.get('destination_term'):
             code = port_key(context['destination'].get('value'))
-            if code: unresolved.add(code)
+            if code: unresolved[code] = unresolved.get(code,0)+1
         voyage = label_voyage(context)
         # Length sizes the map icon; the rest of the facts stay in the store.
         length = context.get('dimensions', {}).get('length_m') if context.get('dimensions') else None
@@ -71,6 +73,9 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
     # The Spotlight ship has its own card; the rest get a label order.
     rank([m for m in markers if not focus or m['mmsi'] != focus['mmsi']], scores, port)
     vessels = markers
+    from .destination_review import record_many
+    record_many(store, port['id'], reviews, now)
+    from .landmarks import LANDMARKS
     zone = ZoneInfo(port['timezone'])
     def local(ts): return datetime.fromtimestamp(ts, zone).strftime('%H:%M %Z') if ts else None
     if focus:
@@ -81,7 +86,7 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
     if demo: source = 'Synthetic fixture — DEMO'
     # Fixed-zoom framing tells the map its zoom and centre; other scales fit the box.
     camera = dict(zoom=harbor_zoom(port), center=list(port.get('focus') or port['center'])) if scale == 'harbor' else None
-    return dict(schema_version=1, display_mode='map', port=port, port_fact=port_fact(port['id'], now), viewport=box, camera=camera, source=source,
+    return dict(schema_version=1, display_mode='map', port=port, port_fact=port_fact(port['id'], now, fact_period), landmarks=LANDMARKS.get(port['id'],[]), viewport=box, camera=camera, source=source,
                 attribution={'label': 'Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS',
                     'url': 'https://www.digitraffic.fi/en/marine-traffic/',
                     'license': 'https://creativecommons.org/licenses/by/4.0/'} if port['provider']=='digitraffic' else None,
@@ -94,4 +99,4 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
                 focus_message='No suitable fresh ship · showing harbor' if spotlight and not focus else '',
                 total=len(all_vessels), shown=len(vessels), omitted=len(all_vessels)-len(vessels), vessels=vessels,
                 # Internal: destination codes to look up. Callers pop it before encoding.
-                unresolved_ports=sorted(unresolved))
+                unresolved_ports=sorted(unresolved,key=lambda k:(-unresolved[k],k)))

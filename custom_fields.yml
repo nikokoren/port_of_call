@@ -36,6 +36,11 @@
   name: Show map legend
   description: Turn on the vessel legend to learn what the different vessel shapes mean. Full-screen maps only.
   default: false
+- keyname: map_landmarks
+  field_type: boolean
+  name: Show harbor landmarks
+  description: Add a few named docks, bridges, locks or islands when space permits. Vessel labels take priority.
+  default: true
 - keyname: ship_spotlight
   field_type: boolean
   name: Spotlight a ship
@@ -44,5 +49,5 @@
 - keyname: port_facts
   field_type: boolean
   name: Show port facts?
-  description: Rotate a short port fact hourly beneath the vessel count. Omitted in the smallest half and quadrant views.
+  description: Show a rotating short port fact beneath the vessel count. Omitted in the smallest half and quadrant views.
   default: false

@@ -64,6 +64,7 @@ try {
    overflow:document.querySelector('.poc').scrollHeight>document.querySelector('.poc').clientHeight+Math.max(1,parseFloat(getComputedStyle(document.querySelector('.screen')).getPropertyValue('--ui-scale'))||1),
    text:document.querySelector('.poc__notice').innerText}));
   const positions=await page.evaluate(geometry);
+  if(!blockTiles&&(!positions.mapCountMatches||!positions.landmarksClear))throw new Error(name+': map context '+JSON.stringify(positions));
   if(positions.legendVisible!==legend||!positions.legendInside||!positions.legendClear||!positions.legendIconsValid||!positions.legendDocked||!positions.legendCompact)throw new Error(name+': legend '+JSON.stringify(positions));
   if(facts&&positions.portFactVisible!==(layout!=='quadrant'||device==='x'))throw new Error(name+': unexpected port-fact visibility');
   if(name.startsWith('labels-')&&layout==='full'&&(positions.labels<1||positions.labelRoutes<1))throw new Error(name+': voyage labels absent');

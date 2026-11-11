@@ -26,7 +26,7 @@ class Copy(unittest.TestCase):
         f['destination']=None;self.assertIsNone(focus_copy(f)['journey'])
     def test_service_year_never_becomes_build_year(self):
         result=focus_copy(self.base())
-        self.assertIn('In service since 2009',result['highlights'])
+        self.assertTrue(any(v.startswith('In service since 2009') and 'about 17 years' in v for v in result['highlights']))
         self.assertEqual(result['details'][0],dict(label='Shipyard country',value='Poland'))
         f=self.base();f['built_in']=dict(value='France',label='Built in',year=2001)
         self.assertEqual(focus_copy(f)['details'][0]['value'],'France · 2001')

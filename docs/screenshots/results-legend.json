@@ -19,6 +19,10 @@
       "portFactVisible": true,
       "legendVisible": true,
       "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
       "legendCompact": true,
@@ -48,7 +52,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.38890885416666665
+      "inkFraction": 0.386921875
     },
     "errors": []
   },
@@ -72,6 +76,10 @@
       "portFactVisible": true,
       "legendVisible": true,
       "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
       "legendCompact": true,
@@ -101,7 +109,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3980989583333333
+      "inkFraction": 0.39802604166666666
     },
     "errors": []
   },
@@ -125,6 +133,10 @@
       "portFactVisible": true,
       "legendVisible": true,
       "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
       "legendCompact": true,
@@ -154,7 +166,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.8304869791666667
+      "inkFraction": 0.8305598958333333
     },
     "errors": []
   },
@@ -178,6 +190,10 @@
       "portFactVisible": true,
       "legendVisible": true,
       "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
       "legendCompact": true,
@@ -207,7 +223,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.20418489583333332
+      "inkFraction": 0.2036640625
     },
     "errors": []
   },
@@ -231,6 +247,10 @@
       "portFactVisible": true,
       "legendVisible": true,
       "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
       "legendCompact": true,
@@ -260,7 +280,7 @@
     "pixels": {
       "width": 3370,
       "height": 2527,
-      "inkFraction": 0.29042800660874424
+      "inkFraction": 0.2902734737828485
     },
     "errors": []
   },
@@ -284,6 +304,10 @@
       "portFactVisible": true,
       "legendVisible": true,
       "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
       "legendCompact": true,
@@ -313,7 +337,7 @@
     "pixels": {
       "width": 2527,
       "height": 3370,
-      "inkFraction": 0.7739316274443723
+      "inkFraction": 0.7738124398924846
     },
     "errors": []
   },
@@ -337,6 +361,10 @@
       "portFactVisible": true,
       "legendVisible": true,
       "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
       "legendCompact": true,
@@ -366,7 +394,7 @@
     "pixels": {
       "width": 480,
       "height": 800,
-      "inkFraction": 0.42140625
+      "inkFraction": 0.4213385416666667
     },
     "errors": []
   },
@@ -390,6 +418,10 @@
       "portFactVisible": true,
       "legendVisible": true,
       "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 2,
+      "landmarksClear": true,
+      "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
       "legendCompact": true,
@@ -419,7 +451,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.27567708333333335
+      "inkFraction": 0.274015625
     },
     "errors": []
   },
@@ -443,6 +475,10 @@
       "portFactVisible": true,
       "legendVisible": true,
       "legendInside": true,
+      "mapCountMatches": true,
+      "landmarks": 2,
+      "landmarksClear": true,
+      "trailSegments": 0,
       "legendClear": true,
       "legendDocked": true,
       "legendCompact": true,
@@ -472,7 +508,7 @@
     "pixels": {
       "width": 3370,
       "height": 2527,
-      "inkFraction": 0.4857569114101825
+      "inkFraction": 0.4836513429442731
     },
     "errors": []
   }

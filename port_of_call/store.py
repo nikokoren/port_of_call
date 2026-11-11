@@ -19,10 +19,19 @@ class Store:
         CREATE TABLE IF NOT EXISTS enrichment (key TEXT PRIMARY KEY, ts REAL, expires REAL, payload TEXT);
         CREATE TABLE IF NOT EXISTS port_calls (id TEXT PRIMARY KEY, ts REAL, payload TEXT);
         CREATE TABLE IF NOT EXISTS state (key TEXT PRIMARY KEY, value TEXT);
+        CREATE TABLE IF NOT EXISTS movement (mmsi TEXT PRIMARY KEY, ts REAL, payload TEXT);
         ''')
 
     def put(self, loc=None, static=None):
         if loc:
+            from .movement import append
+            row = self.db.execute('SELECT ts,payload FROM movement WHERE mmsi=?', (loc['mmsi'],)).fetchone()
+            latest = self.db.execute('SELECT ts FROM positions WHERE mmsi=?', (loc['mmsi'],)).fetchone()
+            ts = epoch(loc['reported_at'])
+            if not latest or ts > latest[0]:
+                points = append(json.loads(row[1]) if row else [], loc)
+                if points:self.db.execute('INSERT OR REPLACE INTO movement VALUES (?,?,?)', (loc['mmsi'], points[-1][0], json.dumps(points)))
+                else:self.db.execute('DELETE FROM movement WHERE mmsi=?',(loc['mmsi'],))
             self.db.execute('''INSERT INTO positions VALUES (?,?,?) ON CONFLICT(mmsi) DO UPDATE
                 SET ts=excluded.ts,payload=excluded.payload WHERE excluded.ts>positions.ts''',
                 (loc['mmsi'], epoch(loc['reported_at']), json.dumps(loc)))
@@ -51,6 +60,9 @@ class Store:
         return row[0] if row else None
 
     def prune(self, now, ttl):
+        from .movement import WINDOW, VESSELS
+        self.db.execute('DELETE FROM movement WHERE ts<?', (now-WINDOW,))
+        self.db.execute('DELETE FROM movement WHERE mmsi NOT IN (SELECT mmsi FROM movement ORDER BY ts DESC LIMIT ?)', (VESSELS,))
         self.db.execute('DELETE FROM positions WHERE ts<=?', (now-ttl,))
         self.db.execute('DELETE FROM metadata WHERE ts<?', (now-86400*7,))
         self.db.execute('DELETE FROM vessel_facts WHERE ts<?', (now-IDENTITY_TTL,))
@@ -85,6 +97,11 @@ class Store:
 
     def current_focus(self, port):
         return self.db.execute('SELECT mmsi,selected_at,reason FROM focus_current WHERE port=?', (port,)).fetchone()
+
+    def movement(self, loc, now):
+        from .movement import trail
+        row = self.db.execute('SELECT payload FROM movement WHERE mmsi=?', (loc['mmsi'],)).fetchone()
+        return trail(json.loads(row[0]) if row else [], loc, now)
 
     def focus_history(self, port):
         return {mid: (ts, category) for mid, ts, category in self.db.execute(

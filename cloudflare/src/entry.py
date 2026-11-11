@@ -228,15 +228,18 @@ class Harbor(DurableObject):
 
     async def alarm(self): await self.tick()
 
-    async def forward(self, harbor, scale, focus):
+    async def forward(self, harbor, scale, focus, fact_period=3600):
         """The partner backend's snapshot for one of its harbors, or None."""
         url = ('https://partner.internal/api/v1/harbors/'+harbor+'/vessels?scale='+scale+
                '&spotlight='+('true' if focus else 'false'))
         try:
             result = await self.partner.fetch(url)
             if result.status != 200: return None
-            body = await result.text()
-            return body if json.loads(body).get('port', {}).get('id') == harbor else None
+            data = json.loads(await result.text())
+            if data.get('port', {}).get('id') != harbor: return None
+            from port_of_call.port_facts import port_fact
+            data['port_fact'] = port_fact(harbor, time.time(), fact_period)
+            return encode_snapshot(data)
         except Exception as exc:
             print('partner_unavailable', type(exc).__name__)
             return None
@@ -265,6 +268,9 @@ class Harbor(DurableObject):
         if path == '/api/v1/harbors':
             return response({'harbors': list(self.active.values()), 'forwarded': list(self.forwarded)},
                             **{'Cache-Control': 'public, max-age=3600'})
+        if path == '/api/v1/destination-review':
+            from port_of_call.destination_review import report
+            return response(report(self.store,now), **{'Cache-Control':'public, max-age=1800'})
         parts = path.strip('/').split('/')
         query = parse_qs(urlparse(request.url).query, keep_blank_values=True)
         if path == '/api/v1/vessels':
@@ -288,8 +294,9 @@ class Harbor(DurableObject):
         while len(self.clients) > 4096: self.clients.popitem(last=False)
         if count > 120: return response({'error': 'Too many requests'}, 429, **{'Retry-After': '60'})
         focus = raw_focus in ('true', 'on', 'yes', '1')
+        fact_period = max(3600, len(chosen)*900)
         if harbor in self.forwarded:
-            body = await self.forward(harbor, scale, focus)
+            body = await self.forward(harbor, scale, focus, fact_period)
             if body is not None:
                 return response(body, **{'Cache-Control': 'public, max-age=30'})
             # The partner is unavailable: keep rotating through this backend's
@@ -297,10 +304,10 @@ class Harbor(DurableObject):
             own = [k for k in chosen if k in self.active]
             if not own: return response({'error': 'Harbor feed unavailable'}, 503, **{'Cache-Control': 'no-store'})
             harbor = rotate(own, now)
-        key = (harbor, scale, focus, int(now//30))
+        key = (harbor, scale, focus, fact_period, int(now//30))
         if key not in self.cache:
             if len(self.cache) >= 96: self.cache.clear()
-            payload = snapshot(self.store, self.active[harbor], now, scale=scale, spotlight=focus)
+            payload = snapshot(self.store, self.active[harbor], now, scale=scale, spotlight=focus, fact_period=fact_period)
             self.enricher.enqueue(payload.get('focus'))
             self.enricher.enqueue_ports(payload.pop('unresolved_ports', []))
             self.cache[key] = encode_snapshot(payload)
@@ -320,7 +327,7 @@ class Default(WorkerEntrypoint):
         if path == '/':
             return response({'name': 'Port of Call', 'catalog': '/api/v1/harbors', 'vessels': '/api/v1/vessels?harbors=', 'health': '/health',
                              'source': 'https://github.com/nikokoren/port_of_call', 'notice': 'AIS is incomplete and delayed. Not for navigation.'})
-        if path not in ('/health', '/api/v1/vessels') and not path.startswith('/api/v1/harbors'): return response({'error': 'Not found'}, 404)
+        if path not in ('/health', '/api/v1/vessels', '/api/v1/destination-review') and not path.startswith('/api/v1/harbors'): return response({'error': 'Not found'}, 404)
         cache = getattr(caches, 'default')
         if path.endswith('/vessels'):
             cached = await cache.match(request.js_object)

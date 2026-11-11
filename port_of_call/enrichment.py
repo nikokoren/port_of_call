@@ -81,6 +81,8 @@ def cached(store, key, now):
 
 
 def save_cache(store, key, payload, now, ttl):
+    if key.startswith(('ship:', 'ship_mmsi:')) and payload is not None:
+        payload = {**payload, 'story_version': 1}
     prefix = 'port-name-misses-v1:' if key.startswith('port:') and payload is None else ''
     store.save_reference(CACHE_VERSION+prefix+key, payload, now, ttl)
 
@@ -109,7 +111,7 @@ def enrich_card(store, port, focus, now, *, calls=None):
     destination = focus.get('destination')
     focus['destination_term'] = describe_destination(destination['value']) if destination else None
     focus['destination_port'] = resolve_port(store, destination['value'], now) if destination else None
-    hit = cached(store, 'ship:'+focus['imo'], now) if focus.get('imo') else None
+    hit = cached(store, 'ship:'+focus['imo'], now) if focus.get('imo') else cached(store, 'ship_mmsi:'+focus['mmsi'], now)
     if hit and hit[1]: focus['enrichment'] = {**hit[1], 'fetched_at': iso(hit[0])}
     mid = radio_mid(focus['mmsi'])
     allocation = cached(store, 'mid:'+mid, now) if mid else None
@@ -199,6 +201,50 @@ def label(entity):
     return text(entity.get('labels', {}).get('en', {}).get('value'))
 
 
+def past_value(entity, prop, now):
+    """Only explicitly ended reference facts, most recent first."""
+    year = datetime.fromtimestamp(now, timezone.utc).year
+    ended = []
+    for claim in entity.get('claims', {}).get(prop, []):
+        if claim.get('rank') == 'deprecated': continue
+        dates = claim.get('qualifiers', {}).get('P582', [])
+        for date in dates:
+            value = date.get('datavalue', {}).get('value', {})
+            match = re.match(r'^\+(\d{4})-', value.get('time', ''))
+            if match and value.get('precision',0)>=9 and int(match[1])<year:
+                snak = claim.get('mainsnak', {})
+                if snak.get('snaktype')=='value': ended.append((int(match[1]),snak.get('datavalue',{}).get('value')))
+    return max(ended,key=lambda row:row[0])[1] if ended else None
+
+
+def complete_ship(hit):
+    return hit and (hit[1] is None or hit[1].get('story_version') == 1)
+
+
+def notable_event(entity, now):
+    """An ended event is still history; future planned participation is omitted."""
+    choices=[]
+    year=datetime.fromtimestamp(now,timezone.utc).year
+    for claim in entity.get('claims',{}).get('P1344',[]):
+        if claim.get('rank')=='deprecated':continue
+        starts=claim.get('qualifiers',{}).get('P580',[])
+        future=False
+        for q in starts:
+            date=q.get('datavalue',{}).get('value',{})
+            match=re.match(r'^\+(\d{4})-',str(date.get('time','')))
+            if not match or int(match[1])>year:future=True;break
+            if int(match[1])==year:
+                try:future=date.get('precision',0)<11 or epoch(date['time'].lstrip('+'))>now
+                except (ValueError,TypeError):future=True
+            if future:break
+        if future:continue
+        value=claim.get('mainsnak',{}).get('datavalue',{}).get('value',{})
+        if isinstance(value,dict) and re.fullmatch(r'Q\d+',value.get('id','')):
+            choices.append((claim.get('rank')=='preferred',value['id']))
+    preferred=[qid for rank,qid in choices if rank]
+    return (preferred or [qid for rank,qid in choices] or [None])[0]
+
+
 class Enricher:
     def __init__(self, store, provider, *, clock=time.time):
         self.store, self.provider, self.clock = store, provider, clock
@@ -220,7 +266,8 @@ class Enricher:
 
     def _enqueue(self, kind, key, *, speculative=False):
         token = kind+':'+key
-        if cached(self.store, token, self.clock()): return False
+        hit = cached(self.store, token, self.clock())
+        if (complete_ship(hit) if kind in ('ship','ship_mmsi') else hit): return False
         queue = self.prefetch_queue if speculative else self.queue
         if queue.full(): return False
         if token in self.pending:
@@ -242,6 +289,7 @@ class Enricher:
         mid = radio_mid(focus.get('mmsi'))
         if mid: keys.append(('mid', mid))
         if focus.get('imo'): keys.append(('ship', focus['imo']))
+        elif mmsi(focus.get('mmsi')): keys.append(('ship_mmsi', focus['mmsi']))
         for raw in [focus.get('destination', {}).get('value') if focus.get('destination') else None,
                     focus.get('origin', {}).get('code') if focus.get('origin') else None]:
             if describe_destination(raw): continue
@@ -352,9 +400,9 @@ class Enricher:
     async def refresh(self, session, kind, key):
         token, now = kind+':'+key, self.clock()
         hit = cached(self.store, token, now)
-        if hit: return hit[1]
+        if (complete_ship(hit) if kind in ('ship','ship_mmsi') else hit): return hit[1]
         try:
-            entity = await self.lookup(session, {'ship':'P458','port':'P1937','mid':'P2979','country':'P297'}[kind], key)
+            entity = await self.lookup(session, {'ship':'P458','ship_mmsi':'P587','port':'P1937','mid':'P2979','country':'P297'}[kind], key)
             result = None
             if entity:
                 source = dict(source='Wikidata', url='https://www.wikidata.org/wiki/'+entity['id'], license='https://creativecommons.org/publicdomain/zero/1.0/')
@@ -397,11 +445,26 @@ class Enricher:
                                         ('P1071', 'Creation site'), ('P8047', 'Registry')]:
                         ref = single_ref(entity, prop, now)
                         if ref: refs[title] = ref
+                    event = notable_event(entity, now)
+                    if event: refs['Notable event'] = event
+                    previous_role = past_value(entity, 'P366', now)
+                    if isinstance(previous_role,dict) and re.fullmatch(r'Q\d+',previous_role.get('id','')):
+                        refs['Former role'] = previous_role['id']
                     entities = {}
                     if refs:
                         entities = (await self.request(session, action='wbgetentities', ids='|'.join(sorted(set(refs.values()))), props='labels|claims', languages='en')).get('entities', {})
                     facts = [dict(label=title, value=label(entities.get(qid, {}))) for title, qid in refs.items()
-                             if title in ('Class','Builder','Operator') and label(entities.get(qid, {}))]
+                             if title in ('Class','Builder','Operator','Notable event','Former role') and label(entities.get(qid, {}))]
+                    capacity = current_values(entity, 'P1083', now)
+                    if len(capacity)==1 and isinstance(capacity[0],dict) and capacity[0].get('unit')=='1':
+                        try:
+                            amount = float(capacity[0]['amount'])
+                            if math.isfinite(amount) and amount.is_integer() and 1<=amount<=100000:
+                                facts.append(dict(label='Capacity',value=f'{int(amount):,} people'))
+                        except (ValueError,KeyError,TypeError): pass
+                    former = past_value(entity, 'P1448', now) or past_value(entity, 'P2561', now)
+                    if isinstance(former,dict) and former.get('language')=='en' and text(former.get('text')):
+                        facts.append(dict(label='Former name',value=text(former['text'])))
                     dates = claim_values(entity, 'P729')
                     if len(dates) == 1 and isinstance(dates[0], dict) and dates[0].get('precision', 0) >= 9:
                         match = re.match(r'^\+(\d{4})-', dates[0].get('time', ''))
@@ -429,7 +492,7 @@ class Enricher:
                                             method=method, site=label(site), source='Wikidata',
                                             url='https://www.wikidata.org/wiki/'+site_id, fetched_at=iso(now))
                     if facts or registry_country or built_in:
-                        result = dict(facts=facts[:4], registry_country=registry_country, built_in=built_in, **source)
+                        result = dict(facts=facts[:10], registry_country=registry_country, built_in=built_in, story_version=1, **source)
             save_cache(self.store, token, result, now, 30*86400 if result else 7*86400)
             return result
         except EnrichmentBudgetExhausted:
@@ -437,7 +500,7 @@ class Enricher:
             return None
         except Exception as exc:
             log.warning('optional_enrichment_unavailable kind=%s error=%s', kind, type(exc).__name__)
-            save_cache(self.store, token, None, now, 3600)
+            save_cache(self.store, token, hit[1] if hit else None, now, 3600)
             return None
 
     async def portnet(self, session):

@@ -21,7 +21,7 @@ This is a browser preview with native TRMNL vector tiles and **genuine historica
 - Public JSON API, 30-second response cache, ETags and rate limiting; typical response below 15 KB.
 - Native `TRMNLMaps` / MapLibre, geographically anchored hulls, Hotspots-style outlined name/voyage labels and leader lines, decluttering and visible OpenStreetMap attribution.
 - Downstream-style full maps with a bottom-left information box in full, half-horizontal, half-vertical and quadrant layouts; OG and X landscape/portrait browser previews, including dark mode.
-- Optional multi-select harbors (none cycles through every harbor, several cycle through those, one pins it), a fixed zoom-11 map centred on each port's curated harbor focus, **Show ship labels?**, **Spotlight a ship**, **Show port facts?** and **Show map legend** settings. The legend is off by default and appears only on full-screen maps, with the same hull paths as the vessel markers. The map runs edge to edge (`no_screen_padding: 'yes'`), with the harbor card and credits inset from the edge. Categories are retained internally but not exposed: type coverage is not sufficient to hide unknown vessels confidently.
+- Optional multi-select harbors (none cycles through every harbor, several cycle through those, one pins it), a fixed zoom-11 map centred on each port's curated harbor focus, **Show ship labels?**, **Spotlight a ship**, **Show port facts?** and **Show map legend** settings, plus default-on **Show harbor landmarks**. The legend is off by default and appears only on full-screen maps, with the same hull paths as the vessel markers. The map runs edge to edge (`no_screen_padding: 'yes'`), with the harbor card and credits inset from the edge. Categories are retained internally but not exposed: type coverage is not sufficient to hide unknown vessels confidently.
 - An isolated synthetic demo endpoint, disabled by default. Production never loads fixtures.
 
 The Finnish catalog is deliberately limited, not the full reach of its feed: a further live check found reports around Hanko, Kotka, Oulu, Vaasa and Pori. Those candidate areas are not yet reviewed catalog entries.
@@ -88,6 +88,7 @@ npm run preview
 npm run screenshots
 # Optional multi-instance layout regression check
 node scripts/check-mashups.mjs
+node scripts/check-trail.mjs
 ```
 
 The pinned preview assets come from the official framework Git commit recorded in `scripts/assets.py`. On managed machines where Chromium must use an HTTP proxy, run `.venv/bin/python scripts/asset_proxy.py` and set `MAP_RELAY=true` for screenshots. This local-only TLS-verifying relay allows only the native TRMNL asset/tile hosts. It is not deployed. `PLAYWRIGHT_BROWSERS_PATH` may select an existing browser installation, or `PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium` may select a system browser.
@@ -114,3 +115,5 @@ Turn on **Show ship labels?** for outlined name/voyage badges in both harbor ove
 **Show port facts?** adds an optional short blurb below the vessel count. The curated collection rotates hourly, with sources retained in API metadata and [documentation](docs/port-facts.md). It is off by default and omitted in the smallest half-horizontal/quadrant layouts. Credits use native inline map-attribution backgrounds, covering only their text. `LVMRX` resolves to **Mērsrags, Latvia**; the exact free-text destination `FAIRWAY WORKS` displays as **Activity: Fairway works**, not a voyage to a fictional port. Raw source values and inferred-flag provenance remain available in the API, without an “(AIS)” suffix on screen.
 
 Ship Spotlight now holds a subject for at most one hour, replacing it sooner if it leaves the safe view, becomes stale, or a suitable moving alternative replaces a stopped ship. A rolling three-candidate hourly shortlist preloads available facts under the existing free request cap. A [bundled CC0 location-name reference](docs/port-reference.md) resolves 40,926 exact codes locally; this improves destination labels without expanding the sixteen-harbor live catalog.
+
+The map now distinguishes vessels in the observation area from those actually visible. Spotlight can add a short trail from genuine prior fixes and richer free reference facts. [History, reference matching, landmarks and review workflow](docs/ship-spotlight.md#glanceability-improvements--11-november-2026).
