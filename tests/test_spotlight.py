@@ -105,6 +105,15 @@ class Selection(unittest.TestCase):
         self.assertNotEqual(replacement[0]['mmsi'], first[0]['mmsi'])
         self.assertEqual(replacement[1], NOW+HOLD)
 
+    def test_fast_but_old_position_can_stay_on_map_without_being_highlighted(self):
+        put(self.s, 1, age=8*60)
+        old = put(self.s, 2, age=25*60, destination='FIHEL')
+        # A synthetic old fast report: its speed cannot override freshness.
+        self.s.put(position(old['mmsi'], 24.95, 60.15, NOW-25*60+1, NOW, speed=36.6))
+        data = snapshot(self.s, PORT, NOW, spotlight=True, scale='wider')
+        self.assertIn(old['mmsi'], [v['mmsi'] for v in data['vessels']])
+        self.assertNotEqual(data['focus']['mmsi'], old['mmsi'])
+
     def test_expired_unnamed_or_insufficient_candidates_fallback(self):
         put(self.s,age=901)
         self.assertIsNone(snapshot(self.s,PORT,NOW,spotlight=True)['focus'])

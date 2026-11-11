@@ -1,6 +1,7 @@
 """One shared, persistent subject per harbor; no visitor or voyage tracking."""
 import hashlib
 import math
+import re
 from .facts import ship_type, NAVIGATION, text, infer_eta
 from .model import contains, epoch, iso, viewport
 
@@ -42,7 +43,10 @@ def knowledge(store, vessel, now, *, port=None, calls=None):
     score = 5*bool(shown['vessel_type'] and shown['vessel_type'] != 'Vessel') + 5*bool(shown['flag'])
     if shown['journey']:
         destination = value(vessel, 'destination')
-        readable = bool(focus.get('destination_port') or (destination and parse(destination)['text']))
+        label = parse(destination)['text'] if destination else None
+        # Opaque run-together strings are not as informative as named places.
+        readable = bool(focus.get('destination_port') or
+                        (label and not re.fullmatch(r'[A-Z0-9_-]{4,}', label)))
         origin = focus.get('origin') or {}
         readable = readable or bool(origin.get('value') and origin['value'] != origin.get('code'))
         score += 15 if readable else 5
@@ -53,8 +57,11 @@ def knowledge(store, vessel, now, *, port=None, calls=None):
     return min(score, 100)
 
 
-def moving(vessel):
-    return (vessel.get('speed_knots') or 0) >= 0.5
+def motion_score(vessel):
+    # Low AIS speeds may be drift or manoeuvring, not sustained travel.
+    speed = vessel.get('speed_knots')
+    if speed is None or speed < 1: return 0
+    return 30 if speed >= 3 else 15
 
 
 def reason_for(vessel, store=None, now=None):
@@ -70,7 +77,7 @@ def choose(store, port, vessels, now):
     calls = store.recent_calls(now)
     known = {v['mmsi']: knowledge(store, v, now, port=port, calls=calls) for v in candidates}
     # Joint priority lets motion compete with metadata before the shortlist.
-    priority = {v['mmsi']: .6*known[v['mmsi']] + 30*moving(v) for v in candidates}
+    priority = {v['mmsi']: .6*known[v['mmsi']] + motion_score(v) for v in candidates}
     history = store.focus_history(port['id'])
     unseen = [v for v in candidates if now-history.get(v['mmsi'], (0, None))[0] >= COOLDOWN]
     pool = unseen or candidates  # Small harbors may repeat rather than fabricate a subject.
@@ -78,9 +85,11 @@ def choose(store, port, vessels, now):
     if current and 0 <= now-current[1] < HOLD:
         held = next((v for v in candidates if v['mmsi'] == current[0]), None)
         if held:
-            better_mover = not moving(held) and any(moving(v) and
-                priority[v['mmsi']] > priority[held['mmsi']]+PRIORITY_MARGIN for v in pool)
-            if not better_mover: return held, current[1], reason_for(held, store, now)
+            # A hold prevents small fluctuations, not a meaningful upgrade.
+            # Recheck information and motion even when the held ship is moving.
+            upgrades = [v for v in pool if priority[v['mmsi']] >= priority[held['mmsi']]+PRIORITY_MARGIN]
+            if not upgrades: return held, current[1], reason_for(held, store, now)
+            pool = upgrades  # An early replacement must actually improve on the held ship.
     best = max(priority[v['mmsi']] for v in pool)
     pool = [v for v in pool if priority[v['mmsi']] >= best-PRIORITY_MARGIN]
     lengths = sorted(value(v, 'length_m') for v in candidates if value(v, 'length_m'))
@@ -119,7 +128,7 @@ def lookups_worth_making(store, port, vessels, now, limit=3):
     candidates = [v for v in vessels if contains(port['bbox'], v['position']) and visible(v) and eligible(v, now)
                   and value(v, 'imo') and not ship_record(store, v, now)[0]]
     calls = store.recent_calls(now)
-    candidates.sort(key=lambda v: (-moving(v), -knowledge(store, v, now, port=port, calls=calls),
+    candidates.sort(key=lambda v: (-motion_score(v), -knowledge(store, v, now, port=port, calls=calls),
                                    -(value(v, 'length_m') or 0), v['mmsi']))
     return [value(v, 'imo') for v in candidates[:limit]]
 

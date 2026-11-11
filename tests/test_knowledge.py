@@ -98,6 +98,52 @@ class Knowledge(unittest.TestCase):
         changed = choose(self.store, PORT, self.store.vessels(NOW+120, 3600), NOW+120)
         self.assertEqual(changed[0]['name'], 'NEXT'); self.assertEqual(changed[1], NOW+120)
 
+    def test_low_speed_drift_does_not_protect_a_weak_held_subject(self):
+        docked = dict(length_m=14, beam_m=8, ship_type_code=37)
+        add(self.store, '230100001', 'LOW SPEED AT DOCK', docked, speed=.5)
+        initial = choose(self.store, PORT, self.store.vessels(NOW, 3600), NOW)
+        add(self.store, '230100002', 'FRESH UNDERWAY', dict(call_sign='ABC', ship_type_code=37),
+            speed=8.4, x=.002, now=NOW+60)
+        changed = choose(self.store, PORT, self.store.vessels(NOW+60, 3600), NOW+60)
+        self.assertEqual(changed[0]['name'], 'FRESH UNDERWAY')
+        self.assertNotEqual(changed[0]['mmsi'], initial[0]['mmsi'])
+
+    def test_exact_priority_margin_replaces_with_an_actual_upgrade(self):
+        from port_of_call.model import iso
+        add(self.store, '230100001', 'LOW SPEED AT DOCK',
+            dict(length_m=14, beam_m=8, ship_type_code=37), speed=.5)
+        first = choose(self.store, PORT, self.store.vessels(NOW, 3600), NOW)
+        # A named, genuinely underway report with identifiers but no extra card
+        # facts has exactly a 15-point priority advantage over this docked ship.
+        mover = dict(mmsi='230100002', name='FRESH UNDERWAY', position=list(PORT['focus']),
+            reported_at=iso(NOW+30), speed_knots=8.4, type=None,
+            facts={k:dict(value=v,reported_at=iso(NOW),source='Test fixture') for k,v in
+                   [('call_sign','ABC'),('imo','9000001')]})
+        result = choose(self.store, PORT, [first[0], mover], NOW+60)
+        self.assertEqual(result[0]['name'], 'FRESH UNDERWAY')
+
+    def test_moving_hold_yields_when_a_much_more_informative_mover_arrives(self):
+        add(self.store, '230100001', 'MOVING BASIC', dict(length_m=100), speed=4)
+        first = choose(self.store, PORT, self.store.vessels(NOW, 3600), NOW)
+        add(self.store, '230100002', 'MOVING RICH', dict(imo='9606900', length_m=200,
+            beam_m=30, destination='FIHEL', ship_type_code=60), speed=4, x=.002, now=NOW+60)
+        save_cache(self.store, 'ship:9606900', RECORD, NOW, 86400)
+        changed = choose(self.store, PORT, self.store.vessels(NOW+60, 3600), NOW+60)
+        self.assertNotEqual(first[0]['mmsi'], changed[0]['mmsi'])
+        self.assertEqual(changed[0]['name'], 'MOVING RICH')
+
+    def test_opaque_destination_does_not_earn_named_place_points(self):
+        for i, destination in enumerate(['WSFSWUSSEAWSFSW', 'FIHEL']):
+            add(self.store, str(230100001+i), destination, dict(destination=destination, length_m=100), x=i*.002)
+        ships = self.store.vessels(NOW, 3600)
+        self.assertLess(knowledge(self.store, ships[0], NOW), knowledge(self.store, ships[1], NOW))
+
+    def test_slow_manoeuvring_is_not_scored_as_full_underway_motion(self):
+        facts = dict(length_m=100, beam_m=20)
+        add(self.store, '230100001', 'MANOEUVRING', facts, speed=1.2)
+        add(self.store, '230100002', 'UNDERWAY', {**facts, 'destination':'FIHEL'}, speed=3, x=.002)
+        self.assertEqual(choose(self.store, PORT, self.store.vessels(NOW, 3600), NOW)[0]['name'], 'UNDERWAY')
+
     def test_prefetch_prefers_a_mover_over_a_larger_stationary_ship(self):
         add(self.store, '230100001', 'BIG STOPPED', dict(imo='9606900', length_m=400), speed=0)
         add(self.store, '230100002', 'SMALL MOVING', dict(imo='9606901', length_m=80), speed=3, x=.002)
