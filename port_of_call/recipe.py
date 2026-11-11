@@ -13,7 +13,7 @@ BIOS = {
 
 
 COMMENTS = {
-    'aisstream': '# World profile (AISStream backend). The Finnish profile is packaged with\n# `python scripts/package_recipe.py --provider digitraffic`.\n',
+    'aisstream': '# World profile, including Finnish ports. Copy-and-paste guide: docs/copy-paste.md.\n',
     'digitraffic': '# Finnish profile (Fintraffic / Digitraffic backend).\n',
 }
 

@@ -1,4 +1,4 @@
-name: Publish setup and downloads
+name: Publish setup guide
 on:
   workflow_dispatch:
   workflow_call:
@@ -8,6 +8,7 @@ on:
       - 'deploy/release.json'
       - 'scripts/build_release_site.py'
       - 'settings.yml'
+      - 'custom_fields.yml'
       - '*.liquid'
       - 'docs/**'
       - '.github/workflows/publish-site.yml'

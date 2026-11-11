@@ -165,3 +165,11 @@ for(const layout of layouts)test(`${layout}: port facts are opt-in, escaped and 
  assert.ok(!on.includes('source_url'));
  assert.ok((await render(layout,data,{port_facts:'true'})).includes('data-poc-port-fact'));
 });
+
+
+test('copy-and-paste custom fields match the canonical live settings',async()=>{
+ const copied=YAML.parse(await readFile('custom_fields.yml','utf8'));
+ assert.deepEqual(copied,settings.custom_fields);
+ const live=JSON.parse(await readFile('deploy/release.json','utf8'));
+ assert.ok(settings.polling_url.startsWith(live.origin+'/api/v1/vessels?'));
+});

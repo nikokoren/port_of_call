@@ -2,8 +2,7 @@
 name: Port of Call
 strategy: polling
 polling_verb: get
-# World profile (AISStream backend). The Finnish profile is packaged with
-# `python scripts/package_recipe.py --provider digitraffic`.
+# World profile, including Finnish ports. Copy-and-paste guide: docs/copy-paste.md.
 polling_url: "https://port-of-call-world.5g5wqr7kzx-466.workers.dev/api/v1/vessels?harbors={{ harbor | join: ',' }}&spotlight={{ ship_spotlight }}"
 polling_headers: ''
 refresh_interval: 15

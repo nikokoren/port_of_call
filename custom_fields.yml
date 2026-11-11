@@ -1,0 +1,43 @@
+- keyname: author_bio
+  field_type: author_bio
+  name: Port of Call
+  description: See who's coming and going. Observed AIS positions from AISStream; coverage varies. Finnish ports from Fintraffic / digitraffic.fi, CC BY 4.0. See the maintainer's source and license notes. Optional vessel reference facts from <a href="https://www.wikidata.org/">Wikidata</a> (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>). Not for navigation.
+  email_address: isarworks@gmail.com
+- keyname: harbor
+  field_type: select
+  name: Which harbors?
+  description: Optional. Leave empty to cycle through every harbor, or pick several to cycle through those; each refresh shows the next one. Pick one to always show it. Use Cmd+click or Ctrl+click to select more than one.
+  multiple: true
+  optional: true
+  options:
+    - "Rotterdam, Netherlands": "rotterdam"
+    - "Antwerp, Belgium": "antwerp"
+    - "Hamburg, Germany": "hamburg"
+    - "Bremerhaven, Germany": "bremerhaven"
+    - "Felixstowe / Harwich, UK": "felixstowe"
+    - "Southampton, UK": "southampton"
+    - "Los Angeles / Long Beach, USA": "los-angeles-long-beach"
+    - "New York / New Jersey, USA": "new-york-new-jersey"
+    - "Savannah, USA": "savannah"
+    - "Houston — Ship Channel, USA": "houston"
+    - "Seattle — Elliott Bay, USA": "seattle"
+    - "Charleston, USA": "charleston"
+    - "Singapore": "singapore"
+    - "Helsinki, Finland": "helsinki"
+    - "Turku, Finland": "turku"
+    - "Rauma, Finland": "rauma"
+- keyname: ship_labels
+  field_type: boolean
+  name: Show ship labels?
+  description: Outlined labels show ship names and available voyage details in overview and Spotlight views. Missing origins stay omitted. Fewer labels fit in compact views.
+  default: false
+- keyname: ship_spotlight
+  field_type: boolean
+  name: Spotlight a ship
+  description: Highlight one fresh vessel with voyage details and available facts. Rotates about every three hours. Unknown origin stays unknown; no suitable ship shows the harbor overview.
+  default: false
+- keyname: port_facts
+  field_type: boolean
+  name: Show port facts?
+  description: Rotate a short port fact hourly beneath the vessel count. Omitted in the smallest half and quadrant views.
+  default: false

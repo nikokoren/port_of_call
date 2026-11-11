@@ -28,7 +28,7 @@ The Finnish catalog is deliberately limited, not the full reach of its feed: a f
 
 A [major-harbor AISStream profile](docs/major-ports.md) now has genuine coverage evidence for **13 areas: six European, six US and Singapore**. Shanghai/Yangshan and Busan New Port had zero reports in the 15-minute window and are excluded. Build the private-test profile with `python scripts/package_recipe.py --provider aisstream`; its backend requires a securely bound key. The bounded display-proxy scope is reviewed against AISStream’s current FAQ; this is not a general open-data licence.
 
-The **Cloudflare Workers Free backend** is deployed, reusing the Python domain code with a SQLite-backed Durable Object per profile. [Setup and free-plan limits](docs/cloudflare.md). GitHub Pages hosts documentation and ZIP downloads, while the collector runs on Cloudflare. The Finnish backend is **deployed and verified** at https://port-of-call.5g5wqr7kzx-466.workers.dev. All eighteen harbor/framing/Spotlight combinations and the first public monitor run passed. A hosted TRMNL import/device test is still pending; no TRMNL account access was provided. The primary [download](https://nikokoren.github.io/port_of_call/port-of-call.zip) now uses the verified [13-area AISStream backend](https://port-of-call-world.5g5wqr7kzx-466.workers.dev); all 78 framing/Spotlight probes passed. A [Finnish alternative ZIP](https://nikokoren.github.io/port_of_call/port-of-call-finland.zip) keeps the original origin. The world backend also serves Helsinki, Turku and Rauma by fetching them from the Finnish backend over a Cloudflare service binding, so the world recipe offers all 16 harbors; the Finnish ZIP still lists only its three. New streams need time to receive static/voyage metadata, and an area can show no observations during cold start. [Release gates](docs/release-checklist.md).
+The **Cloudflare Workers Free backend** is deployed, reusing the Python domain code with a SQLite-backed Durable Object per profile. [Setup and free-plan limits](docs/cloudflare.md). GitHub Pages hosts the setup guide and links to the recipe source files, while the collector runs on Cloudflare. The Finnish backend is **deployed and verified** at https://port-of-call.5g5wqr7kzx-466.workers.dev. All eighteen harbor/framing/Spotlight combinations and the first public monitor run passed. A hosted TRMNL import/device test is still pending; no TRMNL account access was provided. The ready-to-copy [recipe settings](settings.yml) use the verified world backend, including Finnish ports, for all sixteen harbors. Use the [copy-and-paste guide](docs/copy-paste.md) to update your private plugin directly from GitHub. New streams need time to receive static/voyage metadata, and an area can show no observations during cold start. [Release gates](docs/release-checklist.md).
 
 ## Run locally
 
@@ -52,13 +52,12 @@ curl -f 'http://127.0.0.1:8080/api/v1/vessels?harbors=helsinki,turku'
 
 ## Test as a private TRMNL plugin
 
-1. `settings.yml` is the ready-to-import **world profile**: the 13 verified AISStream harbors and the deployed world backend (`deploy/world-release.json`). Keep `{{ harbor | join: ',' }}` and `{{ ship_spotlight }}` intact, and keep the polling URL quoted. To use your own deployment, verify its `/health` and harbor endpoints, then pass `--origin` when packaging. A localhost address cannot be polled by hosted TRMNL.
-2. For the **Finnish profile** (Helsinki, Turku, Rauma on Fintraffic open data), run `python scripts/package_recipe.py --provider digitraffic`; it swaps in the Finnish harbors, source credit and backend from `deploy/finland-release.json`.
-3. Run `npm ci` then `npm run package`. Import `dist/port-of-call-aisstream.zip` (or the Finnish `dist/port-of-call.zip`) using TRMNL's private plugin import flow. The ZIP has the six export files at its root. If the UI requires manual setup, use polling/GET/15 minutes, framework **3.4.4**, paste the custom fields YAML and the five Liquid files into their corresponding tabs.
-4. Leave harbors empty and labels off. Confirm data loads and that each refresh shows the next harbor; then pick a single harbor and confirm it stays put. Enable **Spotlight a ship** to test the shared rotating subject, highlighted marker, facts card and deliberate overview fallback.
-5. Test all four layouts, light/dark, and your device. Keep framework-provided map attribution visible. MapLibre JS/CSS load separately, as the native docs require.
+Follow the [copy-and-paste guide](docs/copy-paste.md). The GitHub files already contain the live backend settings.
 
-The files follow the official CLI/export settings structure. The exact hosted import and physical-device capture remain a release gate; do not advertise them as tested. For a future community recipe, the maintainer fixes the hosted origin in settings before submission; ordinary users do not configure infrastructure.
+1. Paste [custom_fields.yml](custom_fields.yml) into Custom Fields.
+2. Paste [shared.liquid](shared.liquid), [full.liquid](full.liquid), [half_horizontal.liquid](half_horizontal.liquid), [half_vertical.liquid](half_vertical.liquid) and [quadrant.liquid](quadrant.liquid) into their matching editor tabs.
+3. Use the polling URL and other plugin values from [settings.yml](settings.yml). Save, choose your harbors, and refresh.
+4. Check all layouts and light/dark mode on your device. Hosted-device validation remains a release check.
 
 ## Tests and previews
 
