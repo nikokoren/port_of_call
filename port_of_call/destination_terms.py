@@ -56,6 +56,11 @@ def describe(raw):
 # Explicit port entities resolve town/port duplicates in the bundled snapshot.
 # Each entity has the stated P1937 code; there are no inferred coordinates.
 PORT_REFERENCES = {
+    'CAVAN': ('Vancouver', 'Canada', 'Q1187234'),
+    'DECUX': ('Cuxhaven', 'Germany', 'Q4197'),
+    'DESTA': ('Stade', 'Germany', 'Q6949'),
+    'ESLPA': ('Las Palmas', 'Spain', 'Q3925443'),
+    'USSSI': ('Brunswick, Georgia', 'USA', 'Q7231096'),
     'BEZEE': ('Zeebrugge', 'Belgium', 'Q1477819'),
     'FRLEH': ('Le Havre', 'France', 'Q1129891'),
     'FIKTK': ('Kotka', 'Finland', 'Q11872855'),
