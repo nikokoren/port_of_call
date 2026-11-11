@@ -7,7 +7,7 @@ from .model import contains, epoch, iso, viewport
 HOLD = 3 * 3600
 COOLDOWN = 24 * 3600
 MAX_AGE = 15 * 60
-KNOWLEDGE_MARGIN = 15  # Ships within this many points of the best-known compete.
+PRIORITY_MARGIN = 15  # Comparable information + movement scores compete.
 
 
 def value(vessel, key):
@@ -19,10 +19,6 @@ def eligible(vessel, now):
             and len(vessel.get('facts', {})) + bool(vessel.get('type')) >= 2)
 
 
-# AIS details a Spotlight card shows when present.
-CARD_FACTS = ('destination', 'eta', 'length_m', 'beam_m', 'imo', 'call_sign', 'ship_type_code')
-
-
 def ship_record(store, vessel, now):
     """(looked_up, record) for the ship's cached Wikidata entry, by IMO number."""
     from .enrichment import cached
@@ -31,24 +27,34 @@ def ship_record(store, vessel, now):
     return (hit is not None, hit[1] if hit else None)
 
 
-def knowledge(store, vessel, now):
-    """How much a Spotlight card can say about this ship, 0-100.
+def knowledge(store, vessel, now, *, port=None, calls=None):
+    """Available on-screen card content, 0-100; cached data only.
 
-    AIS details count first; a reference record (builder, operator, year in
-    service, where it was built) counts most; a destination that resolves to a
-    named port adds a little. An IMO number not yet looked up is a promise of a
-    record, so it scores a little too.
+    Identifiers, pending lookups and facts omitted from the presentation earn
+    nothing. Reuse the actual copy builder so inference and ETA rules agree.
     """
-    from .enrichment import resolve_port
-    score = 6*sum(value(vessel, key) is not None for key in CARD_FACTS)
-    looked_up, record = ship_record(store, vessel, now)
-    if record:
-        score += 10*len(record.get('facts') or []) + 8*bool(record.get('built_in')) + 6*bool(record.get('registry_country'))
-    elif value(vessel, 'imo') and not looked_up:
-        score += 8
-    destination = value(vessel, 'destination')
-    if destination and resolve_port(store, destination, now): score += 6
+    from .enrichment import enrich_card
+    from .display import focus_copy
+    from .destinations import parse
+    focus = card(vessel, now, '', now)
+    enrich_card(store, port or {'id': None}, focus, now, calls=calls)
+    shown = focus_copy(focus)
+    score = 5*bool(shown['vessel_type'] and shown['vessel_type'] != 'Vessel') + 5*bool(shown['flag'])
+    if shown['journey']:
+        destination = value(vessel, 'destination')
+        readable = bool(focus.get('destination_port') or (destination and parse(destination)['text']))
+        origin = focus.get('origin') or {}
+        readable = readable or bool(origin.get('value') and origin['value'] != origin.get('code'))
+        score += 15 if readable else 5
+    score += 10*bool(shown['eta'])
+    score += 10*len(shown['measurements'])  # length and width, at most two
+    score += 15*len(shown['highlights'])  # at most two visible reference facts
+    score += 15*bool(shown['details'])  # sourced build/shipyard country
     return min(score, 100)
+
+
+def moving(vessel):
+    return (vessel.get('speed_knots') or 0) >= 0.5
 
 
 def reason_for(vessel, store=None, now=None):
@@ -60,32 +66,34 @@ def reason_for(vessel, store=None, now=None):
 
 def choose(store, port, vessels, now):
     candidates = [v for v in vessels if contains(port['bbox'], v['position']) and eligible(v, now)]
-    current = store.current_focus(port['id'])
-    if current and 0 <= now-current[1] < HOLD:
-        held = next((v for v in candidates if v['mmsi'] == current[0]), None)
-        if held: return held, current[1], reason_for(held, store, now)
     if not candidates: return None
+    calls = store.recent_calls(now)
+    known = {v['mmsi']: knowledge(store, v, now, port=port, calls=calls) for v in candidates}
+    # Joint priority lets motion compete with metadata before the shortlist.
+    priority = {v['mmsi']: .6*known[v['mmsi']] + 30*moving(v) for v in candidates}
     history = store.focus_history(port['id'])
     unseen = [v for v in candidates if now-history.get(v['mmsi'], (0, None))[0] >= COOLDOWN]
     pool = unseen or candidates  # Small harbors may repeat rather than fabricate a subject.
-    # Prefer the ships a card can say most about; vary among comparably known ones.
-    known = {v['mmsi']: knowledge(store, v, now) for v in pool}
-    best = max(known.values())
-    pool = [v for v in pool if known[v['mmsi']] >= best-KNOWLEDGE_MARGIN]
+    current = store.current_focus(port['id'])
+    if current and 0 <= now-current[1] < HOLD:
+        held = next((v for v in candidates if v['mmsi'] == current[0]), None)
+        if held:
+            better_mover = not moving(held) and any(moving(v) and
+                priority[v['mmsi']] > priority[held['mmsi']]+PRIORITY_MARGIN for v in pool)
+            if not better_mover: return held, current[1], reason_for(held, store, now)
+    best = max(priority[v['mmsi']] for v in pool)
+    pool = [v for v in pool if priority[v['mmsi']] >= best-PRIORITY_MARGIN]
     lengths = sorted(value(v, 'length_m') for v in candidates if value(v, 'length_m'))
     recent_types = [cat for _, cat in sorted(history.values(), reverse=True)[:3] if cat]
 
     def score(v):
-        # What the card can say about the ship matters most.
-        quality = .6*known.get(v['mmsi'], 0)
         length = value(v, 'length_m')
-        size = 25 * sum(n <= length for n in lengths)/len(lengths) if length and lengths else 0
-        novelty = min(20, max(0, (now-history.get(v['mmsi'], (0, None))[0])/COOLDOWN*20))
+        size = 2 * sum(n <= length for n in lengths)/len(lengths) if length and lengths else 0
+        novelty = min(4, max(0, (now-history.get(v['mmsi'], (0, None))[0])/COOLDOWN*4))
         # Unknown categories never receive a rarity bonus. Prefer finer AIS type codes.
         cat = str(value(v, 'ship_type_code') or v.get('type') or '')
-        variety = 15/(1+recent_types.count(cat)) if cat else 0
-        movement = 10 if (v.get('speed_knots') or 0) >= 0.5 else 0
-        return quality+size+novelty+variety+movement
+        variety = 4/(1+recent_types.count(cat)) if cat else 0
+        return priority[v['mmsi']]+size+novelty+variety
 
     shortlist = sorted(pool, key=lambda v: (-score(v), v['mmsi']))[:5]
     def weighted_key(v):
@@ -104,13 +112,15 @@ def choose(store, port, vessels, now):
 def lookups_worth_making(store, port, vessels, now, limit=1):
     """IMO numbers of likely Spotlight subjects whose ship record is not yet cached.
 
-    Looking these up ahead of time lets the next selection see which ships
-    have a reference record. Largest first, since big ships are the likeliest
-    to have one.
+    Lookups do not add speculative selection points. Prefer moving subjects
+    with useful existing card content; length only breaks otherwise equal ties.
     """
-    candidates = [v for v in vessels if contains(port['bbox'], v['position']) and eligible(v, now)
+    visible = spotlight_areas(port, viewport(port))
+    candidates = [v for v in vessels if contains(port['bbox'], v['position']) and visible(v) and eligible(v, now)
                   and value(v, 'imo') and not ship_record(store, v, now)[0]]
-    candidates.sort(key=lambda v: (-(value(v, 'length_m') or 0), v['mmsi']))
+    calls = store.recent_calls(now)
+    candidates.sort(key=lambda v: (-moving(v), -knowledge(store, v, now, port=port, calls=calls),
+                                   -(value(v, 'length_m') or 0), v['mmsi']))
     return [value(v, 'imo') for v in candidates[:limit]]
 
 
@@ -118,19 +128,18 @@ def spotlight_areas(port, box):
     """Where a Spotlight subject stays visible in a fixed harbor view.
 
     The view never moves for Spotlight, so the subject must be on screen in
-    every layout: away from the edges and from the bottom-left harbor card.
-    Smaller layouts show the middle of the view, so central ships come first.
+    the reference viewport: away from edges and the bottom-left harbor card.
+    Compact layouts still check actual screen visibility and may use overview.
+    All safely visible ships compete together, without a centrality preference.
     """
     w, s, e, n = box
     dx, dy = e-w, n-s
-    fx, fy = port.get('focus') or port['center']
     safe = (w+dx*.06, s+dy*.08, e-dx*.06, n-dy*.08)
     card = (w, s, w+dx*.5, s+dy*.34)
-    central = (fx-dx*.25, fy-dy*.17, fx+dx*.25, fy+dy*.17)
     def visible(v):
         p = v['position']
         return contains(safe, p) and not contains(card, p)
-    return visible, lambda v: visible(v) and contains(central, v['position'])
+    return visible
 
 
 def focus_viewport(port, vessel, scale):

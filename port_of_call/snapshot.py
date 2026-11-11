@@ -18,10 +18,9 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
     if spotlight and fetched and now-fetched < fresh:
         if scale == 'harbor':
             # Spotlight annotates the harbor view; it never moves the map. Pick
-            # a subject that is on screen, preferring the middle of the view.
-            visible, central = spotlight_areas(port, box)
-            subject = (choose(store, port, [v for v in harbor_vessels if central(v)], now)
-                       or choose(store, port, [v for v in harbor_vessels if visible(v)], now))
+            # a safely visible subject; centrality does not affect its chances.
+            visible = spotlight_areas(port, box)
+            subject = choose(store, port, [v for v in harbor_vessels if visible(v)], now)
         else:
             subject = choose(store, port, harbor_vessels, now)
     focus = None

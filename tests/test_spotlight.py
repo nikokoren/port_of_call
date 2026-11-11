@@ -275,14 +275,31 @@ class FixedViewSpotlight(unittest.TestCase):
         self.assertEqual(data['viewport'], self.box)
         self.assertEqual(data['camera'], {'zoom': PORT['zoom'], 'center': PORT['focus']})
 
-    def test_subject_is_visible_and_central_first(self):
+    def test_screen_position_does_not_change_selection_among_safe_ships(self):
         hidden = self.ship(1, .2, .15)    # under the bottom-left harbor card
-        edge = self.ship(2, .9, .85)      # visible, but only in larger layouts
-        self.assertEqual(snapshot(self.s, PORT, NOW, spotlight=True)['focus']['mmsi'], edge)
-        central = self.ship(3, .55, .55)
+        self.ship(2, .9, .65)
+        self.ship(3, .55, .55)
+        first = snapshot(self.s, PORT, NOW, spotlight=True)['focus']['mmsi']
+        self.assertNotEqual(hidden, first)
+        # Swap the two safe ships' locations, preserving every ranking input.
+        w, s, e, n = self.box
+        for i, fx, fy in [(2, .55, .55), (3, .9, .65)]:
+            self.s.put(position(str(230100000+i), w+(e-w)*fx, s+(n-s)*fy, NOW-20, NOW, speed=3))
         self.s.db.execute('DELETE FROM focus_current')
-        self.assertEqual(snapshot(self.s, PORT, NOW+60, spotlight=True)['focus']['mmsi'], central)
-        self.assertNotEqual(hidden, snapshot(self.s, PORT, NOW+120, spotlight=True)['focus']['mmsi'])
+        self.s.db.execute('DELETE FROM focus_history')
+        self.assertEqual(snapshot(self.s, PORT, NOW, spotlight=True)['focus']['mmsi'], first)
+
+    def test_more_information_can_win_away_from_the_center(self):
+        self.ship(1, .55, .55)
+        edge = self.ship(2, .9, .65)
+        self.s.put(static=dict(mmsi=edge, updated_at=NOW, facts=dict(imo='9606900',
+            beam_m=30, destination='FIHEL', ship_type_code=60)))
+        save_cache(self.s, 'ship:9606900', dict(facts=[dict(label='Operator', value='Example operator'),
+            dict(label='In service', value='2001')], built_in=dict(value='Finland')), NOW, 86400)
+        data = snapshot(self.s, PORT, NOW, spotlight=True)
+        self.assertEqual(data['focus']['mmsi'], edge)
+        self.assertEqual(data['viewport'], self.box)
+        self.assertEqual(data['camera']['center'], PORT['focus'])
 
     def test_nothing_visible_falls_back_to_the_overview(self):
         self.ship(1, .2, .15); self.ship(2, .99, .5)

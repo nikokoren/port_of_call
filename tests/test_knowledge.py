@@ -32,11 +32,11 @@ class Knowledge(unittest.TestCase):
         ships = {v['mmsi']: v for v in self.store.vessels(NOW, 3600, PORT['bbox'])}
         known, unknown = knowledge(self.store, ships['230100001'], NOW), knowledge(self.store, ships['230100002'], NOW)
         self.assertGreater(known, unknown+40)
-        # An IMO number not yet looked up still promises more than none at all.
+        # An identifier or pending lookup is not extra information on screen.
         add(self.store, '230100003', 'PENDING', {**facts, 'imo': '9606902'}, x=.004)
         add(self.store, '230100004', 'NO IMO', {k: v for k, v in facts.items() if k != 'imo'}, x=.006)
         ships = {v['mmsi']: v for v in self.store.vessels(NOW, 3600, PORT['bbox'])}
-        self.assertGreater(knowledge(self.store, ships['230100003'], NOW), knowledge(self.store, ships['230100004'], NOW))
+        self.assertEqual(knowledge(self.store, ships['230100003'], NOW), knowledge(self.store, ships['230100004'], NOW))
 
     def test_spotlight_picks_the_known_ship_most_of_the_time(self):
         picks = {'KNOWN': 0}
@@ -52,6 +52,56 @@ class Knowledge(unittest.TestCase):
             if chosen[0]['name'] == 'KNOWN': picks['KNOWN'] += 1
             self.assertEqual(chosen[2] if chosen[0]['name'] == 'KNOWN' else 'Ship record available', 'Ship record available')
         self.assertGreaterEqual(picks['KNOWN'], 24)
+
+    def test_hidden_reference_facts_and_identifiers_do_not_inflate_information(self):
+        add(self.store, '230100001', 'BUILDER ONLY', dict(imo='9606900', call_sign='ABC', length_m=100))
+        add(self.store, '230100002', 'NO RECORD', dict(length_m=100), x=.002)
+        save_cache(self.store, 'ship:9606900', dict(facts=[dict(label='Builder', value='Yard')]), NOW, 86400)
+        vessels = self.store.vessels(NOW, 3600)
+        self.assertEqual(knowledge(self.store, vessels[0], NOW), knowledge(self.store, vessels[1], NOW))
+
+    def test_readable_destination_beats_an_unresolved_port_code(self):
+        for i, dest in enumerate(['FIHEL', 'ZAQQQ']):
+            add(self.store, str(230100001+i), dest, dict(destination=dest, length_m=100), x=i*.002)
+        vessels = self.store.vessels(NOW, 3600)
+        self.assertGreater(knowledge(self.store, vessels[0], NOW), knowledge(self.store, vessels[1], NOW))
+
+    def test_useful_mover_beats_a_similarly_informed_large_stationary_ship(self):
+        facts = dict(length_m=400, beam_m=40, ship_type_code=60, destination='FIHEL')
+        add(self.store, '230100001', 'HUGE STATIONARY', facts, speed=0)
+        add(self.store, '230100002', 'SMALL MOVING', {**facts, 'length_m': 90}, speed=3, x=.002)
+        result = choose(self.store, PORT, self.store.vessels(NOW, 3600), NOW)
+        self.assertEqual(result[0]['name'], 'SMALL MOVING')
+
+    def test_sparse_mover_does_not_displace_a_rich_stationary_subject(self):
+        add(self.store, '230100001', 'RICH', dict(imo='9606900', length_m=200, beam_m=30,
+            destination='FIHEL', ship_type_code=60), speed=0)
+        save_cache(self.store, 'ship:9606900', RECORD, NOW, 86400)
+        first = choose(self.store, PORT, self.store.vessels(NOW, 3600), NOW)
+        add(self.store, '230100002', 'SPARSE MOVER', dict(call_sign='ABC'), speed=4, x=.002, now=NOW+60)
+        chosen = choose(self.store, PORT, self.store.vessels(NOW+60, 3600), NOW+60)
+        self.assertEqual(chosen[0]['mmsi'], first[0]['mmsi'])
+        self.assertEqual(chosen[1], first[1])
+        # Rich information also wins a new selection, without a held subject.
+        self.store.data['current'].clear(); self.store.data['history'].clear()
+        self.assertEqual(choose(self.store, PORT, self.store.vessels(NOW+60, 3600), NOW+60)[0]['name'], 'RICH')
+
+    def test_stopped_held_ship_yields_to_a_useful_mover_but_moving_hold_is_stable(self):
+        facts = dict(length_m=100, beam_m=20, destination='FIHEL')
+        add(self.store, '230100001', 'FIRST', facts, speed=3)
+        first = choose(self.store, PORT, self.store.vessels(NOW, 3600), NOW)
+        add(self.store, '230100002', 'NEXT', facts, speed=4, x=.002, now=NOW+60)
+        # Another mover arriving does not cause flicker during the normal hold.
+        held = choose(self.store, PORT, self.store.vessels(NOW+60, 3600), NOW+60)
+        self.assertEqual(held[1], first[1]); self.assertEqual(held[0]['name'], 'FIRST')
+        add(self.store, '230100001', 'FIRST', facts, speed=0, now=NOW+120)
+        changed = choose(self.store, PORT, self.store.vessels(NOW+120, 3600), NOW+120)
+        self.assertEqual(changed[0]['name'], 'NEXT'); self.assertEqual(changed[1], NOW+120)
+
+    def test_prefetch_prefers_a_mover_over_a_larger_stationary_ship(self):
+        add(self.store, '230100001', 'BIG STOPPED', dict(imo='9606900', length_m=400), speed=0)
+        add(self.store, '230100002', 'SMALL MOVING', dict(imo='9606901', length_m=80), speed=3, x=.002)
+        self.assertEqual(lookups_worth_making(self.store, PORT, self.store.vessels(NOW, 3600), NOW), ['9606901'])
 
     def test_lookahead_is_throttled_and_keeps_a_budget_reserve(self):
         add(self.store, '230300001', 'BIG', dict(imo='9606900', length_m=290, ship_type_code=70))
