@@ -33,8 +33,8 @@
   default: false
 - keyname: map_legend
   field_type: boolean
-  name: Show vessel legend?
-  description: Explain the five vessel shapes at the bottom of the full-screen map. Hidden in half and quadrant layouts.
+  name: Show map legend
+  description: Turn on the vessel legend to learn what the different vessel shapes mean. Full-screen maps only.
   default: false
 - keyname: ship_spotlight
   field_type: boolean
