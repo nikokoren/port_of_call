@@ -4,13 +4,16 @@ Wikidata structured facts are CC0. Portnet is Fintraffic CC BY 4.0. Failed or
 ambiguous matches remain unknown; names are never used as vessel identifiers.
 """
 import asyncio
+from contextvars import ContextVar
 import json
 import logging
+import math
 import re
 import time
 from datetime import datetime, timezone
 from .facts import imo, text, radio_mid
 from .destinations import parse as parse_destination
+from .port_reference import lookup as reference_port, COUNTRIES as REFERENCE_COUNTRIES
 from .model import HARBORS, epoch, iso, mmsi
 
 log = logging.getLogger('port_of_call.enrichment')
@@ -43,6 +46,10 @@ LOCAL_COUNTRIES['PL'] = 'Poland'
 LOCAL_PORTS['LVMRX'] = dict(code='LVMRX', name='Mērsrags', country='Latvia',
     source='UNECE UN/LOCODE', url='https://service.unece.org/trade/locode/lv.htm')
 LOCAL_COUNTRIES['LV'] = 'Latvia'
+# Both the town and its port have this code. The port entity verifies the alias.
+LOCAL_PORTS['GBIMM'] = dict(code='GBIMM', name='Immingham', country=LOCAL_COUNTRIES['GB'],
+    source='Reviewed Wikidata port reference', url='https://www.wikidata.org/wiki/Q6005218',
+    license='https://creativecommons.org/publicdomain/zero/1.0/')
 
 
 def port_key(raw):
@@ -56,12 +63,25 @@ def locode_id(key):
     return key[:2]+' '+key[2:]
 
 
+def usable_destination_name(name):
+    return bool(name) and not re.search(r'\b(airport|airfield|aerodrome|air base)\b', name, re.I)
+
+
 def cached(store, key, now):
-    return store.reference(CACHE_VERSION+key, now)
+    hit = store.reference(CACHE_VERSION+key, now)
+    if not key.startswith('port:') or (hit and hit[1] and usable_destination_name(hit[1].get('name'))): return hit
+    # Reconsider old coordinate-required misses without discarding ship caches.
+    return store.reference(CACHE_VERSION+'port-name-misses-v1:'+key, now)
 
 
 def save_cache(store, key, payload, now, ttl):
-    store.save_reference(CACHE_VERSION+key, payload, now, ttl)
+    prefix = 'port-name-misses-v1:' if key.startswith('port:') and payload is None else ''
+    store.save_reference(CACHE_VERSION+prefix+key, payload, now, ttl)
+
+
+class EnrichmentBudgetExhausted(ValueError):
+    pass
+
 
 
 def resolve_port(store, raw, now):
@@ -74,7 +94,9 @@ def resolve_port(store, raw, now):
         result = dict(hit[1])
         result['country'] = result.get('country') or country_name(store, key[:2], now)
         return result
-    return None
+    result = reference_port(key) if key else None
+    if result: result['country'] = country_name(store, key[:2], now) or result.get('country')
+    return result
 
 
 def enrich_card(store, port, focus, now, *, calls=None):
@@ -128,7 +150,7 @@ def country_name(store, code, now):
     if not isinstance(code, str) or not re.fullmatch(r'[A-Z]{2}', code): return None
     if code in LOCAL_COUNTRIES: return LOCAL_COUNTRIES[code]
     hit = cached(store, 'country:'+code, now)
-    return hit[1]['name'] if hit and hit[1] else None
+    return hit[1]['name'] if hit and hit[1] else REFERENCE_COUNTRIES.get(code)
 
 
 def current_values(entity, prop, now):
@@ -175,8 +197,37 @@ class Enricher:
         self.store, self.provider, self.clock = store, provider, clock
         self.queue = asyncio.Queue(maxsize=128)
         self.pending = set()
+        self.prefetch_queue = asyncio.Queue(maxsize=32)
+        self.speculative = set()
+        self.wake = asyncio.Event()
+        self.request_reserve = ContextVar("enrichment_request_reserve", default=0)
+        self.last_prefetch_scan = None
         self.last_request = 0
-        self.prefetched = {}
+        self.prefetched = json.loads(store.state('enrichment_prefetch_plans') or '{}')
+
+    def remaining_budget(self):
+        state = json.loads(self.store.state('wikidata_daily_budget') or '{}')
+        day = datetime.fromtimestamp(self.clock(), timezone.utc).date().isoformat()
+        used = state.get('count', 0) if state.get('day') == day else 0
+        return max(0, 500-used)
+
+    def _enqueue(self, kind, key, *, speculative=False):
+        token = kind+':'+key
+        if cached(self.store, token, self.clock()): return False
+        queue = self.prefetch_queue if speculative else self.queue
+        if queue.full(): return False
+        if token in self.pending:
+            # Promote a candidate when its card is actually requested. The stale
+            # low-priority entry will be skipped, not looked up a second time.
+            if not speculative and token in self.speculative:
+                self.speculative.discard(token)
+                self.queue.put_nowait((kind, key)); self.wake.set()
+                return True
+            return False
+        queue.put_nowait((kind, key)); self.pending.add(token)
+        if speculative: self.speculative.add(token)
+        self.wake.set()
+        return True
 
     def enqueue(self, focus):
         if not focus: return
@@ -187,39 +238,75 @@ class Enricher:
         for raw in [focus.get('destination', {}).get('value') if focus.get('destination') else None,
                     focus.get('origin', {}).get('code') if focus.get('origin') else None]:
             code = port_key(raw)
-            if code and code not in LOCAL_PORTS: keys.append(('port', locode_id(code)))
+            if code and not resolve_port(self.store, code, self.clock()): keys.append(('port', locode_id(code)))
         flag_code = focus.get('flag_reported_country_code') or (focus.get('flag', {}).get('code') if focus.get('flag') else None)
         if flag_code and flag_code not in LOCAL_COUNTRIES: keys.append(('country', flag_code))
-        for kind, key in keys:
-            token = kind+':'+key
-            if token not in self.pending and not cached(self.store, token, self.clock()) and not self.queue.full():
-                self.queue.put_nowait((kind, key)); self.pending.add(token)
+        for kind, key in keys: self._enqueue(kind, key)
 
-    def prefetch(self, port_id, imos, *, window=3*3600, reserve=250):
-        """Look up likely Spotlight subjects ahead of time, once per port per window.
-
-        Only while today's shared budget has more than `reserve` requests left,
-        so Spotlight cards and destination names always keep their share.
-        """
-        now = self.clock()
-        slot = int(now//window)
-        if self.prefetched.get(port_id) == slot: return
-        state = json.loads(self.store.state('wikidata_daily_budget') or '{}')
-        used = state.get('count', 0) if state.get('day') == datetime.fromtimestamp(now, timezone.utc).date().isoformat() else 0
-        if 500-used <= reserve: return
-        self.prefetched[port_id] = slot
+    def prefetch(self, port_id, imos, *, window=3600, limit=3, reserve=250):
+        """A rolling three-ship shortlist per port/hour, below real screen work."""
+        slot = int(self.clock()//window)
+        old_slot, planned = self.prefetched.get(port_id, (None, []))
+        planned = list(planned) if old_slot == slot else []
+        if self.remaining_budget() <= reserve: return 0
+        # A polling Durable Object can be evicted between alarms. Requeue the
+        # saved shortlist, skipping completed/cached and already pending work.
+        for number in planned: self._enqueue('ship', number, speculative=True)
+        added = 0
         for number in imos:
-            token = 'ship:'+number
-            if token not in self.pending and not cached(self.store, token, now) and not self.queue.full():
-                self.queue.put_nowait(('ship', number)); self.pending.add(token)
+            if len(planned) >= limit: break
+            if number not in planned and self._enqueue('ship', number, speculative=True):
+                planned.append(number); added += 1
+        # Empty/cached/full-queue attempts must not consume the hourly allowance.
+        if added:
+            self.prefetched = {p: value for p, value in self.prefetched.items() if value[0] == slot}
+            self.prefetched[port_id] = (slot, planned)
+            self.store.state('enrichment_prefetch_plans', json.dumps(self.prefetched))
+        return added
+
+    def plan_prefetch(self, harbors=None):
+        from .catalog import verified_harbors
+        from .spotlight import lookups_worth_making
+        now = self.clock()
+        if self.last_prefetch_scan is not None and now-self.last_prefetch_scan < 60: return
+        self.last_prefetch_scan = now
+        if self.remaining_budget() <= 250: return
+        for port in (harbors or verified_harbors(self.provider)).values():
+            self.prefetch(port['id'], [])  # restore saved, unfinished work
+            slot, planned = self.prefetched.get(port['id'], (None, []))
+            if slot == int(now//3600) and len(planned) >= 3: continue
+            self.prefetch(port['id'], lookups_worth_making(self.store, port,
+                self.store.vessels(now, 3600, port['bbox']), now))
 
     def enqueue_ports(self, codes):
-        # Destinations of every displayed ship, not only the Spotlight subject,
-        # so ordinary labels also gain port names once looked up (cached 30 days).
+        # This also covers ordinary labels; the local reference needs no request.
         for code in codes:
-            token = 'port:'+locode_id(code)
-            if code not in LOCAL_PORTS and token not in self.pending and not cached(self.store, token, self.clock()) and not self.queue.full():
-                self.queue.put_nowait(('port', locode_id(code))); self.pending.add(token)
+            if not resolve_port(self.store, code, self.clock()):
+                self._enqueue('port', locode_id(code))
+
+    async def process_next(self, session):
+        source, speculative = self.queue, False
+        if source.empty():
+            source, speculative = self.prefetch_queue, True
+            while not source.empty():
+                kind, key = source.get_nowait()
+                token = kind+':'+key
+                if token not in self.speculative:
+                    source.task_done(); continue  # promoted or already processed
+                self.speculative.discard(token)
+                if self.remaining_budget() <= 250:
+                    self.pending.discard(token); source.task_done(); continue
+                break
+            else: return False
+        else: kind, key = source.get_nowait()
+        try:
+            reserve_token = self.request_reserve.set(250 if speculative else 0)
+            try: await self.refresh(session, kind, key)
+            finally: self.request_reserve.reset(reserve_token)
+        finally:
+            self.pending.discard(kind+':'+key)
+            source.task_done()
+        return True
 
     async def request(self, session, **params):
         # Hard, persisted shared budget. This API has no paid fallback or billing account.
@@ -227,7 +314,8 @@ class Enricher:
         budget_key = 'wikidata_daily_budget'
         state = json.loads(self.store.state(budget_key) or '{}')
         count = state.get('count', 0) if state.get('day') == day else 0
-        if count >= 500: raise ValueError('Daily free enrichment budget exhausted')
+        if count >= 500-self.request_reserve.get():
+            raise EnrichmentBudgetExhausted('Daily free enrichment budget or display reserve exhausted')
         await asyncio.sleep(max(0, 1-(time.monotonic()-self.last_request)))
         self.store.state(budget_key, json.dumps(dict(day=day, count=count+1)))
         self.last_request = time.monotonic()
@@ -282,16 +370,19 @@ class Enricher:
                         if code: save_cache(self.store, 'country:'+code, result, now, 30*86400)
                 elif kind == 'port':
                     coords = claim_values(entity, 'P625')
-                    valid = [c for c in coords if c.get('globe') == 'http://www.wikidata.org/entity/Q2'
-                             and isinstance(c.get('longitude'), (int, float)) and isinstance(c.get('latitude'), (int, float))
+                    valid = [c for c in coords if isinstance(c, dict) and c.get('globe') == 'http://www.wikidata.org/entity/Q2'
+                             and all(isinstance(c.get(k), (int, float)) and not isinstance(c[k], bool) and math.isfinite(c[k]) for k in ('longitude', 'latitude'))
                              and -180 <= c['longitude'] <= 180 and -85 <= c['latitude'] <= 85]
-                    if len(valid) == 1 and label(entity):
+                    airport_types = {'Q62447', 'Q1248784', 'Q644371', 'Q1181900'}
+                    is_airport = any(isinstance(v, dict) and v.get('id') in airport_types for v in claim_values(entity, 'P31'))
+                    if usable_destination_name(label(entity)) and not is_airport:
                         country = country_name(self.store, key[:2], now)
                         country_id = single_ref(entity, 'P17', now)
                         if country_id and not country:
                             countries = (await self.request(session, action='wbgetentities', ids=country_id, props='labels', languages='en')).get('entities', {})
                             country = label(countries.get(country_id, {}))
-                        result = dict(code=key.replace(' ', ''), name=label(entity), country=country, position=[valid[0]['longitude'], valid[0]['latitude']], **source)
+                        result = dict(code=key.replace(' ', ''), name=label(entity), country=country, **source)
+                        if len(valid) == 1: result['position'] = [valid[0]['longitude'], valid[0]['latitude']]
                 else:
                     refs = {}
                     for prop, title in [('P289', 'Class'), ('P176', 'Builder'), ('P137', 'Operator'),
@@ -333,6 +424,9 @@ class Enricher:
                         result = dict(facts=facts[:4], registry_country=registry_country, built_in=built_in, **source)
             save_cache(self.store, token, result, now, 30*86400 if result else 7*86400)
             return result
+        except EnrichmentBudgetExhausted:
+            # A budget limit says nothing about whether a record exists.
+            return None
         except Exception as exc:
             log.warning('optional_enrichment_unavailable kind=%s error=%s', kind, type(exc).__name__)
             save_cache(self.store, token, None, now, 3600)
@@ -370,9 +464,8 @@ class Enricher:
         async with aiohttp.ClientSession(trust_env=True, timeout=aiohttp.ClientTimeout(total=30, sock_connect=10)) as session:
             while True:
                 await self.portnet(session)
-                try: kind, key = await asyncio.wait_for(self.queue.get(), timeout=60)
-                except asyncio.TimeoutError: continue
-                try: await self.refresh(session, kind, key)
-                finally:
-                    self.pending.discard(kind+':'+key)
-                    self.queue.task_done()
+                self.plan_prefetch()
+                if await self.process_next(session): continue
+                try: await asyncio.wait_for(self.wake.wait(), timeout=60)
+                except asyncio.TimeoutError: pass
+                self.wake.clear()

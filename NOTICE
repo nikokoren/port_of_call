@@ -44,3 +44,11 @@ heuristic; original yearless reported values and timestamps are preserved.
 Curated port blurbs are original factual summaries; per-fact reference URLs are
 retained in port_of_call/port_facts.py and API metadata. Exact LVMRX resolution
 (Mērsrags, Latvia) follows UNECE UN/LOCODE, checked against its published CSV mirror.
+
+Bundled coded-location names: Wikidata structured data, CC0, retrieved on
+11 November 2026 from the public QLever Wikidata mirror and official Wikidata
+query service. Per-entry entity IDs, query text, source hashes and exclusions
+are retained in port_of_call/_locode_data.py and docs/port-reference-snapshot.json.
+https://www.wikidata.org/wiki/Wikidata:Licensing
+https://qlever.dev/wikidata
+No wholesale UNECE directory is included. These names do not supply vessel positions.

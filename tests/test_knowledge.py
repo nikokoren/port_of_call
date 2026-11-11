@@ -101,21 +101,21 @@ class Knowledge(unittest.TestCase):
     def test_prefetch_prefers_a_mover_over_a_larger_stationary_ship(self):
         add(self.store, '230100001', 'BIG STOPPED', dict(imo='9606900', length_m=400), speed=0)
         add(self.store, '230100002', 'SMALL MOVING', dict(imo='9606901', length_m=80), speed=3, x=.002)
-        self.assertEqual(lookups_worth_making(self.store, PORT, self.store.vessels(NOW, 3600), NOW), ['9606901'])
+        self.assertEqual(lookups_worth_making(self.store, PORT, self.store.vessels(NOW, 3600), NOW), ['9606901', '9606900'])
 
     def test_lookahead_is_throttled_and_keeps_a_budget_reserve(self):
         add(self.store, '230300001', 'BIG', dict(imo='9606900', length_m=290, ship_type_code=70))
         add(self.store, '230300002', 'SMALL', dict(imo='9606901', length_m=90, ship_type_code=70), x=.002)
         vessels = self.store.vessels(NOW, 3600, PORT['bbox'])
-        self.assertEqual(lookups_worth_making(self.store, PORT, vessels, NOW), ['9606900'])
+        self.assertEqual(lookups_worth_making(self.store, PORT, vessels, NOW), ['9606900', '9606901'])
         clock = [NOW]
         enricher = Enricher(self.store, 'digitraffic', clock=lambda: clock[0])
         enricher.prefetch(PORT['id'], ['9606900']); enricher.prefetch(PORT['id'], ['9606901'])
-        self.assertEqual(enricher.queue.qsize(), 1)  # once per port per window
+        self.assertEqual(enricher.prefetch_queue.qsize(), 2)  # rolling shortlist, not one ship
         clock[0] += 3*3600
         self.store.state('wikidata_daily_budget', json.dumps(dict(day=datetime.fromtimestamp(clock[0], timezone.utc).strftime('%Y-%m-%d'), count=300)))
         enricher.prefetch(PORT['id'], ['9606901'])
-        self.assertEqual(enricher.queue.qsize(), 1)  # under 250 left today: Spotlight and names keep them
+        self.assertEqual(enricher.prefetch_queue.qsize(), 2)  # under 250 left today: Spotlight and names keep them
         save_cache(self.store, 'ship:9606900', RECORD, NOW, 86400)
         self.assertEqual(lookups_worth_making(self.store, PORT, vessels, NOW), ['9606901'])
 

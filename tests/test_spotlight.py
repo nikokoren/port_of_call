@@ -92,6 +92,19 @@ class Selection(unittest.TestCase):
             self.assertEqual(first[0]['mmsi'],second[0]['mmsi']);self.assertEqual(first[1],second[1])
             remaining=[v for v in s.vessels(NOW,3600) if v['mmsi']!=first[0]['mmsi']]
             self.assertNotEqual(choose(s,PORT,remaining,NOW)[0]['mmsi'],first[0]['mmsi']);s.close()
+    def test_hold_expires_after_one_hour_with_fresh_positions(self):
+        self.assertEqual(HOLD, 3600)
+        put(self.s, 1); put(self.s, 2)
+        vs = self.s.vessels(NOW, 3600)
+        first = choose(self.s, PORT, vs, NOW)
+        for v in vs: v['reported_at'] = iso(NOW+HOLD-10)
+        held = choose(self.s, PORT, vs, NOW+HOLD-1)
+        self.assertEqual(held[0]['mmsi'], first[0]['mmsi'])
+        self.assertEqual(held[1], first[1])
+        replacement = choose(self.s, PORT, vs, NOW+HOLD)
+        self.assertNotEqual(replacement[0]['mmsi'], first[0]['mmsi'])
+        self.assertEqual(replacement[1], NOW+HOLD)
+
     def test_expired_unnamed_or_insufficient_candidates_fallback(self):
         put(self.s,age=901)
         self.assertIsNone(snapshot(self.s,PORT,NOW,spotlight=True)['focus'])
@@ -198,8 +211,8 @@ class Enrichment(unittest.IsolatedAsyncioTestCase):
         self.assertIsNone(resolve_port(self.s,'HAMBURG OR ROTTERDAM',NOW))
         self.assertEqual(resolve_port(self.s,'NLRTM',NOW)['code'],'NLRTM')
     async def test_unlocode_lookup_uses_wikidata_spaced_form(self):
-        # Wikidata stores P1937 as "GB IMM"; AIS gives "GB IMM" or "GBIMM".
-        port=dict(id='Q9', labels={'en':{'value':'Immingham'}}, claims={'P1937':[statement('GB IMM')],
+        # Wikidata stores P1937 as "GB Z99"; AIS gives "GB Z99" or "GBZ99".
+        port=dict(id='Q9', labels={'en':{'value':'Test port'}}, claims={'P1937':[statement('GB Z99')],
                   'P625':[statement(dict(globe='http://www.wikidata.org/entity/Q2',longitude=-0.19,latitude=53.63))]})
         calls=[]
         async def request(session,**params):
@@ -207,15 +220,15 @@ class Enrichment(unittest.IsolatedAsyncioTestCase):
             if params.get('list')=='search': return {'query':{'search':[{'title':'Q9'}]}}
             return {'entities':{'Q9':port}}
         self.e.request=request
-        focus=dict(mmsi='235000001',destination=dict(value='GB IMM'))
+        focus=dict(mmsi='235000001',destination=dict(value='GB Z99'))
         self.e.enqueue(focus)
-        self.assertIn('port:GB IMM',self.e.pending)
+        self.assertIn('port:GB Z99',self.e.pending)
         queued=[self.e.queue.get_nowait() for _ in range(self.e.queue.qsize())]
-        self.assertIn(('port','GB IMM'),queued);kind,key='port','GB IMM'
+        self.assertIn(('port','GB Z99'),queued);kind,key='port','GB Z99'
         result=await self.e.refresh(None,kind,key)
-        self.assertEqual(calls[0]['srsearch'],'haswbstatement:"P1937=GB IMM"')
-        self.assertEqual(result['name'],'Immingham');self.assertEqual(result['code'],'GBIMM')
-        for raw in ('GB IMM','GBIMM','gb imm'):self.assertEqual(resolve_port(self.s,raw,NOW)['name'],'Immingham')
+        self.assertEqual(calls[0]['srsearch'],'haswbstatement:"P1937=GB Z99"')
+        self.assertEqual(result['name'],'Test port');self.assertEqual(result['code'],'GBZ99')
+        for raw in ('GB Z99','GBZ99','gb z99'):self.assertEqual(resolve_port(self.s,raw,NOW)['name'],'Test port')
     async def test_only_relevant_actual_port_call_can_supply_origin(self):
         v=put(self.s,imo='9241061');focus=card(v,NOW,'Reported dimensions',NOW)
         base=dict(port='FIHEL',imo='9241061',mmsi=v['mmsi'],previous='NLRTM',ata=NOW-300,atd=None)
@@ -300,6 +313,18 @@ class FixedViewSpotlight(unittest.TestCase):
         self.assertEqual(data['focus']['mmsi'], edge)
         self.assertEqual(data['viewport'], self.box)
         self.assertEqual(data['camera']['center'], PORT['focus'])
+
+    def test_held_ship_leaving_safe_view_is_replaced_without_waiting(self):
+        original = self.ship(1, .55, .55)
+        first = snapshot(self.s, PORT, NOW, spotlight=True)
+        self.assertEqual(first['focus']['mmsi'], original)
+        replacement = self.ship(2, .7, .65)
+        w, s, e, n = self.box
+        self.s.put(position(original, w+(e-w)*.99, s+(n-s)*.55, NOW-10, NOW, speed=3))
+        data = snapshot(self.s, PORT, NOW+60, spotlight=True)
+        self.assertEqual(data['focus']['mmsi'], replacement)
+        self.assertEqual(data['camera'], first['camera'])
+        self.assertEqual(data['viewport'], first['viewport'])
 
     def test_nothing_visible_falls_back_to_the_overview(self):
         self.ship(1, .2, .15); self.ship(2, .99, .5)

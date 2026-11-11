@@ -15,7 +15,6 @@ from port_of_call.memory_store import MemoryStore
 from port_of_call.model import DEFAULT_SCALE, contains
 from port_of_call.rotation import parse_selection, rotate
 from port_of_call.snapshot import snapshot
-from port_of_call.spotlight import lookups_worth_making
 from port_of_call.payload import encode_snapshot
 from transport import FetchSession
 
@@ -34,14 +33,14 @@ class EdgeStore(MemoryStore):
         self.sql, self.provider = sql, provider
         sql.exec('CREATE TABLE IF NOT EXISTS control(key TEXT PRIMARY KEY, value TEXT)')
         for key, value in sql.exec('SELECT key,value FROM control').raw().toArray():
-            if key == 'wikidata_daily_budget': self.data['states'][key] = value
+            if key in ('wikidata_daily_budget', 'enrichment_prefetch_plans'): self.data['states'][key] = value
             elif key == 'focus:'+provider:
                 saved = json.loads(value)
                 self.data.update(current=saved['current'], history=saved['history'])
 
     def state(self, key, value=None, *, commit=True):
         result = super().state(key, value, commit=commit)
-        if value is not None and key == 'wikidata_daily_budget':
+        if value is not None and key in ('wikidata_daily_budget', 'enrichment_prefetch_plans'):
             self.sql.exec('INSERT OR REPLACE INTO control VALUES (?,?)', key, str(value))
         return result
 
@@ -223,14 +222,8 @@ class Harbor(DurableObject):
             for port in self.active.values():
                 if self.store.current_focus(port['id']):
                     self.enricher.enqueue(snapshot(self.store, port, time.time(), spotlight=True).get('focus'))
-                # Look up the likeliest next subject so Spotlight can prefer known ships.
-                self.enricher.prefetch(port['id'], lookups_worth_making(self.store, port, self.store.vessels(now, TTL, port['bbox']), now))
-            if not self.enricher.queue.empty():
-                kind, key = self.enricher.queue.get_nowait()
-                try: await self.enricher.refresh(self.session, kind, key)
-                finally:
-                    self.enricher.pending.discard(kind+':'+key)
-                    self.enricher.queue.task_done()
+            self.enricher.plan_prefetch(self.active)
+            await self.enricher.process_next(self.session)
             if time.time()-self.last_checkpoint >= CHECKPOINT_SECONDS: self.checkpoint(time.time())
 
     async def alarm(self): await self.tick()

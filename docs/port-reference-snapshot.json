@@ -1,0 +1,16 @@
+{
+  "snapshot_date": "2026-11-11",
+  "licence": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "locations_endpoint": "https://qlever.dev/api/wikidata",
+  "countries_endpoint": "https://query.wikidata.org/sparql",
+  "locations_query": "SELECT ?item ?code ?name WHERE { ?item wdt:P1937 ?code; rdfs:label ?name. FILTER(LANG(?name) = \"en\") FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q62447 } }",
+  "countries_query": "SELECT ?item ?code ?name WHERE { ?item wdt:P297 ?code; rdfs:label ?name. FILTER(LANG(?name) = \"en\") }",
+  "names": 40926,
+  "countries": 247,
+  "ambiguous_location_codes": 2070,
+  "source_sha256": {
+    "qlever-surface-locodes.tsv": "74b4ae814464eabfbfafb7330fa9c854e27b8da7429a7d4faecd369f22b7fc9e",
+    "wikidata-countries.tsv": "a29f598241e00e13a48dd3b9ee8ae1919cb47ea5d122177ac6aa6875ce0213db"
+  },
+  "output_sha256": "68316549be25ecb87a5406863340ed8cbe845d9931f387b91617f8a4e036140e"
+}

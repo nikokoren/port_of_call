@@ -34,7 +34,7 @@
 - keyname: ship_spotlight
   field_type: boolean
   name: Spotlight a ship
-  description: Favor moving vessels with useful voyage details and available facts. Usually holds a ship for up to three hours. Unknown origin stays omitted; no suitable ship shows the harbor overview.
+  description: Favor moving vessels with useful voyage details and available facts. Usually holds a ship for up to one hour. Unknown origin stays omitted; no suitable ship shows the harbor overview.
   default: false
 - keyname: port_facts
   field_type: boolean

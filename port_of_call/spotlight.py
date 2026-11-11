@@ -4,7 +4,7 @@ import math
 from .facts import ship_type, NAVIGATION, text, infer_eta
 from .model import contains, epoch, iso, viewport
 
-HOLD = 3 * 3600
+HOLD = 3600
 COOLDOWN = 24 * 3600
 MAX_AGE = 15 * 60
 PRIORITY_MARGIN = 15  # Comparable information + movement scores compete.
@@ -109,7 +109,7 @@ def choose(store, port, vessels, now):
     return selected, now, reason
 
 
-def lookups_worth_making(store, port, vessels, now, limit=1):
+def lookups_worth_making(store, port, vessels, now, limit=3):
     """IMO numbers of likely Spotlight subjects whose ship record is not yet cached.
 
     Lookups do not add speculative selection points. Prefer moving subjects
