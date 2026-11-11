@@ -1,0 +1,816 @@
+{
+  "schema_version": 1,
+  "display_mode": "map",
+  "port": {
+    "id": "seattle",
+    "name": "Seattle — Elliott Bay",
+    "country": "USA",
+    "timezone": "America/Los_Angeles",
+    "center": [
+      -122.37,
+      47.6
+    ],
+    "focus": [
+      -122.38083,
+      47.63245
+    ],
+    "zoom": 12,
+    "bbox": [
+      -122.45,
+      47.52,
+      -122.29,
+      47.68
+    ],
+    "default_zoom": 10,
+    "provider": "aisstream",
+    "verified": true,
+    "collection": "major15",
+    "region": "us",
+    "coverage_run": "41894534520",
+    "coverage_checked_at": "2026-11-04T19:26:43Z",
+    "coverage_window_seconds": 900,
+    "coverage_distinct_vessels": 366
+  },
+  "port_fact": {
+    "id": "seattle:10",
+    "text": "Every summer, thousands of salmon climb the fish ladder at the Ballard Locks on their way upstream.",
+    "source_url": "https://en.wikipedia.org/wiki/Ballard_Locks"
+  },
+  "viewport": [
+    -122.449495,
+    47.604679,
+    -122.312165,
+    47.660206
+  ],
+  "camera": {
+    "zoom": 12,
+    "center": [
+      -122.38083,
+      47.63245
+    ]
+  },
+  "source": "AISStream",
+  "attribution": null,
+  "snapshot_at": "2026-11-11T21:37:23Z",
+  "fetched_at": "2026-11-11T21:37:23Z",
+  "latest_report_at": "2026-11-11T21:37:20Z",
+  "fetched_local": "13:37 PST",
+  "latest_report_local": "13:37 PST",
+  "latest_report_age_minutes": 0,
+  "status": "ok",
+  "message": "",
+  "demo": false,
+  "focus_requested": false,
+  "focus_mode": "harbor",
+  "focus": null,
+  "focus_message": "",
+  "total": 322,
+  "shown": 40,
+  "omitted": 282,
+  "vessels": [
+    {
+      "mmsi": "366759130",
+      "position": [
+        -122.42964,
+        47.61166
+      ],
+      "reported_at": "2026-11-11T21:36:23Z",
+      "heading_deg": 80.0,
+      "course_deg": 80.4,
+      "speed_knots": 17.6,
+      "navigation_status": 0,
+      "name": "WSF PUYALLUP",
+      "type": "passenger",
+      "voyage": "To Ferry",
+      "length_m": 140,
+      "bearing_deg": 80.0,
+      "stale": false,
+      "label_rank": 1
+    },
+    {
+      "mmsi": "368236240",
+      "position": [
+        -122.43074,
+        47.61847
+      ],
+      "reported_at": "2026-11-11T21:21:14Z",
+      "heading_deg": null,
+      "course_deg": 133.0,
+      "speed_knots": 4.7,
+      "navigation_status": null,
+      "name": "THE BEAGLE",
+      "type": "other",
+      "bearing_deg": 133.0,
+      "stale": false,
+      "label_rank": 13
+    },
+    {
+      "mmsi": "338234604",
+      "position": [
+        -122.43104,
+        47.64423
+      ],
+      "reported_at": "2026-11-11T21:13:08Z",
+      "heading_deg": 199.0,
+      "course_deg": 207.0,
+      "speed_knots": 3.8,
+      "navigation_status": null,
+      "name": "WALL-E",
+      "type": "other",
+      "length_m": 10,
+      "bearing_deg": 199.0,
+      "stale": false,
+      "label_rank": 9
+    },
+    {
+      "mmsi": "368135730",
+      "position": [
+        -122.38518,
+        47.61982
+      ],
+      "reported_at": "2026-11-11T21:36:13Z",
+      "heading_deg": 6.0,
+      "course_deg": 5.0,
+      "speed_knots": 7.4,
+      "navigation_status": 0,
+      "name": "ORCA II",
+      "type": "passenger",
+      "voyage": "To Seattle, US",
+      "length_m": 24,
+      "bearing_deg": 6.0,
+      "stale": false,
+      "label_rank": 2
+    },
+    {
+      "mmsi": "368032000",
+      "position": [
+        -122.38093,
+        47.62921
+      ],
+      "reported_at": "2026-11-11T21:16:14Z",
+      "heading_deg": 358.0,
+      "course_deg": 323.4,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "OCEAN ROVER",
+      "type": "fishing",
+      "voyage": "To Seattle, US",
+      "length_m": 64,
+      "bearing_deg": 358.0,
+      "stale": false,
+      "label_rank": 36
+    },
+    {
+      "mmsi": "338423000",
+      "position": [
+        -122.38238,
+        47.65835
+      ],
+      "reported_at": "2026-11-11T21:28:50Z",
+      "heading_deg": 358.0,
+      "course_deg": 225.0,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "SAFARI ENDEAVOUR",
+      "type": "passenger",
+      "voyage": "To Seattle, US",
+      "bearing_deg": 358.0,
+      "stale": false,
+      "label_rank": 31
+    },
+    {
+      "mmsi": "369021000",
+      "position": [
+        -122.37797,
+        47.61664
+      ],
+      "reported_at": "2026-11-11T21:36:44Z",
+      "heading_deg": null,
+      "course_deg": 181.1,
+      "speed_knots": 8.6,
+      "navigation_status": 0,
+      "name": "SWIFT ARROW",
+      "type": "other",
+      "length_m": 14,
+      "bearing_deg": 181.1,
+      "stale": false,
+      "label_rank": 4
+    },
+    {
+      "mmsi": "538008672",
+      "position": [
+        -122.37147,
+        47.62407
+      ],
+      "reported_at": "2026-11-11T21:37:00Z",
+      "heading_deg": 133.0,
+      "course_deg": 67.3,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "PRINCESS A",
+      "type": "cargo",
+      "voyage": "To Seattle, US",
+      "length_m": 229,
+      "bearing_deg": 133.0,
+      "stale": false,
+      "label_rank": 5
+    },
+    {
+      "mmsi": "303683000",
+      "position": [
+        -122.3749,
+        47.65717
+      ],
+      "reported_at": "2026-11-11T21:28:48Z",
+      "heading_deg": 270.0,
+      "course_deg": 32.6,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "COASTAL NOMAD",
+      "type": "cargo",
+      "voyage": "To Seattle, US",
+      "length_m": 74,
+      "bearing_deg": 270.0,
+      "stale": false,
+      "label_rank": 12
+    },
+    {
+      "mmsi": "311001249",
+      "position": [
+        -122.35357,
+        47.61346
+      ],
+      "reported_at": "2026-11-11T21:26:02Z",
+      "heading_deg": 86.0,
+      "course_deg": 179.1,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "VICTORIA CLIPPER V",
+      "type": "other",
+      "voyage": "To Seattle, US",
+      "length_m": 51,
+      "bearing_deg": 86.0,
+      "stale": false,
+      "label_rank": 39
+    },
+    {
+      "mmsi": "369307000",
+      "position": [
+        -122.35975,
+        47.61592
+      ],
+      "reported_at": "2026-11-11T21:36:43Z",
+      "heading_deg": 309.0,
+      "course_deg": 311.4,
+      "speed_knots": 6.4,
+      "navigation_status": 0,
+      "name": "SALISH EXPLORER",
+      "type": null,
+      "voyage": "Activity: Local tour",
+      "length_m": 38,
+      "bearing_deg": 309.0,
+      "stale": false,
+      "label_rank": 3
+    },
+    {
+      "mmsi": "368148750",
+      "position": [
+        -122.36344,
+        47.6536
+      ],
+      "reported_at": "2026-11-11T21:04:48Z",
+      "heading_deg": null,
+      "course_deg": 26.6,
+      "speed_knots": 0.0,
+      "navigation_status": null,
+      "name": "TWIN ISLES",
+      "type": "other",
+      "length_m": 20,
+      "bearing_deg": null,
+      "stale": true,
+      "label_rank": 38
+    },
+    {
+      "mmsi": "367013040",
+      "position": [
+        -122.34081,
+        47.60487
+      ],
+      "reported_at": "2026-11-11T21:24:55Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "GOODTIME II",
+      "type": "passenger",
+      "length_m": 27,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 15
+    },
+    {
+      "mmsi": "367587270",
+      "position": [
+        -122.33433,
+        47.62824
+      ],
+      "reported_at": "2026-11-11T21:08:47Z",
+      "heading_deg": null,
+      "course_deg": 178.3,
+      "speed_knots": 2.0,
+      "navigation_status": null,
+      "name": "PETER H",
+      "type": "other",
+      "length_m": 7,
+      "bearing_deg": 178.3,
+      "stale": false,
+      "label_rank": 16
+    },
+    {
+      "mmsi": "366062000",
+      "position": [
+        -122.32976,
+        47.63527
+      ],
+      "reported_at": "2026-11-11T21:36:27Z",
+      "heading_deg": 129.0,
+      "course_deg": 290.0,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "NORTHERN HAWK",
+      "type": "fishing",
+      "voyage": "To Seattle, US",
+      "length_m": 109,
+      "bearing_deg": 129.0,
+      "stale": false,
+      "label_rank": 26
+    },
+    {
+      "mmsi": "367070510",
+      "position": [
+        -122.33995,
+        47.64634
+      ],
+      "reported_at": "2026-11-11T21:30:05Z",
+      "heading_deg": null,
+      "course_deg": 112.5,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "BLUEFIN",
+      "type": "cargo",
+      "voyage": "To Seattle, US",
+      "length_m": 50,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 20
+    },
+    {
+      "mmsi": "366968070",
+      "position": [
+        -122.32897,
+        47.63242
+      ],
+      "reported_at": "2026-11-11T21:25:58Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "ZODIAC",
+      "type": "other",
+      "voyage": "To Bellingham",
+      "length_m": 34,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 21
+    },
+    {
+      "mmsi": "368401340",
+      "position": [
+        -122.32848,
+        47.63388
+      ],
+      "reported_at": "2026-11-11T21:30:56Z",
+      "heading_deg": null,
+      "course_deg": 265.8,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "MITCHELL C",
+      "type": "cargo",
+      "voyage": "To Seattle, US",
+      "length_m": 46,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 23
+    },
+    {
+      "mmsi": "368048220",
+      "position": [
+        -122.32755,
+        47.64669
+      ],
+      "reported_at": "2026-11-11T21:25:39Z",
+      "heading_deg": 294.0,
+      "course_deg": 35.0,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "LIBERTY",
+      "type": "other",
+      "voyage": "To Seattle, US",
+      "length_m": 33,
+      "bearing_deg": 294.0,
+      "stale": false,
+      "label_rank": 40
+    },
+    {
+      "mmsi": "368231780",
+      "position": [
+        -122.32124,
+        47.65277
+      ],
+      "reported_at": "2026-11-11T21:37:08Z",
+      "heading_deg": null,
+      "course_deg": 100.7,
+      "speed_knots": 6.7,
+      "navigation_status": null,
+      "name": "WIN THE DAY",
+      "type": "other",
+      "length_m": 13,
+      "bearing_deg": 100.7,
+      "stale": false,
+      "label_rank": 7
+    },
+    {
+      "mmsi": "367741830",
+      "position": [
+        -122.38205,
+        47.6295
+      ],
+      "reported_at": "2026-11-11T21:28:45Z",
+      "heading_deg": 179.0,
+      "course_deg": 7.3,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "BLUE NORTH",
+      "type": "fishing",
+      "voyage": "Activity: Fishing grounds",
+      "length_m": 58,
+      "bearing_deg": 179.0,
+      "stale": false,
+      "label_rank": 6
+    },
+    {
+      "mmsi": "367705000",
+      "position": [
+        -122.38149,
+        47.65887
+      ],
+      "reported_at": "2026-11-11T21:36:54Z",
+      "heading_deg": 178.0,
+      "course_deg": 271.0,
+      "speed_knots": 0.0,
+      "navigation_status": 8,
+      "name": "ROLLO",
+      "type": "fishing",
+      "voyage": "To Tendering",
+      "length_m": 31,
+      "bearing_deg": 178.0,
+      "stale": false,
+      "label_rank": 8
+    },
+    {
+      "mmsi": "369915000",
+      "position": [
+        -122.37943,
+        47.62841
+      ],
+      "reported_at": "2026-11-11T21:26:22Z",
+      "heading_deg": 180.0,
+      "course_deg": 270.0,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "CG FIR",
+      "type": "other",
+      "voyage": "To Cordova",
+      "length_m": 68,
+      "bearing_deg": 180.0,
+      "stale": false,
+      "label_rank": 18
+    },
+    {
+      "mmsi": "367704540",
+      "position": [
+        -122.37522,
+        47.65735
+      ],
+      "reported_at": "2026-11-11T21:29:38Z",
+      "heading_deg": 0.0,
+      "course_deg": 263.4,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "COASTAL STANDARD",
+      "type": "cargo",
+      "voyage": "To Seattle, US",
+      "length_m": 73,
+      "bearing_deg": 0.0,
+      "stale": false,
+      "label_rank": 17
+    },
+    {
+      "mmsi": "368252610",
+      "position": [
+        -122.34672,
+        47.60956
+      ],
+      "reported_at": "2026-11-11T21:36:57Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": null,
+      "name": "APOGEE",
+      "type": "other",
+      "length_m": 19,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 32
+    },
+    {
+      "mmsi": "367540040",
+      "position": [
+        -122.33214,
+        47.63022
+      ],
+      "reported_at": "2026-11-11T21:16:25Z",
+      "heading_deg": 38.0,
+      "course_deg": 34.9,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "EXCELLENCE",
+      "type": "other",
+      "voyage": "Activity: Local operations",
+      "length_m": 40,
+      "bearing_deg": 38.0,
+      "stale": false,
+      "label_rank": 19
+    },
+    {
+      "mmsi": "368032570",
+      "position": [
+        -122.3301,
+        47.63298
+      ],
+      "reported_at": "2026-11-11T21:29:16Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "HIYU",
+      "type": "passenger",
+      "length_m": 45,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 11
+    },
+    {
+      "mmsi": "366778440",
+      "position": [
+        -122.34267,
+        47.6424
+      ],
+      "reported_at": "2026-11-11T21:23:59Z",
+      "heading_deg": null,
+      "course_deg": 291.9,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "MIST COVE",
+      "type": "passenger",
+      "voyage": "To Seattle, US",
+      "length_m": 48,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 24
+    },
+    {
+      "mmsi": "367390380",
+      "position": [
+        -122.32862,
+        47.63478
+      ],
+      "reported_at": "2026-11-11T21:28:19Z",
+      "heading_deg": 254.0,
+      "course_deg": 254.0,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "SEAFREEZE ALASKA",
+      "type": "fishing",
+      "voyage": "To Seattle, US",
+      "length_m": 90,
+      "bearing_deg": 254.0,
+      "stale": false,
+      "label_rank": 35
+    },
+    {
+      "mmsi": "368005670",
+      "position": [
+        -122.31292,
+        47.64946
+      ],
+      "reported_at": "2026-11-11T21:19:18Z",
+      "heading_deg": 137.0,
+      "course_deg": 102.3,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "RACHEL CARSON",
+      "type": "other",
+      "voyage": "To Shilshole",
+      "length_m": 22,
+      "bearing_deg": 137.0,
+      "stale": false,
+      "label_rank": 22
+    },
+    {
+      "mmsi": "368247630",
+      "position": [
+        -122.32353,
+        47.65152
+      ],
+      "reported_at": "2026-11-11T21:28:16Z",
+      "heading_deg": null,
+      "course_deg": 206.6,
+      "speed_knots": 0.0,
+      "navigation_status": null,
+      "name": "WANDERLOST",
+      "type": "other",
+      "length_m": 19,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 30
+    },
+    {
+      "mmsi": "367650780",
+      "position": [
+        -122.38089,
+        47.62691
+      ],
+      "reported_at": "2026-11-11T21:30:04Z",
+      "heading_deg": 359.0,
+      "course_deg": 68.0,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "ARAHO",
+      "type": "fishing",
+      "voyage": "To Seattle, US",
+      "length_m": 57,
+      "bearing_deg": 359.0,
+      "stale": false,
+      "label_rank": 37
+    },
+    {
+      "mmsi": "366993790",
+      "position": [
+        -122.38088,
+        47.66014
+      ],
+      "reported_at": "2026-11-11T21:29:44Z",
+      "heading_deg": 184.0,
+      "course_deg": 224.0,
+      "speed_knots": 0.0,
+      "navigation_status": 5,
+      "name": "KATHLEEN K",
+      "type": "fishing",
+      "voyage": "Activity: Fishing",
+      "length_m": 30,
+      "bearing_deg": 184.0,
+      "stale": false,
+      "label_rank": 10
+    },
+    {
+      "mmsi": "367525770",
+      "position": [
+        -122.36799,
+        47.65473
+      ],
+      "reported_at": "2026-11-11T21:36:20Z",
+      "heading_deg": null,
+      "course_deg": 356.0,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "TUGIDAK",
+      "type": "cargo",
+      "voyage": "To Seattle, US",
+      "length_m": 40,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 28
+    },
+    {
+      "mmsi": "338448706",
+      "position": [
+        -122.34732,
+        47.61006
+      ],
+      "reported_at": "2026-11-11T21:21:02Z",
+      "heading_deg": null,
+      "course_deg": 273.5,
+      "speed_knots": 0.1,
+      "navigation_status": null,
+      "name": "THAYTS M'BOAT",
+      "type": "other",
+      "length_m": 18,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 34
+    },
+    {
+      "mmsi": "367078680",
+      "position": [
+        -122.33217,
+        47.6295
+      ],
+      "reported_at": "2026-11-11T21:18:06Z",
+      "heading_deg": null,
+      "course_deg": 281.0,
+      "speed_knots": 0.1,
+      "navigation_status": null,
+      "name": "DAWN TREADER 7",
+      "type": "other",
+      "length_m": 30,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 25
+    },
+    {
+      "mmsi": "368422060",
+      "position": [
+        -122.33928,
+        47.63447
+      ],
+      "reported_at": "2026-11-11T21:17:26Z",
+      "heading_deg": null,
+      "course_deg": null,
+      "speed_knots": 0.0,
+      "navigation_status": null,
+      "name": "BLACK KNIGHT",
+      "type": "other",
+      "length_m": 27,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 27
+    },
+    {
+      "mmsi": "366499000",
+      "position": [
+        -122.33971,
+        47.64604
+      ],
+      "reported_at": "2026-11-11T21:36:46Z",
+      "heading_deg": 43.0,
+      "course_deg": 253.0,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "KATIE ANN",
+      "type": "fishing",
+      "voyage": "To Seattle, US",
+      "length_m": 96,
+      "bearing_deg": 43.0,
+      "stale": false,
+      "label_rank": 33
+    },
+    {
+      "mmsi": "367754690",
+      "position": [
+        -122.32874,
+        47.635
+      ],
+      "reported_at": "2026-11-11T21:36:31Z",
+      "heading_deg": null,
+      "course_deg": 337.9,
+      "speed_knots": 0.0,
+      "navigation_status": 0,
+      "name": "ALASKA CHIEFTAIN",
+      "type": "fishing",
+      "voyage": "To Homer",
+      "length_m": 28,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 14
+    },
+    {
+      "mmsi": "367648570",
+      "position": [
+        -122.3277,
+        47.64662
+      ],
+      "reported_at": "2026-11-11T21:19:32Z",
+      "heading_deg": null,
+      "course_deg": 305.1,
+      "speed_knots": 0.0,
+      "navigation_status": null,
+      "name": "CAPER",
+      "type": "other",
+      "length_m": 21,
+      "bearing_deg": null,
+      "stale": false,
+      "label_rank": 29
+    }
+  ]
+}

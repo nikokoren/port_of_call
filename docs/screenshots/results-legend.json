@@ -20,6 +20,8 @@
       "legendVisible": true,
       "legendInside": true,
       "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
       "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
@@ -46,7 +48,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3910885416666667
+      "inkFraction": 0.38890885416666665
     },
     "errors": []
   },
@@ -71,6 +73,8 @@
       "legendVisible": true,
       "legendInside": true,
       "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
       "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
@@ -97,7 +101,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3988515625
+      "inkFraction": 0.3980989583333333
     },
     "errors": []
   },
@@ -122,6 +126,8 @@
       "legendVisible": true,
       "legendInside": true,
       "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
       "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
@@ -148,7 +154,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.8277057291666666
+      "inkFraction": 0.8304869791666667
     },
     "errors": []
   },
@@ -173,6 +179,8 @@
       "legendVisible": true,
       "legendInside": true,
       "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
       "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
@@ -199,7 +207,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.205203125
+      "inkFraction": 0.20418489583333332
     },
     "errors": []
   },
@@ -224,6 +232,8 @@
       "legendVisible": true,
       "legendInside": true,
       "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
       "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
@@ -250,7 +260,7 @@
     "pixels": {
       "width": 3370,
       "height": 2527,
-      "inkFraction": 0.2883927764123725
+      "inkFraction": 0.29042800660874424
     },
     "errors": []
   },
@@ -275,6 +285,8 @@
       "legendVisible": true,
       "legendInside": true,
       "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
       "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
@@ -301,7 +313,7 @@
     "pixels": {
       "width": 2527,
       "height": 3370,
-      "inkFraction": 0.7573834633436629
+      "inkFraction": 0.7739316274443723
     },
     "errors": []
   },
@@ -326,6 +338,8 @@
       "legendVisible": true,
       "legendInside": true,
       "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
       "legendIconsValid": true,
       "spotlightInside": true,
       "spotlightClear": true,
@@ -352,7 +366,113 @@
     "pixels": {
       "width": 480,
       "height": 800,
-      "inkFraction": 0.4228671875
+      "inkFraction": 0.42140625
+    },
+    "errors": []
+  },
+  {
+    "name": "legend-seattle",
+    "ready": "true",
+    "markers": 19,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.018628968584270492,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 3,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 8,
+      "leaders": 8,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.27567708333333335
+    },
+    "errors": []
+  },
+  {
+    "name": "legend-seattle-x",
+    "ready": "true",
+    "markers": 28,
+    "attribution": true,
+    "overflow": false,
+    "text": "Vessel feed unavailable",
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 11.999999152289496,
+        "bottom": 12.000054253472285
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.018632819984675322,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 10,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 16,
+      "leaders": 16,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 3370,
+      "height": 2527,
+      "inkFraction": 0.4857569114101825
     },
     "errors": []
   }

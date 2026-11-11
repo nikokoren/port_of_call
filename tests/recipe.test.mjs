@@ -184,8 +184,10 @@ test('vessel legend is optional and appears only on full-screen maps',async()=>{
    const legend=html.match(/<aside[^>]*data-poc-legend[^>]*>([\s\S]*?)<\/aside>/);
    assert.equal(!!legend,layout==='full'&&[true,'true','on'].includes(value));
    if(legend){
+    assert.match(legend[0],/class="poc__legend inline-flex/);
+    assert.doesNotMatch(legend[0].split('>')[0],/outline|bg--canvas|p--2/);
     for(const shape of ['freighter','passenger','fishing','small','ship'])assert.ok(legend[1].includes(`data-poc-hull="${shape}"`));
-    for(const name of ['Cargo / tanker','Passenger','Fishing','Other craft','Unknown'])assert.ok(legend[1].includes(name));
+    for(const name of ['Cargo/tanker','Passenger','Fishing','Other','Unknown'])assert.ok(legend[1].includes(name));
    }
   }
  }

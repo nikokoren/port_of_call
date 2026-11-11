@@ -56,6 +56,11 @@ export function geometry(root=document.querySelector('.poc')) {
   portFactVisible:!!root.querySelector('[data-poc-port-fact]')&&root.querySelector('[data-poc-port-fact]').getBoundingClientRect().height>0,
   legendVisible:!!legend,legendInside:!legend||inside(legend),
   legendClear:!legend||![card,...credits].some(b=>hit(legend,b)),
+  // Beside the port card, credits must stay at the bottom edge. On portrait
+  // screens the complete key/credit group may wrap immediately above the card.
+  legendDocked:!legend||legend[3]<=card[1]||H-Math.max(...credits.map(b=>b[3]))<=edge+4,
+  legendCompact:!legendNode||(getComputedStyle(legendNode).backgroundColor==='rgba(0, 0, 0, 0)'&&
+    parseFloat(getComputedStyle(legendNode).borderTopWidth)===0&&legendNode.offsetHeight<=48*(parseFloat(getComputedStyle(root).getPropertyValue('--content-scale'))||1)),
   legendIconsValid:!legendNode||(()=>{const paths=[...legendNode.querySelectorAll('svg path')].map(n=>n.getAttribute('d'));return paths.length===5&&paths.every(Boolean)&&new Set(paths).size===5;})(),
   spotlightInside:!overlay||inside(overlay),spotlightClear:!overlay||(!fixed.some(b=>hit(overlay,b))&&(!featured||!hit(overlay,featured.box))),
   spotlightConnected,spotlightVisible:!!overlay,
