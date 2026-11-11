@@ -21,7 +21,7 @@ http.createServer(async(req,res)=>{
   const factor=Number(u.searchParams.get('frame'));
   if(factor>0&&factor<=1&&data.viewport){const [w,s,e,n]=data.viewport,x=(w+e)/2,y=(s+n)/2;
    data.viewport=[x-(e-w)*factor/2,y-(n-s)*factor/2,x+(e-w)*factor/2,y+(n-s)*factor/2];}
-  let markup=(await render(layout,data,{ship_labels:u.searchParams.get('labels')==='on',port_facts:u.searchParams.get('facts')==='true'}))
+  let markup=(await render(layout,data,{ship_labels:u.searchParams.get('labels')==='on',port_facts:u.searchParams.get('facts')==='true',map_legend:u.searchParams.get('legend')==='true'}))
    .replaceAll('https://trmnl.com/js/maplibre-gl/5.24.0/','/assets/');
   let provenance='';
   if(!data.demo) {

@@ -20,7 +20,9 @@ export function geometry(root=document.querySelector('.poc')) {
   maxProjectionError=Math.max(maxProjectionError,Math.hypot((r[0]+r[2])/2-p.x,(r[1]+r[3])/2-p.y));
  });
  const labels=[...root.querySelectorAll('.poc__label')].map(rect);
- const fixed=[card,...credits];
+ const legendNode=root.querySelector('[data-poc-legend]');
+ const legend=legendNode?rect(legendNode):null;
+ const fixed=[card,...credits,...(legend?[legend]:[])];
  const overlayNode=root.querySelector('[data-poc-spotlight]');
  const overlay=overlayNode&&!overlayNode.classList.contains('poc__spotlight--pending')&&!overlayNode.hidden?rect(overlayNode):null;
  const reserved=fixed.concat(overlay?[overlay]:[]);
@@ -52,6 +54,9 @@ export function geometry(root=document.querySelector('.poc')) {
  return {cardInside:inside(card),cardInset:inset,cardAtCorner:inset.left>=-1&&inset.left<=edge&&inset.bottom>=-1&&inset.bottom<=edge,attributionInside:credits.length>0&&credits.every(inside),attributionClear:credits.length>0&&credits.every(c=>!hit(card,c)),
   attributionTight:[...root.querySelectorAll('.map__attribution')].every(n=>getComputedStyle(n).display==='inline')&&getComputedStyle(root.querySelector('[data-poc-sources]')).backgroundColor==='rgba(0, 0, 0, 0)',
   portFactVisible:!!root.querySelector('[data-poc-port-fact]')&&root.querySelector('[data-poc-port-fact]').getBoundingClientRect().height>0,
+  legendVisible:!!legend,legendInside:!legend||inside(legend),
+  legendClear:!legend||![card,...credits].some(b=>hit(legend,b)),
+  legendIconsValid:!legendNode||(()=>{const paths=[...legendNode.querySelectorAll('svg path')].map(n=>n.getAttribute('d'));return paths.length===5&&paths.every(Boolean)&&new Set(paths).size===5;})(),
   spotlightInside:!overlay||inside(overlay),spotlightClear:!overlay||(!fixed.some(b=>hit(overlay,b))&&(!featured||!hit(overlay,featured.box))),
   spotlightConnected,spotlightVisible:!!overlay,
   spotlightInverted:!focusId||!!(overlay&&overlayNode.classList.contains('inverse')&&getComputedStyle(overlayNode).backgroundColor!==getComputedStyle(overlayNode.querySelector('.title')).color),
@@ -66,5 +71,5 @@ export function geometry(root=document.querySelector('.poc')) {
   labelContentsValid:[...root.querySelectorAll('.poc__label')].every(n=>{const v=[...root.querySelectorAll('.poc__data li')].find(v=>v.dataset.id===n.dataset.id);return v&&n.querySelector('.font--bold')?.textContent===v.dataset.name&&(!n.querySelector('.poc__label-route')||n.querySelector('.poc__label-route').textContent===v.dataset.voyage)&&getComputedStyle(n).backgroundColor===getComputedStyle(root.querySelector('[data-poc-box]')).backgroundColor;}),
   labelsOutside:labels.filter(b=>!inside(b)).length,labels:labels.length,
   leaders:root.querySelectorAll('.poc__leader').length,
-  textOverflow:[...root.querySelectorAll('[data-poc-box] > span,[data-poc-spotlight] > span,[data-poc-details] > span,[data-poc-highlights] > span')].filter(n=>n.offsetWidth&&n.scrollWidth>n.clientWidth+2).length};
+  textOverflow:[...root.querySelectorAll('[data-poc-box] > span,[data-poc-spotlight] > span,[data-poc-details] > span,[data-poc-highlights] > span,[data-poc-legend] > span')].filter(n=>n.offsetWidth&&n.scrollWidth>n.clientWidth+2).length};
 }

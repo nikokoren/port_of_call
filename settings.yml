@@ -45,6 +45,11 @@ custom_fields:
     name: Show ship labels?
     description: Outlined labels show ship names and available voyage details in overview and Spotlight views. Missing origins stay omitted. Fewer labels fit in compact views.
     default: false
+  - keyname: map_legend
+    field_type: boolean
+    name: Show vessel legend?
+    description: Explain the five vessel shapes at the bottom of the full-screen map. Hidden in half and quadrant layouts.
+    default: false
   - keyname: ship_spotlight
     field_type: boolean
     name: Spotlight a ship

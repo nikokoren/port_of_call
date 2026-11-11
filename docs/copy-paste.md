@@ -17,6 +17,6 @@ Use [settings.yml](../settings.yml) for the other plugin settings: polling strat
 https://port-of-call-world.5g5wqr7kzx-466.workers.dev/api/v1/vessels?harbors={{ harbor | join: ',' }}&spotlight={{ ship_spotlight }}
 ```
 
-Save the fields and templates, then choose your harbors and refresh. Leaving the harbor selection empty cycles through all sixteen; selecting one keeps that port. Ship labels, Spotlight and port facts are optional settings. The map stays on the curated harbor view when Spotlight is enabled.
+Save the fields and templates, then choose your harbors and refresh. Leaving the harbor selection empty cycles through all sixteen; selecting one keeps that port. Ship labels, Spotlight, port facts and the vessel legend are optional settings. **Show vessel legend?** adds a five-shape key beside the port card, above the map credits, on full-screen maps only. The map stays on the curated harbor view when Spotlight is enabled.
 
 For future recipe updates, copy the changed files into the same editor tabs. When maintaining the field definitions in this repository, edit `settings.yml` and run `python scripts/sync_custom_fields.py` to refresh the standalone field array. The tests check that both definitions agree.

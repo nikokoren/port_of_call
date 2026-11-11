@@ -7,6 +7,9 @@
 .poc__corner { z-index:7; }
 .poc__box { flex-shrink:0; }
 .poc__credits { flex:1 1 0; min-width:min-content; }
+.poc__credits--legend { min-width:30cqw; align-self:flex-end; }
+.poc__legend > span { white-space:nowrap; }
+.poc__legend svg { flex-shrink:0; fill:currentColor; stroke:currentColor; stroke-width:1; stroke-linejoin:round; }
 /* Credits sit beside the harbor card when their longest word fits there, and
    move to a line above it when not, so no word is ever cut. */
 .poc .poc__corner { flex-wrap:wrap-reverse; align-items:flex-start; justify-content:flex-start; }
@@ -151,6 +154,7 @@
       function scale() {return Math.max(1,parseFloat(getComputedStyle(el.closest('.screen')).getPropertyValue('--ui-scale'))||1);}
       function blockers() {
         var base=el.getBoundingClientRect(),k=pixelRatio(),boxes=[rect(box)];
+        el.querySelectorAll('[data-poc-legend]').forEach(function(n){boxes.push(rect(n));});
         el.querySelectorAll('.map__attribution').forEach(function(n){
           Array.from(n.getClientRects()).forEach(function(r){boxes.push(local(r,base,k));});
         });
@@ -197,6 +201,12 @@
         fishing:'M9 3 L14 11 L13.5 20 L9 17 L4.5 20 L4 11 Z',
         small:'M9 2 L12.5 9 L12 20 L6 20 L5.5 9 Z',
         ship:'M9 1 L15 10 L13 20 L5 20 L3 10 Z'};
+      // Use the map's exact hull paths in the optional key; one shape dictionary
+      // keeps the legend consistent with markers in every theme and screen size.
+      el.querySelectorAll('[data-poc-hull]').forEach(function(svg){
+        var path=document.createElementNS('http://www.w3.org/2000/svg','path');
+        path.setAttribute('d',HULLS[svg.dataset.pocHull]);svg.appendChild(path);
+      });
       function hullOf(type){return type==='cargo'||type==='tanker'?'freighter':type==='passenger'?'passenger':type==='fishing'?'fishing':type==='other'?'small':'ship';}
       // Three sizes by reported length; without one, small craft types stay small.
       function sizeOf(length,type){

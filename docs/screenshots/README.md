@@ -69,3 +69,10 @@ The six added cases use the existing genuine 5 November 2026 archive. Optional v
 ## Port facts and compact credits
 
 Six additional cases enable **Show port facts?**: [full overview](facts-full.png), [dark full Spotlight](facts-full-dark.png), [half vertical](facts-half-vertical.png), [OG quadrant](facts-quadrant.png), [X quadrant](facts-x-quadrant.png) and [portrait](facts-portrait.png). The OG quadrant deliberately hides the optional blurb; X shows it. Geometry checks ensure the card stays bottom-left and credits remain inline with a transparent wrapper, alongside label/leader clearance. All fixtures retain their original vessel positions and timestamps. `LVMRX` is rendered as Mērsrags and FAIRWAY WORKS as an activity; neither changes source data.
+
+
+## Optional vessel legend
+
+**Show vessel legend?** is off by default. On full-screen maps it adds the five actual hull silhouettes above the source credits, beside the harbor card: Cargo / tanker, Passenger, Fishing, Other craft, and Unknown. The key uses the same JavaScript shape dictionary as the markers; other craft covers the broad AIS category including service vessels and leisure craft. Native canvas, outline, flex, spacing and small-label roles handle its appearance and wrapping. It is omitted from half and quadrant layouts.
+
+[Overview](legend-overview.png), [Spotlight](legend-spotlight.png), [dark](legend-dark.png), [one-bit](legend-one-bit.png), [X landscape](legend-x.png), [X portrait](legend-portrait.png), and [OG portrait](legend-og-portrait.png) use the unchanged genuine archived AIS fixtures from 5 November 2026. These are historical browser previews, not current traffic. All seven enable port facts and ship labels to check clearance under a fuller layout. The geometry checks reserve the legend against ship markers, labels, Spotlight and connector lines, verify five distinct paths, preserve the bottom-left harbor card, and reject overflow or overlapping credits. Results are recorded in [results-legend.json](results-legend.json).

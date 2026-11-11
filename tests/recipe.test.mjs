@@ -173,3 +173,20 @@ test('copy-and-paste custom fields match the canonical live settings',async()=>{
  const live=JSON.parse(await readFile('deploy/release.json','utf8'));
  assert.ok(settings.polling_url.startsWith(live.origin+'/api/v1/vessels?'));
 });
+
+test('vessel legend is optional and appears only on full-screen maps',async()=>{
+ const field=settings.custom_fields.find(f=>f.keyname==='map_legend');
+ assert.equal(field.field_type,'boolean');assert.equal(field.default,false);
+ for(const layout of layouts){
+  assert.doesNotMatch(await render(layout,fixture),/<aside[^>]*data-poc-legend/);
+  for(const value of [true,'true','on',false,'false',undefined]){
+   const html=await render(layout,fixture,{map_legend:value});
+   const legend=html.match(/<aside[^>]*data-poc-legend[^>]*>([\s\S]*?)<\/aside>/);
+   assert.equal(!!legend,layout==='full'&&[true,'true','on'].includes(value));
+   if(legend){
+    for(const shape of ['freighter','passenger','fishing','small','ship'])assert.ok(legend[1].includes(`data-poc-hull="${shape}"`));
+    for(const name of ['Cargo / tanker','Passenger','Fishing','Other craft','Unknown'])assert.ok(legend[1].includes(name));
+   }
+  }
+ }
+});

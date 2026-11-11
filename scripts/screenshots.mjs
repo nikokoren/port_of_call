@@ -2,7 +2,7 @@ import {chromium} from 'playwright';
 import {geometry} from './visual-geometry.mjs';
 import {previewPixels} from './preview-pixels.mjs';
 import {mkdir,writeFile} from 'node:fs/promises';
-const browser=await chromium.launch({headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_EXECUTABLE_PATH,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 const cases=[
  ['og-helsinki','full','og','helsinki'],['og-turku','full','og','turku'],['og-rauma','full','og','rauma'],
  ['og-half-horizontal','half_horizontal','og','helsinki'],['og-half-vertical','half_vertical','og','helsinki'],
@@ -29,14 +29,21 @@ const cases=[
  ['facts-half-vertical','half_vertical','og','turku-spotlight',false,false,'on',true],
  ['facts-quadrant','quadrant','og','rauma-spotlight',false,false,'on',true],
  ['facts-x-quadrant','quadrant','x','rauma-spotlight',false,false,'on',true],
- ['facts-portrait','full','portrait','helsinki-spotlight',false,false,'on',true]
+ ['facts-portrait','full','portrait','helsinki-spotlight',false,false,'on',true],
+ ['legend-overview','full','og','rauma-labels',false,false,'on',true,true],
+ ['legend-spotlight','full','og','rauma-spotlight',false,false,'on',true,true],
+ ['legend-dark','full','og','rauma-spotlight',true,false,'on',true,true],
+ ['legend-one-bit','full','onebit','rauma-labels',false,false,'on',true,true],
+ ['legend-x','full','x','turku-spotlight',false,false,'on',true,true],
+ ['legend-portrait','full','portrait','helsinki-spotlight',false,false,'on',true,true],
+ ['legend-og-portrait','full','og-portrait','rauma-spotlight',false,false,'on',true,true]
 ];
 await mkdir('docs/screenshots',{recursive:true});
 const results=[];
 try {
- for(const [name,layout,device,fixture,dark=false,blockTiles=false,labels=fixture.endsWith('-spotlight')?'off':'on',facts=false] of cases.filter(c=>!process.env.CASE_PREFIX||c[0].startsWith(process.env.CASE_PREFIX))){
+ for(const [name,layout,device,fixture,dark=false,blockTiles=false,labels=fixture.endsWith('-spotlight')?'off':'on',facts=false,legend=false] of cases.filter(c=>!process.env.CASE_PREFIX||c[0].startsWith(process.env.CASE_PREFIX))){
   // X: 1040x780 CSS at 1.8x, i.e. the real 1872x1404 panel.
-  const page=await browser.newPage({viewport:{width:device==='portrait'?780:device==='x'?1040:800,height:device==='portrait'?1040:device==='x'?780:480},deviceScaleFactor:device==='x'||device==='portrait'?1.8:1});
+  const page=await browser.newPage({viewport:{width:device==='portrait'?780:device==='og-portrait'?480:device==='x'?1040:800,height:device==='portrait'?1040:device==='og-portrait'?800:device==='x'?780:480},deviceScaleFactor:device==='x'||device==='portrait'?1.8:1});
   const errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   if(blockTiles)await page.route(/^https:\/\/maps\.trmnl\.com\//,r=>r.abort());
@@ -46,7 +53,7 @@ try {
     await route.fulfill({status:r.status,body:Buffer.from(await r.arrayBuffer()),contentType:r.headers.get('content-type')||'application/octet-stream'});
    }catch{await route.abort();}
   });
-  await page.goto(`http://127.0.0.1:8787/?layout=${layout}&device=${device}&fixture=${fixture}&labels=${labels}&dark=${dark}&facts=${facts}`);
+  await page.goto(`http://127.0.0.1:8787/?layout=${layout}&device=${device}&fixture=${fixture}&labels=${labels}&dark=${dark}&facts=${facts}&legend=${legend}`);
   await page.waitForFunction(()=>document.querySelector('.poc')?.dataset.mapReady,{timeout:35000});
   await page.evaluate(()=>document.fonts.ready);
   await page.waitForFunction(()=>window.TRMNL_PLUGINS_READY===true,{timeout:25000});
@@ -55,6 +62,7 @@ try {
    overflow:document.querySelector('.poc').scrollHeight>document.querySelector('.poc').clientHeight+Math.max(1,parseFloat(getComputedStyle(document.querySelector('.screen')).getPropertyValue('--ui-scale'))||1),
    text:document.querySelector('.poc__notice').innerText}));
   const positions=await page.evaluate(geometry);
+  if(positions.legendVisible!==legend||!positions.legendInside||!positions.legendClear||!positions.legendIconsValid)throw new Error(name+': legend '+JSON.stringify(positions));
   if(facts&&positions.portFactVisible!==(layout!=='quadrant'||device==='x'))throw new Error(name+': unexpected port-fact visibility');
   if(name.startsWith('labels-')&&layout==='full'&&(positions.labels<1||positions.labelRoutes<1))throw new Error(name+': voyage labels absent');
   if(name==='spotlight-half-horizontal'&&status.markers<2)throw new Error(name+': camera lost all context vessels');

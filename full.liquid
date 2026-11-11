@@ -1,4 +1,6 @@
 {% assign opts = trmnl.plugin_settings.custom_fields_values %}
+{% assign show_legend = false %}
+{% if opts.map_legend == true or opts.map_legend == 'true' or opts.map_legend == 'on' %}{% assign show_legend = true %}{% endif %}
 <div class="layout layout--col h--full">
   <section class="map stretch w--full poc poc--full" data-focus="{{ focus.mmsi | escape }}" data-status="{{ status | default: 'unavailable' | escape }}" data-labels="{% if opts.ship_labels == true or opts.ship_labels == 'true' or opts.ship_labels == 'on' %}on{% else %}off{% endif %}" data-bbox="{{ viewport | join: ',' | escape }}" data-zoom="{{ camera.zoom | escape }}" data-center="{% if camera.center %}{{ camera.center | join: ',' | escape }}{% else %}{{ port.center | join: ',' | escape }}{% endif %}" aria-label="Recent vessel positions">
     <div class="absolute bottom--3 left--3 right--3 flex flex--row flex--bottom gap--small poc__corner">
@@ -12,9 +14,21 @@
       <span class="w--full description poc__notice"{% if status == 'ok' %} hidden{% endif %}>{{ message | default: 'Vessel feed unavailable' | escape }}</span>
       {% if focus_message %}<span class="w--full label label--small" data-clamp="2">{{ focus_message | escape }}</span>{% endif %}
     </aside>
-    <div class="poc__credits text--right label label--small block" data-poc-sources>
+    <div class="poc__credits text--right label label--small block{% if show_legend %} poc__credits--legend{% endif %}" data-poc-sources>
+      {% if show_legend %}
+      <div class="flex flex--col flex--right gap--small">
+      <aside class="poc__legend bg--canvas outline p--2 inline-flex flex--row flex--wrap flex--center gap--small" data-poc-legend aria-label="Vessel types">
+        <span class="flex flex--col flex--center gap--xsmall"><svg class="w--4 h--5" viewBox="0 0 18 22" data-poc-hull="freighter" aria-hidden="true"></svg><span class="label label--small">Cargo / tanker</span></span>
+        <span class="flex flex--col flex--center gap--xsmall"><svg class="w--4 h--5" viewBox="0 0 18 22" data-poc-hull="passenger" aria-hidden="true"></svg><span class="label label--small">Passenger</span></span>
+        <span class="flex flex--col flex--center gap--xsmall"><svg class="w--4 h--5" viewBox="0 0 18 22" data-poc-hull="fishing" aria-hidden="true"></svg><span class="label label--small">Fishing</span></span>
+        <span class="flex flex--col flex--center gap--xsmall"><svg class="w--4 h--5" viewBox="0 0 18 22" data-poc-hull="small" aria-hidden="true"></svg><span class="label label--small">Other craft</span></span>
+        <span class="flex flex--col flex--center gap--xsmall"><svg class="w--4 h--5" viewBox="0 0 18 22" data-poc-hull="ship" aria-hidden="true"></svg><span class="label label--small">Unknown</span></span>
+      </aside>
+      <div class="text--right">
+      {% endif %}
       <span class="map__attribution poc__attribution inline">{% if demo %}DEMO · synthetic data{% elsif attribution %}<a href="{{ attribution.url | escape }}">Fintraffic / digitraffic.fi</a> · <a href="{{ attribution.license | escape }}">CC BY 4.0</a>{% else %}{{ source | default: 'Source unavailable' | escape }}{% endif %}</span>
       <span class="map__attribution poc__attribution inline"><a href="https://www.openstreetmap.org/copyright">©&nbsp;OpenStreetMap contributors</a></span>
+      {% if show_legend %}</div></div>{% endif %}
     </div>
     </div>
     {% if focus %}

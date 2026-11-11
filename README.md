@@ -4,7 +4,7 @@
 
 A map-first TRMNL recipe showing **observed AIS positions**, not authoritative port schedules. The primary private-beta catalog now covers **13 major US, European and Singapore harbor areas**. A separate open-data profile retains **Helsinki, Turku and Rauma, Finland**. One shared backend serves every installation; users never need AIS keys.
 
-**AIS can be incomplete, delayed and inaccurate. Not for navigation.** A vessel marker is an observation, not proof of an arrival, departure or berth. Hulls point to true heading when available, otherwise course above 0.5 knots; diamonds have no useful orientation. Hollow hulls indicate reports older than 30 minutes. The count is distinct vessels with recent reports in the selected observation area near the port, rather than a complete physical port census or the number of visible glyphs.
+**AIS can be incomplete, delayed and inaccurate. Not for navigation.** A vessel marker is an observation, not proof of an arrival, departure or berth. Hulls point to true heading when available, otherwise course above 0.5 knots; without a usable bearing their orientation is decorative. Solid hulls indicate movement, outlined hulls indicate stopped vessels, and dashed outlines indicate positions older than 30 minutes. Five hull shapes distinguish cargo/tanker, passenger, fishing, other craft and unknown types; an optional full-screen legend explains them. The count is distinct vessels with recent reports in the selected observation area near the port, rather than a complete physical port census or the number of visible glyphs.
 
 ![Helsinki: genuine historical AIS capture, 4 November 2026](docs/screenshots/og-helsinki.png)
 
@@ -21,7 +21,7 @@ This is a browser preview with native TRMNL vector tiles and **genuine historica
 - Public JSON API, 30-second response cache, ETags and rate limiting; typical response below 15 KB.
 - Native `TRMNLMaps` / MapLibre, geographically anchored hulls, Hotspots-style outlined name/voyage labels and leader lines, decluttering and visible OpenStreetMap attribution.
 - Downstream-style full maps with a bottom-left information box in full, half-horizontal, half-vertical and quadrant layouts; OG and X landscape/portrait browser previews, including dark mode.
-- Optional multi-select harbors (none cycles through every harbor, several cycle through those, one pins it), a fixed zoom-11 map centred on each port's curated harbor focus, **Show ship labels?**, **Spotlight a ship** and **Show port facts?** settings. The map runs edge to edge (`no_screen_padding: 'yes'`), with the harbor card and credits inset from the edge. Categories are retained internally but not exposed: type coverage is not sufficient to hide unknown vessels confidently.
+- Optional multi-select harbors (none cycles through every harbor, several cycle through those, one pins it), a fixed zoom-11 map centred on each port's curated harbor focus, **Show ship labels?**, **Spotlight a ship**, **Show port facts?** and **Show vessel legend?** settings. The legend is off by default and appears only on full-screen maps, with the same hull paths as the vessel markers. The map runs edge to edge (`no_screen_padding: 'yes'`), with the harbor card and credits inset from the edge. Categories are retained internally but not exposed: type coverage is not sufficient to hide unknown vessels confidently.
 - An isolated synthetic demo endpoint, disabled by default. Production never loads fixtures.
 
 The Finnish catalog is deliberately limited, not the full reach of its feed: a further live check found reports around Hanko, Kotka, Oulu, Vaasa and Pori. Those candidate areas are not yet reviewed catalog entries.
@@ -90,7 +90,7 @@ npm run screenshots
 node scripts/check-mashups.mjs
 ```
 
-The pinned preview assets come from the official framework Git commit recorded in `scripts/assets.py`. On managed machines where Chromium must use an HTTP proxy, run `.venv/bin/python scripts/asset_proxy.py` and set `MAP_RELAY=true` for screenshots. This local-only TLS-verifying relay allows only the native TRMNL asset/tile hosts. It is not deployed. `PLAYWRIGHT_BROWSERS_PATH` may select an existing browser installation.
+The pinned preview assets come from the official framework Git commit recorded in `scripts/assets.py`. On managed machines where Chromium must use an HTTP proxy, run `.venv/bin/python scripts/asset_proxy.py` and set `MAP_RELAY=true` for screenshots. This local-only TLS-verifying relay allows only the native TRMNL asset/tile hosts. It is not deployed. `PLAYWRIGHT_BROWSERS_PATH` may select an existing browser installation, or `PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium` may select a system browser.
 
 ## Sources, rights and cost
 
