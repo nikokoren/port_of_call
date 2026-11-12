@@ -7,6 +7,10 @@ on:
     paths:
       - 'deploy/release.json'
       - 'scripts/build_release_site.py'
+      - 'scripts/build_framing_editor.mjs'
+      - 'scripts/assets.py'
+      - 'editor/**'
+      - 'port_of_call/harbors.json'
       - 'settings.yml'
       - 'custom_fields.yml'
       - '*.liquid'
@@ -30,8 +34,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
       - uses: actions/configure-pages@v5
       - run: python scripts/build_release_site.py
+      - run: npm ci && python scripts/assets.py && node scripts/build_framing_editor.mjs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

@@ -1,0 +1,37 @@
+{
+  "nativeOptions": [
+    11,
+    11
+  ],
+  "requestedFractional": 11.25,
+  "actualFractionalAfterReady": 11.25,
+  "actualHalfZoomAfterReady": 10.5,
+  "checkedHarbors": [
+    "helsinki",
+    "turku",
+    "rauma",
+    "rotterdam",
+    "antwerp",
+    "hamburg",
+    "bremerhaven",
+    "felixstowe",
+    "southampton",
+    "los-angeles-long-beach",
+    "new-york-new-jersey",
+    "savannah",
+    "houston",
+    "seattle",
+    "charleston",
+    "singapore"
+  ],
+  "nativeFitZoom": 11,
+  "ogXIndependent": true,
+  "pointerDrag": true,
+  "draftReload": true,
+  "shareLinkRoundTrip": true,
+  "harbors": 16,
+  "pois": 97,
+  "registryUnchanged": true,
+  "errors": [],
+  "failed": []
+}

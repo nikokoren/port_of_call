@@ -123,3 +123,5 @@ Map responses now provide up to **80 genuine vessel candidates** in a compact fo
 The [same-capture Seattle comparison](docs/map-candidates.md) shows 18 → 21 visible ships on OG, 27 → 37 on X, and 26 → 33 in X portrait, without increasing the label quotas. These are genuine archived observations from 12 November 2026, not current traffic.
 
 The [port-fact POI review](docs/port-fact-pois.md) adds 67 verified places to the built-in map catalog. When a port fact is visible, its corresponding POI gets first chance at label space, with vessel hulls and fixed overlays protected. The map keeps its fixed view and one/two-POI display limit.
+
+[Interactive harbor framing editor](https://nikokoren.github.io/port_of_call/framing/) shows all reviewed POIs with independent OG/X camera drafts. [Instructions and verified zoom behavior](docs/framing-editor.md).

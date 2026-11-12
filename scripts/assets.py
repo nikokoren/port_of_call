@@ -7,8 +7,12 @@ assets = {
  'plugins.css':'public/css/3.4.4/plugins.css', 'plugins.js':'public/js/3.4.4/plugins.js',
  'maplibre-gl.js':'vendor/javascript/maplibre-gl-5.24.0.js',
  'maplibre-gl.css':'vendor/javascript/maplibre-gl-5.24.0.css',
+ 'licenses/TRMNL.txt':'LICENSE',
+ 'licenses/TRMNL-fonts-OFL.txt':'public/fonts/bundles/trmnl/OFL.txt',
+ 'licenses/classic-fonts-OFL.txt':'public/fonts/bundles/classic/OFL.txt',
+ 'licenses/THIRD_PARTY_NOTICES.md':'THIRD_PARTY_NOTICES.md',
 }
-for font in ('NicoClean-Regular.ttf','Inter.ttf','TRMNL12-Regular.woff2','TRMNL12-Bold.woff2','TRMNL16-Regular.woff2','TRMNL21-Regular.woff2'):
+for font in ('NicoClean-Regular.ttf','Inter.ttf','TRMNL12-Regular.woff2','TRMNL12-Bold.woff2','TRMNL16-Regular.woff2','TRMNL16-Bold.woff2','TRMNL21-Regular.woff2','TRMNL21-Bold.woff2'):
     assets['fonts/'+font] = 'public/fonts/'+font
 for name, path in assets.items():
     dest = Path('var/assets')/name

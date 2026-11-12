@@ -103,3 +103,7 @@ Twenty additional panels compare 40 and 80 candidates from the **same genuine ar
 Fifteen additional **POI reference scenarios** select a reviewed static fact alongside genuine archived AIS. They do not claim that the fact was selected at the capture's historical hour. Vessel positions, report timestamps and the source camera are unchanged. [Full review and exact capture provenance](../port-fact-pois.md) · [Results](results-poi-facts.json).
 
 [Ballard Locks](poi-seattle-locks.png), [Space Needle](poi-seattle-needle.png), [dark mode](poi-seattle-dark.png), [Spotlight](poi-seattle-spotlight.png), [Elbphilharmonie](poi-hamburg-hall.png) and [Forum Marinum](poi-turku-museum.png) demonstrate related labels getting space before ship names. Other cases explicitly exercise crowded source pins, clipping, small layouts and facts switched off. Diagnostics retain whether each related pin is in frame and which actual hulls block it. Omission in those cases preserves the fixed map and the higher priority of vessel hulls. The regular 56-view regression sweep also passes with the expanded static reference context.
+
+## Interactive framing editor
+
+[The editor preview](framing-editor.png) is map-only: actual reviewed POIs on the native map, with no vessel data or simulated traffic. Its dashed outline marks the existing AIS observation coverage. [Editor instructions, draft behavior and verified fractional zoom details](../framing-editor.md).

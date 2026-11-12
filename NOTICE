@@ -16,7 +16,10 @@ Visible native framework attribution must be preserved.
 TRMNL Framework 3.4.4: MIT; https://github.com/usetrmnl/trmnl-framework
 MapLibre GL JS 5.24.0: BSD-3-Clause; https://github.com/maplibre/maplibre-gl-js
 These assets are loaded from the host or fetched into ignored local preview caches;
-their original licenses remain applicable. No tile archive is redistributed.
+their original licenses remain applicable. The static framing editor also serves pinned
+framework, MapLibre and font assets with the full original licenses in framing/licenses/.
+The included TRMNL, Inter and Nico fonts use SIL Open Font License 1.1.
+No tile archive is redistributed.
 
 AISStream: aggregate evaluation counts are included in docs/coverage; no vessel-record
 dataset is bundled. The limited latest-value display proxy follows AISStream’s published
