@@ -169,7 +169,7 @@ for(const layout of layouts)test(`${layout}: absent measurements do not become e
 for(const layout of layouts)test(`${layout}: port facts are opt-in, escaped and below the count`,async()=>{
  const data=JSON.parse(await readFile('fixtures/rauma-spotlight.json','utf8'));
  data.port_fact={text:'<script>bad()</script>',source_url:'https://example.invalid'};
- const off=await render(layout,data,{port_facts:false});assert.ok(!off.includes('data-poc-port-fact'));
+ const off=await render(layout,data,{port_facts:false});assert.doesNotMatch(off,/<span[^>]* data-poc-port-fact(?:\s|>)/);
  const on=await render(layout,data,{port_facts:true});
  const harbor=on.match(/<aside[^>]*data-poc-box[^>]*>([\s\S]*?)<\/aside>/)[1];
  assert.ok(harbor.includes('&lt;script&gt;bad()&lt;/script&gt;'));
@@ -212,5 +212,7 @@ test('harbor landmarks are built in, ignore retired settings and escape their na
  for(const layout of layouts){
   const on=await render(layout,data);assert.ok(!on.includes('data-landmarks='));assert.ok(on.includes('data-name="&lt;unsafe&gt;"'));
   assert.equal(await render(layout,data,{map_landmarks:false}),on);
+  const related=await render(layout,{...data,landmarks:[{...data.landmarks[0],fact_related:true}]});
+  assert.match(related,/<li data-related="true" data-lon=/,layout+': current-fact association reaches the native map');
  }
 });

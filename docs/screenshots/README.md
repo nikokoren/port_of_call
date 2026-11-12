@@ -97,3 +97,9 @@ Landmarks now use a small hollow map pin with an ink centre, a native canvas fil
 ## 80-candidate comparison · 12 November 2026
 
 Twenty additional panels compare 40 and 80 candidates from the **same genuine archived Seattle capture**, with unchanged source timestamps and camera settings. They cover every layout, X landscape/portrait, Spotlight and dark mode. The overview was captured at **09:19:04 CET**, and Spotlight separately at **09:19:41 CET**, on 12 November. These are historical browser previews, not current traffic. [Comparison, exact provenance and results](../map-candidates.md) · [OG after](candidates-og-80.png) · [X after](candidates-x-80.png) · [Spotlight after](candidates-spotlight-80.png). X comparison exports use the native framework scale once, at the panel's 1872×1404 or portrait 1404×1872 dimensions.
+
+## Facts and related POIs · 12 November 2026
+
+Fifteen additional **POI reference scenarios** select a reviewed static fact alongside genuine archived AIS. They do not claim that the fact was selected at the capture's historical hour. Vessel positions, report timestamps and the source camera are unchanged. [Full review and exact capture provenance](../port-fact-pois.md) · [Results](results-poi-facts.json).
+
+[Ballard Locks](poi-seattle-locks.png), [Space Needle](poi-seattle-needle.png), [dark mode](poi-seattle-dark.png), [Spotlight](poi-seattle-spotlight.png), [Elbphilharmonie](poi-hamburg-hall.png) and [Forum Marinum](poi-turku-museum.png) demonstrate related labels getting space before ship names. Other cases explicitly exercise crowded source pins, clipping, small layouts and facts switched off. Diagnostics retain whether each related pin is in frame and which actual hulls block it. Omission in those cases preserves the fixed map and the higher priority of vessel hulls. The regular 56-view regression sweep also passes with the expanded static reference context.

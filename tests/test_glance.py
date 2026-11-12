@@ -72,7 +72,8 @@ class Glance(unittest.TestCase):
     def test_landmarks_are_sourced_and_cover_all_served_harbors(self):
         for port in HARBORS.values():
             if not port.get('verified'):continue
-            rows=LANDMARKS[port['id']];self.assertTrue(1<=len(rows)<=2)
+            # Reference candidates are distinct from the 1–2 labels drawn.
+            rows=LANDMARKS[port['id']];self.assertTrue(1<=len(rows)<=12)
             for row in rows:
                 self.assertTrue(row['source_url'].startswith('https://www.wikidata.org/wiki/Q'))
                 self.assertTrue(all(math.isfinite(x) for x in row['position']))

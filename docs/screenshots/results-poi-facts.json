@@ -1,0 +1,2005 @@
+[
+  {
+    "name": "seattle-locks",
+    "fixture": "seattle-candidates",
+    "fact_index": 5,
+    "layout": "full",
+    "device": "portrait",
+    "expected": "Ballard Locks",
+    "dark": false,
+    "facts": true,
+    "fact": "The Ballard Locks, opened in 1917, lift boats between Puget Sound and the city\u2019s lakes.",
+    "factVisible": true,
+    "labelOrder": [
+      {
+        "type": "poi",
+        "name": "Ballard Locks"
+      },
+      {
+        "type": "ship",
+        "name": "SPIRIT OF SEATTLETo Elliot Bay Cruise"
+      },
+      {
+        "type": "ship",
+        "name": "ENTERPRISE III"
+      },
+      {
+        "type": "ship",
+        "name": "DOC MAYNARDRoute: Seattle Pier 50 \u2194 West Seattle, USA"
+      },
+      {
+        "type": "ship",
+        "name": "KATHLEEN KActivity: Fishing"
+      },
+      {
+        "type": "ship",
+        "name": "SEABLAZERTo TEST"
+      },
+      {
+        "type": "ship",
+        "name": "PRINCESS ATo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "EXCELLENCEActivity: Local operations"
+      },
+      {
+        "type": "ship",
+        "name": "HIYU"
+      },
+      {
+        "type": "ship",
+        "name": "COASTAL STANDARDTo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "GOODTIME II"
+      },
+      {
+        "type": "ship",
+        "name": "BLUEFINTo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "MARIA MARU"
+      },
+      {
+        "type": "ship",
+        "name": "BLACK KNIGHT"
+      },
+      {
+        "type": "ship",
+        "name": "TUGIDAKTo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "SURFRIDER"
+      },
+      {
+        "type": "ship",
+        "name": "CRESCENT MOON"
+      },
+      {
+        "type": "poi",
+        "name": "Smith Cove"
+      }
+    ],
+    "related": [
+      "Ballard Locks"
+    ],
+    "landmarks": [
+      "Ballard Locks",
+      "Smith Cove"
+    ],
+    "candidates": [
+      "Ballard Locks",
+      "Colman Dock",
+      "Smith Cove",
+      "Space Needle",
+      "Fishermen\u2019s Terminal"
+    ],
+    "center": [
+      -122.38083,
+      47.62090604305658
+    ],
+    "zoom": 12,
+    "relatedPins": [
+      {
+        "name": "Ballard Locks",
+        "pinInside": true,
+        "blockingHulls": []
+      }
+    ],
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 11.999999152289496,
+        "bottom": 12.000054253472172
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 2,
+      "landmarksClear": true,
+      "landmarkPinsExact": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.018471824530797754,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 9,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 16,
+      "leaders": 16,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 1404,
+      "height": 1872,
+      "inkFraction": 0.4857747704969927
+    },
+    "errors": []
+  },
+  {
+    "name": "seattle-terminal-blocked",
+    "fixture": "seattle-candidates",
+    "fact_index": 7,
+    "layout": "full",
+    "device": "x",
+    "expected": null,
+    "dark": false,
+    "facts": true,
+    "fact": "Fishermen\u2019s Terminal, opened in 1914, is home port to the North Pacific fishing fleet.",
+    "factVisible": true,
+    "labelOrder": [
+      {
+        "type": "ship",
+        "name": "SPIRIT OF SEATTLETo Elliot Bay Cruise"
+      },
+      {
+        "type": "ship",
+        "name": "VS PROTECTORTo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "ENTERPRISE III"
+      },
+      {
+        "type": "ship",
+        "name": "DOC MAYNARDRoute: Seattle Pier 50 \u2194 West Seattle, USA"
+      },
+      {
+        "type": "ship",
+        "name": "SM MUMBAITo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "RANCHO AGUA"
+      },
+      {
+        "type": "ship",
+        "name": "KATHLEEN KActivity: Fishing"
+      },
+      {
+        "type": "ship",
+        "name": "SEABLAZERTo TEST"
+      },
+      {
+        "type": "ship",
+        "name": "PRINCESS ATo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "WSF KALEETAN"
+      },
+      {
+        "type": "ship",
+        "name": "EXCELLENCEActivity: Local operations"
+      },
+      {
+        "type": "ship",
+        "name": "HIYU"
+      },
+      {
+        "type": "ship",
+        "name": "GOODTIME II"
+      },
+      {
+        "type": "ship",
+        "name": "RACHEL CARSONTo Shilshole"
+      },
+      {
+        "type": "ship",
+        "name": "BLUEFINTo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "MARIA MARU"
+      },
+      {
+        "type": "poi",
+        "name": "Smith Cove"
+      }
+    ],
+    "related": [
+      "Fishermen\u2019s Terminal"
+    ],
+    "landmarks": [
+      "Smith Cove"
+    ],
+    "candidates": [
+      "Fishermen\u2019s Terminal",
+      "Colman Dock",
+      "Smith Cove",
+      "Ballard Locks",
+      "Space Needle"
+    ],
+    "center": [
+      -122.38083,
+      47.62090604305692
+    ],
+    "zoom": 12,
+    "relatedPins": [
+      {
+        "name": "Fishermen\u2019s Terminal",
+        "pinInside": true,
+        "blockingHulls": [
+          "366993790"
+        ]
+      }
+    ],
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 11.999999152289496,
+        "bottom": 12.000054253472285
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "landmarkPinsExact": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.019682171028404465,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 10,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 16,
+      "leaders": 16,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 1872,
+      "height": 1404,
+      "inkFraction": 0.5112978486375922
+    },
+    "errors": []
+  },
+  {
+    "name": "seattle-needle",
+    "fixture": "seattle-candidates",
+    "fact_index": 6,
+    "layout": "full",
+    "device": "og",
+    "expected": "Space Needle",
+    "dark": false,
+    "facts": true,
+    "fact": "The Space Needle, one of Seattle\u2019s most iconic buildings, was built for the 1962 World\u2019s Fair.",
+    "factVisible": true,
+    "labelOrder": [
+      {
+        "type": "poi",
+        "name": "Space Needle"
+      },
+      {
+        "type": "ship",
+        "name": "ENTERPRISE III"
+      },
+      {
+        "type": "ship",
+        "name": "PRINCESS ATo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "EXCELLENCEActivity: Local operations"
+      },
+      {
+        "type": "ship",
+        "name": "HIYU"
+      },
+      {
+        "type": "ship",
+        "name": "GOODTIME II"
+      },
+      {
+        "type": "ship",
+        "name": "BLUEFINTo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "MARIA MARU"
+      },
+      {
+        "type": "ship",
+        "name": "BLACK KNIGHT"
+      },
+      {
+        "type": "poi",
+        "name": "Smith Cove"
+      }
+    ],
+    "related": [
+      "Space Needle"
+    ],
+    "landmarks": [
+      "Space Needle",
+      "Smith Cove"
+    ],
+    "candidates": [
+      "Space Needle",
+      "Colman Dock",
+      "Smith Cove",
+      "Ballard Locks",
+      "Fishermen\u2019s Terminal"
+    ],
+    "center": [
+      -122.38083,
+      47.62400468765205
+    ],
+    "zoom": 12,
+    "relatedPins": [
+      {
+        "name": "Space Needle",
+        "pinInside": true,
+        "blockingHulls": []
+      }
+    ],
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 2,
+      "landmarksClear": true,
+      "landmarkPinsExact": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.015668702486387406,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 3,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 8,
+      "leaders": 8,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.5122473958333333
+    },
+    "errors": []
+  },
+  {
+    "name": "seattle-dark",
+    "fixture": "seattle-candidates",
+    "fact_index": 6,
+    "layout": "full",
+    "device": "og",
+    "expected": "Space Needle",
+    "dark": true,
+    "facts": true,
+    "fact": "The Space Needle, one of Seattle\u2019s most iconic buildings, was built for the 1962 World\u2019s Fair.",
+    "factVisible": true,
+    "labelOrder": [
+      {
+        "type": "poi",
+        "name": "Space Needle"
+      },
+      {
+        "type": "ship",
+        "name": "ENTERPRISE III"
+      },
+      {
+        "type": "ship",
+        "name": "PRINCESS ATo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "EXCELLENCEActivity: Local operations"
+      },
+      {
+        "type": "ship",
+        "name": "HIYU"
+      },
+      {
+        "type": "ship",
+        "name": "GOODTIME II"
+      },
+      {
+        "type": "ship",
+        "name": "BLUEFINTo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "MARIA MARU"
+      },
+      {
+        "type": "ship",
+        "name": "BLACK KNIGHT"
+      },
+      {
+        "type": "poi",
+        "name": "Smith Cove"
+      }
+    ],
+    "related": [
+      "Space Needle"
+    ],
+    "landmarks": [
+      "Space Needle",
+      "Smith Cove"
+    ],
+    "candidates": [
+      "Space Needle",
+      "Colman Dock",
+      "Smith Cove",
+      "Ballard Locks",
+      "Fishermen\u2019s Terminal"
+    ],
+    "center": [
+      -122.38083,
+      47.62400468765205
+    ],
+    "zoom": 12,
+    "relatedPins": [
+      {
+        "name": "Space Needle",
+        "pinInside": true,
+        "blockingHulls": []
+      }
+    ],
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 2,
+      "landmarksClear": true,
+      "landmarkPinsExact": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.015668702486387406,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 3,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 8,
+      "leaders": 8,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.97721875
+    },
+    "errors": []
+  },
+  {
+    "name": "seattle-spotlight",
+    "fixture": "seattle-candidates-spotlight",
+    "fact_index": 6,
+    "layout": "full",
+    "device": "x",
+    "expected": "Space Needle",
+    "dark": false,
+    "facts": true,
+    "fact": "The Space Needle, one of Seattle\u2019s most iconic buildings, was built for the 1962 World\u2019s Fair.",
+    "factVisible": true,
+    "labelOrder": [
+      {
+        "type": "poi",
+        "name": "Space Needle"
+      },
+      {
+        "type": "ship",
+        "name": "WSF PUYALLUP"
+      },
+      {
+        "type": "ship",
+        "name": "VS PROTECTORTo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "SPIRIT OF SEATTLETo Elliot Bay Cruise"
+      },
+      {
+        "type": "ship",
+        "name": "ENTERPRISE III"
+      },
+      {
+        "type": "ship",
+        "name": "SM MUMBAITo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "RANCHO AGUA"
+      },
+      {
+        "type": "ship",
+        "name": "KATHLEEN KActivity: Fishing"
+      },
+      {
+        "type": "ship",
+        "name": "SEABLAZERTo TEST"
+      },
+      {
+        "type": "ship",
+        "name": "PRINCESS ATo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "WSF KALEETAN"
+      },
+      {
+        "type": "ship",
+        "name": "EXCELLENCEActivity: Local operations"
+      },
+      {
+        "type": "ship",
+        "name": "HIYU"
+      },
+      {
+        "type": "ship",
+        "name": "GOODTIME II"
+      },
+      {
+        "type": "ship",
+        "name": "RACHEL CARSONTo Shilshole"
+      },
+      {
+        "type": "ship",
+        "name": "MARIA MARU"
+      },
+      {
+        "type": "ship",
+        "name": "BLACK KNIGHT"
+      },
+      {
+        "type": "poi",
+        "name": "Smith Cove"
+      }
+    ],
+    "related": [
+      "Space Needle"
+    ],
+    "landmarks": [
+      "Space Needle",
+      "Smith Cove"
+    ],
+    "candidates": [
+      "Space Needle",
+      "Colman Dock",
+      "Smith Cove",
+      "Ballard Locks",
+      "Fishermen\u2019s Terminal"
+    ],
+    "center": [
+      -122.38083,
+      47.61944885689479
+    ],
+    "zoom": 12,
+    "relatedPins": [
+      {
+        "name": "Space Needle",
+        "pinInside": true,
+        "blockingHulls": []
+      }
+    ],
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 11.999999152289496,
+        "bottom": 12.000054253472285
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 2,
+      "landmarksClear": true,
+      "landmarkPinsExact": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": true,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 3,
+      "spotlightSurface": "rgb(0, 0, 0)",
+      "spotlightTextColor": "rgb(255, 255, 255)",
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 1,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.019682169900240326,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 8,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 16,
+      "leaders": 17,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 1872,
+      "height": 1404,
+      "inkFraction": 0.5294454032434802
+    },
+    "errors": []
+  },
+  {
+    "name": "hamburg-hall",
+    "fixture": "hamburg-pois",
+    "fact_index": 2,
+    "layout": "full",
+    "device": "og",
+    "expected": "Elbphilharmonie",
+    "dark": false,
+    "facts": true,
+    "fact": "The Elbphilharmonie concert hall was built on top of an old harbour warehouse.",
+    "factVisible": true,
+    "labelOrder": [
+      {
+        "type": "poi",
+        "name": "Elbphilharmonie"
+      },
+      {
+        "type": "ship",
+        "name": "CMA CGM OTELLOTo Hamburg, DE"
+      },
+      {
+        "type": "ship",
+        "name": "ORCATo Brunsb\u00fcttel, DE"
+      },
+      {
+        "type": "ship",
+        "name": "ELBMEILETo Hamburg, DE"
+      },
+      {
+        "type": "ship",
+        "name": "KAVEVINJATo Lueneburg"
+      },
+      {
+        "type": "ship",
+        "name": "NECKARTo Magdeburg"
+      },
+      {
+        "type": "ship",
+        "name": "ANDREASTo Rendsburg, DE"
+      },
+      {
+        "type": "ship",
+        "name": "NALA"
+      },
+      {
+        "type": "ship",
+        "name": "ISABELLTo Hamburg, DE"
+      }
+    ],
+    "related": [
+      "Elbphilharmonie"
+    ],
+    "landmarks": [
+      "Elbphilharmonie"
+    ],
+    "candidates": [
+      "Elbphilharmonie",
+      "Landungsbr\u00fccken",
+      "K\u00f6hlbrand Bridge",
+      "Speicherstadt",
+      "Old Elbe Tunnel",
+      "Willkomm-H\u00f6ft",
+      "Rickmer Rickmers museum",
+      "Fish Market"
+    ],
+    "center": [
+      9.935969999999969,
+      53.515340232584435
+    ],
+    "zoom": 11,
+    "relatedPins": [
+      {
+        "name": "Elbphilharmonie",
+        "pinInside": true,
+        "blockingHulls": []
+      }
+    ],
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "landmarkPinsExact": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.019971519114806352,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 7,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 8,
+      "leaders": 8,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.2196484375
+    },
+    "errors": []
+  },
+  {
+    "name": "helsinki-market-blocked",
+    "fixture": "helsinki-pois",
+    "fact_index": 6,
+    "layout": "full",
+    "device": "portrait",
+    "expected": null,
+    "dark": false,
+    "facts": true,
+    "fact": "The Old Market Hall on the South Harbour has been selling food since 1889.",
+    "factVisible": true,
+    "labelOrder": [
+      {
+        "type": "ship",
+        "name": "SILJA SYMPHONYTo SESTOFIMHQFIHEL"
+      },
+      {
+        "type": "ship",
+        "name": "VIKING CINDERELLATo FIHELFIMHQSESTO"
+      },
+      {
+        "type": "ship",
+        "name": "ARAMISTo ML R O"
+      },
+      {
+        "type": "ship",
+        "name": "SUURSAARITo Fin Helsinki"
+      },
+      {
+        "type": "ship",
+        "name": "SUOKKITo Suomenlinna Ferry"
+      },
+      {
+        "type": "ship",
+        "name": "CARMELTo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "SUOMENLINNA IITo Suomenlinna Ferry"
+      },
+      {
+        "type": "ship",
+        "name": "HESSUTo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "KOKARTo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "EMMATo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "MYSTARTallinn, EE \u2192 Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "MIINATo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "JOANNA SATURNATo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "RODNYTo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "PILOT L-139To Helsinki, FI"
+      }
+    ],
+    "related": [
+      "Old Market Hall"
+    ],
+    "landmarks": [],
+    "candidates": [
+      "Old Market Hall",
+      "South Harbour",
+      "Suomenlinna",
+      "Katajanokka",
+      "Vuosaari Harbour",
+      "Olympia Terminal",
+      "Market Square"
+    ],
+    "center": [
+      24.955629999999985,
+      60.12218914323827
+    ],
+    "zoom": 11,
+    "relatedPins": [
+      {
+        "name": "Old Market Hall",
+        "pinInside": true,
+        "blockingHulls": [
+          "230108610"
+        ]
+      }
+    ],
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 11.999999152289496,
+        "bottom": 12.000054253472172
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "landmarkPinsExact": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.01986249621017953,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 15,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 15,
+      "leaders": 15,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 1404,
+      "height": 1872,
+      "inkFraction": 0.6211473019699515
+    },
+    "errors": []
+  },
+  {
+    "name": "helsinki-edge-clipped",
+    "fixture": "helsinki-pois",
+    "fact_index": 6,
+    "layout": "full",
+    "device": "og",
+    "expected": null,
+    "dark": false,
+    "facts": true,
+    "fact": "The Old Market Hall on the South Harbour has been selling food since 1889.",
+    "factVisible": true,
+    "labelOrder": [
+      {
+        "type": "ship",
+        "name": "SILJA SYMPHONYTo SESTOFIMHQFIHEL"
+      },
+      {
+        "type": "ship",
+        "name": "CARMELTo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "SUOMENLINNA IITo Suomenlinna Ferry"
+      },
+      {
+        "type": "ship",
+        "name": "S/S TURSOTo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "MIINATo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "JOANNA SATURNATo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "RODNYTo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "PILOT L-139To Helsinki, FI"
+      }
+    ],
+    "related": [
+      "Old Market Hall"
+    ],
+    "landmarks": [],
+    "candidates": [
+      "Old Market Hall",
+      "South Harbour",
+      "Suomenlinna",
+      "Katajanokka",
+      "Vuosaari Harbour",
+      "Olympia Terminal",
+      "Market Square"
+    ],
+    "center": [
+      24.955629999999985,
+      60.12676914012664
+    ],
+    "zoom": 11,
+    "relatedPins": [
+      {
+        "name": "Old Market Hall",
+        "pinInside": false,
+        "blockingHulls": []
+      }
+    ],
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "landmarkPinsExact": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.0198478154668593,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 8,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 8,
+      "leaders": 8,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.6722708333333334
+    },
+    "errors": []
+  },
+  {
+    "name": "helsinki-fortress",
+    "fixture": "helsinki-pois",
+    "fact_index": 1,
+    "layout": "full",
+    "device": "og",
+    "expected": null,
+    "dark": false,
+    "facts": true,
+    "fact": "Suomenlinna, a UNESCO-listed island fortress, guards the entrance to the South Harbour.",
+    "factVisible": true,
+    "labelOrder": [
+      {
+        "type": "ship",
+        "name": "SILJA SYMPHONYTo SESTOFIMHQFIHEL"
+      },
+      {
+        "type": "ship",
+        "name": "CARMELTo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "SUOMENLINNA IITo Suomenlinna Ferry"
+      },
+      {
+        "type": "ship",
+        "name": "S/S TURSOTo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "MIINATo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "JOANNA SATURNATo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "RODNYTo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "PILOT L-139To Helsinki, FI"
+      }
+    ],
+    "related": [
+      "Suomenlinna"
+    ],
+    "landmarks": [],
+    "candidates": [
+      "Suomenlinna",
+      "South Harbour",
+      "Katajanokka",
+      "Vuosaari Harbour",
+      "Old Market Hall",
+      "Olympia Terminal",
+      "Market Square"
+    ],
+    "center": [
+      24.955629999999985,
+      60.12676914012664
+    ],
+    "zoom": 11,
+    "relatedPins": [
+      {
+        "name": "Suomenlinna",
+        "pinInside": true,
+        "blockingHulls": [
+          "230169030"
+        ]
+      }
+    ],
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "landmarkPinsExact": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.0198478154668593,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 8,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 8,
+      "leaders": 8,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.6726822916666667
+    },
+    "errors": []
+  },
+  {
+    "name": "turku-museum",
+    "fixture": "turku-pois",
+    "fact_index": 10,
+    "layout": "full",
+    "device": "og",
+    "expected": "Forum Marinum",
+    "dark": false,
+    "facts": true,
+    "fact": "Forum Marinum, Turku\u2019s maritime museum, sits on the riverbank among its museum ships.",
+    "factVisible": true,
+    "labelOrder": [
+      {
+        "type": "poi",
+        "name": "Forum Marinum"
+      },
+      {
+        "type": "ship",
+        "name": "FAROMARUusikaupunki, FI \u2192 Turku, FI"
+      },
+      {
+        "type": "ship",
+        "name": "HELENATo Kasnas"
+      },
+      {
+        "type": "ship",
+        "name": "SEAGASTo Turku, FI"
+      },
+      {
+        "type": "ship",
+        "name": "TUULIRoute: Kumlinge \u2194 Enklinge, Finland"
+      },
+      {
+        "type": "ship",
+        "name": "ARKTISTo Turku, FI"
+      },
+      {
+        "type": "ship",
+        "name": "WILHELM CARPELAN 691Activity: Navigation training"
+      },
+      {
+        "type": "ship",
+        "name": "M640Activity: Hydrographic survey"
+      },
+      {
+        "type": "ship",
+        "name": "MERISILTATo Turku, FI"
+      },
+      {
+        "type": "poi",
+        "name": "Ruissalo"
+      }
+    ],
+    "related": [
+      "Forum Marinum"
+    ],
+    "landmarks": [
+      "Forum Marinum",
+      "Ruissalo"
+    ],
+    "candidates": [
+      "Forum Marinum",
+      "Turku Castle",
+      "Ruissalo",
+      "Meyer Turku shipyard",
+      "Suomen Joutsen museum",
+      "F\u00f6ri ferry crossing",
+      "Sigyn museum"
+    ],
+    "center": [
+      22.180090000000007,
+      60.428706323911825
+    ],
+    "zoom": 12,
+    "relatedPins": [
+      {
+        "name": "Forum Marinum",
+        "pinInside": true,
+        "blockingHulls": []
+      }
+    ],
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 2,
+      "landmarksClear": true,
+      "landmarkPinsExact": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.01910168889842354,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 8,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 8,
+      "leaders": 8,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.24641927083333334
+    },
+    "errors": []
+  },
+  {
+    "name": "rauma-old-town",
+    "fixture": "rauma-pois",
+    "fact_index": 0,
+    "layout": "full",
+    "device": "og",
+    "expected": null,
+    "dark": false,
+    "facts": true,
+    "fact": "Old Rauma is the largest unified wooden town in the Nordic countries.",
+    "factVisible": true,
+    "labelOrder": [
+      {
+        "type": "ship",
+        "name": "ELBINSELHamburg, DE \u2192 Bremerhaven, DE"
+      },
+      {
+        "type": "ship",
+        "name": "AGNES ESSBERGERSESKE, SE \u2192 Rauma, FI"
+      },
+      {
+        "type": "ship",
+        "name": "ELBMOONRiga, LV \u2192 Rauma, FI"
+      },
+      {
+        "type": "ship",
+        "name": "SONILANDP\u00e4rnu, EE \u2192 Rauma, FI"
+      },
+      {
+        "type": "ship",
+        "name": "VICTORIATo Assistance"
+      },
+      {
+        "type": "ship",
+        "name": "L247To Rauma, FI"
+      },
+      {
+        "type": "poi",
+        "name": "Kuuskajaskari"
+      }
+    ],
+    "related": [
+      "Old Rauma"
+    ],
+    "landmarks": [
+      "Kuuskajaskari"
+    ],
+    "candidates": [
+      "Old Rauma",
+      "Port of Rauma",
+      "Kuuskajaskari",
+      "Rauma shipyard",
+      "Maritime Museum",
+      "Kylm\u00e4pihlaja lighthouse",
+      "Marela museum"
+    ],
+    "center": [
+      21.42009999999999,
+      61.12634947822227
+    ],
+    "zoom": 12,
+    "relatedPins": [
+      {
+        "name": "Old Rauma",
+        "pinInside": false,
+        "blockingHulls": []
+      }
+    ],
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "landmarkPinsExact": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.01842125550756471,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 6,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 6,
+      "leaders": 6,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.5420494791666667
+    },
+    "errors": []
+  },
+  {
+    "name": "helsinki-half",
+    "fixture": "helsinki-pois",
+    "fact_index": 6,
+    "layout": "half_vertical",
+    "device": "og",
+    "expected": null,
+    "dark": false,
+    "facts": true,
+    "fact": "The Old Market Hall on the South Harbour has been selling food since 1889.",
+    "factVisible": true,
+    "labelOrder": [
+      {
+        "type": "ship",
+        "name": "SILJA SYMPHONYTo SESTOFIMHQFIHEL"
+      },
+      {
+        "type": "ship",
+        "name": "CARMELTo Helsinki, FI"
+      },
+      {
+        "type": "ship",
+        "name": "SUOMENLINNA IITo Suomenlinna Ferry"
+      },
+      {
+        "type": "ship",
+        "name": "RODNYTo Helsinki, FI"
+      }
+    ],
+    "related": [
+      "Old Market Hall"
+    ],
+    "landmarks": [],
+    "candidates": [
+      "Old Market Hall",
+      "South Harbour",
+      "Suomenlinna",
+      "Katajanokka",
+      "Vuosaari Harbour",
+      "Olympia Terminal",
+      "Market Square"
+    ],
+    "center": [
+      24.955629999999985,
+      60.12796614013851
+    ],
+    "zoom": 11,
+    "relatedPins": [
+      {
+        "name": "Old Market Hall",
+        "pinInside": false,
+        "blockingHulls": []
+      }
+    ],
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "landmarkPinsExact": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.018530715209424824,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 4,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 4,
+      "leaders": 4,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 400,
+      "height": 480,
+      "inkFraction": 0.6240520833333333
+    },
+    "errors": []
+  },
+  {
+    "name": "seattle-small",
+    "fixture": "seattle-candidates",
+    "fact_index": 5,
+    "layout": "quadrant",
+    "device": "og",
+    "expected": null,
+    "dark": false,
+    "facts": true,
+    "fact": "The Ballard Locks, opened in 1917, lift boats between Puget Sound and the city\u2019s lakes.",
+    "factVisible": false,
+    "labelOrder": [
+      {
+        "type": "ship",
+        "name": "ENTERPRISE III"
+      },
+      {
+        "type": "ship",
+        "name": "PRINCESS ATo Seattle, US"
+      }
+    ],
+    "related": [
+      "Ballard Locks"
+    ],
+    "landmarks": [],
+    "candidates": [
+      "Ballard Locks",
+      "Colman Dock",
+      "Smith Cove",
+      "Space Needle",
+      "Fishermen\u2019s Terminal"
+    ],
+    "center": [
+      -122.38083,
+      47.62660784036402
+    ],
+    "zoom": 12,
+    "relatedPins": [
+      {
+        "name": "Ballard Locks",
+        "pinInside": false,
+        "blockingHulls": []
+      }
+    ],
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 0,
+      "landmarksClear": true,
+      "landmarkPinsExact": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.01474756027924566,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 1,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 2,
+      "leaders": 2,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 400,
+      "height": 240,
+      "inkFraction": 0.32498958333333333
+    },
+    "errors": []
+  },
+  {
+    "name": "seattle-portrait-half",
+    "fixture": "seattle-candidates",
+    "fact_index": 7,
+    "layout": "half_vertical",
+    "device": "portrait",
+    "expected": null,
+    "dark": false,
+    "facts": true,
+    "fact": "Fishermen\u2019s Terminal, opened in 1914, is home port ...",
+    "factVisible": true,
+    "labelOrder": [
+      {
+        "type": "ship",
+        "name": "MSC SOLATo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "SPIRIT OF SEATTLETo Elliot Bay Cruise"
+      },
+      {
+        "type": "ship",
+        "name": "ENTERPRISE III"
+      },
+      {
+        "type": "ship",
+        "name": "KATHLEEN KActivity: Fishing"
+      },
+      {
+        "type": "ship",
+        "name": "SEABLAZERTo TEST"
+      },
+      {
+        "type": "ship",
+        "name": "PRINCESS ATo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "MARIA MARU"
+      },
+      {
+        "type": "ship",
+        "name": "TUGIDAKTo Seattle, US"
+      },
+      {
+        "type": "poi",
+        "name": "Smith Cove"
+      },
+      {
+        "type": "poi",
+        "name": "Ballard Locks"
+      }
+    ],
+    "related": [
+      "Fishermen\u2019s Terminal"
+    ],
+    "landmarks": [
+      "Smith Cove",
+      "Ballard Locks"
+    ],
+    "candidates": [
+      "Fishermen\u2019s Terminal",
+      "Colman Dock",
+      "Smith Cove",
+      "Ballard Locks",
+      "Space Needle"
+    ],
+    "center": [
+      -122.38083,
+      47.61822305569035
+    ],
+    "zoom": 12,
+    "relatedPins": [
+      {
+        "name": "Fishermen\u2019s Terminal",
+        "pinInside": true,
+        "blockingHulls": [
+          "366993790"
+        ]
+      }
+    ],
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 11.999999152289496,
+        "bottom": 12.000054253472285
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": true,
+      "legendVisible": false,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 2,
+      "landmarksClear": true,
+      "landmarkPinsExact": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.014771396257188756,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 6,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 8,
+      "leaders": 8,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 702,
+      "height": 1872,
+      "inkFraction": 0.40502486789879955
+    },
+    "errors": []
+  },
+  {
+    "name": "seattle-facts-off",
+    "fixture": "seattle-candidates",
+    "fact_index": 6,
+    "layout": "full",
+    "device": "og",
+    "expected": null,
+    "dark": false,
+    "facts": false,
+    "factVisible": false,
+    "labelOrder": [
+      {
+        "type": "ship",
+        "name": "ENTERPRISE III"
+      },
+      {
+        "type": "ship",
+        "name": "PRINCESS ATo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "EXCELLENCEActivity: Local operations"
+      },
+      {
+        "type": "ship",
+        "name": "HIYU"
+      },
+      {
+        "type": "ship",
+        "name": "GOODTIME II"
+      },
+      {
+        "type": "ship",
+        "name": "BLUEFINTo Seattle, US"
+      },
+      {
+        "type": "ship",
+        "name": "MARIA MARU"
+      },
+      {
+        "type": "ship",
+        "name": "BLACK KNIGHT"
+      },
+      {
+        "type": "poi",
+        "name": "Smith Cove"
+      }
+    ],
+    "related": [
+      "Space Needle"
+    ],
+    "landmarks": [
+      "Smith Cove"
+    ],
+    "candidates": [
+      "Space Needle",
+      "Colman Dock",
+      "Smith Cove",
+      "Ballard Locks",
+      "Fishermen\u2019s Terminal"
+    ],
+    "center": [
+      -122.38083,
+      47.62579798452305
+    ],
+    "zoom": 12,
+    "relatedPins": [
+      {
+        "name": "Space Needle",
+        "pinInside": true,
+        "blockingHulls": []
+      }
+    ],
+    "geometry": {
+      "cardInside": true,
+      "cardInset": {
+        "left": 12,
+        "bottom": 12
+      },
+      "cardAtCorner": true,
+      "attributionInside": true,
+      "attributionClear": true,
+      "attributionTight": true,
+      "portFactVisible": false,
+      "legendVisible": true,
+      "legendInside": true,
+      "mapCountMatches": true,
+      "countSuffixTogether": true,
+      "countDividerSpaced": true,
+      "landmarks": 1,
+      "landmarksClear": true,
+      "landmarkPinsExact": true,
+      "trailSegments": 0,
+      "legendClear": true,
+      "legendDocked": true,
+      "legendCompact": true,
+      "legendIconsValid": true,
+      "spotlightInside": true,
+      "spotlightClear": true,
+      "spotlightConnected": true,
+      "spotlightVisible": false,
+      "spotlightInverted": true,
+      "spotlightTextConsistent": true,
+      "spotlightConnectorWidth": 0,
+      "spotlightSurface": null,
+      "spotlightTextColor": null,
+      "spotlightTextVisible": true,
+      "occludedBySpotlight": 0,
+      "hiddenShips": 0,
+      "maxProjectionError": 0.018456650725188307,
+      "labelCollisions": 0,
+      "leaderCollisions": 0,
+      "labelRoutes": 3,
+      "labelContentsValid": true,
+      "labelsOutside": 0,
+      "labels": 8,
+      "leaders": 8,
+      "textOverflow": 0
+    },
+    "pixels": {
+      "width": 800,
+      "height": 480,
+      "inkFraction": 0.5655755208333333
+    },
+    "errors": []
+  }
+]

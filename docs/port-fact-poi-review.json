@@ -1,0 +1,2208 @@
+{
+  "reviewed_on": "2026-11-12",
+  "facts": [
+    {
+      "fact_id": "helsinki:0",
+      "text": "Helsinki–Tallinn, about 80 km across, is one of Europe’s busiest passenger sea routes.",
+      "source_url": "https://en.wikipedia.org/wiki/Helsinki%E2%80%93Tallinn_ferry",
+      "places": [],
+      "review_note": "A sea route to Tallinn, not a fixed site within this harbor view."
+    },
+    {
+      "fact_id": "helsinki:1",
+      "text": "Suomenlinna, a UNESCO-listed island fortress, guards the entrance to the South Harbour.",
+      "source_url": "https://whc.unesco.org/en/list/583/",
+      "places": [
+        {
+          "name": "Suomenlinna",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1292442",
+          "position": [
+            24.984444,
+            60.143611
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "helsinki:2",
+      "text": "Finland’s state icebreakers wait out the summer in Helsinki, at Katajanokka.",
+      "source_url": "https://en.wikipedia.org/wiki/Katajanokka",
+      "places": [
+        {
+          "name": "Katajanokka",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q976443",
+          "position": [
+            24.968333,
+            60.166944
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "helsinki:3",
+      "text": "Vuosaari Harbour, opened in 2008, handles most of Helsinki’s container traffic.",
+      "source_url": "https://en.wikipedia.org/wiki/Vuosaari_Harbour",
+      "places": [
+        {
+          "name": "Vuosaari Harbour",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q7943692",
+          "position": [
+            25.18844,
+            60.213065
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "helsinki:4",
+      "text": "About 9.5 million people a year travel by ship through the Port of Helsinki.",
+      "source_url": "https://www.portofhelsinki.fi/en/about-us/port-of-helsinki/whats-new/ship-travel-increased-moderately-in-helsinki-in-2024-cargo-traffic-volumes-the-same-as-the-previous-year/",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "helsinki:5",
+      "text": "Helsinki was founded in 1550 by King Gustav I of Sweden as a rival trading town to Tallinn.",
+      "source_url": "https://en.wikipedia.org/wiki/Helsinki",
+      "places": [],
+      "review_note": "City founding history; Tallinn is another city, not a local POI."
+    },
+    {
+      "fact_id": "helsinki:6",
+      "text": "The Old Market Hall on the South Harbour has been selling food since 1889.",
+      "source_url": "https://en.wikipedia.org/wiki/Old_Market_Hall,_Helsinki",
+      "places": [
+        {
+          "name": "Old Market Hall",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q3557940",
+          "position": [
+            24.952778,
+            60.166111
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "helsinki:7",
+      "text": "Helsinki’s Olympia Terminal was built for the 1952 Olympic Games and still serves Stockholm ships.",
+      "source_url": "https://en.wikipedia.org/wiki/Olympia_Terminal",
+      "places": [
+        {
+          "name": "Olympia Terminal",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q7088980",
+          "position": [
+            24.958886,
+            60.160757
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "helsinki:8",
+      "text": "The ferry to the Suomenlinna sea fortress is part of Helsinki’s public transport and runs all year.",
+      "source_url": "https://en.wikipedia.org/wiki/Suomenlinna",
+      "places": [
+        {
+          "name": "Suomenlinna",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1292442",
+          "position": [
+            24.984444,
+            60.143611
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "helsinki:9",
+      "text": "Icebreakers keep Helsinki’s harbours open through winters when the sea freezes over.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Helsinki",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "helsinki:10",
+      "text": "Overnight ships to Stockholm leave from the South Harbour, right by Market Square.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Helsinki",
+      "places": [
+        {
+          "name": "Market Square",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q541933",
+          "position": [
+            24.955,
+            60.167
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "turku:0",
+      "text": "Ferries from Turku thread through the Archipelago Sea and its tens of thousands of islands.",
+      "source_url": "https://en.wikipedia.org/wiki/Archipelago_Sea",
+      "places": [],
+      "review_note": "The Archipelago Sea is a broad region, not a single harbor point."
+    },
+    {
+      "fact_id": "turku:1",
+      "text": "Turku Castle, beside the harbour, dates back to around 1280.",
+      "source_url": "https://en.wikipedia.org/wiki/Turku_Castle",
+      "places": [
+        {
+          "name": "Turku Castle",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q136893",
+          "position": [
+            22.227639,
+            60.435282
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "turku:2",
+      "text": "Turku was Finland’s capital until 1812, when Helsinki took over.",
+      "source_url": "https://en.wikipedia.org/wiki/Turku",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "turku:3",
+      "text": "Turku’s shipyard built Icon of the Seas, one of the largest cruise ships ever.",
+      "source_url": "https://en.wikipedia.org/wiki/Meyer_Turku",
+      "places": [
+        {
+          "name": "Meyer Turku shipyard",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q11887488",
+          "position": [
+            22.126118,
+            60.454407
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "turku:4",
+      "text": "Turku is the oldest city in Finland.",
+      "source_url": "https://en.wikipedia.org/wiki/Turku",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "turku:5",
+      "text": "The 1902 full-rigged ship Suomen Joutsen is moored on the River Aura as a museum.",
+      "source_url": "https://en.wikipedia.org/wiki/Suomen_Joutsen",
+      "places": [
+        {
+          "name": "Suomen Joutsen museum",
+          "decision": "added",
+          "reason": "Museum display site, labelled as a museum; not a live vessel-position claim.",
+          "reference_url": "https://www.wikidata.org/wiki/Q918929",
+          "position": [
+            22.237015,
+            60.43622
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "turku:6",
+      "text": "Overnight ferries sail from Turku to Stockholm by way of the Åland Islands.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Turku",
+      "places": [],
+      "review_note": "Stockholm and the Åland Islands are route endpoints outside this view."
+    },
+    {
+      "fact_id": "turku:7",
+      "text": "Föri, a little ferry across the River Aura, has carried passengers free of charge since 1904.",
+      "source_url": "https://en.wikipedia.org/wiki/F%C3%B6ri",
+      "places": [
+        {
+          "name": "Föri ferry crossing",
+          "decision": "added",
+          "reason": "Fixed ferry crossing, not the changing location of its ferry.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1480060",
+          "position": [
+            22.247833,
+            60.441167
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "turku:8",
+      "text": "Ships have been built in Turku since 1737, when the first yard opened on the River Aura.",
+      "source_url": "https://www.meyerturku.fi/en/about-us/history/",
+      "places": [],
+      "review_note": "The historic first yard is not identified precisely; do not pin the modern yard as its location."
+    },
+    {
+      "fact_id": "turku:9",
+      "text": "The 1887 wooden barque Sigyn is a museum ship on the River Aura.",
+      "source_url": "https://en.wikipedia.org/wiki/Sigyn_(ship)",
+      "places": [
+        {
+          "name": "Sigyn museum",
+          "decision": "added",
+          "reason": "Museum display site, labelled as a museum; not a live vessel-position claim.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1478975",
+          "position": [
+            22.237358,
+            60.436135
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "turku:10",
+      "text": "Forum Marinum, Turku’s maritime museum, sits on the riverbank among its museum ships.",
+      "source_url": "https://en.wikipedia.org/wiki/Forum_Marinum",
+      "places": [
+        {
+          "name": "Forum Marinum",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q3917218",
+          "position": [
+            22.2342,
+            60.4367
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "rauma:0",
+      "text": "Old Rauma is the largest unified wooden town in the Nordic countries.",
+      "source_url": "https://whc.unesco.org/en/list/582/",
+      "places": [
+        {
+          "name": "Old Rauma",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q828417",
+          "position": [
+            21.513215,
+            61.128269
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "rauma:1",
+      "text": "Rauma celebrates its bobbin-lace tradition every summer during Lace Week.",
+      "source_url": "https://en.wikipedia.org/wiki/Rauma,_Finland",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "rauma:2",
+      "text": "Old Rauma has been a UNESCO World Heritage site since 1991.",
+      "source_url": "https://whc.unesco.org/en/list/582/",
+      "places": [
+        {
+          "name": "Old Rauma",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q828417",
+          "position": [
+            21.513215,
+            61.128269
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "rauma:3",
+      "text": "Rauma handles containers, bulk cargo and roll-on/roll-off ships.",
+      "source_url": "https://portofrauma.com/en/",
+      "places": [
+        {
+          "name": "Port of Rauma",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q18661881",
+          "position": [
+            21.427806,
+            61.126389
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "rauma:4",
+      "text": "Rauma received its town charter in 1442.",
+      "source_url": "https://en.wikipedia.org/wiki/Rauma,_Finland",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "rauma:5",
+      "text": "Rauma’s own dialect, Rauman giäl, is full of words picked up by its sailors.",
+      "source_url": "https://en.wikipedia.org/wiki/Rauma_dialect",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "rauma:6",
+      "text": "Rauma’s shipyard builds ferries and the Finnish Navy’s new Pohjanmaa-class corvettes.",
+      "source_url": "https://en.wikipedia.org/wiki/Rauma_Marine_Constructions",
+      "places": [
+        {
+          "name": "Rauma shipyard",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q17334709",
+          "position": [
+            21.4616,
+            61.1235
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "rauma:7",
+      "text": "Rauma’s maritime museum is in the old nautical college, built in 1900 to train the town’s sailors.",
+      "source_url": "https://majakka.rmm.fi/en/rauman-vanha-merikoulu",
+      "places": [
+        {
+          "name": "Maritime Museum",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q7296211",
+          "position": [
+            21.5,
+            61.133333
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "rauma:8",
+      "text": "Kylmäpihlaja lighthouse, 10 km off Rauma, is now a hotel reached by boat in summer.",
+      "source_url": "https://visitrauma.fi/en/destinations/kylmapihlaja-lighthouse-hotel",
+      "places": [
+        {
+          "name": "Kylmäpihlaja lighthouse",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q11873937",
+          "position": [
+            21.30275,
+            61.144639
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "rauma:9",
+      "text": "Marela, a shipowner’s house in Old Rauma, shows how the town’s seafaring families lived.",
+      "source_url": "https://www.visitrauma.fi/en/see-and-experience/unesco-world-heritage-sites/old-rauma/old-rauma-buildings",
+      "places": [
+        {
+          "name": "Marela museum",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q18346692",
+          "position": [
+            21.515096,
+            61.128159
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "rauma:10",
+      "text": "Paper reels from Rauma’s mill roll straight to the port, Finland’s largest paper export hub.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Rauma",
+      "places": [
+        {
+          "name": "Port of Rauma",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q18661881",
+          "position": [
+            21.427806,
+            61.126389
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "rotterdam:0",
+      "text": "Rotterdam was the world’s busiest port from 1962 until 2004.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Rotterdam",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "rotterdam:1",
+      "text": "Europe’s largest port stretches about 40 km from the city to the North Sea.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Rotterdam",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "rotterdam:2",
+      "text": "Maasvlakte 2, opened in 2013, was built on land reclaimed from the North Sea.",
+      "source_url": "https://en.wikipedia.org/wiki/Maasvlakte_2",
+      "places": [
+        {
+          "name": "Maasvlakte 2",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q2733197",
+          "position": [
+            3.98333,
+            51.95833
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "rotterdam:3",
+      "text": "The Erasmus Bridge, nicknamed “the Swan”, spans the Nieuwe Maas in the city centre.",
+      "source_url": "https://en.wikipedia.org/wiki/Erasmusbrug",
+      "places": [
+        {
+          "name": "Erasmus Bridge",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1348188",
+          "position": [
+            4.48654,
+            51.90864
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "rotterdam:4",
+      "text": "The 1959 ocean liner SS Rotterdam is now a hotel at Katendrecht.",
+      "source_url": "https://en.wikipedia.org/wiki/SS_Rotterdam",
+      "places": [
+        {
+          "name": "SS Rotterdam hotel",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q166127",
+          "position": [
+            4.473396,
+            51.897766
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "rotterdam:5",
+      "text": "The Maeslantkering storm barrier can close the port’s sea entrance against North Sea floods.",
+      "source_url": "https://en.wikipedia.org/wiki/Maeslantkering",
+      "places": [
+        {
+          "name": "Maeslantkering",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1647536",
+          "position": [
+            4.163786,
+            51.955272
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "rotterdam:6",
+      "text": "The world’s first automated container terminal opened at Rotterdam’s Maasvlakte in 1993.",
+      "source_url": "https://www.ect.nl/en/news/fast-forward/30-years-ago-ect-opened-very-first-automated-terminal-world",
+      "places": [
+        {
+          "name": "Maasvlakte",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q238672",
+          "position": [
+            4.0464,
+            51.9525
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "rotterdam:7",
+      "text": "The Nieuwe Waterweg, opened in 1872, gave Rotterdam its own deep route to the North Sea.",
+      "source_url": "https://en.wikipedia.org/wiki/Nieuwe_Waterweg",
+      "places": [],
+      "review_note": "Nieuwe Waterweg is a long navigation channel; a single unlabeled midpoint would be misleading."
+    },
+    {
+      "fact_id": "rotterdam:8",
+      "text": "Rotterdam’s Maritime Museum, founded in 1874, is the oldest in the Netherlands.",
+      "source_url": "https://en.wikipedia.org/wiki/Maritime_Museum_Rotterdam",
+      "places": [
+        {
+          "name": "Maritime Museum",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q2755458",
+          "position": [
+            4.481889,
+            51.9175
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "rotterdam:9",
+      "text": "Water taxis zip across the Maas, connecting Rotterdam’s waterfront neighbourhoods.",
+      "source_url": "https://en.wikipedia.org/wiki/Transport_in_Rotterdam",
+      "places": [],
+      "review_note": "Water taxis are moving craft; no specific fixed landing is named."
+    },
+    {
+      "fact_id": "antwerp:0",
+      "text": "Antwerp-Bruges is Europe’s second-largest port, after Rotterdam.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Antwerp-Bruges",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "antwerp:1",
+      "text": "Zaha Hadid’s Port House looks like a ship perched on top of an old fire station.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_House",
+      "places": [
+        {
+          "name": "Port House",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q23930610",
+          "position": [
+            4.407344,
+            51.241058
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "antwerp:2",
+      "text": "Antwerp is a world centre of the diamond trade.",
+      "source_url": "https://en.wikipedia.org/wiki/Antwerp_diamond_district",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "antwerp:3",
+      "text": "Antwerp and Zeebrugge merged in 2022 to form the Port of Antwerp-Bruges.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Antwerp-Bruges",
+      "places": [],
+      "review_note": "Zeebrugge is a separate harbor outside the Antwerp map."
+    },
+    {
+      "fact_id": "antwerp:4",
+      "text": "Het Steen, a medieval fort on the Scheldt, the port’s way to the sea, is Antwerp’s oldest building.",
+      "source_url": "https://en.wikipedia.org/wiki/Het_Steen",
+      "places": [
+        {
+          "name": "Het Steen",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1014126",
+          "position": [
+            4.3975,
+            51.222778
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "antwerp:5",
+      "text": "The Kieldrecht Lock, opened in 2016, is the largest lock in the world.",
+      "source_url": "https://en.wikipedia.org/wiki/Kieldrecht_Lock",
+      "places": [
+        {
+          "name": "Kieldrecht Lock",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q2340358",
+          "position": [
+            4.25,
+            51.28
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "antwerp:6",
+      "text": "Ships sail about 80 km up the River Scheldt from the North Sea to reach Antwerp.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Antwerp-Bruges",
+      "places": [],
+      "review_note": "The Scheldt is a long river, not one harbor POI."
+    },
+    {
+      "fact_id": "antwerp:7",
+      "text": "About two million emigrants sailed from Antwerp to America on the Red Star Line from 1873 to 1934.",
+      "source_url": "https://en.wikipedia.org/wiki/Red_Star_Line",
+      "places": [],
+      "review_note": "Red Star Line history names an operator, not a specific terminal in this fact."
+    },
+    {
+      "fact_id": "antwerp:8",
+      "text": "The Sint-Anna pedestrian tunnel under the Scheldt, opened in 1933, still has wooden escalators.",
+      "source_url": "https://www.belganewsagency.eu/stairway-to-haven-antwerps-wooden-escalators-are-among-the-last-in-use-in-the-world",
+      "places": [
+        {
+          "name": "Sint-Anna tunnel",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q691988",
+          "position": [
+            4.39167,
+            51.21972
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "antwerp:9",
+      "text": "Antwerp’s oldest dock, the Bonapartedok, was dug on Napoleon’s orders in 1811.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Antwerp-Bruges",
+      "places": [
+        {
+          "name": "Bonapartedok",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q5282805",
+          "position": [
+            4.40306,
+            51.22861
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "antwerp:10",
+      "text": "Legend says Antwerp’s name comes from a giant’s hand, cut off for extorting river tolls.",
+      "source_url": "https://en.wikipedia.org/wiki/Brabo_Fountain",
+      "places": [],
+      "review_note": "A legend does not identify a real fixed site; its linked fountain is not named in the text."
+    },
+    {
+      "fact_id": "hamburg:0",
+      "text": "Hamburg throws its port a birthday party every May, counting from a charter of 1189.",
+      "source_url": "https://en.wikipedia.org/wiki/Hamburg_Port_Anniversary",
+      "places": [],
+      "review_note": "An annual event, not a fixed point."
+    },
+    {
+      "fact_id": "hamburg:1",
+      "text": "The Speicherstadt, the world’s largest historic warehouse district, stands on oak piles.",
+      "source_url": "https://whc.unesco.org/en/list/1467/",
+      "places": [
+        {
+          "name": "Speicherstadt",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q661881",
+          "position": [
+            9.991944,
+            53.543333
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "hamburg:2",
+      "text": "The Elbphilharmonie concert hall was built on top of an old harbour warehouse.",
+      "source_url": "https://en.wikipedia.org/wiki/Elbphilharmonie",
+      "places": [
+        {
+          "name": "Elbphilharmonie",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q673223",
+          "position": [
+            9.984194,
+            53.541417
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "hamburg:3",
+      "text": "Ships sail about 110 km up the River Elbe to reach Hamburg.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Hamburg",
+      "places": [],
+      "review_note": "The River Elbe is a long approach channel."
+    },
+    {
+      "fact_id": "hamburg:4",
+      "text": "The Old Elbe Tunnel, opened in 1911 for shipyard workers, still carries people under the river.",
+      "source_url": "https://en.wikipedia.org/wiki/Elbe_Tunnel_(1911)",
+      "places": [
+        {
+          "name": "Old Elbe Tunnel",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q460264",
+          "position": [
+            9.9665,
+            53.544
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "hamburg:5",
+      "text": "At Willkomm-Höft in Wedel, large ships are greeted with their national anthem.",
+      "source_url": "https://en.wikipedia.org/wiki/Willkomm-H%C3%B6ft",
+      "places": [
+        {
+          "name": "Willkomm-Höft",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q2235086",
+          "position": [
+            9.7025,
+            53.568056
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "hamburg:6",
+      "text": "The 1896 sailing ship Rickmer Rickmers is a museum at the Landungsbrücken.",
+      "source_url": "https://en.wikipedia.org/wiki/Rickmer_Rickmers",
+      "places": [
+        {
+          "name": "Landungsbrücken",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q458970",
+          "position": [
+            9.966667,
+            53.546111
+          ]
+        },
+        {
+          "name": "Rickmer Rickmers museum",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q479965",
+          "position": [
+            9.972889,
+            53.544583
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "hamburg:7",
+      "text": "Hamburg’s HADAG harbour ferries are part of the city’s public transport.",
+      "source_url": "https://en.wikipedia.org/wiki/HADAG",
+      "places": [],
+      "review_note": "HADAG is a ferry operator, not a fixed terminal named in the fact."
+    },
+    {
+      "fact_id": "hamburg:8",
+      "text": "Cap San Diego, a 1961 cargo ship, is the world’s largest seaworthy museum freighter.",
+      "source_url": "https://en.wikipedia.org/wiki/Cap_San_Diego",
+      "places": [],
+      "review_note": "Cap San Diego still sails; do not present a home berth as its current location."
+    },
+    {
+      "fact_id": "hamburg:9",
+      "text": "Hamburg’s Fish Market by the Elbe has opened early on Sunday mornings since 1703.",
+      "source_url": "https://en.wikipedia.org/wiki/Fischmarkt_Hamburg-Altona",
+      "places": [
+        {
+          "name": "Fish Market",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q175551",
+          "position": [
+            9.95427,
+            53.54561
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "hamburg:10",
+      "text": "The tide makes the Elbe at Hamburg rise and fall by about 3.6 metres twice a day.",
+      "source_url": "https://www.hafen-hamburg.de/en/portofhamburg/tide/",
+      "places": [],
+      "review_note": "A tidal phenomenon, not a point of interest."
+    },
+    {
+      "fact_id": "hamburg:11",
+      "text": "The International Maritime Museum fills Hamburg’s oldest surviving warehouse, Kaispeicher B.",
+      "source_url": "https://en.wikipedia.org/wiki/Internationales_Maritimes_Museum_Hamburg",
+      "places": [
+        {
+          "name": "Maritime Museum",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q937608",
+          "position": [
+            10,
+            53.543344
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "bremerhaven:0",
+      "text": "Bremerhaven imports and exports more cars than any other port in Europe.",
+      "source_url": "https://en.wikipedia.org/wiki/Bremerhaven",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "bremerhaven:1",
+      "text": "The German Emigration Center tells the stories of emigrants who sailed to America from Bremerhaven.",
+      "source_url": "https://en.wikipedia.org/wiki/German_Emigration_Center",
+      "places": [
+        {
+          "name": "Emigration Center",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q318809",
+          "position": [
+            8.57417,
+            53.5453
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "bremerhaven:2",
+      "text": "Bremerhaven’s container terminal sits right where the River Weser opens into the North Sea.",
+      "source_url": "https://en.wikipedia.org/wiki/Bremerhaven",
+      "places": [
+        {
+          "name": "Container Terminal",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1128462",
+          "position": [
+            8.533287,
+            53.58741
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "bremerhaven:3",
+      "text": "Bremerhaven was founded in 1827 as a deep-water port for Bremen.",
+      "source_url": "https://en.wikipedia.org/wiki/Bremerhaven",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "bremerhaven:4",
+      "text": "Bremerhaven’s container quay runs almost 5 km along the River Weser.",
+      "source_url": "https://www.bremenports.de/en/ports/competences/containers",
+      "places": [
+        {
+          "name": "Container Terminal",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1128462",
+          "position": [
+            8.533287,
+            53.58741
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "bremerhaven:5",
+      "text": "The German Maritime Museum shows the Bremen Cog, a merchant ship from about 1380.",
+      "source_url": "https://en.wikipedia.org/wiki/Bremen_cog",
+      "places": [
+        {
+          "name": "Maritime Museum",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q455354",
+          "position": [
+            8.577,
+            53.5401
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "bremerhaven:6",
+      "text": "Wilhelm Bauer, the last surviving Type XXI U-boat, is a museum ship in Bremerhaven.",
+      "source_url": "https://en.wikipedia.org/wiki/German_submarine_Wilhelm_Bauer",
+      "places": [
+        {
+          "name": "Wilhelm Bauer museum",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q683457",
+          "position": [
+            8.577778,
+            53.541389
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "bremerhaven:7",
+      "text": "Bremerhaven’s lighthouse, from 1855, is the oldest working one on Germany’s North Sea mainland.",
+      "source_url": "https://en.wikipedia.org/wiki/Bremerhaven_Lighthouse",
+      "places": [
+        {
+          "name": "Bremerhaven lighthouse",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q304471",
+          "position": [
+            8.570111,
+            53.546306
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "bremerhaven:8",
+      "text": "The famous polar research icebreaker Polarstern has its home port in Bremerhaven.",
+      "source_url": "https://en.wikipedia.org/wiki/RV_Polarstern",
+      "places": [],
+      "review_note": "Polarstern is an active research vessel and can be away from its home port."
+    },
+    {
+      "fact_id": "bremerhaven:9",
+      "text": "The Kaiserschleuse lock, rebuilt in 2011, lets big ships into Bremerhaven’s enclosed docks.",
+      "source_url": "https://www.bremenports.de/en/company/remit/projects/kaiserschleuse-lock",
+      "places": [
+        {
+          "name": "Kaiserschleuse",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1721729",
+          "position": [
+            8.55917,
+            53.5581
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "bremerhaven:10",
+      "text": "Bremerhaven’s fishing port, the Fischereihafen, has landed North Sea catches since the 1890s.",
+      "source_url": "https://en.wikipedia.org/wiki/Bremerhaven",
+      "places": [
+        {
+          "name": "Fischereihafen",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1118917",
+          "position": [
+            8.584722,
+            53.519167
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "felixstowe:0",
+      "text": "Felixstowe is Britain’s busiest container port.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Felixstowe",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "felixstowe:1",
+      "text": "Felixstowe opened Britain’s first container terminal in 1967.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Felixstowe",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "felixstowe:2",
+      "text": "The Mayflower’s master, Christopher Jones, came from Harwich.",
+      "source_url": "https://en.wikipedia.org/wiki/Christopher_Jones_(captain)",
+      "places": [],
+      "review_note": "A historical person; the fact gives no specific site to mark."
+    },
+    {
+      "fact_id": "felixstowe:3",
+      "text": "Landguard Fort has guarded the harbour mouth since the 16th century.",
+      "source_url": "https://en.wikipedia.org/wiki/Landguard_Fort",
+      "places": [
+        {
+          "name": "Landguard Fort",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q6484546",
+          "position": [
+            1.32208,
+            51.9376
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "felixstowe:4",
+      "text": "Harwich’s treadwheel crane, built in 1667, was powered by men walking inside its wheels.",
+      "source_url": "https://historicengland.org.uk/listing/the-list/list-entry/1017202",
+      "places": [
+        {
+          "name": "Treadwheel Crane",
+          "decision": "not_added",
+          "reason": "No unique verified CC0 coordinate for this exact site."
+        }
+      ],
+      "review_note": "Named site withheld until a suitable coordinate is verified."
+    },
+    {
+      "fact_id": "felixstowe:5",
+      "text": "Ferries have sailed from Harwich to the Hook of Holland for well over a century.",
+      "source_url": "https://en.wikipedia.org/wiki/Harwich_International_Port",
+      "places": [
+        {
+          "name": "Harwich ferry terminal",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q5677860",
+          "position": [
+            1.255,
+            51.948
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "felixstowe:6",
+      "text": "Harwich’s Ha’penny Pier, opened in 1853, is named after its halfpenny toll.",
+      "source_url": "https://www.harwich-society.co.uk/",
+      "places": [
+        {
+          "name": "Ha’penny Pier",
+          "decision": "not_added",
+          "reason": "No unique verified CC0 coordinate for this exact site."
+        }
+      ],
+      "review_note": "Named site withheld until a suitable coordinate is verified."
+    },
+    {
+      "fact_id": "felixstowe:7",
+      "text": "The Harwich Redoubt, a circular fort, was built around 1808 against a Napoleonic invasion.",
+      "source_url": "https://en.wikipedia.org/wiki/Harwich_Redoubt",
+      "places": [
+        {
+          "name": "Harwich Redoubt",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q5677857",
+          "position": [
+            1.2889,
+            51.9419
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "felixstowe:8",
+      "text": "Trinity House, which runs England’s lighthouses, has its operations base in Harwich.",
+      "source_url": "https://en.wikipedia.org/wiki/Trinity_House",
+      "places": [],
+      "review_note": "Trinity House is an organization; its Harwich base needs a verified site coordinate rather than the London headquarters."
+    },
+    {
+      "fact_id": "felixstowe:9",
+      "text": "A small foot ferry links Harwich, Shotley and Felixstowe across the harbour in summer.",
+      "source_url": "https://en.wikipedia.org/wiki/Harwich_Harbour_Ferry",
+      "places": [],
+      "review_note": "A multi-stop ferry route; no specific landing is named."
+    },
+    {
+      "fact_id": "southampton:0",
+      "text": "Titanic set sail from Southampton on 10 April 1912.",
+      "source_url": "https://en.wikipedia.org/wiki/Titanic",
+      "places": [],
+      "review_note": "A historical sailing; neither Titanic nor its wreck is a current local POI."
+    },
+    {
+      "fact_id": "southampton:1",
+      "text": "The Mayflower first set sail from Southampton in 1620, before stopping at Plymouth.",
+      "source_url": "https://en.wikipedia.org/wiki/Mayflower",
+      "places": [],
+      "review_note": "Historical sailing, without a specific dock named."
+    },
+    {
+      "fact_id": "southampton:2",
+      "text": "Southampton’s double high tide gives ships an extra-long window of deep water.",
+      "source_url": "https://en.wikipedia.org/wiki/Southampton_Water",
+      "places": [
+        {
+          "name": "Southampton Water",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q502233",
+          "position": [
+            -1.3475,
+            50.856111
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "southampton:3",
+      "text": "Southampton is the UK’s leading cruise port.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Southampton",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "southampton:4",
+      "text": "Southampton’s medieval town walls are among the most complete in England.",
+      "source_url": "https://en.wikipedia.org/wiki/Southampton_town_walls",
+      "places": [
+        {
+          "name": "Town walls",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q7569186",
+          "position": [
+            -1.4068,
+            50.8996
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "southampton:5",
+      "text": "Most of the Titanic’s crew came from Southampton.",
+      "source_url": "https://en.wikipedia.org/wiki/Crew_of_the_Titanic",
+      "places": [],
+      "review_note": "Crew history, not a fixed site."
+    },
+    {
+      "fact_id": "southampton:6",
+      "text": "The Hythe Pier Railway, running since 1922, is the oldest pier train in continuous public service.",
+      "source_url": "https://en.wikipedia.org/wiki/Hythe_Pier,_Railway_and_Ferry",
+      "places": [
+        {
+          "name": "Hythe Pier",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q5962460",
+          "position": [
+            -1.3935,
+            50.8746
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "southampton:7",
+      "text": "SS Shieldhall, a 1955 steamship, still sails from Southampton as a working museum.",
+      "source_url": "https://en.wikipedia.org/wiki/SS_Shieldhall",
+      "places": [],
+      "review_note": "Shieldhall is an operating excursion steamship; it is not a fixed landmark."
+    },
+    {
+      "fact_id": "southampton:8",
+      "text": "Southampton is Cunard’s home port, where the Queen Mary 2 begins its transatlantic crossings.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Southampton",
+      "places": [],
+      "review_note": "Queen Mary 2 is an active liner, not a fixed POI."
+    },
+    {
+      "fact_id": "southampton:9",
+      "text": "Southampton was a key embarkation port for the D-Day landings in 1944.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Southampton",
+      "places": [],
+      "review_note": "Historical embarkation activity over an area, not a named point."
+    },
+    {
+      "fact_id": "los-angeles-long-beach:0",
+      "text": "Together, Los Angeles and Long Beach are the busiest container port complex in the US.",
+      "source_url": "https://en.wikipedia.org/wiki/San_Pedro_Bay_Port_Complex",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "los-angeles-long-beach:1",
+      "text": "The retired liner Queen Mary has been moored in Long Beach since 1967.",
+      "source_url": "https://en.wikipedia.org/wiki/RMS_Queen_Mary",
+      "places": [
+        {
+          "name": "Queen Mary museum",
+          "decision": "added",
+          "reason": "Museum display site, labelled as a museum; not a live vessel-position claim.",
+          "reference_url": "https://www.wikidata.org/wiki/Q752939",
+          "position": [
+            -118.189722,
+            33.753056
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "los-angeles-long-beach:2",
+      "text": "Angels Gate Lighthouse has marked the end of the LA breakwater since 1913.",
+      "source_url": "https://en.wikipedia.org/wiki/Los_Angeles_Harbor_Light",
+      "places": [
+        {
+          "name": "Angels Gate Lighthouse",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q12061372",
+          "position": [
+            -118.2516,
+            33.7086
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "los-angeles-long-beach:3",
+      "text": "The Vincent Thomas Bridge, opened in 1963, links San Pedro with Terminal Island.",
+      "source_url": "https://en.wikipedia.org/wiki/Vincent_Thomas_Bridge",
+      "places": [
+        {
+          "name": "Vincent Thomas Bridge",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q496944",
+          "position": [
+            -118.271667,
+            33.749444
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "los-angeles-long-beach:4",
+      "text": "The battleship USS Iowa is a museum ship in San Pedro.",
+      "source_url": "https://en.wikipedia.org/wiki/USS_Iowa_(BB-61)",
+      "places": [
+        {
+          "name": "USS Iowa museum",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q15071923",
+          "position": [
+            -118.277,
+            33.7416
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "los-angeles-long-beach:5",
+      "text": "The Port of Los Angeles was founded in 1907.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Los_Angeles",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "los-angeles-long-beach:6",
+      "text": "Point Fermin Lighthouse in San Pedro was first lit in 1874.",
+      "source_url": "https://en.wikipedia.org/wiki/Point_Fermin_Light",
+      "places": [
+        {
+          "name": "Point Fermin Lighthouse",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q7208023",
+          "position": [
+            -118.294,
+            33.7054
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "los-angeles-long-beach:7",
+      "text": "SS Lane Victory, a 1945 cargo ship, is a museum ship in San Pedro.",
+      "source_url": "https://en.wikipedia.org/wiki/SS_Lane_Victory",
+      "places": [
+        {
+          "name": "Lane Victory museum",
+          "decision": "added",
+          "reason": "Museum display site, labelled as a museum; not a live vessel-position claim.",
+          "reference_url": "https://www.wikidata.org/wiki/Q2376481",
+          "position": [
+            -118.274722,
+            33.714444
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "los-angeles-long-beach:8",
+      "text": "Ferries cross from San Pedro and Long Beach to Catalina Island, about 22 miles offshore.",
+      "source_url": "https://en.wikipedia.org/wiki/Catalina_Express",
+      "places": [],
+      "review_note": "Catalina Island is outside this harbor view and the ferries move."
+    },
+    {
+      "fact_id": "los-angeles-long-beach:9",
+      "text": "Terminal Island was once a centre of the US tuna-canning industry.",
+      "source_url": "https://en.wikipedia.org/wiki/Terminal_Island",
+      "places": [
+        {
+          "name": "Terminal Island",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1059628",
+          "position": [
+            -118.248056,
+            33.756944
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "los-angeles-long-beach:10",
+      "text": "The San Pedro breakwater, finished in 1912, shelters LA’s outer harbor.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Los_Angeles",
+      "places": [],
+      "review_note": "The breakwater is a linear structure; no separately verified point is selected."
+    },
+    {
+      "fact_id": "new-york-new-jersey:0",
+      "text": "Container shipping began here: the Ideal X sailed from Port Newark in 1956.",
+      "source_url": "https://en.wikipedia.org/wiki/SS_Ideal_X",
+      "places": [
+        {
+          "name": "Port Newark",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q2737371",
+          "position": [
+            -74.1505,
+            40.68155
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "new-york-new-jersey:1",
+      "text": "The Statue of Liberty has greeted ships in the Upper Bay since 1886.",
+      "source_url": "https://en.wikipedia.org/wiki/Statue_of_Liberty",
+      "places": [
+        {
+          "name": "Statue of Liberty",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q9202",
+          "position": [
+            -74.044425,
+            40.689209
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "new-york-new-jersey:2",
+      "text": "About 12 million immigrants passed through Ellis Island between 1892 and 1954.",
+      "source_url": "https://en.wikipedia.org/wiki/Ellis_Island",
+      "places": [
+        {
+          "name": "Ellis Island",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q202175",
+          "position": [
+            -74.039722,
+            40.699444
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "new-york-new-jersey:3",
+      "text": "The Bayonne Bridge was raised about 64 ft between 2013 and 2019 so bigger ships fit beneath.",
+      "source_url": "https://en.wikipedia.org/wiki/Bayonne_Bridge",
+      "places": [
+        {
+          "name": "Bayonne Bridge",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q812580",
+          "position": [
+            -74.142222,
+            40.641944
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "new-york-new-jersey:4",
+      "text": "The Port of New York and New Jersey is the busiest on the US East Coast.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_New_York_and_New_Jersey",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "new-york-new-jersey:5",
+      "text": "The Staten Island Ferry has been free to ride since 1997.",
+      "source_url": "https://en.wikipedia.org/wiki/Staten_Island_Ferry",
+      "places": [],
+      "review_note": "An operating ferry route without a specific terminal named."
+    },
+    {
+      "fact_id": "new-york-new-jersey:6",
+      "text": "The aircraft carrier Intrepid is a museum on the Hudson River.",
+      "source_url": "https://en.wikipedia.org/wiki/Intrepid_Museum",
+      "places": [
+        {
+          "name": "Intrepid Museum",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q952270",
+          "position": [
+            -73.999611,
+            40.764611
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "new-york-new-jersey:7",
+      "text": "The 1885 iron sailing ship Wavertree is moored at the South Street Seaport.",
+      "source_url": "https://en.wikipedia.org/wiki/Wavertree_(ship)",
+      "places": [
+        {
+          "name": "South Street Seaport",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q223000",
+          "position": [
+            -74.0033,
+            40.7061
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "new-york-new-jersey:8",
+      "text": "The lightship Ambrose, which once marked the harbor entrance, is now a museum ship.",
+      "source_url": "https://en.wikipedia.org/wiki/Lightship_Ambrose",
+      "places": [
+        {
+          "name": "South Street Seaport",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q223000",
+          "position": [
+            -74.0033,
+            40.7061
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "new-york-new-jersey:9",
+      "text": "The battleship Missouri, where Japan surrendered in 1945, was built at the Brooklyn Navy Yard.",
+      "source_url": "https://en.wikipedia.org/wiki/USS_Missouri_(BB-63)",
+      "places": [
+        {
+          "name": "Brooklyn Navy Yard",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q524435",
+          "position": [
+            -73.973436,
+            40.702764
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "savannah:0",
+      "text": "Garden City is the largest single-operator container terminal in North America.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Savannah",
+      "places": [
+        {
+          "name": "Garden City Terminal",
+          "decision": "not_added",
+          "reason": "No unique verified CC0 coordinate for this exact site."
+        }
+      ],
+      "review_note": "Named site withheld until a suitable coordinate is verified."
+    },
+    {
+      "fact_id": "savannah:1",
+      "text": "Savannah’s terminals sit about 18 miles inland from the Atlantic, up the Savannah River.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Savannah",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "savannah:2",
+      "text": "Old cotton warehouses line River Street on Savannah’s historic waterfront.",
+      "source_url": "https://en.wikipedia.org/wiki/River_Street_(Savannah,_Georgia)",
+      "places": [
+        {
+          "name": "River Street",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q85797367",
+          "position": [
+            -81.09951,
+            32.085792
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "savannah:3",
+      "text": "A lighthouse has guided ships into the Savannah River from Tybee Island since 1736.",
+      "source_url": "https://en.wikipedia.org/wiki/Tybee_Island_Light_Station",
+      "places": [
+        {
+          "name": "Tybee Lighthouse",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q7859692",
+          "position": [
+            -80.845639,
+            32.022222
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "savannah:4",
+      "text": "Savannah was founded in 1733 by James Oglethorpe, on a bluff above the river.",
+      "source_url": "https://en.wikipedia.org/wiki/Savannah,_Georgia",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "savannah:5",
+      "text": "The Savannah Harbor was deepened to 47 ft in 2022 for bigger container ships.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Savannah",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "savannah:6",
+      "text": "In 1819 the SS Savannah left here on the first transatlantic voyage made partly by steam.",
+      "source_url": "https://en.wikipedia.org/wiki/SS_Savannah",
+      "places": [],
+      "review_note": "A historical vessel/voyage, not a surviving fixed ship location."
+    },
+    {
+      "fact_id": "savannah:7",
+      "text": "Old Fort Jackson, begun in 1808, is the oldest standing brick fort in Georgia.",
+      "source_url": "https://en.wikipedia.org/wiki/Fort_James_Jackson",
+      "places": [
+        {
+          "name": "Fort James Jackson",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1438578",
+          "position": [
+            -81.036111,
+            32.081944
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "houston:0",
+      "text": "The Port of Houston is a 50-mile-long string of terminals along the Houston Ship Channel.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Houston",
+      "places": [],
+      "review_note": "The Ship Channel spans many miles and terminals."
+    },
+    {
+      "fact_id": "houston:1",
+      "text": "Houston is the busiest US port by foreign tonnage.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Houston",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "houston:2",
+      "text": "The San Jacinto Monument, where Texas won independence in 1836, overlooks the channel.",
+      "source_url": "https://en.wikipedia.org/wiki/San_Jacinto_Monument",
+      "places": [
+        {
+          "name": "San Jacinto Monument",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1111991",
+          "position": [
+            -95.0803,
+            29.7489
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "houston:3",
+      "text": "Houston’s deep-water port formally opened in 1914.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Houston",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "houston:4",
+      "text": "The Houston Ship Channel is lined with one of the world’s largest petrochemical complexes.",
+      "source_url": "https://en.wikipedia.org/wiki/Houston_Ship_Channel",
+      "places": [],
+      "review_note": "An industrial corridor, not one fixed facility."
+    },
+    {
+      "fact_id": "houston:5",
+      "text": "Port Houston has offered free boat tours of the channel since 1958.",
+      "source_url": "https://porthouston.com/history-of-the-mv-sam-houston/",
+      "places": [],
+      "review_note": "An operating tour service, without a specific landing named."
+    },
+    {
+      "fact_id": "houston:6",
+      "text": "The Lynchburg Ferry, started in 1822, still crosses the channel free of charge.",
+      "source_url": "https://en.wikipedia.org/wiki/Lynchburg_Ferry",
+      "places": [
+        {
+          "name": "Lynchburg ferry crossing",
+          "decision": "added",
+          "reason": "Fixed ferry crossing, not the changing location of its ferry.",
+          "reference_url": "https://www.wikidata.org/wiki/Q6708475",
+          "position": [
+            -95.08,
+            29.7635
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "houston:7",
+      "text": "Houston is named after Sam Houston, who won Texas independence at San Jacinto.",
+      "source_url": "https://en.wikipedia.org/wiki/Houston",
+      "places": [],
+      "review_note": "A historical person, not a separate fixed site."
+    },
+    {
+      "fact_id": "houston:8",
+      "text": "Houston was founded in 1836 on Buffalo Bayou, which later became the Ship Channel.",
+      "source_url": "https://en.wikipedia.org/wiki/Buffalo_Bayou",
+      "places": [],
+      "review_note": "A long bayou and city-founding history."
+    },
+    {
+      "fact_id": "houston:9",
+      "text": "Barbours Cut, Port Houston’s first container terminal, opened in 1977.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Houston",
+      "places": [
+        {
+          "name": "Barbours Cut",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q4859731",
+          "position": [
+            -94.9983,
+            29.6819
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "houston:10",
+      "text": "The Houston Ship Channel is one of the busiest waterways in the United States.",
+      "source_url": "https://en.wikipedia.org/wiki/Houston_Ship_Channel",
+      "places": [],
+      "review_note": "A long waterway, not a point marker."
+    },
+    {
+      "fact_id": "seattle:0",
+      "text": "Washington State Ferries, sailing from Seattle’s Colman Dock, is the largest ferry system in the US.",
+      "source_url": "https://en.wikipedia.org/wiki/Washington_State_Ferries",
+      "places": [
+        {
+          "name": "Colman Dock",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q5147721",
+          "position": [
+            -122.339,
+            47.6027
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "seattle:1",
+      "text": "Seattle is the main home port for cruises to Alaska.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Seattle",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "seattle:2",
+      "text": "The ports of Seattle and Tacoma joined forces as the Northwest Seaport Alliance in 2015.",
+      "source_url": "https://en.wikipedia.org/wiki/Northwest_Seaport_Alliance",
+      "places": [],
+      "review_note": "Tacoma is a separate port outside this Seattle view."
+    },
+    {
+      "fact_id": "seattle:3",
+      "text": "The Port of Seattle, founded in 1911, also runs Seattle–Tacoma airport.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Seattle",
+      "places": [],
+      "review_note": "The airport is outside this harbor map."
+    },
+    {
+      "fact_id": "seattle:4",
+      "text": "In 1897 the steamer Portland docked here with a ton of gold, starting the Klondike gold rush.",
+      "source_url": "https://en.wikipedia.org/wiki/Klondike_Gold_Rush",
+      "places": [],
+      "review_note": "A historical arrival, without a specific dock established by the fact."
+    },
+    {
+      "fact_id": "seattle:5",
+      "text": "The Ballard Locks, opened in 1917, lift boats between Puget Sound and the city’s lakes.",
+      "source_url": "https://en.wikipedia.org/wiki/Ballard_Locks",
+      "places": [
+        {
+          "name": "Ballard Locks",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q5769218",
+          "position": [
+            -122.396389,
+            47.665556
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "seattle:6",
+      "text": "The Space Needle, one of Seattle’s most iconic buildings, was built for the 1962 World’s Fair.",
+      "source_url": "https://en.wikipedia.org/wiki/Space_Needle",
+      "places": [
+        {
+          "name": "Space Needle",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q5317",
+          "position": [
+            -122.3491,
+            47.6204
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "seattle:7",
+      "text": "Fishermen’s Terminal, opened in 1914, is home port to the North Pacific fishing fleet.",
+      "source_url": "https://en.wikipedia.org/wiki/Fishermen%27s_Terminal",
+      "places": [
+        {
+          "name": "Fishermen’s Terminal",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q5454928",
+          "position": [
+            -122.379,
+            47.6591
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "seattle:8",
+      "text": "The tug Arthur Foss, built in 1889, is one of the oldest wooden tugboats still afloat.",
+      "source_url": "https://en.wikipedia.org/wiki/Arthur_Foss",
+      "places": [],
+      "review_note": "The fact does not establish a fixed display location for Arthur Foss; do not turn vessel history into a current position."
+    },
+    {
+      "fact_id": "seattle:9",
+      "text": "Seattle–Bainbridge Island is the busiest route of Washington State Ferries.",
+      "source_url": "https://en.wikipedia.org/wiki/Washington_State_Ferries",
+      "places": [
+        {
+          "name": "Colman Dock",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q5147721",
+          "position": [
+            -122.339,
+            47.6027
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "seattle:10",
+      "text": "Every summer, thousands of salmon climb the fish ladder at the Ballard Locks on their way upstream.",
+      "source_url": "https://en.wikipedia.org/wiki/Ballard_Locks",
+      "places": [
+        {
+          "name": "Ballard Locks",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q5769218",
+          "position": [
+            -122.396389,
+            47.665556
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "charleston:0",
+      "text": "Fort Sumter, at the harbor entrance, saw the first shots of the US Civil War in 1861.",
+      "source_url": "https://en.wikipedia.org/wiki/Fort_Sumter",
+      "places": [
+        {
+          "name": "Fort Sumter",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q737517",
+          "position": [
+            -79.874444,
+            32.7525
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "charleston:1",
+      "text": "At 52 ft, Charleston has the deepest harbor on the US East Coast.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Charleston",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "charleston:2",
+      "text": "The Ravenel Bridge gives ships 186 ft of clearance on the Cooper River.",
+      "source_url": "https://en.wikipedia.org/wiki/Arthur_Ravenel_Jr._Bridge",
+      "places": [
+        {
+          "name": "Ravenel Bridge",
+          "decision": "existing",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q4800088",
+          "position": [
+            -79.915,
+            32.802778
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "charleston:3",
+      "text": "Wando Welch is South Carolina Ports’ largest container terminal.",
+      "source_url": "https://scspa.com/facilities/wando-welch-terminal/",
+      "places": [
+        {
+          "name": "Wando Welch Terminal",
+          "decision": "not_added",
+          "reason": "No unique verified CC0 coordinate for this exact site."
+        }
+      ],
+      "review_note": "Named site withheld until a suitable coordinate is verified."
+    },
+    {
+      "fact_id": "charleston:4",
+      "text": "In 1864 the submarine H. L. Hunley sank a warship off Charleston, a first in history.",
+      "source_url": "https://en.wikipedia.org/wiki/H._L._Hunley",
+      "places": [],
+      "review_note": "A historical sinking; the text does not identify a current museum site."
+    },
+    {
+      "fact_id": "charleston:5",
+      "text": "The aircraft carrier USS Yorktown is a museum ship at Patriots Point.",
+      "source_url": "https://en.wikipedia.org/wiki/USS_Yorktown_(CV-10)",
+      "places": [
+        {
+          "name": "Patriots Point / Yorktown",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q3370061",
+          "position": [
+            -79.90821,
+            32.790377
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "charleston:6",
+      "text": "Charleston was founded in 1670.",
+      "source_url": "https://en.wikipedia.org/wiki/Charleston,_South_Carolina",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "charleston:7",
+      "text": "Rainbow Row’s pastel houses line East Bay Street, near the harbor.",
+      "source_url": "https://en.wikipedia.org/wiki/Rainbow_Row",
+      "places": [
+        {
+          "name": "Rainbow Row",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q7284703",
+          "position": [
+            -79.927222,
+            32.775556
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "charleston:8",
+      "text": "Morris Island Lighthouse, from 1876, now stands in the sea as the shore has washed away.",
+      "source_url": "https://en.wikipedia.org/wiki/Morris_Island_Lighthouse",
+      "places": [
+        {
+          "name": "Morris Island Lighthouse",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q6913753",
+          "position": [
+            -79.8836,
+            32.6953
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "charleston:9",
+      "text": "The Charleston Navy Yard built and repaired warships from 1901 until it closed in 1996.",
+      "source_url": "https://en.wikipedia.org/wiki/Charleston_Naval_Shipyard",
+      "places": [
+        {
+          "name": "Charleston Navy Yard",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1066677",
+          "position": [
+            -79.964722,
+            32.860556
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "singapore:0",
+      "text": "Modern Singapore began as a British trading port in 1819.",
+      "source_url": "https://en.wikipedia.org/wiki/Founding_of_modern_Singapore",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "singapore:1",
+      "text": "Singapore is the world’s busiest transshipment port, where cargo changes ships.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Singapore",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "singapore:2",
+      "text": "Tuas Port, opened in 2022, will be the world’s largest fully automated terminal when complete.",
+      "source_url": "https://en.wikipedia.org/wiki/Tuas_Port",
+      "places": [
+        {
+          "name": "Tuas Port",
+          "decision": "not_added",
+          "reason": "English title resolves to the whole Port of Singapore, not the Tuas terminal; no verified site coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q1421994"
+        }
+      ],
+      "review_note": "Named site withheld until a suitable coordinate is verified."
+    },
+    {
+      "fact_id": "singapore:3",
+      "text": "Raffles Lighthouse has guided ships near Singapore since 1855.",
+      "source_url": "https://en.wikipedia.org/wiki/Raffles_Lighthouse",
+      "places": [
+        {
+          "name": "Raffles Lighthouse",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q3652320",
+          "position": [
+            103.740083,
+            1.1601
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "singapore:4",
+      "text": "Singapore is the world’s largest bunkering port, where ships take on fuel.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Singapore",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "singapore:5",
+      "text": "The Singapore Strait is one of the world’s busiest shipping lanes.",
+      "source_url": "https://en.wikipedia.org/wiki/Singapore_Strait",
+      "places": [],
+      "review_note": "A broad strait, not a single harbor point."
+    },
+    {
+      "fact_id": "singapore:6",
+      "text": "Marina Barrage, opened in 2008, turned Marina Bay into a freshwater reservoir.",
+      "source_url": "https://en.wikipedia.org/wiki/Marina_Barrage",
+      "places": [
+        {
+          "name": "Marina Barrage",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q6763788",
+          "position": [
+            103.87141,
+            1.28054
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "singapore:7",
+      "text": "About every two to three minutes, a ship arrives at or leaves the Port of Singapore.",
+      "source_url": "https://en.wikipedia.org/wiki/Port_of_Singapore",
+      "places": [],
+      "review_note": "General port history, statistics, culture or geography; no separate local fixed site to pin."
+    },
+    {
+      "fact_id": "singapore:8",
+      "text": "Jurong Island, Singapore’s oil and chemical hub, was made by joining seven smaller islands.",
+      "source_url": "https://en.wikipedia.org/wiki/Jurong_Island",
+      "places": [
+        {
+          "name": "Jurong Island",
+          "decision": "added",
+          "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate.",
+          "reference_url": "https://www.wikidata.org/wiki/Q2383204",
+          "position": [
+            103.695833,
+            1.266667
+          ]
+        }
+      ],
+      "review_note": "Matched to the named fixed place(s)."
+    },
+    {
+      "fact_id": "singapore:9",
+      "text": "Horsburgh Lighthouse, lit in 1851, marks the eastern entrance to the Singapore Strait.",
+      "source_url": "https://en.wikipedia.org/wiki/Horsburgh_Lighthouse",
+      "places": [],
+      "review_note": "Horsburgh Lighthouse is far east of the curated Singapore harbor view; do not move the map for it."
+    },
+    {
+      "fact_id": "singapore:10",
+      "text": "Bumboats once carried cargo up the Singapore River; today they carry visitors.",
+      "source_url": "https://en.wikipedia.org/wiki/Bumboat",
+      "places": [],
+      "review_note": "A long river and moving boats, without a specific fixed landing named."
+    }
+  ]
+}

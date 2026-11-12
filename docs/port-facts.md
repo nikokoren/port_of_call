@@ -1,12 +1,14 @@
 # Optional rotating port facts
 
-**Show port facts?** is off by default. When enabled, one short blurb appears below the vessel count. Selection advances on the hour (UTC), shared across installations; a normal device refresh picks up the change. These are static geography/history/port facts, separate from live traffic.
+**Show port facts?** is off by default. When enabled, one short blurb appears below the vessel count. Selection uses shared hourly slots, lengthened to a complete harbor-rotation cycle when necessary so every fact gets a turn. A normal device refresh picks up the change. These are static geography/history/port facts, separate from live traffic.
 
 The collection covers every verified Finnish and AISStream harbor: eight to twelve facts per port, 169 in total, kept by the maintainer over three review rounds. Later rounds favour what you see from the water: museum ships, ferries, locks and lights, firsts and seafaring history. Each figure was checked against the linked source; claims the sources did not support were reworded or replaced before review. All are original factual summaries. The [source module](../port_of_call/port_facts.py) retains a reference URL for every text. API `port_fact` contains `id`, `text` and `source_url`; no extra upstream requests are made for rotation. Adding facts means editing that reviewed collection, with its source, rather than accepting unverified generated claims.
 
 All four layouts use native labels and clamping. The smallest OG half-horizontal and quadrant layouts omit the blurb using native responsive visibility; larger X versions have room. The port card remains at the bottom-left. Under the shared 15 KB response budget, optional blurbs are removed before voyage labels or vessel positions.
 
 Examples: [overview](screenshots/facts-full.png), [dark Spotlight](screenshots/facts-full-dark.png), [half vertical](screenshots/facts-half-vertical.png), [X quadrant](screenshots/facts-x-quadrant.png). These are historical 5 November 2026 vessel captures with curated port facts, not current traffic.
+
+All 169 facts have also been reviewed for map POIs. The built-in catalog now contains 97 sourced places, including 67 additions, and 89 facts have an associated place. When a fact is visible, its POI gets first chance at label space while hulls and fixed overlays remain protected. A POI outside the view or without clear space stays hidden; the map does not move to find it. [Full review, associations, exclusions and previews](port-fact-pois.md).
 
 ## Other destination and provenance copy
 

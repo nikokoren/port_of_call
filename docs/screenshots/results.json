@@ -535,7 +535,7 @@
     "pixels": {
       "width": 3370,
       "height": 1264,
-      "inkFraction": 0.49406739473387673
+      "inkFraction": 0.4941192765653758
     },
     "errors": []
   },
@@ -1102,7 +1102,7 @@
       "mapCountMatches": true,
       "countSuffixTogether": true,
       "countDividerSpaced": true,
-      "landmarks": 1,
+      "landmarks": 2,
       "landmarksClear": true,
       "landmarkPinsExact": true,
       "trailSegments": 0,
@@ -1135,7 +1135,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.641546875
+      "inkFraction": 0.639734375
     },
     "errors": []
   },
@@ -1162,7 +1162,7 @@
       "mapCountMatches": true,
       "countSuffixTogether": true,
       "countDividerSpaced": true,
-      "landmarks": 0,
+      "landmarks": 1,
       "landmarksClear": true,
       "landmarkPinsExact": true,
       "trailSegments": 0,
@@ -1195,7 +1195,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.41840625
+      "inkFraction": 0.41869791666666667
     },
     "errors": []
   },
@@ -1402,7 +1402,7 @@
       "mapCountMatches": true,
       "countSuffixTogether": true,
       "countDividerSpaced": true,
-      "landmarks": 0,
+      "landmarks": 1,
       "landmarksClear": true,
       "landmarkPinsExact": true,
       "trailSegments": 0,
@@ -1435,7 +1435,7 @@
     "pixels": {
       "width": 3370,
       "height": 2527,
-      "inkFraction": 0.30346876875148987
+      "inkFraction": 0.3038959651197336
     },
     "errors": []
   },
@@ -1462,7 +1462,7 @@
       "mapCountMatches": true,
       "countSuffixTogether": true,
       "countDividerSpaced": true,
-      "landmarks": 0,
+      "landmarks": 2,
       "landmarksClear": true,
       "landmarkPinsExact": true,
       "trailSegments": 0,
@@ -1495,7 +1495,7 @@
     "pixels": {
       "width": 2527,
       "height": 3370,
-      "inkFraction": 0.8777287197378109
+      "inkFraction": 0.8767835565800336
     },
     "errors": []
   },
@@ -1702,7 +1702,7 @@
       "mapCountMatches": true,
       "countSuffixTogether": true,
       "countDividerSpaced": true,
-      "landmarks": 0,
+      "landmarks": 1,
       "landmarksClear": true,
       "landmarkPinsExact": true,
       "trailSegments": 0,
@@ -1735,7 +1735,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.8891223958333333
+      "inkFraction": 0.8889895833333333
     },
     "errors": []
   },
@@ -1822,7 +1822,7 @@
       "mapCountMatches": true,
       "countSuffixTogether": true,
       "countDividerSpaced": true,
-      "landmarks": 0,
+      "landmarks": 1,
       "landmarksClear": true,
       "landmarkPinsExact": true,
       "trailSegments": 0,
@@ -1855,7 +1855,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.4157708333333333
+      "inkFraction": 0.41223177083333334
     },
     "errors": []
   },
@@ -1882,7 +1882,7 @@
       "mapCountMatches": true,
       "countSuffixTogether": true,
       "countDividerSpaced": true,
-      "landmarks": 0,
+      "landmarks": 1,
       "landmarksClear": true,
       "landmarkPinsExact": true,
       "trailSegments": 0,
@@ -1915,7 +1915,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.9877890625
+      "inkFraction": 0.9876015625
     },
     "errors": []
   },
@@ -2182,7 +2182,7 @@
       "mapCountMatches": true,
       "countSuffixTogether": true,
       "countDividerSpaced": true,
-      "landmarks": 0,
+      "landmarks": 1,
       "landmarksClear": true,
       "landmarkPinsExact": true,
       "trailSegments": 0,
@@ -2215,7 +2215,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.38686458333333335
+      "inkFraction": 0.3833255208333333
     },
     "errors": []
   },
@@ -2422,7 +2422,7 @@
       "mapCountMatches": true,
       "countSuffixTogether": true,
       "countDividerSpaced": true,
-      "landmarks": 0,
+      "landmarks": 1,
       "landmarksClear": true,
       "landmarkPinsExact": true,
       "trailSegments": 0,
@@ -2455,7 +2455,7 @@
     "pixels": {
       "width": 1685,
       "height": 1264,
-      "inkFraction": 0.4626408556511287
+      "inkFraction": 0.4634291777786125
     },
     "errors": []
   },
@@ -2542,7 +2542,7 @@
       "mapCountMatches": true,
       "countSuffixTogether": true,
       "countDividerSpaced": true,
-      "landmarks": 0,
+      "landmarks": 1,
       "landmarksClear": true,
       "landmarkPinsExact": true,
       "trailSegments": 0,
@@ -2575,7 +2575,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.3888359375
+      "inkFraction": 0.385296875
     },
     "errors": []
   },
@@ -2722,7 +2722,7 @@
       "mapCountMatches": true,
       "countSuffixTogether": true,
       "countDividerSpaced": true,
-      "landmarks": 0,
+      "landmarks": 1,
       "landmarksClear": true,
       "landmarkPinsExact": true,
       "trailSegments": 0,
@@ -2755,7 +2755,7 @@
     "pixels": {
       "width": 800,
       "height": 480,
-      "inkFraction": 0.20411197916666668
+      "inkFraction": 0.20320833333333332
     },
     "errors": []
   },
@@ -2782,7 +2782,7 @@
       "mapCountMatches": true,
       "countSuffixTogether": true,
       "countDividerSpaced": true,
-      "landmarks": 0,
+      "landmarks": 1,
       "landmarksClear": true,
       "landmarkPinsExact": true,
       "trailSegments": 0,
@@ -2815,7 +2815,7 @@
     "pixels": {
       "width": 3370,
       "height": 2527,
-      "inkFraction": 0.29027006842422315
+      "inkFraction": 0.29033430053346704
     },
     "errors": []
   },
@@ -3262,7 +3262,7 @@
       "mapCountMatches": true,
       "countSuffixTogether": true,
       "countDividerSpaced": true,
-      "landmarks": 1,
+      "landmarks": 2,
       "landmarksClear": true,
       "landmarkPinsExact": true,
       "trailSegments": 0,
@@ -3295,7 +3295,7 @@
     "pixels": {
       "width": 1264,
       "height": 3370,
-      "inkFraction": 0.412683816624723
+      "inkFraction": 0.41202836832813733
     },
     "errors": []
   },

@@ -21,6 +21,8 @@ Save the fields and templates, then choose your harbors and refresh. Leaving the
 
 For future recipe updates, copy the changed files into the same editor tabs. When maintaining the field definitions in this repository, edit `settings.yml` and run `python scripts/sync_custom_fields.py` to refresh the standalone field array. The tests check that both definitions agree.
 
+For fact-related POI priority, update **Shared and all four layouts**. Enable **Show port facts?** to give the place associated with the visible fact first chance at label space. The expanded POI catalog is served by the backend; it adds no setting and needs no polling-URL change. Hulls and fixed overlays remain protected, and the map keeps its fixed view. [Reviewed places and examples](port-fact-pois.md).
+
 The vessel count now distinguishes the observation area from the actual drawn ships, for example **322 vessels in area · 19 on map**. Update all four layout tabs and Shared for this count, trails and landmarks. Harbor rotation and richer free reference facts are supplied by the backend.
 
 The map format supplies up to **80 candidate vessels** using compact records, within the same 15 KB response budget. The screen draws those that fit without crowding; label limits remain unchanged. To upgrade an existing plugin safely, paste **Shared and all four layouts first**, then append `&format=map` to its polling URL. The updated templates accept both formats. The old URL continues to serve the original 40-candidate format. No custom-field or credential changes are needed.

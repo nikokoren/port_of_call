@@ -238,7 +238,9 @@ class Harbor(DurableObject):
             data = json.loads(await result.text())
             if data.get('port', {}).get('id') != harbor: return None
             from port_of_call.port_facts import port_fact
+            from port_of_call.landmarks import landmarks_for
             data['port_fact'] = port_fact(harbor, time.time(), fact_period)
+            data['landmarks'] = landmarks_for(harbor, data['port_fact']['id'] if data['port_fact'] else None)
             return encode_snapshot(data)
         except Exception as exc:
             print('partner_unavailable', type(exc).__name__)

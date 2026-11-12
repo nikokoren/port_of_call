@@ -1,0 +1,1324 @@
+{
+  "helsinki": [
+    {
+      "name": "South Harbour",
+      "qid": "Q3059225",
+      "facts": [],
+      "position": [
+        24.957534,
+        60.162058
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Suomenlinna",
+      "qid": "Q1292442",
+      "facts": [
+        1,
+        8
+      ],
+      "position": [
+        24.984444,
+        60.143611
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Katajanokka",
+      "facts": [
+        2
+      ],
+      "qid": "Q976443",
+      "position": [
+        24.968333,
+        60.166944
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Vuosaari Harbour",
+      "facts": [
+        3
+      ],
+      "qid": "Q7943692",
+      "position": [
+        25.18844,
+        60.213065
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Old Market Hall",
+      "facts": [
+        6
+      ],
+      "qid": "Q3557940",
+      "position": [
+        24.952778,
+        60.166111
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Olympia Terminal",
+      "facts": [
+        7
+      ],
+      "qid": "Q7088980",
+      "position": [
+        24.958886,
+        60.160757
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Market Square",
+      "facts": [
+        10
+      ],
+      "qid": "Q541933",
+      "position": [
+        24.955,
+        60.167
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ],
+  "turku": [
+    {
+      "name": "Turku Castle",
+      "qid": "Q136893",
+      "facts": [
+        1
+      ],
+      "position": [
+        22.227639,
+        60.435282
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Ruissalo",
+      "qid": "Q2097015",
+      "facts": [],
+      "position": [
+        22.166667,
+        60.433333
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Meyer Turku shipyard",
+      "facts": [
+        3
+      ],
+      "qid": "Q11887488",
+      "position": [
+        22.126118,
+        60.454407
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Suomen Joutsen museum",
+      "facts": [
+        5
+      ],
+      "qid": "Q918929",
+      "position": [
+        22.237015,
+        60.43622
+      ],
+      "decision": "added",
+      "reason": "Museum display site, labelled as a museum; not a live vessel-position claim."
+    },
+    {
+      "name": "Föri ferry crossing",
+      "facts": [
+        7
+      ],
+      "qid": "Q1480060",
+      "position": [
+        22.247833,
+        60.441167
+      ],
+      "decision": "added",
+      "reason": "Fixed ferry crossing, not the changing location of its ferry."
+    },
+    {
+      "name": "Sigyn museum",
+      "facts": [
+        9
+      ],
+      "qid": "Q1478975",
+      "position": [
+        22.237358,
+        60.436135
+      ],
+      "decision": "added",
+      "reason": "Museum display site, labelled as a museum; not a live vessel-position claim."
+    },
+    {
+      "name": "Forum Marinum",
+      "facts": [
+        10
+      ],
+      "qid": "Q3917218",
+      "position": [
+        22.2342,
+        60.4367
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ],
+  "rauma": [
+    {
+      "name": "Port of Rauma",
+      "qid": "Q18661881",
+      "facts": [
+        3,
+        10
+      ],
+      "position": [
+        21.427806,
+        61.126389
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Kuuskajaskari",
+      "qid": "Q11873838",
+      "facts": [],
+      "position": [
+        21.366667,
+        61.136667
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Old Rauma",
+      "facts": [
+        0,
+        2
+      ],
+      "qid": "Q828417",
+      "position": [
+        21.513215,
+        61.128269
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Rauma shipyard",
+      "facts": [
+        6
+      ],
+      "qid": "Q17334709",
+      "position": [
+        21.4616,
+        61.1235
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Maritime Museum",
+      "facts": [
+        7
+      ],
+      "qid": "Q7296211",
+      "position": [
+        21.5,
+        61.133333
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Kylmäpihlaja lighthouse",
+      "facts": [
+        8
+      ],
+      "qid": "Q11873937",
+      "position": [
+        21.30275,
+        61.144639
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Marela museum",
+      "facts": [
+        9
+      ],
+      "qid": "Q18346692",
+      "position": [
+        21.515096,
+        61.128159
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ],
+  "rotterdam": [
+    {
+      "name": "Maeslantkering",
+      "qid": "Q1647536",
+      "facts": [
+        5
+      ],
+      "position": [
+        4.163786,
+        51.955272
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Benelux Tunnel",
+      "qid": "Q2164875",
+      "facts": [],
+      "position": [
+        4.37194,
+        51.90056
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Maasvlakte 2",
+      "facts": [
+        2
+      ],
+      "qid": "Q2733197",
+      "position": [
+        3.98333,
+        51.95833
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Erasmus Bridge",
+      "facts": [
+        3
+      ],
+      "qid": "Q1348188",
+      "position": [
+        4.48654,
+        51.90864
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "SS Rotterdam hotel",
+      "facts": [
+        4
+      ],
+      "qid": "Q166127",
+      "position": [
+        4.473396,
+        51.897766
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Maasvlakte",
+      "facts": [
+        6
+      ],
+      "qid": "Q238672",
+      "position": [
+        4.0464,
+        51.9525
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Maritime Museum",
+      "facts": [
+        8
+      ],
+      "qid": "Q2755458",
+      "position": [
+        4.481889,
+        51.9175
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ],
+  "antwerp": [
+    {
+      "name": "Berendrecht Lock",
+      "qid": "Q3220834",
+      "facts": [],
+      "position": [
+        4.28556,
+        51.34389
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Port House",
+      "facts": [
+        1
+      ],
+      "qid": "Q23930610",
+      "position": [
+        4.407344,
+        51.241058
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Het Steen",
+      "facts": [
+        4
+      ],
+      "qid": "Q1014126",
+      "position": [
+        4.3975,
+        51.222778
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Kieldrecht Lock",
+      "facts": [
+        5
+      ],
+      "qid": "Q2340358",
+      "position": [
+        4.25,
+        51.28
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Sint-Anna tunnel",
+      "facts": [
+        8
+      ],
+      "qid": "Q691988",
+      "position": [
+        4.39167,
+        51.21972
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Bonapartedok",
+      "facts": [
+        9
+      ],
+      "qid": "Q5282805",
+      "position": [
+        4.40306,
+        51.22861
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ],
+  "hamburg": [
+    {
+      "name": "Landungsbrücken",
+      "qid": "Q458970",
+      "facts": [
+        6
+      ],
+      "position": [
+        9.966667,
+        53.546111
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Köhlbrand Bridge",
+      "qid": "Q520613",
+      "facts": [],
+      "position": [
+        9.938494,
+        53.521834
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Speicherstadt",
+      "facts": [
+        1
+      ],
+      "qid": "Q661881",
+      "position": [
+        9.991944,
+        53.543333
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Elbphilharmonie",
+      "facts": [
+        2
+      ],
+      "qid": "Q673223",
+      "position": [
+        9.984194,
+        53.541417
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Old Elbe Tunnel",
+      "facts": [
+        4
+      ],
+      "qid": "Q460264",
+      "position": [
+        9.9665,
+        53.544
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Willkomm-Höft",
+      "facts": [
+        5
+      ],
+      "qid": "Q2235086",
+      "position": [
+        9.7025,
+        53.568056
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Rickmer Rickmers museum",
+      "facts": [
+        6
+      ],
+      "qid": "Q479965",
+      "position": [
+        9.972889,
+        53.544583
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Fish Market",
+      "facts": [
+        9
+      ],
+      "qid": "Q175551",
+      "position": [
+        9.95427,
+        53.54561
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Maritime Museum",
+      "facts": [
+        11
+      ],
+      "qid": "Q937608",
+      "position": [
+        10,
+        53.543344
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ],
+  "bremerhaven": [
+    {
+      "name": "Kaiserschleuse",
+      "qid": "Q1721729",
+      "facts": [
+        9
+      ],
+      "position": [
+        8.55917,
+        53.5581
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Kaiserschleuse lighthouse",
+      "qid": "Q1321463",
+      "facts": [],
+      "position": [
+        8.559953,
+        53.553612
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Emigration Center",
+      "facts": [
+        1
+      ],
+      "qid": "Q318809",
+      "position": [
+        8.57417,
+        53.5453
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Maritime Museum",
+      "facts": [
+        5
+      ],
+      "qid": "Q455354",
+      "position": [
+        8.577,
+        53.5401
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Wilhelm Bauer museum",
+      "facts": [
+        6
+      ],
+      "qid": "Q683457",
+      "position": [
+        8.577778,
+        53.541389
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Bremerhaven lighthouse",
+      "facts": [
+        7
+      ],
+      "qid": "Q304471",
+      "position": [
+        8.570111,
+        53.546306
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Fischereihafen",
+      "facts": [
+        10
+      ],
+      "qid": "Q1118917",
+      "position": [
+        8.584722,
+        53.519167
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Container Terminal",
+      "facts": [
+        2,
+        4
+      ],
+      "qid": "Q1128462",
+      "position": [
+        8.533287,
+        53.58741
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ],
+  "felixstowe": [
+    {
+      "name": "Landguard Fort",
+      "qid": "Q6484546",
+      "facts": [
+        3
+      ],
+      "position": [
+        1.32208,
+        51.9376
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Harwich lighthouse",
+      "qid": "Q17532999",
+      "facts": [],
+      "position": [
+        1.28858,
+        51.9445
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "title": "Harwich Treadwheel Crane",
+      "name": "Treadwheel Crane",
+      "facts": [
+        4
+      ],
+      "qid": null,
+      "decision": "not_added",
+      "reason": "No unique verified CC0 coordinate for this exact site."
+    },
+    {
+      "title": "Ha'penny Pier",
+      "name": "Ha’penny Pier",
+      "facts": [
+        6
+      ],
+      "qid": null,
+      "decision": "not_added",
+      "reason": "No unique verified CC0 coordinate for this exact site."
+    },
+    {
+      "name": "Harwich Redoubt",
+      "facts": [
+        7
+      ],
+      "qid": "Q5677857",
+      "position": [
+        1.2889,
+        51.9419
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Harwich ferry terminal",
+      "facts": [
+        5
+      ],
+      "qid": "Q5677860",
+      "position": [
+        1.255,
+        51.948
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ],
+  "southampton": [
+    {
+      "name": "Hythe Pier",
+      "qid": "Q5962460",
+      "facts": [
+        6
+      ],
+      "position": [
+        -1.3935,
+        50.8746
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Southampton Water",
+      "qid": "Q502233",
+      "facts": [
+        2
+      ],
+      "position": [
+        -1.3475,
+        50.856111
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Town walls",
+      "facts": [
+        4
+      ],
+      "qid": "Q7569186",
+      "position": [
+        -1.4068,
+        50.8996
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ],
+  "los-angeles-long-beach": [
+    {
+      "name": "Vincent Thomas Bridge",
+      "qid": "Q496944",
+      "facts": [
+        3
+      ],
+      "position": [
+        -118.271667,
+        33.749444
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Gateway Bridge",
+      "qid": "Q104864023",
+      "facts": [],
+      "position": [
+        -118.2213,
+        33.76488
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Queen Mary museum",
+      "facts": [
+        1
+      ],
+      "qid": "Q752939",
+      "position": [
+        -118.189722,
+        33.753056
+      ],
+      "decision": "added",
+      "reason": "Museum display site, labelled as a museum; not a live vessel-position claim."
+    },
+    {
+      "name": "Angels Gate Lighthouse",
+      "facts": [
+        2
+      ],
+      "qid": "Q12061372",
+      "position": [
+        -118.2516,
+        33.7086
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "USS Iowa museum",
+      "facts": [
+        4
+      ],
+      "qid": "Q15071923",
+      "position": [
+        -118.277,
+        33.7416
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Point Fermin Lighthouse",
+      "facts": [
+        6
+      ],
+      "qid": "Q7208023",
+      "position": [
+        -118.294,
+        33.7054
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Lane Victory museum",
+      "facts": [
+        7
+      ],
+      "qid": "Q2376481",
+      "position": [
+        -118.274722,
+        33.714444
+      ],
+      "decision": "added",
+      "reason": "Museum display site, labelled as a museum; not a live vessel-position claim."
+    },
+    {
+      "name": "Terminal Island",
+      "facts": [
+        9
+      ],
+      "qid": "Q1059628",
+      "position": [
+        -118.248056,
+        33.756944
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ],
+  "new-york-new-jersey": [
+    {
+      "name": "Statue of Liberty",
+      "qid": "Q9202",
+      "facts": [
+        1
+      ],
+      "position": [
+        -74.044425,
+        40.689209
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Verrazzano Bridge",
+      "qid": "Q125673",
+      "facts": [],
+      "position": [
+        -74.045556,
+        40.606389
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Port Newark",
+      "facts": [
+        0
+      ],
+      "qid": "Q2737371",
+      "position": [
+        -74.1505,
+        40.68155
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Ellis Island",
+      "facts": [
+        2
+      ],
+      "qid": "Q202175",
+      "position": [
+        -74.039722,
+        40.699444
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Bayonne Bridge",
+      "facts": [
+        3
+      ],
+      "qid": "Q812580",
+      "position": [
+        -74.142222,
+        40.641944
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Intrepid Museum",
+      "facts": [
+        6
+      ],
+      "qid": "Q952270",
+      "position": [
+        -73.999611,
+        40.764611
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "South Street Seaport",
+      "facts": [
+        7,
+        8
+      ],
+      "qid": "Q223000",
+      "position": [
+        -74.0033,
+        40.7061
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Brooklyn Navy Yard",
+      "facts": [
+        9
+      ],
+      "qid": "Q524435",
+      "position": [
+        -73.973436,
+        40.702764
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ],
+  "savannah": [
+    {
+      "name": "Talmadge Bridge",
+      "qid": "Q3514553",
+      "facts": [],
+      "position": [
+        -81.0988,
+        32.0891
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Fort James Jackson",
+      "qid": "Q1438578",
+      "facts": [
+        7
+      ],
+      "position": [
+        -81.036111,
+        32.081944
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "title": "Garden City Terminal",
+      "name": "Garden City Terminal",
+      "facts": [
+        0
+      ],
+      "qid": null,
+      "decision": "not_added",
+      "reason": "No unique verified CC0 coordinate for this exact site."
+    },
+    {
+      "name": "River Street",
+      "facts": [
+        2
+      ],
+      "qid": "Q85797367",
+      "position": [
+        -81.09951,
+        32.085792
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Tybee Lighthouse",
+      "facts": [
+        3
+      ],
+      "qid": "Q7859692",
+      "position": [
+        -80.845639,
+        32.022222
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ],
+  "houston": [
+    {
+      "name": "Fred Hartman Bridge",
+      "qid": "Q4115158",
+      "facts": [],
+      "position": [
+        -95.01742,
+        29.70347
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "San Jacinto Monument",
+      "qid": "Q1111991",
+      "facts": [
+        2
+      ],
+      "position": [
+        -95.0803,
+        29.7489
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Lynchburg ferry crossing",
+      "facts": [
+        6
+      ],
+      "qid": "Q6708475",
+      "position": [
+        -95.08,
+        29.7635
+      ],
+      "decision": "added",
+      "reason": "Fixed ferry crossing, not the changing location of its ferry."
+    },
+    {
+      "name": "Barbours Cut",
+      "facts": [
+        9
+      ],
+      "qid": "Q4859731",
+      "position": [
+        -94.9983,
+        29.6819
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ],
+  "seattle": [
+    {
+      "name": "Colman Dock",
+      "qid": "Q5147721",
+      "facts": [
+        0,
+        9
+      ],
+      "position": [
+        -122.339,
+        47.6027
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Smith Cove",
+      "qid": "Q7545112",
+      "facts": [],
+      "position": [
+        -122.386311,
+        47.629651
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Ballard Locks",
+      "facts": [
+        5,
+        10
+      ],
+      "qid": "Q5769218",
+      "position": [
+        -122.396389,
+        47.665556
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Space Needle",
+      "facts": [
+        6
+      ],
+      "qid": "Q5317",
+      "position": [
+        -122.3491,
+        47.6204
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Fishermen’s Terminal",
+      "facts": [
+        7
+      ],
+      "qid": "Q5454928",
+      "position": [
+        -122.379,
+        47.6591
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ],
+  "charleston": [
+    {
+      "name": "Fort Sumter",
+      "qid": "Q737517",
+      "facts": [
+        0
+      ],
+      "position": [
+        -79.874444,
+        32.7525
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Ravenel Bridge",
+      "qid": "Q4800088",
+      "facts": [
+        2
+      ],
+      "position": [
+        -79.915,
+        32.802778
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "title": "Wando Welch Terminal",
+      "name": "Wando Welch Terminal",
+      "facts": [
+        3
+      ],
+      "qid": null,
+      "decision": "not_added",
+      "reason": "No unique verified CC0 coordinate for this exact site."
+    },
+    {
+      "name": "Patriots Point / Yorktown",
+      "facts": [
+        5
+      ],
+      "qid": "Q3370061",
+      "position": [
+        -79.90821,
+        32.790377
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Rainbow Row",
+      "facts": [
+        7
+      ],
+      "qid": "Q7284703",
+      "position": [
+        -79.927222,
+        32.775556
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Morris Island Lighthouse",
+      "facts": [
+        8
+      ],
+      "qid": "Q6913753",
+      "position": [
+        -79.8836,
+        32.6953
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Charleston Navy Yard",
+      "facts": [
+        9
+      ],
+      "qid": "Q1066677",
+      "position": [
+        -79.964722,
+        32.860556
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ],
+  "singapore": [
+    {
+      "name": "Cruise terminal",
+      "qid": "Q6763789",
+      "facts": [],
+      "position": [
+        103.8622,
+        1.27084
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "title": "Tuas Port",
+      "name": "Tuas Port",
+      "facts": [
+        2
+      ],
+      "qid": "Q1421994",
+      "decision": "not_added",
+      "reason": "English title resolves to the whole Port of Singapore, not the Tuas terminal; no verified site coordinate."
+    },
+    {
+      "name": "Raffles Lighthouse",
+      "facts": [
+        3
+      ],
+      "qid": "Q3652320",
+      "position": [
+        103.740083,
+        1.1601
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Marina Barrage",
+      "facts": [
+        6
+      ],
+      "qid": "Q6763788",
+      "position": [
+        103.87141,
+        1.28054
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    },
+    {
+      "name": "Jurong Island",
+      "facts": [
+        8
+      ],
+      "qid": "Q2383204",
+      "position": [
+        103.695833,
+        1.266667
+      ],
+      "decision": "added",
+      "reason": "Named fixed place or museum site; verified Wikidata identity and Earth coordinate."
+    }
+  ]
+}

@@ -86,7 +86,8 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
     vessels = markers
     from .destination_review import record_many
     record_many(store, port['id'], reviews, now)
-    from .landmarks import LANDMARKS
+    from .landmarks import landmarks_for
+    fact = port_fact(port['id'], now, fact_period)
     zone = ZoneInfo(port['timezone'])
     def local(ts): return datetime.fromtimestamp(ts, zone).strftime('%H:%M %Z') if ts else None
     if focus:
@@ -97,7 +98,7 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
     if demo: source = 'Synthetic fixture — DEMO'
     # Fixed-zoom framing tells the map its zoom and centre; other scales fit the box.
     camera = dict(zoom=harbor_zoom(port), center=list(port.get('focus') or port['center'])) if scale == 'harbor' else None
-    return dict(schema_version=1, display_mode='map', port=port, port_fact=port_fact(port['id'], now, fact_period), landmarks=LANDMARKS.get(port['id'],[]), viewport=box, camera=camera, source=source,
+    return dict(schema_version=1, display_mode='map', port=port, port_fact=fact, landmarks=landmarks_for(port['id'],fact['id'] if fact else None), viewport=box, camera=camera, source=source,
                 attribution={'label': 'Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS',
                     'url': 'https://www.digitraffic.fi/en/marine-traffic/',
                     'license': 'https://creativecommons.org/licenses/by/4.0/'} if port['provider']=='digitraffic' else None,

@@ -240,11 +240,14 @@
       function featuredIcon(point) {
         var r=20*scale();return [point.x-r,point.y-r,point.x+r,point.y+r];
       }
-      function drawLandmarks(map,ships,fixed,boxes,lines){
-        if(el.clientWidth<300||el.clientHeight<260)return;
-        var unit=scale(),W=el.clientWidth,H=el.clientHeight,placed=0;
+      function drawLandmarks(map,ships,fixed,boxes,lines,relatedOnly){
+        var result={boxes:[],lines:[]};
+        if(el.clientWidth<300||el.clientHeight<260)return result;
+        var unit=scale(),W=el.clientWidth,H=el.clientHeight;
+        var existing=Array.from(el.querySelectorAll('.poc__landmark')).map(function(n){return n.textContent;}),placed=existing.length;
         var obstacles=ships.map(function(s){return s.box;}).concat(fixed,boxes||[]),leaders=lines||[];
         el.querySelectorAll('.poc__landmark-data li').forEach(function(n){
+          if((relatedOnly&&n.dataset.related!=='true')||existing.indexOf(n.dataset.name)>=0)return;
           if(placed>=(W*H/(unit*unit)>=300000?2:1))return;
           var coord=[Number(n.dataset.lon),Number(n.dataset.lat)],p=map.project(coord),r=6*unit,ib=[p.x-r,p.y-16*unit,p.x+r,p.y+unit];
           if(ib[0]<8||ib[1]<8||ib[2]>W-8||ib[3]>H-8||obstacles.some(function(b){return PortOfCallLabels.overlaps(ib,b);}))return;
@@ -254,6 +257,7 @@
           if(!plan||Math.hypot(plan.line[2]-plan.line[0],plan.line[3]-plan.line[1])>48*unit){node.remove();return;}
           node.style.left=(plan.rect[0]+2)+'px';node.style.top=(plan.rect[1]+1)+'px';
           obstacles.push(ib,plan.rect);leaders.push(plan.line);placed++;
+          result.boxes.push(ib,plan.rect);result.lines.push(plan.line);
           var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','poc__landmark-svg');svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.setAttribute('aria-hidden','true');svg.dataset.lon=coord[0];svg.dataset.lat=coord[1];
           // A hollow map pin distinguishes fixed landmarks from vessel hulls.
           // Its tip, rather than the centre of its bounding box, is the coordinate.
@@ -264,7 +268,7 @@
             path.setAttribute('d',pin+'M'+plan.line[0]+' '+plan.line[1]+'L'+plan.line[2]+' '+plan.line[3]);svg.appendChild(path);
           });el.appendChild(svg);
           var centre=document.createElementNS('http://www.w3.org/2000/svg','circle');centre.setAttribute('cx',p.x);centre.setAttribute('cy',p.y-10*unit);centre.setAttribute('r',1.7*unit);svg.appendChild(centre);
-        });
+        });return result;
       }
       function line(svg,points,id) {
         ['poc__leader-halo','poc__leader'].forEach(function(cls){
@@ -400,8 +404,13 @@
             el.appendChild(trace);
           }
         }
-        if(el.dataset.labels!=='on'){drawLandmarks(map,shown,reserved);return;}
-        var boxes=shown.map(function(s){return s.box;}).concat(reserved),lines=annotation?[annotation.line]:[];
+        // A visible port fact gives its related POI first chance at label space.
+        // Hulls and fixed overlays stay protected; ordinary landmarks still yield
+        // to ship labels. Hidden/disabled facts do not reserve any extra space.
+        var factNode=el.querySelector('[data-poc-port-fact]');
+        var priority=factNode&&factNode.offsetHeight?drawLandmarks(map,shown,reserved,[],annotation?[annotation.line]:[],true):{boxes:[],lines:[]};
+        if(el.dataset.labels!=='on'){drawLandmarks(map,shown,reserved,priority.boxes,priority.lines);return;}
+        var boxes=shown.map(function(s){return s.box;}).concat(reserved,priority.boxes),lines=(annotation?[annotation.line]:[]).concat(priority.lines);
         var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
         svg.setAttribute('class','poc__lines');svg.setAttribute('viewBox','0 0 '+W+' '+H);el.appendChild(svg);
         // One label per 48,000 px² of map (8 on a full OG screen, 16 on a full

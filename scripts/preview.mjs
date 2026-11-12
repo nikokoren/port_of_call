@@ -26,6 +26,18 @@ http.createServer(async(req,res)=>{
   // Current, independently sourced reference context may accompany archived
   // observations; this never changes their vessel positions or timestamps.
   if(!data.landmarks)data.landmarks=JSON.parse(await readFile('docs/landmark-sources.json','utf8')).landmarks[data.port?.id]||[];
+  // Reference-only test: choose a reviewed static fact and its current POIs.
+  // Archived vessel observations, their timestamps and camera stay untouched.
+  const poiReview=u.searchParams.get('poi-review')==='true';
+  if(poiReview){
+   const id=data.port.id+':'+u.searchParams.get('fact');
+   const row=JSON.parse(await readFile('docs/port-fact-poi-review.json','utf8')).facts.find(f=>f.fact_id===id);
+   if(!row)throw new Error('Unknown reviewed fact');
+   data.port_fact={id:row.fact_id,text:row.text,source_url:row.source_url};
+   data.landmarks=JSON.parse(await readFile('docs/landmark-sources.json','utf8')).landmarks[data.port.id]
+    .toSorted((a,b)=>Number(!a.fact_ids.includes(id))-Number(!b.fact_ids.includes(id))).slice(0,8)
+    .map(r=>({...r,fact_related:r.fact_ids.includes(id)}));
+  }
   // Fixtures are captured at the full observation box; optionally preview a nested framing.
   const factor=Number(u.searchParams.get('frame'));
   if(factor>0&&factor<=1&&data.viewport){const [w,s,e,n]=data.viewport,x=(w+e)/2,y=(s+n)/2;
@@ -35,7 +47,7 @@ http.createServer(async(req,res)=>{
   let provenance='';
   if(!data.demo) {
     const date=new Date(data.snapshot_at).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'});
-    const tag=(['stale','empty','unavailable','warming'].includes(fixture)||fixture.startsWith('spotlight-layout-test')||fixture==='spotlight-fallback')?'STATE TEST · archive':'Archive';
+    const tag=poiReview?'POI REFERENCE TEST · archive':(['stale','empty','unavailable','warming'].includes(fixture)||fixture.startsWith('spotlight-layout-test')||fixture==='spotlight-fallback')?'STATE TEST · archive':'Archive';
     provenance=`<div class="description p--2" data-preview-provenance>${tag} · ${date} · Historical test capture, not current traffic</div>`;
   }
   const device=u.searchParams.get('device')||'og';

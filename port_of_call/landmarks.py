@@ -1,4 +1,4 @@
-"""Reviewed CC0 Wikidata landmark coordinates; no runtime lookup or camera fit."""
+"""Reviewed CC0 fixed-place references; never live vessel positions or camera targets."""
 LANDMARKS = {
   "helsinki": [
     {
@@ -7,7 +7,8 @@ LANDMARKS = {
         24.957534,
         60.162058
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q3059225"
+      "source_url": "https://www.wikidata.org/wiki/Q3059225",
+      "fact_ids": []
     },
     {
       "name": "Suomenlinna",
@@ -15,7 +16,66 @@ LANDMARKS = {
         24.984444,
         60.143611
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q1292442"
+      "source_url": "https://www.wikidata.org/wiki/Q1292442",
+      "fact_ids": [
+        "helsinki:1",
+        "helsinki:8"
+      ]
+    },
+    {
+      "name": "Katajanokka",
+      "position": [
+        24.968333,
+        60.166944
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q976443",
+      "fact_ids": [
+        "helsinki:2"
+      ]
+    },
+    {
+      "name": "Vuosaari Harbour",
+      "position": [
+        25.18844,
+        60.213065
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q7943692",
+      "fact_ids": [
+        "helsinki:3"
+      ]
+    },
+    {
+      "name": "Old Market Hall",
+      "position": [
+        24.952778,
+        60.166111
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q3557940",
+      "fact_ids": [
+        "helsinki:6"
+      ]
+    },
+    {
+      "name": "Olympia Terminal",
+      "position": [
+        24.958886,
+        60.160757
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q7088980",
+      "fact_ids": [
+        "helsinki:7"
+      ]
+    },
+    {
+      "name": "Market Square",
+      "position": [
+        24.955,
+        60.167
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q541933",
+      "fact_ids": [
+        "helsinki:10"
+      ]
     }
   ],
   "turku": [
@@ -25,7 +85,10 @@ LANDMARKS = {
         22.227639,
         60.435282
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q136893"
+      "source_url": "https://www.wikidata.org/wiki/Q136893",
+      "fact_ids": [
+        "turku:1"
+      ]
     },
     {
       "name": "Ruissalo",
@@ -33,7 +96,63 @@ LANDMARKS = {
         22.166667,
         60.433333
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q2097015"
+      "source_url": "https://www.wikidata.org/wiki/Q2097015",
+      "fact_ids": []
+    },
+    {
+      "name": "Meyer Turku shipyard",
+      "position": [
+        22.126118,
+        60.454407
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q11887488",
+      "fact_ids": [
+        "turku:3"
+      ]
+    },
+    {
+      "name": "Suomen Joutsen museum",
+      "position": [
+        22.237015,
+        60.43622
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q918929",
+      "fact_ids": [
+        "turku:5"
+      ]
+    },
+    {
+      "name": "Föri ferry crossing",
+      "position": [
+        22.247833,
+        60.441167
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q1480060",
+      "fact_ids": [
+        "turku:7"
+      ]
+    },
+    {
+      "name": "Sigyn museum",
+      "position": [
+        22.237358,
+        60.436135
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q1478975",
+      "fact_ids": [
+        "turku:9"
+      ]
+    },
+    {
+      "name": "Forum Marinum",
+      "position": [
+        22.2342,
+        60.4367
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q3917218",
+      "fact_ids": [
+        "turku:10"
+      ]
     }
   ],
   "rauma": [
@@ -43,7 +162,11 @@ LANDMARKS = {
         21.427806,
         61.126389
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q18661881"
+      "source_url": "https://www.wikidata.org/wiki/Q18661881",
+      "fact_ids": [
+        "rauma:3",
+        "rauma:10"
+      ]
     },
     {
       "name": "Kuuskajaskari",
@@ -51,7 +174,64 @@ LANDMARKS = {
         21.366667,
         61.136667
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q11873838"
+      "source_url": "https://www.wikidata.org/wiki/Q11873838",
+      "fact_ids": []
+    },
+    {
+      "name": "Old Rauma",
+      "position": [
+        21.513215,
+        61.128269
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q828417",
+      "fact_ids": [
+        "rauma:0",
+        "rauma:2"
+      ]
+    },
+    {
+      "name": "Rauma shipyard",
+      "position": [
+        21.4616,
+        61.1235
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q17334709",
+      "fact_ids": [
+        "rauma:6"
+      ]
+    },
+    {
+      "name": "Maritime Museum",
+      "position": [
+        21.5,
+        61.133333
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q7296211",
+      "fact_ids": [
+        "rauma:7"
+      ]
+    },
+    {
+      "name": "Kylmäpihlaja lighthouse",
+      "position": [
+        21.30275,
+        61.144639
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q11873937",
+      "fact_ids": [
+        "rauma:8"
+      ]
+    },
+    {
+      "name": "Marela museum",
+      "position": [
+        21.515096,
+        61.128159
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q18346692",
+      "fact_ids": [
+        "rauma:9"
+      ]
     }
   ],
   "rotterdam": [
@@ -61,7 +241,10 @@ LANDMARKS = {
         4.163786,
         51.955272
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q1647536"
+      "source_url": "https://www.wikidata.org/wiki/Q1647536",
+      "fact_ids": [
+        "rotterdam:5"
+      ]
     },
     {
       "name": "Benelux Tunnel",
@@ -69,7 +252,63 @@ LANDMARKS = {
         4.37194,
         51.90056
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q2164875"
+      "source_url": "https://www.wikidata.org/wiki/Q2164875",
+      "fact_ids": []
+    },
+    {
+      "name": "Maasvlakte 2",
+      "position": [
+        3.98333,
+        51.95833
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q2733197",
+      "fact_ids": [
+        "rotterdam:2"
+      ]
+    },
+    {
+      "name": "Erasmus Bridge",
+      "position": [
+        4.48654,
+        51.90864
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q1348188",
+      "fact_ids": [
+        "rotterdam:3"
+      ]
+    },
+    {
+      "name": "SS Rotterdam hotel",
+      "position": [
+        4.473396,
+        51.897766
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q166127",
+      "fact_ids": [
+        "rotterdam:4"
+      ]
+    },
+    {
+      "name": "Maasvlakte",
+      "position": [
+        4.0464,
+        51.9525
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q238672",
+      "fact_ids": [
+        "rotterdam:6"
+      ]
+    },
+    {
+      "name": "Maritime Museum",
+      "position": [
+        4.481889,
+        51.9175
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q2755458",
+      "fact_ids": [
+        "rotterdam:8"
+      ]
     }
   ],
   "antwerp": [
@@ -79,7 +318,63 @@ LANDMARKS = {
         4.28556,
         51.34389
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q3220834"
+      "source_url": "https://www.wikidata.org/wiki/Q3220834",
+      "fact_ids": []
+    },
+    {
+      "name": "Port House",
+      "position": [
+        4.407344,
+        51.241058
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q23930610",
+      "fact_ids": [
+        "antwerp:1"
+      ]
+    },
+    {
+      "name": "Het Steen",
+      "position": [
+        4.3975,
+        51.222778
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q1014126",
+      "fact_ids": [
+        "antwerp:4"
+      ]
+    },
+    {
+      "name": "Kieldrecht Lock",
+      "position": [
+        4.25,
+        51.28
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q2340358",
+      "fact_ids": [
+        "antwerp:5"
+      ]
+    },
+    {
+      "name": "Sint-Anna tunnel",
+      "position": [
+        4.39167,
+        51.21972
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q691988",
+      "fact_ids": [
+        "antwerp:8"
+      ]
+    },
+    {
+      "name": "Bonapartedok",
+      "position": [
+        4.40306,
+        51.22861
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q5282805",
+      "fact_ids": [
+        "antwerp:9"
+      ]
     }
   ],
   "hamburg": [
@@ -89,7 +384,10 @@ LANDMARKS = {
         9.966667,
         53.546111
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q458970"
+      "source_url": "https://www.wikidata.org/wiki/Q458970",
+      "fact_ids": [
+        "hamburg:6"
+      ]
     },
     {
       "name": "Köhlbrand Bridge",
@@ -97,7 +395,85 @@ LANDMARKS = {
         9.938494,
         53.521834
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q520613"
+      "source_url": "https://www.wikidata.org/wiki/Q520613",
+      "fact_ids": []
+    },
+    {
+      "name": "Speicherstadt",
+      "position": [
+        9.991944,
+        53.543333
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q661881",
+      "fact_ids": [
+        "hamburg:1"
+      ]
+    },
+    {
+      "name": "Elbphilharmonie",
+      "position": [
+        9.984194,
+        53.541417
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q673223",
+      "fact_ids": [
+        "hamburg:2"
+      ]
+    },
+    {
+      "name": "Old Elbe Tunnel",
+      "position": [
+        9.9665,
+        53.544
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q460264",
+      "fact_ids": [
+        "hamburg:4"
+      ]
+    },
+    {
+      "name": "Willkomm-Höft",
+      "position": [
+        9.7025,
+        53.568056
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q2235086",
+      "fact_ids": [
+        "hamburg:5"
+      ]
+    },
+    {
+      "name": "Rickmer Rickmers museum",
+      "position": [
+        9.972889,
+        53.544583
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q479965",
+      "fact_ids": [
+        "hamburg:6"
+      ]
+    },
+    {
+      "name": "Fish Market",
+      "position": [
+        9.95427,
+        53.54561
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q175551",
+      "fact_ids": [
+        "hamburg:9"
+      ]
+    },
+    {
+      "name": "Maritime Museum",
+      "position": [
+        10,
+        53.543344
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q937608",
+      "fact_ids": [
+        "hamburg:11"
+      ]
     }
   ],
   "bremerhaven": [
@@ -107,7 +483,10 @@ LANDMARKS = {
         8.55917,
         53.5581
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q1721729"
+      "source_url": "https://www.wikidata.org/wiki/Q1721729",
+      "fact_ids": [
+        "bremerhaven:9"
+      ]
     },
     {
       "name": "Kaiserschleuse lighthouse",
@@ -115,7 +494,75 @@ LANDMARKS = {
         8.559953,
         53.553612
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q1321463"
+      "source_url": "https://www.wikidata.org/wiki/Q1321463",
+      "fact_ids": []
+    },
+    {
+      "name": "Emigration Center",
+      "position": [
+        8.57417,
+        53.5453
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q318809",
+      "fact_ids": [
+        "bremerhaven:1"
+      ]
+    },
+    {
+      "name": "Maritime Museum",
+      "position": [
+        8.577,
+        53.5401
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q455354",
+      "fact_ids": [
+        "bremerhaven:5"
+      ]
+    },
+    {
+      "name": "Wilhelm Bauer museum",
+      "position": [
+        8.577778,
+        53.541389
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q683457",
+      "fact_ids": [
+        "bremerhaven:6"
+      ]
+    },
+    {
+      "name": "Bremerhaven lighthouse",
+      "position": [
+        8.570111,
+        53.546306
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q304471",
+      "fact_ids": [
+        "bremerhaven:7"
+      ]
+    },
+    {
+      "name": "Fischereihafen",
+      "position": [
+        8.584722,
+        53.519167
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q1118917",
+      "fact_ids": [
+        "bremerhaven:10"
+      ]
+    },
+    {
+      "name": "Container Terminal",
+      "position": [
+        8.533287,
+        53.58741
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q1128462",
+      "fact_ids": [
+        "bremerhaven:2",
+        "bremerhaven:4"
+      ]
     }
   ],
   "felixstowe": [
@@ -125,7 +572,10 @@ LANDMARKS = {
         1.32208,
         51.9376
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q6484546"
+      "source_url": "https://www.wikidata.org/wiki/Q6484546",
+      "fact_ids": [
+        "felixstowe:3"
+      ]
     },
     {
       "name": "Harwich lighthouse",
@@ -133,7 +583,30 @@ LANDMARKS = {
         1.28858,
         51.9445
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q17532999"
+      "source_url": "https://www.wikidata.org/wiki/Q17532999",
+      "fact_ids": []
+    },
+    {
+      "name": "Harwich Redoubt",
+      "position": [
+        1.2889,
+        51.9419
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q5677857",
+      "fact_ids": [
+        "felixstowe:7"
+      ]
+    },
+    {
+      "name": "Harwich ferry terminal",
+      "position": [
+        1.255,
+        51.948
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q5677860",
+      "fact_ids": [
+        "felixstowe:5"
+      ]
     }
   ],
   "southampton": [
@@ -143,7 +616,10 @@ LANDMARKS = {
         -1.3935,
         50.8746
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q5962460"
+      "source_url": "https://www.wikidata.org/wiki/Q5962460",
+      "fact_ids": [
+        "southampton:6"
+      ]
     },
     {
       "name": "Southampton Water",
@@ -151,7 +627,21 @@ LANDMARKS = {
         -1.3475,
         50.856111
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q502233"
+      "source_url": "https://www.wikidata.org/wiki/Q502233",
+      "fact_ids": [
+        "southampton:2"
+      ]
+    },
+    {
+      "name": "Town walls",
+      "position": [
+        -1.4068,
+        50.8996
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q7569186",
+      "fact_ids": [
+        "southampton:4"
+      ]
     }
   ],
   "los-angeles-long-beach": [
@@ -161,7 +651,10 @@ LANDMARKS = {
         -118.271667,
         33.749444
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q496944"
+      "source_url": "https://www.wikidata.org/wiki/Q496944",
+      "fact_ids": [
+        "los-angeles-long-beach:3"
+      ]
     },
     {
       "name": "Gateway Bridge",
@@ -169,7 +662,74 @@ LANDMARKS = {
         -118.2213,
         33.76488
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q104864023"
+      "source_url": "https://www.wikidata.org/wiki/Q104864023",
+      "fact_ids": []
+    },
+    {
+      "name": "Queen Mary museum",
+      "position": [
+        -118.189722,
+        33.753056
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q752939",
+      "fact_ids": [
+        "los-angeles-long-beach:1"
+      ]
+    },
+    {
+      "name": "Angels Gate Lighthouse",
+      "position": [
+        -118.2516,
+        33.7086
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q12061372",
+      "fact_ids": [
+        "los-angeles-long-beach:2"
+      ]
+    },
+    {
+      "name": "USS Iowa museum",
+      "position": [
+        -118.277,
+        33.7416
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q15071923",
+      "fact_ids": [
+        "los-angeles-long-beach:4"
+      ]
+    },
+    {
+      "name": "Point Fermin Lighthouse",
+      "position": [
+        -118.294,
+        33.7054
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q7208023",
+      "fact_ids": [
+        "los-angeles-long-beach:6"
+      ]
+    },
+    {
+      "name": "Lane Victory museum",
+      "position": [
+        -118.274722,
+        33.714444
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q2376481",
+      "fact_ids": [
+        "los-angeles-long-beach:7"
+      ]
+    },
+    {
+      "name": "Terminal Island",
+      "position": [
+        -118.248056,
+        33.756944
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q1059628",
+      "fact_ids": [
+        "los-angeles-long-beach:9"
+      ]
     }
   ],
   "new-york-new-jersey": [
@@ -179,7 +739,10 @@ LANDMARKS = {
         -74.044425,
         40.689209
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q9202"
+      "source_url": "https://www.wikidata.org/wiki/Q9202",
+      "fact_ids": [
+        "new-york-new-jersey:1"
+      ]
     },
     {
       "name": "Verrazzano Bridge",
@@ -187,7 +750,75 @@ LANDMARKS = {
         -74.045556,
         40.606389
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q125673"
+      "source_url": "https://www.wikidata.org/wiki/Q125673",
+      "fact_ids": []
+    },
+    {
+      "name": "Port Newark",
+      "position": [
+        -74.1505,
+        40.68155
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q2737371",
+      "fact_ids": [
+        "new-york-new-jersey:0"
+      ]
+    },
+    {
+      "name": "Ellis Island",
+      "position": [
+        -74.039722,
+        40.699444
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q202175",
+      "fact_ids": [
+        "new-york-new-jersey:2"
+      ]
+    },
+    {
+      "name": "Bayonne Bridge",
+      "position": [
+        -74.142222,
+        40.641944
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q812580",
+      "fact_ids": [
+        "new-york-new-jersey:3"
+      ]
+    },
+    {
+      "name": "Intrepid Museum",
+      "position": [
+        -73.999611,
+        40.764611
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q952270",
+      "fact_ids": [
+        "new-york-new-jersey:6"
+      ]
+    },
+    {
+      "name": "South Street Seaport",
+      "position": [
+        -74.0033,
+        40.7061
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q223000",
+      "fact_ids": [
+        "new-york-new-jersey:7",
+        "new-york-new-jersey:8"
+      ]
+    },
+    {
+      "name": "Brooklyn Navy Yard",
+      "position": [
+        -73.973436,
+        40.702764
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q524435",
+      "fact_ids": [
+        "new-york-new-jersey:9"
+      ]
     }
   ],
   "savannah": [
@@ -197,7 +828,8 @@ LANDMARKS = {
         -81.0988,
         32.0891
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q3514553"
+      "source_url": "https://www.wikidata.org/wiki/Q3514553",
+      "fact_ids": []
     },
     {
       "name": "Fort James Jackson",
@@ -205,7 +837,32 @@ LANDMARKS = {
         -81.036111,
         32.081944
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q1438578"
+      "source_url": "https://www.wikidata.org/wiki/Q1438578",
+      "fact_ids": [
+        "savannah:7"
+      ]
+    },
+    {
+      "name": "River Street",
+      "position": [
+        -81.09951,
+        32.085792
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q85797367",
+      "fact_ids": [
+        "savannah:2"
+      ]
+    },
+    {
+      "name": "Tybee Lighthouse",
+      "position": [
+        -80.845639,
+        32.022222
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q7859692",
+      "fact_ids": [
+        "savannah:3"
+      ]
     }
   ],
   "houston": [
@@ -215,7 +872,8 @@ LANDMARKS = {
         -95.01742,
         29.70347
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q4115158"
+      "source_url": "https://www.wikidata.org/wiki/Q4115158",
+      "fact_ids": []
     },
     {
       "name": "San Jacinto Monument",
@@ -223,7 +881,32 @@ LANDMARKS = {
         -95.0803,
         29.7489
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q1111991"
+      "source_url": "https://www.wikidata.org/wiki/Q1111991",
+      "fact_ids": [
+        "houston:2"
+      ]
+    },
+    {
+      "name": "Lynchburg ferry crossing",
+      "position": [
+        -95.08,
+        29.7635
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q6708475",
+      "fact_ids": [
+        "houston:6"
+      ]
+    },
+    {
+      "name": "Barbours Cut",
+      "position": [
+        -94.9983,
+        29.6819
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q4859731",
+      "fact_ids": [
+        "houston:9"
+      ]
     }
   ],
   "seattle": [
@@ -233,7 +916,11 @@ LANDMARKS = {
         -122.339,
         47.6027
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q5147721"
+      "source_url": "https://www.wikidata.org/wiki/Q5147721",
+      "fact_ids": [
+        "seattle:0",
+        "seattle:9"
+      ]
     },
     {
       "name": "Smith Cove",
@@ -241,7 +928,42 @@ LANDMARKS = {
         -122.386311,
         47.629651
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q7545112"
+      "source_url": "https://www.wikidata.org/wiki/Q7545112",
+      "fact_ids": []
+    },
+    {
+      "name": "Ballard Locks",
+      "position": [
+        -122.396389,
+        47.665556
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q5769218",
+      "fact_ids": [
+        "seattle:5",
+        "seattle:10"
+      ]
+    },
+    {
+      "name": "Space Needle",
+      "position": [
+        -122.3491,
+        47.6204
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q5317",
+      "fact_ids": [
+        "seattle:6"
+      ]
+    },
+    {
+      "name": "Fishermen’s Terminal",
+      "position": [
+        -122.379,
+        47.6591
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q5454928",
+      "fact_ids": [
+        "seattle:7"
+      ]
     }
   ],
   "charleston": [
@@ -251,7 +973,10 @@ LANDMARKS = {
         -79.874444,
         32.7525
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q737517"
+      "source_url": "https://www.wikidata.org/wiki/Q737517",
+      "fact_ids": [
+        "charleston:0"
+      ]
     },
     {
       "name": "Ravenel Bridge",
@@ -259,7 +984,54 @@ LANDMARKS = {
         -79.915,
         32.802778
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q4800088"
+      "source_url": "https://www.wikidata.org/wiki/Q4800088",
+      "fact_ids": [
+        "charleston:2"
+      ]
+    },
+    {
+      "name": "Patriots Point / Yorktown",
+      "position": [
+        -79.90821,
+        32.790377
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q3370061",
+      "fact_ids": [
+        "charleston:5"
+      ]
+    },
+    {
+      "name": "Rainbow Row",
+      "position": [
+        -79.927222,
+        32.775556
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q7284703",
+      "fact_ids": [
+        "charleston:7"
+      ]
+    },
+    {
+      "name": "Morris Island Lighthouse",
+      "position": [
+        -79.8836,
+        32.6953
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q6913753",
+      "fact_ids": [
+        "charleston:8"
+      ]
+    },
+    {
+      "name": "Charleston Navy Yard",
+      "position": [
+        -79.964722,
+        32.860556
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q1066677",
+      "fact_ids": [
+        "charleston:9"
+      ]
     }
   ],
   "singapore": [
@@ -269,7 +1041,56 @@ LANDMARKS = {
         103.8622,
         1.27084
       ],
-      "source_url": "https://www.wikidata.org/wiki/Q6763789"
+      "source_url": "https://www.wikidata.org/wiki/Q6763789",
+      "fact_ids": []
+    },
+    {
+      "name": "Raffles Lighthouse",
+      "position": [
+        103.740083,
+        1.1601
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q3652320",
+      "fact_ids": [
+        "singapore:3"
+      ]
+    },
+    {
+      "name": "Marina Barrage",
+      "position": [
+        103.87141,
+        1.28054
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q6763788",
+      "fact_ids": [
+        "singapore:6"
+      ]
+    },
+    {
+      "name": "Jurong Island",
+      "position": [
+        103.695833,
+        1.266667
+      ],
+      "source_url": "https://www.wikidata.org/wiki/Q2383204",
+      "fact_ids": [
+        "singapore:8"
+      ]
     }
   ]
 }
+
+MAX_CANDIDATES = 8
+
+
+def landmarks_for(port_id, fact_id=None):
+    """Related places get first chance; the client still decides what fits.
+
+    Full fact associations stay in the reference catalog. One small flag lets
+    the client reserve a related label when the optional fact is on screen.
+    """
+    rows = LANDMARKS.get(port_id, [])
+    rows = sorted(rows, key=lambda row: fact_id not in row.get('fact_ids', []))
+    return [{**{key: row[key] for key in ('name', 'position', 'source_url')},
+             **({'fact_related': True} if fact_id in row.get('fact_ids', []) else {})}
+            for row in rows[:MAX_CANDIDATES]]
