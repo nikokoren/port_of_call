@@ -1,0 +1,1346 @@
+[
+  {
+    "port": "seattle",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        -122.373883,
+        47.639455
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      -122.373883,
+      47.62337518070356
+    ],
+    "anchor": [
+      399.9999999999793,
+      170.50000000136595
+    ],
+    "expectedAnchor": [
+      400,
+      170.5
+    ],
+    "anchorError": 1.366104057132014e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "seattle",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        -122.361184,
+        47.636949
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      -122.36118399999998,
+      47.62435392304903
+    ],
+    "anchor": [
+      519.9999999999491,
+      281.1250135635718
+    ],
+    "expectedAnchor": [
+      520,
+      281.12501356336804
+    ],
+    "anchorError": 2.100519390644913e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "singapore",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        103.850216,
+        1.289759
+      ],
+      "zoom": 10
+    },
+    "mapOnly": true,
+    "zoom": 10,
+    "center": [
+      103.85021599999999,
+      1.2461676877525747
+    ],
+    "anchor": [
+      400,
+      176.50000000004138
+    ],
+    "expectedAnchor": [
+      400,
+      176.5
+    ],
+    "anchorError": 4.1382008930668235e-11,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "singapore",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        103.795673,
+        1.268892
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      103.79567299999997,
+      1.235844348062173
+    ],
+    "anchor": [
+      520,
+      293.71873644019803
+    ],
+    "expectedAnchor": [
+      520,
+      293.71873643663196
+    ],
+    "anchorError": 3.566071882232791e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "charleston",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        -79.900276,
+        32.78301
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      -79.90027600000002,
+      32.772979167572856
+    ],
+    "anchor": [
+      399.99999999991724,
+      170.49999999867546
+    ],
+    "expectedAnchor": [
+      400,
+      170.5
+    ],
+    "anchorError": 1.327120170610768e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "charleston",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        -79.903379,
+        32.764278
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      -79.903379,
+      32.75037864080805
+    ],
+    "anchor": [
+      520,
+      293.71873644019803
+    ],
+    "expectedAnchor": [
+      520,
+      293.71873643663196
+    ],
+    "anchorError": 3.566071882232791e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "houston",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        -95.055523,
+        29.746948
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      -95.055523,
+      29.7262291969338
+    ],
+    "anchor": [
+      400,
+      170.50000000124177
+    ],
+    "expectedAnchor": [
+      400,
+      170.5
+    ],
+    "anchorError": 1.2417729067237815e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "houston",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        -95.057609,
+        29.719131
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      -95.057609,
+      29.690419274337174
+    ],
+    "anchor": [
+      520.0000000000509,
+      293.71873643591874
+    ],
+    "expectedAnchor": [
+      520,
+      293.71873643663196
+    ],
+    "anchorError": 7.150306183451301e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "savannah",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        -80.998235,
+        32.095875
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      -80.998235,
+      32.075658732941264
+    ],
+    "anchor": [
+      400,
+      170.50000000124177
+    ],
+    "expectedAnchor": [
+      400,
+      170.5
+    ],
+    "anchorError": 1.2417729067237815e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "savannah",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        -81.007818,
+        32.1221
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      -81.007818,
+      32.09410040432269
+    ],
+    "anchor": [
+      520.0000000000509,
+      293.71873643586775
+    ],
+    "expectedAnchor": [
+      520,
+      293.71873643663196
+    ],
+    "anchorError": 7.658982609814721e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "new-york-new-jersey",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        -74.088439,
+        40.680579
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      -74.08843899999998,
+      40.65779355119227
+    ],
+    "anchor": [
+      399.9999999999586,
+      152.50000000024835
+    ],
+    "expectedAnchor": [
+      400,
+      152.5
+    ],
+    "anchorError": 2.5177300352833733e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "new-york-new-jersey",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        -74.081706,
+        40.679205
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      -74.08170599999998,
+      40.654131918584284
+    ],
+    "anchor": [
+      519.9999999999491,
+      293.7187364360206
+    ],
+    "expectedAnchor": [
+      520,
+      293.71873643663196
+    ],
+    "anchorError": 6.134688637046256e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "los-angeles-long-beach",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        -118.232136,
+        33.745383
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      -118.232136,
+      33.720400054700065
+    ],
+    "anchor": [
+      399.9999999999793,
+      152.50000000024835
+    ],
+    "expectedAnchor": [
+      400,
+      152.5
+    ],
+    "anchorError": 2.492093343121937e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "los-angeles-long-beach",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        -118.221455,
+        33.740768
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      -118.221455,
+      33.72402486769592
+    ],
+    "anchor": [
+      519.9999999999491,
+      272.7187432208632
+    ],
+    "expectedAnchor": [
+      520,
+      272.718743218316
+    ],
+    "anchorError": 2.547719583695804e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "southampton",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        -1.343363,
+        50.885529
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      -1.3433630000000107,
+      50.87177333705364
+    ],
+    "anchor": [
+      399.99999999991724,
+      176.4999999999172
+    ],
+    "expectedAnchor": [
+      400,
+      176.5
+    ],
+    "anchorError": 1.170660954445424e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "southampton",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        -1.374997,
+        50.888697
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      -1.3749970000000076,
+      50.86783993748034
+    ],
+    "anchor": [
+      520,
+      293.7187364360206
+    ],
+    "expectedAnchor": [
+      520,
+      293.71873643663196
+    ],
+    "anchorError": 6.113509698479902e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "felixstowe",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        1.311637,
+        51.968294
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      1.3116369999999904,
+      51.954860449897495
+    ],
+    "anchor": [
+      400,
+      176.49999999983444
+    ],
+    "expectedAnchor": [
+      400,
+      176.5
+    ],
+    "anchorError": 1.6555645743210334e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "felixstowe",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        1.286308,
+        51.965215
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      1.2863079999999627,
+      51.95636271580122
+    ],
+    "anchor": [
+      520.0000000002037,
+      306.312493219233
+    ],
+    "expectedAnchor": [
+      520,
+      306.312493218316
+    ],
+    "anchorError": 9.393561662415674e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "bremerhaven",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        8.530425,
+        53.571507
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      8.530425000000008,
+      53.55733554958675
+    ],
+    "anchor": [
+      400,
+      170.50000000128315
+    ],
+    "expectedAnchor": [
+      400,
+      170.5
+    ],
+    "anchorError": 1.2831549156544497e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "bremerhaven",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        8.5293,
+        53.561295
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      8.529300000000006,
+      53.55147698305976
+    ],
+    "anchor": [
+      520,
+      293.7187364398924
+    ],
+    "expectedAnchor": [
+      520,
+      293.71873643663196
+    ],
+    "anchorError": 3.260424819018226e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "hamburg",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        9.92567,
+        53.536362
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      9.925669999999997,
+      53.52217877509176
+    ],
+    "anchor": [
+      400,
+      170.50000000128315
+    ],
+    "expectedAnchor": [
+      400,
+      170.5
+    ],
+    "anchorError": 1.2831549156544497e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "hamburg",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        9.93349,
+        53.538062
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      9.933490000000006,
+      53.5282385919642
+    ],
+    "anchor": [
+      520,
+      293.7187364404018
+    ],
+    "expectedAnchor": [
+      520,
+      293.71873643663196
+    ],
+    "anchorError": 3.7698555388487875e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "antwerp",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        4.243426,
+        51.314885
+      ],
+      "zoom": 10
+    },
+    "mapOnly": true,
+    "zoom": 10,
+    "center": [
+      4.243426000000028,
+      51.28504723510548
+    ],
+    "anchor": [
+      400,
+      170.50000000014487
+    ],
+    "expectedAnchor": [
+      400,
+      170.5
+    ],
+    "anchorError": 1.4486545296676923e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "antwerp",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        4.286646,
+        51.308185
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      4.28664599999999,
+      51.28751629373858
+    ],
+    "anchor": [
+      520,
+      293.7187364360206
+    ],
+    "expectedAnchor": [
+      520,
+      293.71873643663196
+    ],
+    "anchorError": 6.113509698479902e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "rotterdam",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        4.223746,
+        51.966526
+      ],
+      "zoom": 10
+    },
+    "mapOnly": true,
+    "zoom": 10,
+    "center": [
+      4.223746000000034,
+      51.93711387695856
+    ],
+    "anchor": [
+      400,
+      170.50000000012417
+    ],
+    "expectedAnchor": [
+      400,
+      170.5
+    ],
+    "anchorError": 1.241744485014351e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "rotterdam",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        4.222373,
+        52.00644
+      ],
+      "zoom": 10
+    },
+    "mapOnly": true,
+    "zoom": 10,
+    "center": [
+      4.222373000000005,
+      51.965725294908765
+    ],
+    "anchor": [
+      520,
+      293.71873643698854
+    ],
+    "expectedAnchor": [
+      520,
+      293.71873643663196
+    ],
+    "anchorError": 3.565787665138487e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "rauma",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        21.419928,
+        61.127427
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      21.419928,
+      61.115903332056064
+    ],
+    "anchor": [
+      400,
+      170.5000000000828
+    ],
+    "expectedAnchor": [
+      400,
+      170.5
+    ],
+    "anchorError": 8.279243957076687e-11,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "rauma",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        21.438921,
+        61.12413
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      21.438920999999993,
+      61.116147504241354
+    ],
+    "anchor": [
+      520,
+      293.71873644029995
+    ],
+    "expectedAnchor": [
+      520,
+      293.71873643663196
+    ],
+    "anchorError": 3.6679921322502196e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "turku",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        22.1873,
+        60.43345
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      22.187299999999993,
+      60.42756256756212
+    ],
+    "anchor": [
+      399.9999999998344,
+      170.50000000140733
+    ],
+    "expectedAnchor": [
+      400,
+      170.5
+    ],
+    "anchorError": 1.417037152447219e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "turku",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        22.180887,
+        60.433384
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      22.180886999999984,
+      60.42416057101542
+    ],
+    "anchor": [
+      520,
+      281.12501356367375
+    ],
+    "expectedAnchor": [
+      520,
+      281.12501356336804
+    ],
+    "anchorError": 3.057039066334255e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "helsinki",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        24.961421,
+        60.156543
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      24.961421,
+      60.15060548244293
+    ],
+    "anchor": [
+      400,
+      170.50000000140733
+    ],
+    "expectedAnchor": [
+      400,
+      170.5
+    ],
+    "anchorError": 1.4073293641558848e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "helsinki",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        24.960293,
+        60.154287
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      24.96029299999998,
+      60.146060657262325
+    ],
+    "anchor": [
+      520,
+      293.71873644019803
+    ],
+    "expectedAnchor": [
+      520,
+      293.71873643663196
+    ],
+    "anchorError": 3.566071882232791e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "seattle",
+    "layout": "half_horizontal",
+    "device": "og",
+    "expected": {
+      "focus": [
+        -122.373883,
+        47.639455
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      -122.373883,
+      47.629969661871655
+    ],
+    "anchor": [
+      390,
+      68.99999999927752
+    ],
+    "expectedAnchor": [
+      390,
+      69
+    ],
+    "anchorError": 7.224798537208699e-10,
+    "ships": 0,
+    "landmarks": 0,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "seattle",
+    "layout": "half_vertical",
+    "device": "og",
+    "expected": {
+      "focus": [
+        -122.373883,
+        47.639455
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      -122.373883,
+      47.62499495491073
+    ],
+    "anchor": [
+      189.9999999999784,
+      167.50000000043192
+    ],
+    "expectedAnchor": [
+      190,
+      167.5
+    ],
+    "anchorError": 4.324645000094015e-10,
+    "ships": 0,
+    "landmarks": 1,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "seattle",
+    "layout": "quadrant",
+    "device": "og",
+    "expected": {
+      "focus": [
+        -122.373883,
+        47.639455
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      -122.373883,
+      47.629969661871655
+    ],
+    "anchor": [
+      190,
+      68.99999999927752
+    ],
+    "expectedAnchor": [
+      190,
+      69
+    ],
+    "anchorError": 7.224798537208699e-10,
+    "ships": 0,
+    "landmarks": 0,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "seattle",
+    "layout": "half_horizontal",
+    "device": "x",
+    "expected": {
+      "focus": [
+        -122.361184,
+        47.636949
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      -122.36118399999998,
+      47.62815734755304
+    ],
+    "anchor": [
+      509.9999999999463,
+      108.99999830486539
+    ],
+    "expectedAnchor": [
+      510,
+      108.999998304579
+    ],
+    "anchorError": 2.9138553097648925e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "seattle",
+    "layout": "half_vertical",
+    "device": "x",
+    "expected": {
+      "focus": [
+        -122.361184,
+        47.636949
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      -122.36118399999998,
+      47.6245853165355
+    ],
+    "anchor": [
+      249.9999999999477,
+      273.125
+    ],
+    "expectedAnchor": [
+      250,
+      273.125
+    ],
+    "anchorError": 5.2295945351943374e-11,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "seattle",
+    "layout": "quadrant",
+    "device": "x",
+    "expected": {
+      "focus": [
+        -122.361184,
+        47.636949
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      -122.36118399999998,
+      47.62740536146336
+    ],
+    "anchor": [
+      249.9999999999463,
+      102.49999999720771
+    ],
+    "expectedAnchor": [
+      250,
+      102.5
+    ],
+    "anchorError": 2.7928069425928167e-9,
+    "ships": 0,
+    "landmarks": 1,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "seattle",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        -122.361184,
+        47.636949
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      -122.36118399999998,
+      47.62581096857022
+    ],
+    "anchor": [
+      389.9999999999618,
+      423.7187364368867
+    ],
+    "expectedAnchor": [
+      390,
+      423.71873643663196
+    ],
+    "anchorError": 2.575637031441242e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "helsinki",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        24.960293,
+        60.154287
+      ],
+      "zoom": 12
+    },
+    "mapOnly": true,
+    "zoom": 12,
+    "center": [
+      24.96029299999998,
+      60.14606065726184
+    ],
+    "anchor": [
+      390,
+      423.7187364345178
+    ],
+    "expectedAnchor": [
+      390,
+      423.71873643663196
+    ],
+    "anchorError": 2.1141772776900325e-9,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "rotterdam",
+    "layout": "full",
+    "device": "x",
+    "expected": {
+      "focus": [
+        4.222373,
+        52.00644
+      ],
+      "zoom": 10
+    },
+    "mapOnly": true,
+    "zoom": 10,
+    "center": [
+      4.222373000000005,
+      51.97105295330621
+    ],
+    "anchor": [
+      390,
+      436.3124932191693
+    ],
+    "expectedAnchor": [
+      390,
+      436.312493218316
+    ],
+    "anchorError": 8.533334039384499e-10,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  },
+  {
+    "port": "seattle",
+    "layout": "full",
+    "device": "og",
+    "expected": {
+      "focus": [
+        -122.373883,
+        47.639455
+      ],
+      "zoom": 11
+    },
+    "mapOnly": true,
+    "zoom": 11,
+    "center": [
+      -122.373883,
+      47.62337518070328
+    ],
+    "anchor": [
+      240,
+      330.5000000000497
+    ],
+    "expectedAnchor": [
+      240,
+      330.5
+    ],
+    "anchorError": 4.9681148084346205e-11,
+    "ships": 0,
+    "landmarks": 2,
+    "viewportInside": true,
+    "notice": "Map framing preview",
+    "errors": []
+  }
+]

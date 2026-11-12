@@ -22,3 +22,11 @@ test('untrusted imports reject unknown ports, devices, coordinates and malformed
  for(const harbors of [{unknown:{og:{focus:port.focus,zoom:12}}},{seattle:{phone:{focus:port.focus,zoom:12}}},{seattle:{og:{focus:[0,90],zoom:12}}},{seattle:{og:{focus:[0,0],zoom:11.1}}},{seattle:{og:{focus:['0',0],zoom:12}}}])assert.throws(()=>validateDraft({...fresh(),harbors},[port]));
  assert.throws(()=>readDraftHash('#draft=bad',[port]));
 });
+
+test('published device profiles become the editor defaults without overriding local edits',()=>{
+ const reviewed={...port,cameras:{og:{focus:[-122.373883,47.639455],zoom:11},x:{focus:[-122.361184,47.636949],zoom:12}}};
+ const draft=fresh();assert.deepEqual(cameraFor(reviewed,draft,'x'),reviewed.cameras.x);
+ setCamera(draft,reviewed,'x',{focus:[-122.4,47.65],zoom:11});assert.equal(cameraFor(reviewed,draft,'x').zoom,11);
+ setCamera(draft,reviewed,'x',reviewed.cameras.x);assert.deepEqual(draft.harbors,{});
+ assert.deepEqual(cameraFor(reviewed,draft,'og'),reviewed.cameras.og);
+});

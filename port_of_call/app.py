@@ -89,7 +89,7 @@ def create_app(config=None, *, store=None, collect=True, clock=time.time):
             headers={'Cache-Control':'no-store'})
 
     async def harbors(request):
-        return web.json_response({'harbors':list(active.values()),'capabilities':{'compact_map':True,'map_candidate_limit':80}},
+        return web.json_response({'harbors':list(active.values()),'capabilities':{'compact_map':True,'map_candidate_limit':80,'device_cameras':True}},
                                  headers={'Cache-Control':'public, max-age=3600'})
 
     async def destination_review(request):

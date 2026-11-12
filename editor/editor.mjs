@@ -5,6 +5,10 @@ const ports=data.harbors,byId=new Map(ports.map(p=>[p.id,p]));
 let draft={kind:DRAFT_KIND,schema_version:1,base_revision:data.revision,harbors:{}},device='og',ready=false,selected=null,generation=0,startupNotice='';
 try{const saved=localStorage.getItem(key);if(saved)draft=validateDraft(JSON.parse(saved),ports);}catch{startupNotice='A saved draft could not be read. Start a new draft or reopen its share link.';}
 try{if(location.hash.startsWith('#draft=')){const shared=readDraftHash(location.hash,ports);for(const [id,profiles] of Object.entries(shared.harbors))draft.harbors[id]={...draft.harbors[id],...profiles};}}catch(e){startupNotice=e.message;}
+// Previously exported edits that now match the published defaults are applied,
+// rather than new pending work. Keep any other locally saved edits intact.
+for(const [id,profiles] of Object.entries(draft.harbors))for(const [kind,camera] of Object.entries({...profiles}))setCamera(draft,byId.get(id),kind,camera);
+if(!Object.keys(draft.harbors).length)draft.base_revision=data.revision;
 for(const p of ports)$('harbor').add(new Option(p.name.split(' — ')[0]+', '+p.country,p.id));
 $('harbor').value=byId.has('seattle')?'seattle':ports[0].id;
 const port=()=>byId.get($('harbor').value),current=()=>cameraFor(port(),draft,device),bridge=()=>$('preview').contentWindow?.framingEditor;

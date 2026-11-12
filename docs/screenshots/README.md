@@ -107,3 +107,7 @@ Fifteen additional **POI reference scenarios** select a reviewed static fact alo
 ## Interactive framing editor
 
 [The editor preview](framing-editor.png) is map-only: actual reviewed POIs on the native map, with no vessel data or simulated traffic. Its dashed outline marks the existing AIS observation coverage. [Editor instructions, draft behavior and verified fractional zoom details](../framing-editor.md).
+
+## Approved OG/X framings · 12 November 2026
+
+[Approved framing references](../approved-framing.md) verify the maintainer’s 32 submitted cameras, with additional portrait and compact-layout cases. These are map-only browser previews with static reviewed landmarks and **no vessel data or simulated traffic**. Geographic anchor projection is checked against the clear map area beside/above the actual native port card. [Results](results-approved-framing.json).

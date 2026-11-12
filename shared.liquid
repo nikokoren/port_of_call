@@ -277,6 +277,14 @@
           ['x1','y1','x2','y2'].forEach(function(k,i){l.setAttribute(k,points[i]);});svg.appendChild(l);
         });
       }
+      function viewCamera() {
+        var screen=el.closest('.screen'),name=screen?getComputedStyle(screen).getPropertyValue('--device-name').replace(/["'\s]/g,'').toLowerCase():'';
+        var large=name==='v2'||name==='x'||name==='trmnl_x'||(screen&&screen.classList.contains('screen--v2'));
+        var x=(el.dataset.centerX||'').split(',').map(Number);
+        var useX=large&&el.dataset.zoomX&&Number.isFinite(Number(el.dataset.zoomX))&&x.length===2&&x.every(Number.isFinite);
+        el.dataset.cameraDevice=useX?'x':'og';
+        return {zoom:Number(useX?el.dataset.zoomX:el.dataset.zoom),center:useX?x:el.dataset.center.split(',').map(Number)};
+      }
       function fit(map,bounds) {
         // Downstream's framing: reserve the box's side or the area above it,
         // whichever gives the reviewed harbor extent more room. Never fit to ships.
@@ -285,11 +293,11 @@
         var above={top:g,right:g,bottom:H-r[1]+g,left:g};
         var pad=(W-r[2])*H>=W*r[1]?beside:above;
         if(W-pad.left-pad.right<40 || H-pad.top-pad.bottom<40)pad={top:g,right:g,bottom:g,left:g};
-        var zoom=Number(el.dataset.zoom);
+        var selected=viewCamera(),zoom=selected.zoom;
         if(el.dataset.zoom&&Number.isFinite(zoom)){
           // Fixed harbor zoom: same apparent ship scale at every port. Larger
           // UI scales (TRMNL X) show the same geography at proportionally more pixels.
-          var center=el.dataset.center.split(',').map(Number);
+          var center=selected.center;
           map.jumpTo({center:center,zoom:zoom+Math.log2(scale())});
           map.easeTo({center:center,offset:[(pad.left-pad.right)/2,(pad.top-pad.bottom)/2],duration:0});
         } else TRMNLMaps.fit(map,[[bounds[0],bounds[1]],[bounds[2],bounds[3]]],{padding:pad,maxZoom:14});
@@ -459,7 +467,7 @@
       function start() {
         if(window.__pocAssetsFailed){failure('Map assets unavailable · check network access');return;}
         if(!window.TRMNLMaps||!window.maplibregl) {if(!done)setTimeout(start,50);return;}
-        var bounds=el.dataset.bbox.split(',').map(Number),center=el.dataset.center.split(',').map(Number);
+        var bounds=el.dataset.bbox.split(',').map(Number),center=viewCamera().center;
         if(bounds.length!==4||!bounds.every(Number.isFinite)||bounds[0]>=bounds[2]){failure('Harbor data unavailable');return;}
         try {
           TRMNLMaps.watch(el,function(){

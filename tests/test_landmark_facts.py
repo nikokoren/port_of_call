@@ -52,7 +52,7 @@ class LandmarkFacts(unittest.TestCase):
             old=snapshot(store,port,now);compact=snapshot(store,port,now,map_mode=True)
             self.assertEqual(compact['port_fact']['id'],f'seattle:{index}')
             self.assertEqual(compact['landmarks'][0]['name'],name)
-            self.assertEqual(old['camera'],compact['camera']);self.assertEqual(old['vessels'],compact['vessels'])
+            self.assertEqual(old['camera'],{k:compact['camera'][k] for k in ('center','zoom')});self.assertEqual(old['vessels'],compact['vessels'])
         self.assertEqual(snapshot(store,port,5*7200,fact_period=7200)['landmarks'][0]['name'],'Ballard Locks')
 
     def test_coordinate_refresh_prefers_reviewed_rank_and_rejects_ambiguity(self):

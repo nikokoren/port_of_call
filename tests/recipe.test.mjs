@@ -216,3 +216,15 @@ test('harbor landmarks are built in, ignore retired settings and escape their na
   assert.match(related,/<li data-related="true" data-lon=/,layout+': current-fact association reaches the native map');
  }
 });
+
+test('all four layouts expose the X camera and retain the legacy OG fallback',async()=>{
+ const approved=JSON.parse(await readFile('docs/approved-framing.json','utf8')).harbors.seattle;
+ const profiles=Object.fromEntries(Object.entries(approved).map(([k,c])=>[k,{zoom:c.zoom,center:c.focus}]));
+ for(const layout of layouts){
+  const html=await render(layout,{...fixture,camera:{...profiles.og,profiles}});
+  assert.ok(html.includes(`data-zoom="${profiles.og.zoom}"`));
+  assert.ok(html.includes(`data-zoom-x="${profiles.x.zoom}"`));
+  assert.ok(html.includes(`data-center-x="${profiles.x.center.join(',')}"`));
+  const legacy=await render(layout,{...fixture,camera:profiles.og});assert.ok(legacy.includes('data-zoom-x=""'));
+ }
+});

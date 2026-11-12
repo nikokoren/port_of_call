@@ -1,5 +1,5 @@
 export const DRAFT_KIND='port-of-call-framing-draft';
-export function cameraFor(port,draft,device){return draft.harbors?.[port.id]?.[device]||{focus:[...(port.focus||port.center)],zoom:port.zoom??11};}
+export function cameraFor(port,draft,device){return draft.harbors?.[port.id]?.[device]||port.cameras?.[device]||{focus:[...(port.focus||port.center)],zoom:port.zoom??11};}
 export function zoomValue(value,fractional=false){
  const raw=String(value).trim().replace(',','.');
  const n=raw?Number(raw):NaN;

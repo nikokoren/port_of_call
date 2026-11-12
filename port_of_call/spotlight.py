@@ -3,7 +3,7 @@ import hashlib
 import math
 import re
 from .facts import ship_type, NAVIGATION, text, infer_eta
-from .model import contains, epoch, iso, viewport
+from .model import contains, epoch, iso, viewport, harbor_view
 
 HOLD = 3600
 COOLDOWN = 24 * 3600
@@ -124,13 +124,25 @@ def lookups_worth_making(store, port, vessels, now, limit=3):
     Lookups do not add speculative selection points. Prefer moving subjects
     with useful existing card content; length only breaks otherwise equal ties.
     """
-    visible = spotlight_areas(port, viewport(port))
-    candidates = [v for v in vessels if contains(port['bbox'], v['position']) and visible(v) and eligible(v, now)
+    candidates = [v for v in harbor_candidates(port,vessels,now) if contains(port['bbox'], v['position'])
                   and value(v, 'imo') and not ship_record(store, v, now)[0]]
     calls = store.recent_calls(now)
     candidates.sort(key=lambda v: (-motion_score(v), -knowledge(store, v, now, port=port, calls=calls),
                                    -(value(v, 'length_m') or 0), v['mmsi']))
     return [value(v, 'imo') for v in candidates[:limit]]
+
+
+def harbor_candidates(port,vessels,now):
+    """Prefer a shared subject visible in both fixed device views.
+
+    If their safe areas have no eligible subject in common, either may supply
+    one; the client retains its existing per-layout overview fallback.
+    """
+    devices = ('og','x') if port.get('cameras') else ('og',)
+    visible = [spotlight_areas(port,harbor_view(port,device)) for device in devices]
+    candidates = [v for v in vessels if eligible(v,now)]
+    common = [v for v in candidates if all(area(v) for area in visible)]
+    return common or [v for v in candidates if any(area(v) for area in visible)]
 
 
 def spotlight_areas(port, box):

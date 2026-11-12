@@ -26,3 +26,5 @@ For fact-related POI priority, update **Shared and all four layouts**. Enable **
 The vessel count now distinguishes the observation area from the actual drawn ships, for example **322 vessels in area · 19 on map**. Update all four layout tabs and Shared for this count, trails and landmarks. Harbor rotation and richer free reference facts are supplied by the backend.
 
 The map format supplies up to **80 candidate vessels** using compact records, within the same 15 KB response budget. The screen draws those that fit without crowding; label limits remain unchanged. To upgrade an existing plugin safely, paste **Shared and all four layouts first**, then append `&format=map` to its polling URL. The updated templates accept both formats. The old URL continues to serve the original 40-candidate format. No custom-field or credential changes are needed.
+
+The approved harbor views now have separate OG and X cameras. Copy **Shared and all four layouts** to enable automatic device selection, including mashups. Keep `&format=map` in the polling URL; no new setting is needed. [Approved values and framing previews](approved-framing.md).

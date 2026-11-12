@@ -41,7 +41,9 @@ class Compact(unittest.TestCase):
         self.assertLess(len(json.dumps(packed,separators=(',',':')).encode()),15000)
 
     def test_larger_pool_preserves_legacy_core_prefix_and_includes_frame_edges(self):
-        s=populated();old=snapshot(s,PORT,NOW);new=snapshot(s,PORT,NOW,map_mode=True)
+        # Existing single-camera callers retain their deterministic prefix.
+        port={k:v for k,v in PORT.items() if k!='cameras'}
+        s=populated();old=snapshot(s,port,NOW);new=snapshot(s,port,NOW,map_mode=True)
         self.assertEqual(len(old['vessels']),40);self.assertEqual(len(new['vessels']),80)
         self.assertEqual([v['mmsi'] for v in old['vessels']],[v['mmsi'] for v in new['vessels'][:40]])
         self.assertIn('230599999',[v['mmsi'] for v in new['vessels']])

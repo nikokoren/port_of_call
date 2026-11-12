@@ -1,0 +1,387 @@
+{
+  "base_revision": "c06344e4dc8ebee09b0cae1dd2bd3d85a6e06d40",
+  "harbors": {
+    "helsinki": {
+      "id": "helsinki",
+      "name": "Helsinki",
+      "country": "Finland",
+      "timezone": "Europe/Helsinki",
+      "center": [
+        25.015,
+        60.15
+      ],
+      "bbox": [
+        24.78,
+        60.05,
+        25.25,
+        60.25
+      ],
+      "default_zoom": 10,
+      "provider": "digitraffic",
+      "verified": true
+    },
+    "turku": {
+      "id": "turku",
+      "name": "Turku",
+      "country": "Finland",
+      "timezone": "Europe/Helsinki",
+      "center": [
+        22.17,
+        60.415
+      ],
+      "bbox": [
+        22.04,
+        60.34,
+        22.3,
+        60.49
+      ],
+      "default_zoom": 11,
+      "provider": "digitraffic",
+      "verified": true
+    },
+    "rauma": {
+      "id": "rauma",
+      "name": "Rauma",
+      "country": "Finland",
+      "timezone": "Europe/Helsinki",
+      "center": [
+        21.475,
+        61.12
+      ],
+      "bbox": [
+        21.35,
+        61.06,
+        21.6,
+        61.18
+      ],
+      "default_zoom": 11,
+      "provider": "digitraffic",
+      "verified": true
+    },
+    "rotterdam": {
+      "id": "rotterdam",
+      "name": "Rotterdam",
+      "country": "Netherlands",
+      "timezone": "Europe/Amsterdam",
+      "center": [
+        4.2,
+        52.0
+      ],
+      "bbox": [
+        3.8,
+        51.85,
+        4.6,
+        52.15
+      ],
+      "default_zoom": 10,
+      "provider": "aisstream",
+      "verified": true,
+      "collection": "major15",
+      "region": "europe",
+      "coverage_run": "41894534520",
+      "coverage_checked_at": "2026-11-04T19:26:43Z",
+      "coverage_window_seconds": 900,
+      "coverage_distinct_vessels": 865
+    },
+    "antwerp": {
+      "id": "antwerp",
+      "name": "Antwerp",
+      "country": "Belgium",
+      "timezone": "Europe/Brussels",
+      "center": [
+        4.325,
+        51.3
+      ],
+      "bbox": [
+        4.19,
+        51.17,
+        4.46,
+        51.43
+      ],
+      "default_zoom": 10,
+      "provider": "aisstream",
+      "verified": true,
+      "collection": "major15",
+      "region": "europe",
+      "coverage_run": "41894534520",
+      "coverage_checked_at": "2026-11-04T19:26:43Z",
+      "coverage_window_seconds": 900,
+      "coverage_distinct_vessels": 485
+    },
+    "hamburg": {
+      "id": "hamburg",
+      "name": "Hamburg",
+      "country": "Germany",
+      "timezone": "Europe/Berlin",
+      "center": [
+        9.975,
+        53.525
+      ],
+      "bbox": [
+        9.75,
+        53.42,
+        10.2,
+        53.63
+      ],
+      "default_zoom": 10,
+      "provider": "aisstream",
+      "verified": true,
+      "collection": "major15",
+      "region": "europe",
+      "coverage_run": "41894534520",
+      "coverage_checked_at": "2026-11-04T19:26:43Z",
+      "coverage_window_seconds": 900,
+      "coverage_distinct_vessels": 282
+    },
+    "bremerhaven": {
+      "id": "bremerhaven",
+      "name": "Bremerhaven",
+      "country": "Germany",
+      "timezone": "Europe/Berlin",
+      "center": [
+        8.555,
+        53.555
+      ],
+      "bbox": [
+        8.44,
+        53.45,
+        8.67,
+        53.66
+      ],
+      "default_zoom": 10,
+      "provider": "aisstream",
+      "verified": true,
+      "collection": "major15",
+      "region": "europe",
+      "coverage_run": "41894534520",
+      "coverage_checked_at": "2026-11-04T19:26:43Z",
+      "coverage_window_seconds": 900,
+      "coverage_distinct_vessels": 73
+    },
+    "felixstowe": {
+      "id": "felixstowe",
+      "name": "Felixstowe / Harwich",
+      "country": "UK",
+      "timezone": "Europe/London",
+      "center": [
+        1.325,
+        51.94
+      ],
+      "bbox": [
+        1.2,
+        51.86,
+        1.45,
+        52.02
+      ],
+      "default_zoom": 10,
+      "provider": "aisstream",
+      "verified": true,
+      "collection": "major15",
+      "region": "europe",
+      "coverage_run": "41894534520",
+      "coverage_checked_at": "2026-11-04T19:26:43Z",
+      "coverage_window_seconds": 900,
+      "coverage_distinct_vessels": 22
+    },
+    "southampton": {
+      "id": "southampton",
+      "name": "Southampton",
+      "country": "UK",
+      "timezone": "Europe/London",
+      "center": [
+        -1.35,
+        50.88
+      ],
+      "bbox": [
+        -1.48,
+        50.79,
+        -1.22,
+        50.97
+      ],
+      "default_zoom": 10,
+      "provider": "aisstream",
+      "verified": true,
+      "collection": "major15",
+      "region": "europe",
+      "coverage_run": "41894534520",
+      "coverage_checked_at": "2026-11-04T19:26:43Z",
+      "coverage_window_seconds": 900,
+      "coverage_distinct_vessels": 105
+    },
+    "los-angeles-long-beach": {
+      "id": "los-angeles-long-beach",
+      "name": "Los Angeles / Long Beach",
+      "country": "USA",
+      "timezone": "America/Los_Angeles",
+      "center": [
+        -118.205,
+        33.73
+      ],
+      "bbox": [
+        -118.31,
+        33.65,
+        -118.1,
+        33.81
+      ],
+      "default_zoom": 10,
+      "provider": "aisstream",
+      "verified": true,
+      "collection": "major15",
+      "region": "us",
+      "coverage_run": "41894534520",
+      "coverage_checked_at": "2026-11-04T19:26:43Z",
+      "coverage_window_seconds": 900,
+      "coverage_distinct_vessels": 169
+    },
+    "new-york-new-jersey": {
+      "id": "new-york-new-jersey",
+      "name": "New York / New Jersey",
+      "country": "USA",
+      "timezone": "America/New_York",
+      "center": [
+        -74.05,
+        40.64
+      ],
+      "bbox": [
+        -74.25,
+        40.49,
+        -73.85,
+        40.79
+      ],
+      "default_zoom": 10,
+      "provider": "aisstream",
+      "verified": true,
+      "collection": "major15",
+      "region": "us",
+      "coverage_run": "41894534520",
+      "coverage_checked_at": "2026-11-04T19:26:43Z",
+      "coverage_window_seconds": 900,
+      "coverage_distinct_vessels": 183
+    },
+    "savannah": {
+      "id": "savannah",
+      "name": "Savannah",
+      "country": "USA",
+      "timezone": "America/New_York",
+      "center": [
+        -81.01,
+        32.115
+      ],
+      "bbox": [
+        -81.2,
+        32.03,
+        -80.82,
+        32.2
+      ],
+      "default_zoom": 10,
+      "provider": "aisstream",
+      "verified": true,
+      "collection": "major15",
+      "region": "us",
+      "coverage_run": "41894534520",
+      "coverage_checked_at": "2026-11-04T19:26:43Z",
+      "coverage_window_seconds": 900,
+      "coverage_distinct_vessels": 30
+    },
+    "houston": {
+      "id": "houston",
+      "name": "Houston — Ship Channel",
+      "country": "USA",
+      "timezone": "America/Chicago",
+      "center": [
+        -95.08,
+        29.705
+      ],
+      "bbox": [
+        -95.28,
+        29.58,
+        -94.88,
+        29.83
+      ],
+      "default_zoom": 10,
+      "provider": "aisstream",
+      "verified": true,
+      "collection": "major15",
+      "region": "us",
+      "coverage_run": "41894534520",
+      "coverage_checked_at": "2026-11-04T19:26:43Z",
+      "coverage_window_seconds": 900,
+      "coverage_distinct_vessels": 96
+    },
+    "seattle": {
+      "id": "seattle",
+      "name": "Seattle — Elliott Bay",
+      "country": "USA",
+      "timezone": "America/Los_Angeles",
+      "center": [
+        -122.37,
+        47.6
+      ],
+      "bbox": [
+        -122.45,
+        47.52,
+        -122.29,
+        47.68
+      ],
+      "default_zoom": 10,
+      "provider": "aisstream",
+      "verified": true,
+      "collection": "major15",
+      "region": "us",
+      "coverage_run": "41894534520",
+      "coverage_checked_at": "2026-11-04T19:26:43Z",
+      "coverage_window_seconds": 900,
+      "coverage_distinct_vessels": 366
+    },
+    "charleston": {
+      "id": "charleston",
+      "name": "Charleston",
+      "country": "USA",
+      "timezone": "America/New_York",
+      "center": [
+        -79.915,
+        32.82
+      ],
+      "bbox": [
+        -80.03,
+        32.7,
+        -79.8,
+        32.94
+      ],
+      "default_zoom": 10,
+      "provider": "aisstream",
+      "verified": true,
+      "collection": "major15",
+      "region": "us",
+      "coverage_run": "41894534520",
+      "coverage_checked_at": "2026-11-04T19:26:43Z",
+      "coverage_window_seconds": 900,
+      "coverage_distinct_vessels": 94
+    },
+    "singapore": {
+      "id": "singapore",
+      "name": "Singapore",
+      "country": "Singapore",
+      "timezone": "Asia/Singapore",
+      "center": [
+        103.85,
+        1.25
+      ],
+      "bbox": [
+        103.58,
+        1.1,
+        104.12,
+        1.4
+      ],
+      "default_zoom": 10,
+      "provider": "aisstream",
+      "verified": true,
+      "collection": "major15",
+      "region": "asia",
+      "coverage_run": "41894534520",
+      "coverage_checked_at": "2026-11-04T19:26:43Z",
+      "coverage_window_seconds": 900,
+      "coverage_distinct_vessels": 63
+    }
+  }
+}

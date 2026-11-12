@@ -268,7 +268,7 @@ class Harbor(DurableObject):
                 checkpoint_age_seconds=int(now-self.last_checkpoint) if self.last_checkpoint else None),
                 200 if ready else 503, **{'Cache-Control': 'no-store'})
         if path == '/api/v1/harbors':
-            return response({'harbors': list(self.active.values()), 'forwarded': list(self.forwarded),'capabilities':{'compact_map':True,'map_candidate_limit':80}},
+            return response({'harbors': list(self.active.values()), 'forwarded': list(self.forwarded),'capabilities':{'compact_map':True,'map_candidate_limit':80,'device_cameras':True}},
                             **{'Cache-Control': 'public, max-age=3600'})
         if path == '/api/v1/destination-review':
             from port_of_call.destination_review import report

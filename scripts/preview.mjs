@@ -16,7 +16,20 @@ http.createServer(async(req,res)=>{
   if(!layouts.includes(layout))throw new Error('layout');
   const fixture=u.searchParams.get('fixture')||'helsinki';
   if(!/^[a-z_-]+$/.test(fixture))throw new Error('fixture');
-  const data=JSON.parse(await readFile('fixtures/'+fixture+'.json','utf8'));
+  let data=JSON.parse(await readFile('fixtures/'+fixture+'.json','utf8'));
+  const approved=u.searchParams.get('framing')==='approved';
+  const mapOnly=approved&&u.searchParams.has('port');
+  if(approved){
+   const registry=JSON.parse(await readFile('port_of_call/harbors.json','utf8'));
+   const port=registry.find(p=>p.id===(u.searchParams.get('port')||data.port.id)&&p.verified);
+   if(!port)throw new Error('Unknown reviewed harbor');
+   const profiles=Object.fromEntries(Object.entries(port.cameras).map(([k,c])=>[k,{center:c.focus,zoom:c.zoom}]));
+   const camera={...profiles.og,profiles};
+   if(mapOnly){
+    const fact=JSON.parse(await readFile('docs/port-fact-poi-review.json','utf8')).facts.find(f=>f.fact_id===port.id+':0');
+    data={port,camera,viewport:port.bbox,status:'ok',message:'',source:'Map preview',vessels:[],total:0,landmarks:[],port_fact:{id:fact.fact_id,text:fact.text},demo:false};
+   }else data.camera=camera;
+  }
   // Controlled density comparison: subset the SAME archived source capture.
   // Coordinates, timestamps and the fixed camera remain untouched.
   const candidates=Number(u.searchParams.get('candidates'));
@@ -38,14 +51,17 @@ http.createServer(async(req,res)=>{
     .toSorted((a,b)=>Number(!a.fact_ids.includes(id))-Number(!b.fact_ids.includes(id))).slice(0,8)
     .map(r=>({...r,fact_related:r.fact_ids.includes(id)}));
   }
+  if(mapOnly)data.landmarks=JSON.parse(await readFile('docs/landmark-sources.json','utf8')).landmarks[data.port.id].slice(0,8).map(r=>({...r,fact_related:r.fact_ids.includes(data.port_fact.id)}));
   // Fixtures are captured at the full observation box; optionally preview a nested framing.
   const factor=Number(u.searchParams.get('frame'));
   if(factor>0&&factor<=1&&data.viewport){const [w,s,e,n]=data.viewport,x=(w+e)/2,y=(s+n)/2;
    data.viewport=[x-(e-w)*factor/2,y-(n-s)*factor/2,x+(e-w)*factor/2,y+(n-s)*factor/2];}
   let markup=(await render(layout,data,{ship_labels:u.searchParams.get('labels')==='on',port_facts:u.searchParams.get('facts')==='true',map_legend:u.searchParams.get('legend')==='true'}))
    .replaceAll('https://trmnl.com/js/maplibre-gl/5.24.0/','/assets/');
+  if(mapOnly)markup=markup.replace(/data-poc-count>[^<]*/,'data-editor-count>Map framing preview');
   let provenance='';
-  if(!data.demo) {
+  if(mapOnly)provenance='<div class="description p--2">Approved framing review · no vessel data</div>';
+  else if(!data.demo) {
     const date=new Date(data.snapshot_at).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'});
     const tag=poiReview?'POI REFERENCE TEST · archive':(['stale','empty','unavailable','warming'].includes(fixture)||fixture.startsWith('spotlight-layout-test')||fixture==='spotlight-fallback')?'STATE TEST · archive':'Archive';
     provenance=`<div class="description p--2" data-preview-provenance>${tag} · ${date} · Historical test capture, not current traffic</div>`;

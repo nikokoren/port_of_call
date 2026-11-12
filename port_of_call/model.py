@@ -94,19 +94,28 @@ DEFAULT_SCALE = 'harbor'
 HARBOR_ZOOM = 11
 
 
-def harbor_zoom(port):
-    return port.get('zoom', HARBOR_ZOOM)
+def harbor_camera(port, device='og'):
+    profile = port.get('cameras', {}).get(device, {})
+    return dict(center=list(profile.get('focus') or port.get('focus') or port['center']),
+                zoom=profile.get('zoom', port.get('zoom', HARBOR_ZOOM)))
+
+
+def harbor_zoom(port, device='og'):
+    return port.get('cameras',{}).get(device,{}).get('zoom',port.get('zoom',HARBOR_ZOOM))
 HARBOR_VIEW_PX = (800, 480)
+DEVICE_VIEW_PX = {'og': HARBOR_VIEW_PX, 'x': (1040, 780)}
 
 
-def harbor_view(port):
+def harbor_view(port, device='og'):
     # MapLibre uses 512px tiles: 2**zoom * 512 px span 360 degrees of longitude.
-    lon, lat = port.get('focus') or port['center']
-    world = 512 * 2 ** harbor_zoom(port)
+    camera = harbor_camera(port, device)
+    lon, lat = camera['center']
+    world = 512 * 2 ** camera['zoom']
+    width,height = DEVICE_VIEW_PX[device]
     def merc(y): return math.log(math.tan(math.pi/4 + math.radians(y)/2))
     def unmerc(m): return math.degrees(2*math.atan(math.exp(m)) - math.pi/2)
-    dx = 360 * HARBOR_VIEW_PX[0] / 2 / world
-    dm = 2 * math.pi * HARBOR_VIEW_PX[1] / 2 / world
+    dx = 360 * width / 2 / world
+    dm = 2 * math.pi * height / 2 / world
     return [round(lon-dx, 6), round(unmerc(merc(lat)-dm), 6), round(lon+dx, 6), round(unmerc(merc(lat)+dm), 6)]
 
 
@@ -120,17 +129,39 @@ def viewport(port, scale=DEFAULT_SCALE):
             round(x+(e-w)*factor/2, 6), round(y+(n-s)*factor/2, 6)]
 
 
-def map_candidates_view(port, core):
+def map_candidates_view(port, core, device='og'):
     """Cover portrait/X and card offsets without changing the reviewed camera.
 
     A 1400-square logical-pixel envelope covers standard recipe canvases plus
     their information-card offsets. Only positions inside source coverage enter.
     """
-    x,y = port.get('focus') or port['center']
-    dx = (core[2]-core[0])*1400/800/2
-    dy = (core[3]-core[1])*1400/480/2
+    x,y = harbor_camera(port,device)['center']
+    width,height = DEVICE_VIEW_PX[device]
+    dx = (core[2]-core[0])*1400/width/2
+    dy = (core[3]-core[1])*1400/height/2
     w,s,e,n = port['bbox']
     return [max(w,x-dx),max(s,y-dy),min(e,x+dx),min(n,y+dy)]
+
+
+def union_view(boxes):
+    return [min(b[0] for b in boxes),min(b[1] for b in boxes),max(b[2] for b in boxes),max(b[3] for b in boxes)]
+
+
+def select_views(vessels, boxes, limit, key=None):
+    """Alternate spatial queues so either approved device view can contribute."""
+    queues = [iter(select(vessels,box,limit,key=key)) for box in boxes]
+    result,seen = [],set()
+    while queues and len(result)<limit:
+        active = []
+        for queue in queues:
+            for vessel in queue:
+                if vessel['mmsi'] not in seen:
+                    seen.add(vessel['mmsi']);result.append(vessel);break
+            else: continue
+            active.append(queue)
+            if len(result)==limit: break
+        queues=active
+    return result
 
 
 def select(vessels, bbox, limit=40, key=None):

@@ -14,6 +14,7 @@ from urllib.request import Request, urlopen
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from port_of_call.compact import unpack,MARKER_FIELDS
+from port_of_call.model import HARBORS,harbor_camera,contains
 
 
 def get(url, *, timeout=30):
@@ -31,6 +32,18 @@ def get(url, *, timeout=30):
                 time.sleep(min(60,max(1,int(delay) if delay.isdigit() else 60)))
                 continue
             return r.status, json.loads(body), len(body), r.headers
+
+
+def validate_device_cameras(data):
+    port=HARBORS[data['port']['id']]
+    expected={device:harbor_camera(port,device) for device in ('og','x')}
+    camera=data.get('camera') or {}
+    if camera.get('profiles')!=expected or any(camera.get(k)!=expected['og'][k] for k in ('center','zoom')):
+        raise ValueError('Approved device camera mismatch: '+port['id'])
+    # Marker normalization rounds to five decimals; allow half a unit at edges.
+    w,s,e,n=data['viewport'];observed=[w-.0000051,s-.0000051,e+.0000051,n+.0000051]
+    if any(not contains(observed,v['position']) for v in data['vessels']):
+        raise ValueError('Vessel outside observation coverage')
 
 
 def check(origin, *, allow_degraded=False, all_framings=False):
@@ -54,6 +67,8 @@ def check(origin, *, allow_degraded=False, all_framings=False):
                 data=unpack(data)
             if data.get('schema_version') != 1 or data.get('demo') is not False: raise ValueError('Wrong schema or demo payload')
             if size >= 15_000: raise ValueError('TRMNL payload budget exceeded')
+            if compact and catalog.get('capabilities',{}).get('device_cameras'):
+                validate_device_cameras(data)
             if data['port']['id'] != port['id'] or data['port']['provider'] != health['provider']: raise ValueError('Provider/catalog mismatch')
             if data['status'] not in ('ok', 'warming', 'empty', 'stale', 'unavailable'): raise ValueError('Unknown data state')
             if not allow_degraded and data['status'] in ('warming', 'stale', 'unavailable'): errors.append(port['id']+': '+data['status'])
@@ -91,6 +106,7 @@ def check(origin, *, allow_degraded=False, all_framings=False):
         if catalog.get('capabilities',{}).get('compact_map'):
             status,data,size,_=get(origin+'/api/v1/vessels?harbors='+harbor+'&spotlight=false&format=map')
             if status!=200 or data.get('schema_version')!=2 or data.get('port',{}).get('id')!=harbor or size>=15000:errors.append('Forwarded compact harbor unavailable: '+harbor)
+            elif catalog.get('capabilities',{}).get('device_cameras'):validate_device_cameras(unpack(data))
 
     for path, code in [('/api/v1/harbors/not-a-port/vessels', 404),
                        ('/api/v1/vessels?harbors='+ids[0]+'&spotlight=maybe', 400),

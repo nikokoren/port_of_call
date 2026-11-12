@@ -1,7 +1,7 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from .model import DEFAULT_SCALE, harbor_zoom, viewport, contains, select, epoch, iso, bearing, map_candidates_view
-from .spotlight import choose, focus_viewport, card, spotlight_areas
+from .model import DEFAULT_SCALE, harbor_camera, harbor_view, viewport, contains, select, select_views, union_view, epoch, iso, bearing, map_candidates_view
+from .spotlight import choose, focus_viewport, card, spotlight_areas, harbor_candidates
 from .display import focus_copy, label_voyage
 from .port_facts import port_fact
 
@@ -12,6 +12,8 @@ MESSAGES = {
 
 def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=False, spotlight=False, fact_period=3600, map_mode=False):
     box = viewport(port, scale)
+    devices = ('og','x') if map_mode and scale=='harbor' and port.get('cameras') else ('og',)
+    cores = [harbor_view(port,device) for device in devices] if scale=='harbor' else [box]
     harbor_vessels = store.vessels(now, ttl, port['bbox'])
     fetched = float(store.state('last_success') or 0)
     subject = None
@@ -19,8 +21,12 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
         if scale == 'harbor':
             # Spotlight annotates the harbor view; it never moves the map. Pick
             # a safely visible subject; centrality does not affect its chances.
-            visible = spotlight_areas(port, box)
-            subject = choose(store, port, [v for v in harbor_vessels if visible(v)], now)
+            if map_mode:
+                candidates = harbor_candidates(port,harbor_vessels,now)
+            else:
+                visible = spotlight_areas(port,box)
+                candidates = [v for v in harbor_vessels if visible(v)]
+            subject = choose(store, port, candidates, now)
         else:
             subject = choose(store, port, harbor_vessels, now)
     focus = None
@@ -32,8 +38,8 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
         enrich_card(store, port, focus, now)
         focus['presentation'] = focus_copy(focus)
         focus['trail'] = store.movement(vessel, now)
-    core = box
-    if map_mode and scale=='harbor': box = map_candidates_view(port,core)
+    if scale!='harbor': cores=[box]
+    if map_mode and scale=='harbor': box = union_view([map_candidates_view(port,core,device) for device,core in zip(devices,cores)])
     all_vessels = [v for v in harbor_vessels if contains(box, v['position'])]
     latest = max((epoch(v['reported_at']) for v in all_vessels), default=None)
     if not fetched: status = 'warming'
@@ -48,11 +54,11 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
     if map_mode:
         from .compact import MAP_LIMIT, CORE_LIMIT
         limit = MAP_LIMIT-bool(focus)
-        vessels = select(available,core,min(CORE_LIMIT-bool(focus),limit),key=lambda v:scores[v['mmsi']])
-        vessels += select([v for v in available if not contains(core,v['position'])],box,limit-len(vessels),key=lambda v:scores[v['mmsi']])
+        vessels = select_views(available,cores,min(CORE_LIMIT-bool(focus),limit),key=lambda v:scores[v['mmsi']])
+        vessels += select([v for v in available if not any(contains(core,v['position']) for core in cores)],box,limit-len(vessels),key=lambda v:scores[v['mmsi']])
         chosen = {v['mmsi'] for v in vessels}
         if len(vessels)<limit:
-            vessels += select([v for v in available if v['mmsi'] not in chosen],core,limit-len(vessels),key=lambda v:scores[v['mmsi']])
+            vessels += select_views([v for v in available if v['mmsi'] not in chosen],cores,limit-len(vessels),key=lambda v:scores[v['mmsi']])
     else:
         vessels = select(available, box, 39 if focus else 40,key=lambda v:scores[v['mmsi']])
     if focus: vessels.insert(0, subject[0])
@@ -97,8 +103,11 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
     source = 'AISStream' if port['provider'] == 'aisstream' else 'Fintraffic / Digitraffic'
     if demo: source = 'Synthetic fixture — DEMO'
     # Fixed-zoom framing tells the map its zoom and centre; other scales fit the box.
-    camera = dict(zoom=harbor_zoom(port), center=list(port.get('focus') or port['center'])) if scale == 'harbor' else None
-    return dict(schema_version=1, display_mode='map', port=port, port_fact=fact, landmarks=landmarks_for(port['id'],fact['id'] if fact else None), viewport=box, camera=camera, source=source,
+    camera = harbor_camera(port) if scale == 'harbor' else None
+    if camera and map_mode and port.get('cameras'):
+        camera['profiles'] = {device:harbor_camera(port,device) for device in devices}
+    public_port = {k:v for k,v in port.items() if k!='cameras'}
+    return dict(schema_version=1, display_mode='map', port=public_port, port_fact=fact, landmarks=landmarks_for(port['id'],fact['id'] if fact else None), viewport=box, camera=camera, source=source,
                 attribution={'label': 'Fintraffic / digitraffic.fi · CC BY 4.0 · filtered AIS',
                     'url': 'https://www.digitraffic.fi/en/marine-traffic/',
                     'license': 'https://creativecommons.org/licenses/by/4.0/'} if port['provider']=='digitraffic' else None,

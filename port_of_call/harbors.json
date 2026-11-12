@@ -9,10 +9,10 @@
       60.15
     ],
     "focus": [
-      24.95563,
-      60.13925
+      24.961421,
+      60.156543
     ],
-    "zoom": 11,
+    "zoom": 12,
     "bbox": [
       24.78,
       60.05,
@@ -21,7 +21,23 @@
     ],
     "default_zoom": 10,
     "provider": "digitraffic",
-    "verified": true
+    "verified": true,
+    "cameras": {
+      "og": {
+        "focus": [
+          24.961421,
+          60.156543
+        ],
+        "zoom": 12
+      },
+      "x": {
+        "focus": [
+          24.960293,
+          60.154287
+        ],
+        "zoom": 12
+      }
+    }
   },
   {
     "id": "turku",
@@ -33,8 +49,8 @@
       60.415
     ],
     "focus": [
-      22.18009,
-      60.43489
+      22.1873,
+      60.43345
     ],
     "zoom": 12,
     "bbox": [
@@ -45,7 +61,23 @@
     ],
     "default_zoom": 11,
     "provider": "digitraffic",
-    "verified": true
+    "verified": true,
+    "cameras": {
+      "og": {
+        "focus": [
+          22.1873,
+          60.43345
+        ],
+        "zoom": 12
+      },
+      "x": {
+        "focus": [
+          22.180887,
+          60.433384
+        ],
+        "zoom": 12
+      }
+    }
   },
   {
     "id": "rauma",
@@ -57,10 +89,10 @@
       61.12
     ],
     "focus": [
-      21.4201,
-      61.1324
+      21.419928,
+      61.127427
     ],
-    "zoom": 12,
+    "zoom": 11,
     "bbox": [
       21.35,
       61.06,
@@ -69,7 +101,23 @@
     ],
     "default_zoom": 11,
     "provider": "digitraffic",
-    "verified": true
+    "verified": true,
+    "cameras": {
+      "og": {
+        "focus": [
+          21.419928,
+          61.127427
+        ],
+        "zoom": 11
+      },
+      "x": {
+        "focus": [
+          21.438921,
+          61.12413
+        ],
+        "zoom": 12
+      }
+    }
   },
   {
     "id": "rotterdam",
@@ -81,8 +129,8 @@
       52.0
     ],
     "focus": [
-      4.20864,
-      51.96991
+      4.223746,
+      51.966526
     ],
     "zoom": 10,
     "bbox": [
@@ -99,7 +147,23 @@
     "coverage_run": "41894534520",
     "coverage_checked_at": "2026-11-04T19:26:43Z",
     "coverage_window_seconds": 900,
-    "coverage_distinct_vessels": 865
+    "coverage_distinct_vessels": 865,
+    "cameras": {
+      "og": {
+        "focus": [
+          4.223746,
+          51.966526
+        ],
+        "zoom": 10
+      },
+      "x": {
+        "focus": [
+          4.222373,
+          52.00644
+        ],
+        "zoom": 10
+      }
+    }
   },
   {
     "id": "antwerp",
@@ -111,8 +175,8 @@
       51.3
     ],
     "focus": [
-      4.22008,
-      51.34406
+      4.243426,
+      51.314885
     ],
     "zoom": 10,
     "bbox": [
@@ -129,7 +193,23 @@
     "coverage_run": "41894534520",
     "coverage_checked_at": "2026-11-04T19:26:43Z",
     "coverage_window_seconds": 900,
-    "coverage_distinct_vessels": 485
+    "coverage_distinct_vessels": 485,
+    "cameras": {
+      "og": {
+        "focus": [
+          4.243426,
+          51.314885
+        ],
+        "zoom": 10
+      },
+      "x": {
+        "focus": [
+          4.286646,
+          51.308185
+        ],
+        "zoom": 11
+      }
+    }
   },
   {
     "id": "hamburg",
@@ -141,8 +221,8 @@
       53.525
     ],
     "focus": [
-      9.93597,
-      53.53024
+      9.92567,
+      53.536362
     ],
     "zoom": 11,
     "bbox": [
@@ -159,7 +239,23 @@
     "coverage_run": "41894534520",
     "coverage_checked_at": "2026-11-04T19:26:43Z",
     "coverage_window_seconds": 900,
-    "coverage_distinct_vessels": 282
+    "coverage_distinct_vessels": 282,
+    "cameras": {
+      "og": {
+        "focus": [
+          9.92567,
+          53.536362
+        ],
+        "zoom": 11
+      },
+      "x": {
+        "focus": [
+          9.93349,
+          53.538062
+        ],
+        "zoom": 12
+      }
+    }
   },
   {
     "id": "bremerhaven",
@@ -171,8 +267,8 @@
       53.555
     ],
     "focus": [
-      8.48648,
-      53.57803
+      8.530425,
+      53.571507
     ],
     "zoom": 11,
     "bbox": [
@@ -189,7 +285,23 @@
     "coverage_run": "41894534520",
     "coverage_checked_at": "2026-11-04T19:26:43Z",
     "coverage_window_seconds": 900,
-    "coverage_distinct_vessels": 73
+    "coverage_distinct_vessels": 73,
+    "cameras": {
+      "og": {
+        "focus": [
+          8.530425,
+          53.571507
+        ],
+        "zoom": 11
+      },
+      "x": {
+        "focus": [
+          8.5293,
+          53.561295
+        ],
+        "zoom": 12
+      }
+    }
   },
   {
     "id": "felixstowe",
@@ -201,8 +313,8 @@
       51.94
     ],
     "focus": [
-      1.33361,
-      51.96639
+      1.311637,
+      51.968294
     ],
     "zoom": 11,
     "bbox": [
@@ -219,7 +331,23 @@
     "coverage_run": "41894534520",
     "coverage_checked_at": "2026-11-04T19:26:43Z",
     "coverage_window_seconds": 900,
-    "coverage_distinct_vessels": 22
+    "coverage_distinct_vessels": 22,
+    "cameras": {
+      "og": {
+        "focus": [
+          1.311637,
+          51.968294
+        ],
+        "zoom": 11
+      },
+      "x": {
+        "focus": [
+          1.286308,
+          51.965215
+        ],
+        "zoom": 12
+      }
+    }
   },
   {
     "id": "southampton",
@@ -231,8 +359,8 @@
       50.88
     ],
     "focus": [
-      -1.34096,
-      50.88358
+      -1.343363,
+      50.885529
     ],
     "zoom": 11,
     "bbox": [
@@ -249,7 +377,23 @@
     "coverage_run": "41894534520",
     "coverage_checked_at": "2026-11-04T19:26:43Z",
     "coverage_window_seconds": 900,
-    "coverage_distinct_vessels": 105
+    "coverage_distinct_vessels": 105,
+    "cameras": {
+      "og": {
+        "focus": [
+          -1.343363,
+          50.885529
+        ],
+        "zoom": 11
+      },
+      "x": {
+        "focus": [
+          -1.374997,
+          50.888697
+        ],
+        "zoom": 11
+      }
+    }
   },
   {
     "id": "los-angeles-long-beach",
@@ -261,10 +405,10 @@
       33.73
     ],
     "focus": [
-      -118.20982,
-      33.74053
+      -118.232136,
+      33.745383
     ],
-    "zoom": 12,
+    "zoom": 11,
     "bbox": [
       -118.31,
       33.65,
@@ -279,7 +423,23 @@
     "coverage_run": "41894534520",
     "coverage_checked_at": "2026-11-04T19:26:43Z",
     "coverage_window_seconds": 900,
-    "coverage_distinct_vessels": 169
+    "coverage_distinct_vessels": 169,
+    "cameras": {
+      "og": {
+        "focus": [
+          -118.232136,
+          33.745383
+        ],
+        "zoom": 11
+      },
+      "x": {
+        "focus": [
+          -118.221455,
+          33.740768
+        ],
+        "zoom": 12
+      }
+    }
   },
   {
     "id": "new-york-new-jersey",
@@ -291,8 +451,8 @@
       40.64
     ],
     "focus": [
-      -74.05033,
-      40.66756
+      -74.088439,
+      40.680579
     ],
     "zoom": 11,
     "bbox": [
@@ -309,7 +469,23 @@
     "coverage_run": "41894534520",
     "coverage_checked_at": "2026-11-04T19:26:43Z",
     "coverage_window_seconds": 900,
-    "coverage_distinct_vessels": 183
+    "coverage_distinct_vessels": 183,
+    "cameras": {
+      "og": {
+        "focus": [
+          -74.088439,
+          40.680579
+        ],
+        "zoom": 11
+      },
+      "x": {
+        "focus": [
+          -74.081706,
+          40.679205
+        ],
+        "zoom": 11
+      }
+    }
   },
   {
     "id": "savannah",
@@ -321,8 +497,8 @@
       32.115
     ],
     "focus": [
-      -81.00057,
-      32.08704
+      -80.998235,
+      32.095875
     ],
     "zoom": 11,
     "bbox": [
@@ -339,7 +515,23 @@
     "coverage_run": "41894534520",
     "coverage_checked_at": "2026-11-04T19:26:43Z",
     "coverage_window_seconds": 900,
-    "coverage_distinct_vessels": 30
+    "coverage_distinct_vessels": 30,
+    "cameras": {
+      "og": {
+        "focus": [
+          -80.998235,
+          32.095875
+        ],
+        "zoom": 11
+      },
+      "x": {
+        "focus": [
+          -81.007818,
+          32.1221
+        ],
+        "zoom": 11
+      }
+    }
   },
   {
     "id": "houston",
@@ -351,8 +543,8 @@
       29.705
     ],
     "focus": [
-      -95.04282,
-      29.72131
+      -95.055523,
+      29.746948
     ],
     "zoom": 11,
     "bbox": [
@@ -369,7 +561,23 @@
     "coverage_run": "41894534520",
     "coverage_checked_at": "2026-11-04T19:26:43Z",
     "coverage_window_seconds": 900,
-    "coverage_distinct_vessels": 96
+    "coverage_distinct_vessels": 96,
+    "cameras": {
+      "og": {
+        "focus": [
+          -95.055523,
+          29.746948
+        ],
+        "zoom": 11
+      },
+      "x": {
+        "focus": [
+          -95.057609,
+          29.719131
+        ],
+        "zoom": 11
+      }
+    }
   },
   {
     "id": "seattle",
@@ -381,10 +589,10 @@
       47.6
     ],
     "focus": [
-      -122.38083,
-      47.63245
+      -122.373883,
+      47.639455
     ],
-    "zoom": 12,
+    "zoom": 11,
     "bbox": [
       -122.45,
       47.52,
@@ -399,7 +607,23 @@
     "coverage_run": "41894534520",
     "coverage_checked_at": "2026-11-04T19:26:43Z",
     "coverage_window_seconds": 900,
-    "coverage_distinct_vessels": 366
+    "coverage_distinct_vessels": 366,
+    "cameras": {
+      "og": {
+        "focus": [
+          -122.373883,
+          47.639455
+        ],
+        "zoom": 11
+      },
+      "x": {
+        "focus": [
+          -122.361184,
+          47.636949
+        ],
+        "zoom": 12
+      }
+    }
   },
   {
     "id": "charleston",
@@ -411,8 +635,8 @@
       32.82
     ],
     "focus": [
-      -79.88826,
-      32.77767
+      -79.900276,
+      32.78301
     ],
     "zoom": 12,
     "bbox": [
@@ -429,7 +653,23 @@
     "coverage_run": "41894534520",
     "coverage_checked_at": "2026-11-04T19:26:43Z",
     "coverage_window_seconds": 900,
-    "coverage_distinct_vessels": 94
+    "coverage_distinct_vessels": 94,
+    "cameras": {
+      "og": {
+        "focus": [
+          -79.900276,
+          32.78301
+        ],
+        "zoom": 12
+      },
+      "x": {
+        "focus": [
+          -79.903379,
+          32.764278
+        ],
+        "zoom": 12
+      }
+    }
   },
   {
     "id": "singapore",
@@ -441,8 +681,8 @@
       1.25
     ],
     "focus": [
-      103.83923,
-      1.32065
+      103.850216,
+      1.289759
     ],
     "zoom": 10,
     "bbox": [
@@ -459,7 +699,23 @@
     "coverage_run": "41894534520",
     "coverage_checked_at": "2026-11-04T19:26:43Z",
     "coverage_window_seconds": 900,
-    "coverage_distinct_vessels": 63
+    "coverage_distinct_vessels": 63,
+    "cameras": {
+      "og": {
+        "focus": [
+          103.850216,
+          1.289759
+        ],
+        "zoom": 10
+      },
+      "x": {
+        "focus": [
+          103.795673,
+          1.268892
+        ],
+        "zoom": 11
+      }
+    }
   },
   {
     "id": "shanghai-yangshan",
