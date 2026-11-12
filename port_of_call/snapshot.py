@@ -1,6 +1,6 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from .model import DEFAULT_SCALE, harbor_zoom, viewport, contains, select, epoch, iso, bearing
+from .model import DEFAULT_SCALE, harbor_zoom, viewport, contains, select, epoch, iso, bearing, map_candidates_view
 from .spotlight import choose, focus_viewport, card, spotlight_areas
 from .display import focus_copy, label_voyage
 from .port_facts import port_fact
@@ -10,7 +10,7 @@ MESSAGES = {
     'stale': 'Latest positions may be outdated', 'unavailable': 'Vessel feed unavailable', 'ok': ''}
 
 
-def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=False, spotlight=False, fact_period=3600):
+def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=False, spotlight=False, fact_period=3600, map_mode=False):
     box = viewport(port, scale)
     harbor_vessels = store.vessels(now, ttl, port['bbox'])
     fetched = float(store.state('last_success') or 0)
@@ -32,6 +32,8 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
         enrich_card(store, port, focus, now)
         focus['presentation'] = focus_copy(focus)
         focus['trail'] = store.movement(vessel, now)
+    core = box
+    if map_mode and scale=='harbor': box = map_candidates_view(port,core)
     all_vessels = [v for v in harbor_vessels if contains(box, v['position'])]
     latest = max((epoch(v['reported_at']) for v in all_vessels), default=None)
     if not fetched: status = 'warming'
@@ -42,8 +44,17 @@ def snapshot(store, port, now, fresh=1800, ttl=3600, scale=DEFAULT_SCALE, demo=F
     if status == 'unavailable': all_vessels = []
     from .labels import interest, rank
     scores = {v['mmsi']: interest(v, now, fresh) for v in all_vessels}
-    vessels = select([v for v in all_vessels if not focus or v['mmsi'] != focus['mmsi']], box, 39 if focus else 40,
-                     key=lambda v: scores[v['mmsi']])
+    available = [v for v in all_vessels if not focus or v['mmsi'] != focus['mmsi']]
+    if map_mode:
+        from .compact import MAP_LIMIT, CORE_LIMIT
+        limit = MAP_LIMIT-bool(focus)
+        vessels = select(available,core,min(CORE_LIMIT-bool(focus),limit),key=lambda v:scores[v['mmsi']])
+        vessels += select([v for v in available if not contains(core,v['position'])],box,limit-len(vessels),key=lambda v:scores[v['mmsi']])
+        chosen = {v['mmsi'] for v in vessels}
+        if len(vessels)<limit:
+            vessels += select([v for v in available if v['mmsi'] not in chosen],core,limit-len(vessels),key=lambda v:scores[v['mmsi']])
+    else:
+        vessels = select(available, box, 39 if focus else 40,key=lambda v:scores[v['mmsi']])
     if focus: vessels.insert(0, subject[0])
     # Labels use cached metadata only. Read relevant calls once for the batch;
     # this never opens per-ship network requests or infers an origin from motion.

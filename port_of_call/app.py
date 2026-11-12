@@ -89,7 +89,7 @@ def create_app(config=None, *, store=None, collect=True, clock=time.time):
             headers={'Cache-Control':'no-store'})
 
     async def harbors(request):
-        return web.json_response({'harbors':list(active.values())},
+        return web.json_response({'harbors':list(active.values()),'capabilities':{'compact_map':True,'map_candidate_limit':80}},
                                  headers={'Cache-Control':'public, max-age=3600'})
 
     async def destination_review(request):
@@ -104,20 +104,23 @@ def create_app(config=None, *, store=None, collect=True, clock=time.time):
 
     def respond(request, mid, scale, spotlight, demo=False, fact_period=3600):
         port = HARBORS[mid]
-        key = (mid, scale, demo, spotlight, fact_period, int(clock()//30))
+        wire_format=request.query.get('format','legacy').lower()
+        if wire_format not in ('legacy','map'):raise web.HTTPBadRequest(reason='Unknown format')
+        map_mode=wire_format=='map'
+        key = (mid, scale, demo, spotlight, fact_period, map_mode, int(clock()//30))
         if key not in cache:
             if len(cache) >= 64: cache.clear()
             if demo:
                 from .demo import demo_store
                 ds = demo_store(port, clock())
-                payload = snapshot(ds, port, clock(), config.fresh, config.ttl, scale, True, spotlight)
+                payload = snapshot(ds, port, clock(), config.fresh, config.ttl, scale, True, spotlight,map_mode=map_mode)
                 ds.close()
             else:
-                payload = snapshot(store, port, clock(), config.fresh, config.ttl, scale, spotlight=spotlight, fact_period=fact_period)
+                payload = snapshot(store, port, clock(), config.fresh, config.ttl, scale, spotlight=spotlight, fact_period=fact_period,map_mode=map_mode)
                 if collect: enricher.enqueue(payload.get('focus'))
             ports = payload.pop('unresolved_ports', [])
             if collect and not demo: enricher.enqueue_ports(ports)
-            body = encode_snapshot(payload).encode()
+            body = encode_snapshot(payload,map_mode=map_mode).encode()
             cache[key] = body
         body = cache[key]
         headers = {'Cache-Control':'public, max-age=30, stale-if-error=60',

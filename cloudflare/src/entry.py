@@ -228,10 +228,10 @@ class Harbor(DurableObject):
 
     async def alarm(self): await self.tick()
 
-    async def forward(self, harbor, scale, focus, fact_period=3600):
+    async def forward(self, harbor, scale, focus, fact_period=3600, map_mode=False):
         """The partner backend's snapshot for one of its harbors, or None."""
         url = ('https://partner.internal/api/v1/harbors/'+harbor+'/vessels?scale='+scale+
-               '&spotlight='+('true' if focus else 'false'))
+               '&spotlight='+('true' if focus else 'false')+('&format=map' if map_mode else ''))
         try:
             result = await self.partner.fetch(url)
             if result.status != 200: return None
@@ -266,7 +266,7 @@ class Harbor(DurableObject):
                 checkpoint_age_seconds=int(now-self.last_checkpoint) if self.last_checkpoint else None),
                 200 if ready else 503, **{'Cache-Control': 'no-store'})
         if path == '/api/v1/harbors':
-            return response({'harbors': list(self.active.values()), 'forwarded': list(self.forwarded)},
+            return response({'harbors': list(self.active.values()), 'forwarded': list(self.forwarded),'capabilities':{'compact_map':True,'map_candidate_limit':80}},
                             **{'Cache-Control': 'public, max-age=3600'})
         if path == '/api/v1/destination-review':
             from port_of_call.destination_review import report
@@ -284,6 +284,9 @@ class Harbor(DurableObject):
         else:
             return response({'error': 'Not found'}, 404)
         raw_focus = query.get('spotlight', ['false'])[0].lower()
+        wire_format=query.get('format',['legacy'])[0].lower()
+        if wire_format not in ('legacy','map'):return response({'error':'Unknown format'},400)
+        map_mode=wire_format=='map'
         if scale not in ('harbor', 'closer', 'standard', 'wider') or raw_focus not in ('', 'true', 'false', 'on', 'off', 'yes', 'no', '1', '0'):
             return response({'error': 'Unknown scale or spotlight value'}, 400)
         client = request.headers.get('CF-Connecting-IP') or 'shared'
@@ -296,7 +299,7 @@ class Harbor(DurableObject):
         focus = raw_focus in ('true', 'on', 'yes', '1')
         fact_period = max(3600, len(chosen)*900)
         if harbor in self.forwarded:
-            body = await self.forward(harbor, scale, focus, fact_period)
+            body = await self.forward(harbor, scale, focus, fact_period,map_mode)
             if body is not None:
                 return response(body, **{'Cache-Control': 'public, max-age=30'})
             # The partner is unavailable: keep rotating through this backend's
@@ -304,13 +307,13 @@ class Harbor(DurableObject):
             own = [k for k in chosen if k in self.active]
             if not own: return response({'error': 'Harbor feed unavailable'}, 503, **{'Cache-Control': 'no-store'})
             harbor = rotate(own, now)
-        key = (harbor, scale, focus, fact_period, int(now//30))
+        key = (harbor, scale, focus, fact_period,map_mode, int(now//30))
         if key not in self.cache:
             if len(self.cache) >= 96: self.cache.clear()
-            payload = snapshot(self.store, self.active[harbor], now, scale=scale, spotlight=focus, fact_period=fact_period)
+            payload = snapshot(self.store, self.active[harbor], now, scale=scale, spotlight=focus, fact_period=fact_period,map_mode=map_mode)
             self.enricher.enqueue(payload.get('focus'))
             self.enricher.enqueue_ports(payload.pop('unresolved_ports', []))
-            self.cache[key] = encode_snapshot(payload)
+            self.cache[key] = encode_snapshot(payload,map_mode=map_mode)
         body = self.cache[key]
         etag = '"'+hashlib.sha256(body.encode()).hexdigest()[:24]+'"'
         headers = {'Cache-Control': 'public, max-age=30', 'ETag': etag}

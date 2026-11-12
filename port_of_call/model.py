@@ -120,6 +120,19 @@ def viewport(port, scale=DEFAULT_SCALE):
             round(x+(e-w)*factor/2, 6), round(y+(n-s)*factor/2, 6)]
 
 
+def map_candidates_view(port, core):
+    """Cover portrait/X and card offsets without changing the reviewed camera.
+
+    A 1400-square logical-pixel envelope covers standard recipe canvases plus
+    their information-card offsets. Only positions inside source coverage enter.
+    """
+    x,y = port.get('focus') or port['center']
+    dx = (core[2]-core[0])*1400/800/2
+    dy = (core[3]-core[1])*1400/480/2
+    w,s,e,n = port['bbox']
+    return [max(w,x-dx),max(s,y-dy),min(e,x+dx),min(n,y+dy)]
+
+
 def select(vessels, bbox, limit=40, key=None):
     """Deterministic round-robin over spatial cells.
 

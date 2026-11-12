@@ -4,11 +4,16 @@ import json
 import math
 import re
 import time
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
+
+
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from port_of_call.compact import unpack,MARKER_FIELDS
 
 
 def get(url, *, timeout=30):
@@ -30,34 +35,38 @@ def check(origin, *, allow_degraded=False, all_framings=False):
     if status != 200 or not catalog.get('harbors'): raise ValueError('Harbor catalog unavailable')
     rows = []
     for port in catalog['harbors']:
-        for scale in (('harbor', 'closer', 'standard', 'wider') if all_framings else ('harbor',)):
-            for focus in (False, True):
-                url = origin+'/api/v1/harbors/'+port['id']+'/vessels?scale='+scale+'&spotlight='+str(focus).lower()
-                status, data, size, headers = get(url)
-                if status != 200: raise ValueError('Snapshot HTTP failure for '+port['id'])
-                if data.get('schema_version') != 1 or data.get('demo') is not False: raise ValueError('Wrong schema or demo payload')
-                if size >= 15_000: raise ValueError('TRMNL payload budget exceeded')
-                if data['port']['id'] != port['id'] or data['port']['provider'] != health['provider']: raise ValueError('Provider/catalog mismatch')
-                if data['status'] not in ('ok', 'warming', 'empty', 'stale', 'unavailable'): raise ValueError('Unknown data state')
-                if not allow_degraded and data['status'] in ('warming', 'stale', 'unavailable'): errors.append(port['id']+': '+data['status'])
-                if data['shown'] != len(data['vessels']) or data['total'] < data['shown']: raise ValueError('Invalid vessel counts')
-                mids = set()
-                for vessel in data['vessels']:
-                    if not re.fullmatch(r'\d{9}', vessel['mmsi']) or vessel['mmsi'] in mids: raise ValueError('Invalid/duplicate MMSI')
-                    mids.add(vessel['mmsi'])
-                    if 'voyage' in vessel and not isinstance(vessel['voyage'],str): raise ValueError('Invalid voyage label')
-                    lon, lat = vessel['position']
-                    if not all(isinstance(x, (int, float)) and math.isfinite(x) for x in (lon, lat)): raise ValueError('Invalid coordinates')
-                    if not -180 <= lon <= 180 or not -90 <= lat <= 90: raise ValueError('Invalid coordinate range')
-                    reported = datetime.fromisoformat(vessel['reported_at'].replace('Z', '+00:00')).timestamp()
-                    if not -5 <= time.time()-reported < 3660: raise ValueError('Expired or future vessel position')
-                if data['status'] == 'unavailable' and data['vessels']: raise ValueError('Unavailable feed displays positions')
-                subject = data.get('focus')
-                if subject and (not focus or not data['vessels'] or data['vessels'][0]['mmsi'] != subject['mmsi']): raise ValueError('Featured marker missing')
-                if subject and any('draught' in fact['label'].lower() for fact in subject.get('facts', [])): raise ValueError('Removed fact in card')
-                rows.append(dict(port=port['id'], scale=scale, spotlight=focus, state=data['status'],
-                                 total=data['total'], shown=data['shown'], focused=bool(subject),
-                                 voyage_labels=sum(bool(v.get('voyage')) for v in data['vessels']), bytes=size))
+        cases=[(scale,focus,False) for scale in (('harbor','closer','standard','wider') if all_framings else ('harbor',)) for focus in (False,True)]
+        if catalog.get('capabilities',{}).get('compact_map'):cases += [('harbor',focus,True) for focus in (False,True)]
+        for scale,focus,compact in cases:
+            url = origin+'/api/v1/harbors/'+port['id']+'/vessels?scale='+scale+'&spotlight='+str(focus).lower()+('&format=map' if compact else '')
+            status, data, size, headers = get(url)
+            if status != 200: raise ValueError('Snapshot HTTP failure for '+port['id'])
+            if compact:
+                if data.get('schema_version')!=2 or data.get('marker_fields')!=MARKER_FIELDS:raise ValueError('Wrong compact map schema')
+                data=unpack(data)
+            if data.get('schema_version') != 1 or data.get('demo') is not False: raise ValueError('Wrong schema or demo payload')
+            if size >= 15_000: raise ValueError('TRMNL payload budget exceeded')
+            if data['port']['id'] != port['id'] or data['port']['provider'] != health['provider']: raise ValueError('Provider/catalog mismatch')
+            if data['status'] not in ('ok', 'warming', 'empty', 'stale', 'unavailable'): raise ValueError('Unknown data state')
+            if not allow_degraded and data['status'] in ('warming', 'stale', 'unavailable'): errors.append(port['id']+': '+data['status'])
+            if data['shown'] != len(data['vessels']) or data['total'] < data['shown']: raise ValueError('Invalid vessel counts')
+            mids = set()
+            for vessel in data['vessels']:
+                if not re.fullmatch(r'\d{9}', vessel['mmsi']) or vessel['mmsi'] in mids: raise ValueError('Invalid/duplicate MMSI')
+                mids.add(vessel['mmsi'])
+                if 'voyage' in vessel and not isinstance(vessel['voyage'],str): raise ValueError('Invalid voyage label')
+                lon, lat = vessel['position']
+                if not all(isinstance(x, (int, float)) and math.isfinite(x) for x in (lon, lat)): raise ValueError('Invalid coordinates')
+                if not -180 <= lon <= 180 or not -90 <= lat <= 90: raise ValueError('Invalid coordinate range')
+                reported = datetime.fromisoformat(vessel['reported_at'].replace('Z', '+00:00')).timestamp()
+                if not -5 <= time.time()-reported < 3660: raise ValueError('Expired or future vessel position')
+            if data['status'] == 'unavailable' and data['vessels']: raise ValueError('Unavailable feed displays positions')
+            subject = data.get('focus')
+            if subject and (not focus or not data['vessels'] or data['vessels'][0]['mmsi'] != subject['mmsi']): raise ValueError('Featured marker missing')
+            if subject and any('draught' in fact['label'].lower() for fact in subject.get('facts', [])): raise ValueError('Removed fact in card')
+            rows.append(dict(port=port['id'], scale=scale, format='map' if compact else 'legacy', spotlight=focus, state=data['status'],
+                             total=data['total'], shown=data['shown'], focused=bool(subject),
+                             voyage_labels=sum(bool(v.get('voyage')) for v in data['vessels']), bytes=size))
     # Recipe endpoint: one selected harbor is pinned; none rotates through the catalog.
     ids = [h['id'] for h in catalog['harbors']]
     # The rotation also includes harbors forwarded to a partner backend (the
@@ -71,6 +80,10 @@ def check(origin, *, allow_degraded=False, all_framings=False):
     for harbor in catalog.get('forwarded', []):
         status, data, _, _ = get(origin+'/api/v1/vessels?harbors='+harbor+'&spotlight=false')
         if status != 200 or data.get('port', {}).get('id') != harbor: errors.append('Forwarded harbor unavailable: '+harbor)
+        if catalog.get('capabilities',{}).get('compact_map'):
+            status,data,size,_=get(origin+'/api/v1/vessels?harbors='+harbor+'&spotlight=false&format=map')
+            if status!=200 or data.get('schema_version')!=2 or data.get('port',{}).get('id')!=harbor or size>=15000:errors.append('Forwarded compact harbor unavailable: '+harbor)
+
     for path, code in [('/api/v1/harbors/not-a-port/vessels', 404),
                        ('/api/v1/vessels?harbors='+ids[0]+'&spotlight=maybe', 400),
                        ('/demo/api/v1/harbors/'+catalog['harbors'][0]['id']+'/vessels', 404),

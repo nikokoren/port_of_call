@@ -235,6 +235,7 @@
         if(length>=150)return 1.3;if(length>=40)return 1;if(length>0)return .8;
         return type==='other'||type==='fishing'?.8:1;
       }
+      function reportedTime(value){var n=Number(value);return value&&Number.isFinite(n)?n*1000:Date.parse(value)||0;}
       function restingAngle(id){var n=0;String(id||'').split('').forEach(function(c){n=(n*31+c.charCodeAt(0))%3600;});return n%360;}
       function featuredIcon(point) {
         var r=20*scale();return [point.x-r,point.y-r,point.x+r,point.y+r];
@@ -408,7 +409,7 @@
         // did not rank go last, newest first.
         var placed=0,limit=Math.max(2,Math.min(16,Math.round(W*H/(unit*unit)/48000)));
         function rankOf(s){var r=Number(s.data.rank);return s.data.rank&&Number.isFinite(r)?r:Infinity;}
-        shown.sort(function(a,b){return (b.featured-a.featured)||(rankOf(a)-rankOf(b))||b.data.reported.localeCompare(a.data.reported)||a.data.id.localeCompare(b.data.id);}).forEach(function(s){
+        shown.sort(function(a,b){return (b.featured-a.featured)||(rankOf(a)-rankOf(b))||reportedTime(b.data.reported)-reportedTime(a.data.reported)||a.data.id.localeCompare(b.data.id);}).forEach(function(s){
           if(s.featured||!s.data.name||placed>=limit)return;
           var label=document.createElement('div');
           label.className='poc__label bg--canvas outline p--1 flex flex--col flex--left gap--none';

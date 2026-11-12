@@ -6,13 +6,26 @@ import {render,engine,layouts} from '../scripts/render.mjs';
 const settings=YAML.parse(await readFile('settings.yml','utf8'));
 const fixture=JSON.parse(await readFile('fixtures/helsinki.json','utf8'));
 const fields=Object.fromEntries(settings.custom_fields.filter(f=>Object.hasOwn(f,'default')).map(f=>[f.keyname,f.default]));
+test('all layouts render compact map records identically to legacy markers',async()=>{
+ const data=structuredClone(fixture);
+ Object.assign(data.vessels[0],{name:'Boat <&"',voyage:'To <Harbor> & coast',bearing_deg:0,speed_knots:0,stale:false,label_rank:0});
+ const keys=['mmsi','position','bearing_deg','speed_knots','type','name','length_m','reported_at','stale','label_rank','voyage'];
+ const compact={...data,schema_version:2,marker_fields:keys,vessels:data.vessels.map(v=>keys.map(k=>k==='reported_at'?Date.parse(v[k])/1000:v[k]??null))};
+ for(const layout of layouts){
+  const original=await render(layout,data),packed=await render(layout,compact);
+  const markers=html=>[...html.matchAll(/<li\s+data-featured=[^>]+>/g)].map(m=>m[0].replace(/data-reported="[^"]*"/g,''));
+  assert.ok(markers(original).length>0,layout+': actual marker markup');
+  assert.deepEqual(markers(packed),markers(original),layout);
+  assert.ok(packed.includes(`data-reported="${Date.parse(data.vessels[0].reported_at)/1000}"`));
+ }
+});
 test('polling URL sends an optional multi-harbor selection',async()=>{
  const release=JSON.parse(await readFile('deploy/world-release.json','utf8'));
  const base=release.origin+'/api/v1/vessels?harbors=';
  // TRMNL stores a multi-select as a list; join also passes a plain string through.
  for(const [harbor,expected] of [[[],''],[undefined,''],[null,''],[['turku'],'turku'],[['helsinki','rauma'],'helsinki,rauma'],['turku','turku']]){
   const url=await engine.parseAndRender(settings.polling_url,{...fields,harbor});
-  assert.equal(url,`${base}${expected}&spotlight=false`);
+  assert.equal(url,`${base}${expected}&spotlight=false&format=map`);
  }
  const harbor=settings.custom_fields.find(f=>f.keyname==='harbor');
  assert.equal(harbor.field_type,'select');assert.equal(harbor.multiple,true);assert.equal(harbor.optional,true);
@@ -110,7 +123,7 @@ test('Spotlight setting is a native off-by-default boolean',async()=>{
  const field=settings.custom_fields.find(f=>f.keyname==='ship_spotlight');
  assert.equal(field.field_type,'boolean');assert.equal(field.default,false);
  const url=await engine.parseAndRender(settings.polling_url,{...fields,ship_spotlight:true});
- assert.ok(url.endsWith('&spotlight=true'));
+ assert.ok(url.endsWith('&spotlight=true&format=map'));
 });
 for(const layout of layouts)test(`${layout}: ordered ship copy and map-level source credits`,async()=>{
  const data=JSON.parse(await readFile('fixtures/rauma-spotlight.json','utf8'));

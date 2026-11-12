@@ -13,7 +13,7 @@ try{
  await page.evaluate(()=>{
   const root=document.querySelector('.poc'),map=root.__portOfCallMap;
   const ship=root.querySelector('.poc__data li[data-featured="true"]');
-  const p=map.project([+ship.dataset.lon,+ship.dataset.lat]),ts=Date.parse(ship.dataset.reported);
+  const p=map.project([+ship.dataset.lon,+ship.dataset.lat]),ts=Number.isFinite(Number(ship.dataset.reported))?Number(ship.dataset.reported)*1000:Date.parse(ship.dataset.reported);
   const ol=root.querySelector('.poc__trail-data');ol.replaceChildren();
   [[40,20],[20,10],[0,0]].forEach(([dx,dy],i)=>{
    const point=map.unproject([p.x+dx,p.y+dy]),li=document.createElement('li');

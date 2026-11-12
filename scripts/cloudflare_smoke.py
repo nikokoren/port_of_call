@@ -45,7 +45,7 @@ def main():
         report = check(ORIGIN, allow_degraded=True, all_framings=True)
         (ROOT/'var/cloudflare-smoke.json').write_text(json.dumps(report, indent=2)+'\n')
         if not report['passed']: raise ValueError('Runtime contract failed')
-        print('Native runtime contract passed: 18 snapshots and invalid-route checks')
+        print('Native runtime contract passed:',len(report['snapshots']),'snapshots and invalid-route checks')
         if not args.live: return
         status, event, _, _ = get(ORIGIN+'/cdn-cgi/local/scheduled?format=json&cron=%2A%2F5+%2A+%2A+%2A+%2A', timeout=120)
         if status != 200 or event.get('outcome') not in (None, 'ok'):

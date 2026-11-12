@@ -121,7 +121,7 @@ class Expansion(unittest.TestCase):
         self.assertNotIn('Rotterdam, Netherlands',out)
         # Forwarded Finnish ports are credited to their own source.
         self.assertIn('Finnish ports from Fintraffic / digitraffic.fi, CC BY 4.0',out)
-        self.assertIn("""polling_url: "https://harbor.example.com/api/v1/vessels?harbors={{ harbor | join: ',' }}&spotlight={{ ship_spotlight }}"\n""",out)
+        self.assertIn("""polling_url: "https://harbor.example.com/api/v1/vessels?harbors={{ harbor | join: ',' }}&spotlight={{ ship_spotlight }}&format=map"\n""",out)
         self.assertIn("framework_version: '3.4.4'",out)
         self.assertIn('refresh_interval: 15',out)
         description=next(line.split(': ',1)[1] for line in out.splitlines() if line.startswith('description: '))

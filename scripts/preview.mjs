@@ -17,6 +17,12 @@ http.createServer(async(req,res)=>{
   const fixture=u.searchParams.get('fixture')||'helsinki';
   if(!/^[a-z_-]+$/.test(fixture))throw new Error('fixture');
   const data=JSON.parse(await readFile('fixtures/'+fixture+'.json','utf8'));
+  // Controlled density comparison: subset the SAME archived source capture.
+  // Coordinates, timestamps and the fixed camera remain untouched.
+  const candidates=Number(u.searchParams.get('candidates'));
+  if(candidates>0&&Number.isInteger(candidates)){
+   data.vessels=data.vessels.slice(0,candidates);data.shown=data.vessels.length;data.omitted=data.total-data.shown;
+  }
   // Current, independently sourced reference context may accompany archived
   // observations; this never changes their vessel positions or timestamps.
   if(!data.landmarks)data.landmarks=JSON.parse(await readFile('docs/landmark-sources.json','utf8')).landmarks[data.port?.id]||[];
