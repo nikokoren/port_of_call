@@ -20,7 +20,7 @@ def populated():
         mid=str(230500000+i)
         store.put(position(mid,w+(i%16+.5)*(e-w)/16,s+(i//16+.5)*(n-s)/10,NOW-i,NOW,speed=4,heading=0),
             dict(mmsi=mid,name='TEST '+str(i),updated_at=NOW,type='cargo',facts=dict(length_m=100,destination='FIHEL')))
-    # Genuine-coordinate synthetic unit fixtures only: one source fix in overscan.
+    # Synthetic unit-only observations: include one outside the core viewport.
     area=map_candidates_view(PORT,box)
     store.put(position('230599999',(w+e)/2,(area[1]+s)/2,NOW-10,NOW,speed=4),
         dict(mmsi='230599999',name='EDGE TEST',updated_at=NOW,type='passenger',facts=dict(length_m=100)))

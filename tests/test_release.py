@@ -3,12 +3,28 @@ import os
 from pathlib import Path
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch,MagicMock
 from scripts import deploy_cloudflare
 from scripts import check_service
 
 
 class DeploymentGates(unittest.TestCase):
+    def test_full_probe_honors_rate_limit_without_hiding_other_http_errors(self):
+        def reply(status,headers=None):
+            response=MagicMock();response.status=status;response.headers=headers or {}
+            response.read.return_value=b'{"status":"test"}'
+            response.__enter__.return_value=response
+            return response
+        for delay,expected in [('60',60),('bad',60),('999',60)]:
+            with patch.object(check_service,'urlopen',side_effect=[reply(429,{'Retry-After':delay}),reply(200)]) as request, \
+                 patch.object(check_service.time,'sleep') as sleep:
+                self.assertEqual(check_service.get('https://example.test')[0],200)
+                sleep.assert_called_once_with(expected);self.assertEqual(request.call_count,2)
+        with patch.object(check_service,'urlopen',return_value=reply(503)) as request, \
+             patch.object(check_service.time,'sleep') as sleep:
+            self.assertEqual(check_service.get('https://example.test')[0],503)
+            sleep.assert_not_called();self.assertEqual(request.call_count,1)
+
     def test_monitor_retains_aggregate_failure_evidence_when_origin_is_unreachable(self):
         with tempfile.TemporaryDirectory() as d:
             path = Path(d)/'report.json'

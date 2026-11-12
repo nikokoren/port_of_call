@@ -119,3 +119,5 @@ Ship Spotlight now holds a subject for at most one hour, replacing it sooner if 
 The map now distinguishes vessels in the observation area from those actually visible. Spotlight can add a short trail from genuine prior fixes and richer free reference facts. [History, reference matching, landmarks and review workflow](docs/ship-spotlight.md#glanceability-improvements--11-november-2026).
 
 Map responses now provide up to **80 genuine vessel candidates** in a compact format, while retaining the 15 KB byte budget, fixed camera, ship spacing and label limits. Larger/portrait screens also receive candidates around the edges of the original core. The number actually drawn depends on layout, proximity and overlays. [Update Shared, the four layouts and the polling URL](docs/copy-paste.md); old URLs keep the compatible 40-candidate response.
+
+The [same-capture Seattle comparison](docs/map-candidates.md) shows 18 → 21 visible ships on OG, 27 → 37 on X, and 26 → 33 in X portrait, without increasing the label quotas. These are genuine archived observations from 12 November 2026, not current traffic.

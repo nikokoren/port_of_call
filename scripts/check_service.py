@@ -17,12 +17,20 @@ from port_of_call.compact import unpack,MARKER_FIELDS
 
 
 def get(url, *, timeout=30):
-    try: r = urlopen(Request(url, headers={'User-Agent': 'PortOfCall release monitor'}), timeout=timeout)
-    except HTTPError as error: r = error
-    with r:
-        body = r.read(100_001)
-        if len(body) > 100_000: raise ValueError('Oversized API body')
-        return r.status, json.loads(body), len(body), r.headers
+    # The all-port sweep now includes both wire formats and can cross the
+    # public per-minute limit. Honor one bounded Retry-After instead of treating
+    # a healthy rate-limited service as an outage. Other HTTP failures stay visible.
+    for attempt in range(2):
+        try: r = urlopen(Request(url, headers={'User-Agent': 'PortOfCall release monitor'}), timeout=timeout)
+        except HTTPError as error: r = error
+        with r:
+            body = r.read(100_001)
+            if len(body) > 100_000: raise ValueError('Oversized API body')
+            if r.status==429 and attempt==0:
+                delay=r.headers.get('Retry-After','60')
+                time.sleep(min(60,max(1,int(delay) if delay.isdigit() else 60)))
+                continue
+            return r.status, json.loads(body), len(body), r.headers
 
 
 def check(origin, *, allow_degraded=False, all_framings=False):
